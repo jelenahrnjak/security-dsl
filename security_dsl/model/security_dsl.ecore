@@ -4,6 +4,14 @@
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model" upperBound="-1"
+        eType="#//Model" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controller" upperBound="-1"
+        eType="#//Controller" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="security" upperBound="-1"
+        eType="#//Security" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="database" upperBound="-1"
+        eType="#//Database" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifierName" lowerBound="1"
@@ -11,6 +19,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifierType" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attribute" upperBound="-1"
+        eType="#//Attribute" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -37,7 +47,7 @@
   <eClassifiers xsi:type="ecore:EEnum" name="ESecurityMechanism">
     <eLiterals name="JWT"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="JwtSecurity">
+  <eClassifiers xsi:type="ecore:EClass" name="JwtSecurity" eSuperTypes="#//Security">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" lowerBound="1"
@@ -48,34 +58,44 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="claims" upperBound="-1"
+        eType="#//Claims" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Claims">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPublic" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="User"/>
-  <eClassifiers xsi:type="ecore:EClass" name="OtherModel">
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Model"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OtherModel" eSuperTypes="#//Model">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Authentication">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signupUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="loginUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="logoutUrl" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endpoint" upperBound="-1"
+        eType="#//Endpoint" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signup_endpoint" eType="#//Endpoint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="login_endpoint" eType="#//Endpoint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logout_endpoint" eType="#//Endpoint"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OtherController"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OtherController" eSuperTypes="#//Controller">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="endpoint" upperBound="-1"
+        eType="#//Endpoint" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" unique="false"
         lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         changeable="false"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" ordered="false" unique="false"
-        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        changeable="false"/>
+        lowerBound="1" eType="#//EType" changeable="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" lowerBound="1"
         eType="#//EEndpointMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="role" upperBound="-1" eType="#//Role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EEndpointMethod">
     <eLiterals name="GET"/>
@@ -83,5 +103,10 @@
     <eLiterals name="POST" value="2"/>
     <eLiterals name="DELETE" value="3"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Role"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Model"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EType">
+    <eLiterals name="INTEGER"/>
+    <eLiterals name="STRING" value="1"/>
+    <eLiterals name="FLOAT" value="2"/>
+  </eClassifiers>
 </ecore:EPackage>

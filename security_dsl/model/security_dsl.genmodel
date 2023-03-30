@@ -23,13 +23,23 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/POST"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/DELETE"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EType">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/STRING"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/FLOAT"/>
+    </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/description"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/model"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/controller"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/security"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/database"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Model">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Model/identifierName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Model/identifierType"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Model/attribute"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Controller">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Controller/name"/>
@@ -50,6 +60,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JwtSecurity/expirationTime"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JwtSecurity/audience"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JwtSecurity/secret"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JwtSecurity/claims"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Claims">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claims/isPublic"/>
@@ -60,11 +71,14 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//OtherModel/name"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Authentication">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Authentication/signupUrl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Authentication/loginUrl"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Authentication/logoutUrl"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Authentication/endpoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Authentication/signup_endpoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Authentication/login_endpoint"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Authentication/logout_endpoint"/>
     </genClasses>
-    <genClasses ecoreClass="security_dsl.ecore#//OtherController"/>
+    <genClasses ecoreClass="security_dsl.ecore#//OtherController">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//OtherController/endpoint"/>
+    </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/type"/>
@@ -72,6 +86,7 @@
     <genClasses ecoreClass="security_dsl.ecore#//Endpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/role"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Role"/>
   </genPackages>
