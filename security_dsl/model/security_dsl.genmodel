@@ -24,9 +24,15 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/DELETE"/>
     </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EType">
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/INTEGER"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/INT"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/STRING"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/FLOAT"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/LONG"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/CHAR"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/BOOLEAN"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/DOUBLE"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/BYTE"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/SHORT"/>
     </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/name"/>
@@ -86,7 +92,7 @@
     <genClasses ecoreClass="security_dsl.ecore#//Endpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/role"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/roles_authority"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Role"/>
   </genPackages>
