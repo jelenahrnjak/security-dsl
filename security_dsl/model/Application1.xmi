@@ -12,10 +12,7 @@
       identifierName="email"
       identifierType="STRING">
     <model_attributes
-        name="username"
-        type="STRING"/>
-    <model_attributes
-        name="firstName"
+        name="fisrtName"
         type="STRING"/>
     <model_attributes
         name="lastName"
@@ -25,19 +22,31 @@
       xsi:type="security_dsl:Role"
       identifierName="id"
       identifierType="LONG"/>
+  <app_models
+      xsi:type="security_dsl:OtherModel"
+      identifierName="id"
+      identifierType="LONG"
+      name="Pet"/>
   <app_controllers
       xsi:type="security_dsl:Authentication"
       name="AuthController"
       path="/auth">
     <signup_endpoint
-        url="/sign-up"
+        url="/signup"
+        function_name="SignUp"
         method="POST"/>
     <login_endpoint
         url="/login"
+        function_name="LogIn"
         method="POST"/>
     <logout_endpoint
-        url="/logout"/>
+        url="/logout"
+        function_name="LogOut"/>
   </app_controllers>
+  <app_controllers
+      xsi:type="security_dsl:OtherController"
+      name="UserController"
+      path="/users"/>
   <app_security
       xsi:type="security_dsl:JwtSecurity"
       mechanism="JWT"
@@ -48,6 +57,6 @@
       secret="some_secret"/>
   <app_database
       url="localhost:5432/mydatabase"
-      username="random_username"
+      username="user123"
       password="pass123"/>
 </security_dsl:Application>
