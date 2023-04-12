@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<security_dsl:Application
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:security_dsl="http://www.example.org/security_dsl"
+    xsi:schemaLocation="http://www.example.org/security_dsl security_dsl.ecore"
+    name="MyFirstDSLGeneratedApp"
+    description="This is an app that is generated with DSL">
+  <app_models
+      xsi:type="security_dsl:User"
+      identifierName="email"
+      identifierType="STRING">
+    <model_attributes
+        name="username"
+        type="STRING"/>
+    <model_attributes
+        name="firstName"
+        type="STRING"/>
+    <model_attributes
+        name="lastName"
+        type="STRING"/>
+  </app_models>
+  <app_models
+      xsi:type="security_dsl:Role"
+      identifierName="id"
+      identifierType="LONG"/>
+  <app_controllers
+      xsi:type="security_dsl:Authentication"
+      name="AuthController"
+      path="/auth">
+    <signup_endpoint
+        url="/sign-up"
+        method="POST"/>
+    <login_endpoint
+        url="/login"
+        method="POST"/>
+    <logout_endpoint
+        url="/logout"/>
+  </app_controllers>
+  <app_security
+      xsi:type="security_dsl:JwtSecurity"
+      mechanism="JWT"
+      signatureAlgorithm="HS512"
+      issuer="MyApp"
+      expirationTime="180000"
+      audience="AUDIENCE_WEB"
+      secret="some_secret"/>
+  <app_database
+      url="localhost:5432/mydatabase"
+      username="random_username"
+      password="pass123"/>
+</security_dsl:Application>
