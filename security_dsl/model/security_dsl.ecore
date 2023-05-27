@@ -71,15 +71,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Security" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mechanism" lowerBound="1"
-        eType="#//ESecurityMechanism" defaultValueLiteral=""/>
+        eType="#//ESecurityMechanism"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EDatabaseType">
     <eLiterals name="POSTGRES"/>
     <eLiterals name="ORACLE" value="1"/>
     <eLiterals name="MYSQL" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="ESecurityMechanism">
-    <eLiterals name="JWT"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JwtSecurity" eSuperTypes="#//Security">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
@@ -100,12 +97,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="security_claims" upperBound="-1"
-        eType="#//Claims" containment="true"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Claims">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isPublic" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        eType="#//Claim" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Model"/>
   <eClassifiers xsi:type="ecore:EClass" name="OtherModel" eSuperTypes="#//Model">
@@ -159,5 +151,13 @@
     <eLiterals name="DOUBLE" value="7"/>
     <eLiterals name="BYTE" value="8"/>
     <eLiterals name="SHORT" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Claim" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Public" eSuperTypes="#//Claim"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Private" eSuperTypes="#//Claim"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ESecurityMechanism">
+    <eLiterals name="JWT" literal="JWT"/>
   </eClassifiers>
 </ecore:EPackage>

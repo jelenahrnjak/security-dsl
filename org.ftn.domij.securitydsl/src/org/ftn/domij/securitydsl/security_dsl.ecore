@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="security_dsl" nsURI="http://www.example.org/security_dsl" nsPrefix="security_dsl">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Application">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueModelName modelNotNamedUserRole uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole controllerModelNameUnique"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueModelName" value="self.app_models -> select(m | m.oclIsTypeOf(OtherModel)) -> isUnique(m | m.oclAsType(OtherModel).name)"/>
+      <details key="modelNotNamedUserRole" value="not self.app_models -> select(m | m.oclIsTypeOf(OtherModel) and not m.oclAsType(OtherModel).oclIsKindOf(Role)) ->&#xA;    &#x9;&#x9;&#x9;exists(m | m.oclAsType(OtherModel).name.toLower() = 'user' or m.oclAsType(OtherModel).name.toLower() = 'role')"/>
+      <details key="uniqueControllerName" value="self.app_controllers -> isUnique(c | c.name)"/>
+      <details key="uniqueControllerPath" value=" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() &lt;> c.path.toLower())"/>
+      <details key="controllerPath" value="self.app_controllers -> forAll(c | c.path.at(1) = '/')"/>
+      <details key="controllerNotNamedUserRole" value="not self.app_controllers -> exists(c | c.name.toLower() = 'user' or c.name.toLower() = 'role')"/>
+      <details key="controllerModelNameUnique" value="self.app_controllers -> forAll(c | not self.app_models -> exists(m |  m.oclIsTypeOf(OtherModel) and &#xA;&#x9;&#x9;        m.oclAsType(OtherModel).name.toLower() = c.name.toLower()))"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="app_models" upperBound="-1"
+        eType="#//Model" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="app_controllers" upperBound="-1"
+        eType="#//Controller" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="app_security" eType="#//Security"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueAttributeName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name) and not self.model_attributes -> exists(a | a.name = self.identifierName)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifierName" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifierType" lowerBound="1"
+        eType="#//EType"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
+        eType="#//Attribute" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueEndpoints" value="self.controller_endpoints -> isUnique(e | e.function_name) and self.controller_endpoints -> isUnique(e | e.url)"/>
+      <details key="urlStartsWithForwardSlash" value="self.controller_endpoints -> forAll(e | e.url.at(1) = '/')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="controller_endpoints" upperBound="-1"
+        eType="#//Endpoint" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Database">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="vendorName" lowerBound="1"
+        eType="#//EDatabaseType"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Security" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="mechanism" lowerBound="1"
+        eType="#//ESecurityMechanism" defaultValueLiteral=""/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EDatabaseType">
+    <eLiterals name="POSTGRES"/>
+    <eLiterals name="ORACLE" value="1"/>
+    <eLiterals name="MYSQL" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="JwtSecurity" eSuperTypes="#//Security">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="expirationTimeGreaterThanZero uniqueClaims"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="expirationTimeGreaterThanZero" value="self.expirationTime > 0"/>
+      <details key="uniqueClaims" value="self.security_claims -> isUnique(c | c.name)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="audience" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="security_claims" upperBound="-1"
+        eType="#//Claim" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Model"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OtherModel" eSuperTypes="#//Model">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="methodsAllowedSignUp methodsAllowedLogin methodsAllowedLogout urlStartsWithForwardSlash"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="methodsAllowedSignUp" value="self.signup_endpoint = null or self.signup_endpoint.method = EEndpointMethod::POST"/>
+      <details key="methodsAllowedLogin" value="self.login_endpoint = null or ( self.login_endpoint.method = EEndpointMethod::POST or self.login_endpoint.method = EEndpointMethod::GET)"/>
+      <details key="methodsAllowedLogout" value="self.logout_endpoint = null or (self.logout_endpoint.method = EEndpointMethod::POST or self.logout_endpoint.method = EEndpointMethod::GET)"/>
+      <details key="urlStartsWithForwardSlash" value="self.signup_endpoint -> forAll(e | e.url.at(1) = '/') and self.login_endpoint -> forAll(e | e.url.at(1) = '/') and&#xA;&#x9;&#x9;&#x9;self.logout_endpoint -> forAll(e | e.url.at(1) = '/')"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="signup_endpoint" eType="#//Endpoint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="login_endpoint" eType="#//Endpoint"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="logout_endpoint" eType="#//Endpoint"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="OtherController" eSuperTypes="#//Controller"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Attribute">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EType"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="function_name" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" lowerBound="1"
+        eType="#//EEndpointMethod"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="roles_authority" upperBound="-1"
+        eType="#//Role"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EEndpointMethod">
+    <eLiterals name="GET"/>
+    <eLiterals name="PUT" value="1"/>
+    <eLiterals name="POST" value="2"/>
+    <eLiterals name="DELETE" value="3"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Model"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EType">
+    <eLiterals name="INT"/>
+    <eLiterals name="STRING" value="1"/>
+    <eLiterals name="FLOAT" value="2"/>
+    <eLiterals name="LONG" value="3"/>
+    <eLiterals name="CHAR" value="4"/>
+    <eLiterals name="BOOLEAN" value="5"/>
+    <eLiterals name="DOUBLE" value="7"/>
+    <eLiterals name="BYTE" value="8"/>
+    <eLiterals name="SHORT" value="9"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Claim" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Public" eSuperTypes="#//Claim"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Private" eSuperTypes="#//Claim"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="ESecurityMechanism">
+    <eLiterals name="JWT" literal="JWT"/>
+  </eClassifiers>
+</ecore:EPackage>
