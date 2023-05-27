@@ -71,7 +71,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Security" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="mechanism" lowerBound="1"
-        eType="#//ESecurityMechanism" defaultValueLiteral="JWT"/>
+        eType="#//ESecurityMechanism" defaultValueLiteral=""/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EDatabaseType">
     <eLiterals name="POSTGRES"/>
@@ -113,14 +113,13 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="methodsAllowedSignUp methodsAllowedLogin methodsAllowedLogout urlStartsWithForwardSlash uniqueAuthEndpoint"/>
+      <details key="constraints" value="methodsAllowedSignUp methodsAllowedLogin methodsAllowedLogout urlStartsWithForwardSlash"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="methodsAllowedSignUp" value="self.signup_endpoint = null or self.signup_endpoint.method = EEndpointMethod::POST"/>
       <details key="methodsAllowedLogin" value="self.login_endpoint = null or ( self.login_endpoint.method = EEndpointMethod::POST or self.login_endpoint.method = EEndpointMethod::GET)"/>
       <details key="methodsAllowedLogout" value="self.logout_endpoint = null or (self.logout_endpoint.method = EEndpointMethod::POST or self.logout_endpoint.method = EEndpointMethod::GET)"/>
       <details key="urlStartsWithForwardSlash" value="self.signup_endpoint -> forAll(e | e.url.at(1) = '/') and self.login_endpoint -> forAll(e | e.url.at(1) = '/') and&#xA;&#x9;&#x9;&#x9;self.logout_endpoint -> forAll(e | e.url.at(1) = '/')"/>
-      <details key="uniqueAuthEndpoint" value=" self.signup_endpoint.url &lt;> self.login_endpoint.url &lt;> self.logout_endpoint.url"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="signup_endpoint" eType="#//Endpoint"
         containment="true"/>
