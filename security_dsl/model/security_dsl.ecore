@@ -131,8 +131,6 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" lowerBound="1"
         eType="#//EEndpointMethod"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="roles_authority" upperBound="-1"
-        eType="#//Role"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EEndpointMethod">
     <eLiterals name="GET"/>

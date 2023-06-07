@@ -21,7 +21,11 @@
   <app_models
       xsi:type="security_dsl:Role"
       identifierName="id"
-      identifierType="LONG"/>
+      identifierType="LONG">
+    <model_attributes
+        name="name"
+        type="STRING"/>
+  </app_models>
   <app_models
       xsi:type="security_dsl:OtherModel"
       identifierName="id"
@@ -49,7 +53,6 @@
       path="/users"/>
   <app_security
       xsi:type="security_dsl:JwtSecurity"
-      mechanism="JWT"
       signatureAlgorithm="HS512"
       issuer="MyApp"
       expirationTime="180000"

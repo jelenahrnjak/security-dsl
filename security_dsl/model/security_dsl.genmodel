@@ -87,7 +87,6 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/function_name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
-      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/roles_authority"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Role"/>
     <genClasses ecoreClass="security_dsl.ecore#//Claim">
