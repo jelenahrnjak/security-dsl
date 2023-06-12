@@ -3,10 +3,19 @@
  */
 package org.ftn.domij.securitydsl.generator;
 
+import com.google.common.base.Objects;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.AbstractGenerator;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.generator.IGeneratorContext;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
+import security_dsl.Application;
+import security_dsl.Database;
+import security_dsl.EDatabaseType;
+import security_dsl.ESecurityMechanism;
+import security_dsl.Security;
 
 /**
  * Generates code from your model files on save.
@@ -17,5 +26,484 @@ import org.eclipse.xtext.generator.IGeneratorContext;
 public class SecurityDslGenerator extends AbstractGenerator {
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
+    EObject _head = IterableExtensions.<EObject>head(resource.getContents());
+    final Application application = ((Application) _head);
+    String _name = application.getName();
+    String _plus = ("/src/main/java/rs/ac/uns/ftn/" + _name);
+    String _plus_1 = (_plus + "/");
+    fsa.generateFile(_plus_1, "");
+    Database _app_database = application.getApp_database();
+    EDatabaseType _vendorName = null;
+    if (_app_database!=null) {
+      _vendorName=_app_database.getVendorName();
+    }
+    boolean _tripleNotEquals = (_vendorName != null);
+    if (_tripleNotEquals) {
+      fsa.generateFile("/src/main/resources/application.properties", this.generateDatabaseProperties(application.getApp_database()));
+    } else {
+      fsa.generateFile("/src/main/resources/application.properties", "");
+    }
+    String _name_1 = application.getName();
+    String _description = application.getDescription();
+    Security _app_security = application.getApp_security();
+    ESecurityMechanism _mechanism = null;
+    if (_app_security!=null) {
+      _mechanism=_app_security.getMechanism();
+    }
+    fsa.generateFile("/pom.xml", this.generatePomXMLFile(_name_1, _description, _mechanism, application.getApp_database()));
+  }
+
+  public String generateDatabaseProperties(final Database database) {
+    String propertiesContent = "";
+    EDatabaseType _vendorName = null;
+    if (database!=null) {
+      _vendorName=database.getVendorName();
+    }
+    boolean _equals = Objects.equal(_vendorName, EDatabaseType.POSTGRES);
+    if (_equals) {
+      String _propertiesContent = propertiesContent;
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("spring.datasource.driverClassName=org.postgresql.Driver");
+      _builder.newLine();
+      _builder.append("spring.datasource.initialization-mode=always");
+      _builder.newLine();
+      _builder.append("spring.datasource.url=jdbc:postgresql://");
+      propertiesContent = (_propertiesContent + _builder);
+    } else {
+      EDatabaseType _vendorName_1 = null;
+      if (database!=null) {
+        _vendorName_1=database.getVendorName();
+      }
+      boolean _equals_1 = Objects.equal(_vendorName_1, EDatabaseType.MYSQL);
+      if (_equals_1) {
+        String _propertiesContent_1 = propertiesContent;
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append("spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver");
+        _builder_1.newLine();
+        _builder_1.append("spring.datasource.initialization-mode=always");
+        _builder_1.newLine();
+        _builder_1.append("spring.datasource.url=jdbc:mysql://");
+        propertiesContent = (_propertiesContent_1 + _builder_1);
+      } else {
+        EDatabaseType _vendorName_2 = null;
+        if (database!=null) {
+          _vendorName_2=database.getVendorName();
+        }
+        boolean _equals_2 = Objects.equal(_vendorName_2, EDatabaseType.ORACLE);
+        if (_equals_2) {
+          String _propertiesContent_2 = propertiesContent;
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("spring.datasource.driverClassName=oracle.jdbc.driver.OracleDriver");
+          _builder_2.newLine();
+          _builder_2.append("spring.datasource.initialization-mode=always ");
+          _builder_2.newLine();
+          _builder_2.append("spring.datasource.url=jdbc:oracle:thin:@");
+          propertiesContent = (_propertiesContent_2 + _builder_2);
+        }
+      }
+    }
+    String _propertiesContent_3 = propertiesContent;
+    String _url = database.getUrl();
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.newLine();
+    _builder_3.append("spring.datasource.username=");
+    String _plus = (_url + _builder_3);
+    String _username = database.getUsername();
+    String _plus_1 = (_plus + _username);
+    StringConcatenation _builder_4 = new StringConcatenation();
+    _builder_4.newLine();
+    _builder_4.append("spring.datasource.password=");
+    String _plus_2 = (_plus_1 + _builder_4);
+    String _password = database.getPassword();
+    String _plus_3 = (_plus_2 + _password);
+    StringConcatenation _builder_5 = new StringConcatenation();
+    _builder_5.newLine();
+    _builder_5.append("spring.jpa.show-sql=true");
+    _builder_5.newLine();
+    _builder_5.append("spring.jpa.hibernate.ddl-auto=create-drop");
+    _builder_5.newLine();
+    _builder_5.append("spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true");
+    _builder_5.newLine();
+    String _plus_4 = (_plus_3 + _builder_5);
+    propertiesContent = (_propertiesContent_3 + _plus_4);
+    EDatabaseType _vendorName_3 = null;
+    if (database!=null) {
+      _vendorName_3=database.getVendorName();
+    }
+    boolean _equals_3 = Objects.equal(_vendorName_3, EDatabaseType.POSTGRES);
+    if (_equals_3) {
+      String _propertiesContent_4 = propertiesContent;
+      StringConcatenation _builder_6 = new StringConcatenation();
+      _builder_6.append("spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect");
+      _builder_6.newLine();
+      propertiesContent = (_propertiesContent_4 + _builder_6);
+    } else {
+      EDatabaseType _vendorName_4 = null;
+      if (database!=null) {
+        _vendorName_4=database.getVendorName();
+      }
+      boolean _equals_4 = Objects.equal(_vendorName_4, EDatabaseType.MYSQL);
+      if (_equals_4) {
+        String _propertiesContent_5 = propertiesContent;
+        StringConcatenation _builder_7 = new StringConcatenation();
+        _builder_7.append("spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect");
+        propertiesContent = (_propertiesContent_5 + _builder_7);
+      } else {
+        EDatabaseType _vendorName_5 = null;
+        if (database!=null) {
+          _vendorName_5=database.getVendorName();
+        }
+        boolean _equals_5 = Objects.equal(_vendorName_5, EDatabaseType.ORACLE);
+        if (_equals_5) {
+          String _propertiesContent_6 = propertiesContent;
+          StringConcatenation _builder_8 = new StringConcatenation();
+          _builder_8.append("spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect");
+          propertiesContent = (_propertiesContent_6 + _builder_8);
+        }
+      }
+    }
+    return propertiesContent;
+  }
+
+  public String generatePomXMLFile(final String appName, final String description, final ESecurityMechanism mechanism, final Database database) {
+    String finalDesc = "";
+    if ((description != null)) {
+      finalDesc = description;
+    }
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>");
+    _builder.newLine();
+    _builder.append("<project xmlns=\"http://maven.apache.org/POM/4.0.0\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("xsi:schemaLocation=\"http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd\">");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<modelVersion>4.0.0</modelVersion>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<parent>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<groupId>org.springframework.boot</groupId>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<artifactId>spring-boot-starter-parent</artifactId>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<version>2.2.1.RELEASE</version>");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("<relativePath /> ");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("</parent>");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<groupId>rs.ac.uns.ftn</groupId>");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("<artifactId>");
+    String _plus = (_builder.toString() + appName);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append("</artifactId>");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("<version>0.0.1-SNAPSHOT</version>");
+    _builder_1.newLine();
+    _builder_1.append("\t\t\t");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("<packaging>war</packaging>");
+    _builder_1.newLine();
+    _builder_1.append("\t\t\t");
+    _builder_1.newLine();
+    _builder_1.append("\t");
+    _builder_1.append("<name>");
+    String _plus_1 = (_plus + _builder_1);
+    String _plus_2 = (_plus_1 + appName);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("</name>");
+    _builder_2.newLine();
+    _builder_2.append("\t");
+    _builder_2.append("<description>");
+    String _plus_3 = (_plus_2 + _builder_2);
+    String _plus_4 = (_plus_3 + finalDesc);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("</description>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.newLine();
+    _builder_3.append("\t");
+    _builder_3.append("<properties>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("<java.version>1.8</java.version>");
+    _builder_3.newLine();
+    _builder_3.append("\t");
+    _builder_3.append("</properties>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.newLine();
+    _builder_3.append("\t");
+    _builder_3.append("<dependencies>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("<dependency>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("<groupId>org.springframework.boot</groupId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("<artifactId>spring-boot-starter-web</artifactId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("</dependency>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("<dependency>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("<groupId>org.springframework.boot</groupId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("<artifactId>spring-boot-starter-security</artifactId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("</dependency>");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("\t\t");
+    _builder_3.append("<dependency>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t\t");
+    _builder_3.append("<groupId>org.springframework.boot</groupId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t\t");
+    _builder_3.append("<artifactId>spring-boot-starter-data-jpa</artifactId>");
+    _builder_3.newLine();
+    _builder_3.append("\t\t\t");
+    _builder_3.append("</dependency>");
+    _builder_3.newLine();
+    String pomXmlContent = (_plus_4 + _builder_3);
+    boolean _equals = Objects.equal(mechanism, ESecurityMechanism.JWT);
+    if (_equals) {
+      String _pomXmlContent = pomXmlContent;
+      StringConcatenation _builder_4 = new StringConcatenation();
+      _builder_4.append("\t\t");
+      _builder_4.append("<dependency>");
+      _builder_4.newLine();
+      _builder_4.append("\t\t\t");
+      _builder_4.append("<groupId>io.jsonwebtoken</groupId>");
+      _builder_4.newLine();
+      _builder_4.append("\t\t\t");
+      _builder_4.append("<artifactId>jjwt</artifactId>");
+      _builder_4.newLine();
+      _builder_4.append("\t\t\t");
+      _builder_4.append("<version>0.6.0</version>");
+      _builder_4.newLine();
+      _builder_4.append("\t\t");
+      _builder_4.append("</dependency>");
+      _builder_4.newLine();
+      pomXmlContent = (_pomXmlContent + _builder_4);
+    }
+    EDatabaseType _vendorName = null;
+    if (database!=null) {
+      _vendorName=database.getVendorName();
+    }
+    boolean _equals_1 = Objects.equal(_vendorName, EDatabaseType.POSTGRES);
+    if (_equals_1) {
+      String _pomXmlContent_1 = pomXmlContent;
+      StringConcatenation _builder_5 = new StringConcatenation();
+      _builder_5.append("\t\t");
+      _builder_5.append("<dependency>");
+      _builder_5.newLine();
+      _builder_5.append("\t\t\t");
+      _builder_5.append("<groupId>org.postgresql</groupId>");
+      _builder_5.newLine();
+      _builder_5.append("\t\t\t");
+      _builder_5.append("<artifactId>postgresql</artifactId> ");
+      _builder_5.newLine();
+      _builder_5.append("\t\t");
+      _builder_5.append("</dependency>");
+      _builder_5.newLine();
+      pomXmlContent = (_pomXmlContent_1 + _builder_5);
+    } else {
+      EDatabaseType _vendorName_1 = null;
+      if (database!=null) {
+        _vendorName_1=database.getVendorName();
+      }
+      boolean _equals_2 = Objects.equal(_vendorName_1, EDatabaseType.MYSQL);
+      if (_equals_2) {
+        String _pomXmlContent_2 = pomXmlContent;
+        StringConcatenation _builder_6 = new StringConcatenation();
+        _builder_6.append("\t\t");
+        _builder_6.append("<dependency>");
+        _builder_6.newLine();
+        _builder_6.append("\t\t\t");
+        _builder_6.append("<groupId>mysql</groupId>");
+        _builder_6.newLine();
+        _builder_6.append("\t\t\t");
+        _builder_6.append("<artifactId>mysql-connector-java</artifactId> ");
+        _builder_6.newLine();
+        _builder_6.append("\t\t\t");
+        _builder_6.append("<version>8.0.26</version>");
+        _builder_6.newLine();
+        _builder_6.append("\t\t");
+        _builder_6.append("</dependency>");
+        _builder_6.newLine();
+        pomXmlContent = (_pomXmlContent_2 + _builder_6);
+      } else {
+        EDatabaseType _vendorName_2 = null;
+        if (database!=null) {
+          _vendorName_2=database.getVendorName();
+        }
+        boolean _equals_3 = Objects.equal(_vendorName_2, EDatabaseType.ORACLE);
+        if (_equals_3) {
+          String _pomXmlContent_3 = pomXmlContent;
+          StringConcatenation _builder_7 = new StringConcatenation();
+          _builder_7.append("\t\t");
+          _builder_7.append("<dependency>");
+          _builder_7.newLine();
+          _builder_7.append("\t\t\t");
+          _builder_7.append("<groupId>com.oracle.database.jdbc</groupId>");
+          _builder_7.newLine();
+          _builder_7.append("\t\t\t");
+          _builder_7.append("<artifactId>ojdbc8</artifactId>");
+          _builder_7.newLine();
+          _builder_7.append("\t\t\t");
+          _builder_7.append("<version>19.8.0.0</version>");
+          _builder_7.newLine();
+          _builder_7.append("\t\t");
+          _builder_7.append("</dependency>");
+          _builder_7.newLine();
+          pomXmlContent = (_pomXmlContent_3 + _builder_7);
+        }
+      }
+    }
+    String _pomXmlContent_4 = pomXmlContent;
+    StringConcatenation _builder_8 = new StringConcatenation();
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<dependency>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<groupId>com.fasterxml.jackson.core</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<artifactId>jackson-databind</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</dependency>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<dependency>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<groupId>com.fasterxml.jackson.core</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<artifactId>jackson-annotations</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</dependency>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<dependency>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<groupId>org.springframework.boot</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<artifactId>spring-boot-devtools</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<optional>true</optional>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</dependency>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<dependency>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<groupId>org.springframework.boot</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<artifactId>spring-boot-starter-test</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<scope>test</scope>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</dependency>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<dependency>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<groupId>org.springframework.security</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<artifactId>spring-security-test</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<scope>test</scope>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</dependency>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t");
+    _builder_8.append("</dependencies>");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("\t");
+    _builder_8.append("<build>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("<plugins>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("<plugin>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t\t");
+    _builder_8.append("<groupId>org.springframework.boot</groupId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t\t");
+    _builder_8.append("<artifactId>spring-boot-maven-plugin</artifactId>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("</plugin>");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("</plugins>");
+    _builder_8.newLine();
+    _builder_8.append("\t");
+    _builder_8.append("</build>");
+    _builder_8.newLine();
+    _builder_8.append("</project>");
+    _builder_8.newLine();
+    pomXmlContent = (_pomXmlContent_4 + _builder_8);
+    return pomXmlContent;
+  }
+
+  public String generateWebConfig() {
+    StringConcatenation _builder = new StringConcatenation();
+    String content = _builder.toString();
+    return content;
+  }
+
+  public String generatetemp() {
+    StringConcatenation _builder = new StringConcatenation();
+    String content = _builder.toString();
+    return content;
   }
 }

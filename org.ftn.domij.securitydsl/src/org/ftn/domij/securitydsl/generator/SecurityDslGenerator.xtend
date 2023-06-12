@@ -7,6 +7,13 @@ import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
+import security_dsl.Application
+import org.ftn.domij.securitydsl.formatting2.SecurityDslFormatter
+import org.eclipse.xtext.formatting2.internal.FormattableDocument
+import java.io.File
+import security_dsl.ESecurityMechanism
+import security_dsl.EDatabaseType
+import security_dsl.Database
 
 /**
  * Generates code from your model files on save.
@@ -15,11 +22,208 @@ import org.eclipse.xtext.generator.IGeneratorContext
  */
 class SecurityDslGenerator extends AbstractGenerator {
 
-	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
-//		fsa.generateFile('greetings.txt', 'People to greet: ' + 
-//			resource.allContents
-//				.filter(Greeting)
-//				.map[name]
-//				.join(', '))
+    override doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
+		
+	    // Retrieve the root element of the resource
+	    val application = resource.contents.head as Application
+	     
+		fsa.generateFile('/src/main/java/rs/ac/uns/ftn/' + application.name + "/",  ''); 
+
+     	if (application.app_database?.vendorName !== null) { 
+            fsa.generateFile("/src/main/resources/application.properties", generateDatabaseProperties(application.app_database))
+        }else{
+            fsa.generateFile("/src/main/resources/application.properties", "")
+        }
+        
+        fsa.generateFile("/pom.xml", generatePomXMLFile(application.name, application.description, application.app_security?.mechanism, application.app_database))
+    }
+    
+    def String generateDatabaseProperties(Database database) {
+         
+      var propertiesContent = ''
+      
+      if(database?.vendorName == EDatabaseType::POSTGRES) { 
+      	propertiesContent += '''
+			spring.datasource.driverClassName=org.postgresql.Driver
+			spring.datasource.initialization-mode=always
+			spring.datasource.url=jdbc:postgresql://'''
+      }else if(database?.vendorName == EDatabaseType::MYSQL) {
+      	propertiesContent += '''
+			spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+			spring.datasource.initialization-mode=always
+			spring.datasource.url=jdbc:mysql://'''
+      	
+      }else if(database?.vendorName == EDatabaseType::ORACLE) {
+      	propertiesContent += '''
+	      	spring.datasource.driverClassName=oracle.jdbc.driver.OracleDriver
+	      	spring.datasource.initialization-mode=always 
+	      	spring.datasource.url=jdbc:oracle:thin:@'''
+      }  
+             propertiesContent += database.url + '''
+            
+            spring.datasource.username=''' + database.username + ''' 
+            
+            spring.datasource.password=''' + database.password + ''' 
+            
+            spring.jpa.show-sql=true
+            spring.jpa.hibernate.ddl-auto=create-drop
+            spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+            '''
+            
+      if(database?.vendorName == EDatabaseType::POSTGRES) { 
+      	propertiesContent += '''
+			spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL95Dialect
+      	'''
+      }else if(database?.vendorName == EDatabaseType::MYSQL) {
+      	propertiesContent += '''
+      		spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL8Dialect'''
+      	
+      }else if(database?.vendorName == EDatabaseType::ORACLE) {
+      	propertiesContent += '''
+      		spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.Oracle12cDialect'''
+      }  
+        return propertiesContent;
+    }
+    
+    def String generatePomXMLFile(String appName, String description, ESecurityMechanism mechanism, Database database){
+    	 
+    	var finalDesc = ''
+    	if(description !== null){
+    		finalDesc = description;
+    	}
+    	
+    	var pomXmlContent = '''
+			<?xml version="1.0" encoding="UTF-8"?>
+			<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+				xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+				<modelVersion>4.0.0</modelVersion>
+				<parent>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-parent</artifactId>
+					<version>2.2.1.RELEASE</version>
+					<relativePath /> 
+				</parent>
+			
+				<groupId>rs.ac.uns.ftn</groupId>
+				<artifactId>'''+ appName +'''</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+			
+	<packaging>war</packaging>
+			
+	<name>'''+ appName +'''</name>
+	<description>'''+ finalDesc +'''</description>
+			
+	<properties>
+		<java.version>1.8</java.version>
+	</properties>
+			
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+			
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+
+		<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-data-jpa</artifactId>
+			</dependency>
+					'''
+					
+					
+				if(mechanism == ESecurityMechanism::JWT){
+					
+				pomXmlContent +=
+				'''		<dependency>
+			<groupId>io.jsonwebtoken</groupId>
+			<artifactId>jjwt</artifactId>
+			<version>0.6.0</version>
+		</dependency>
+				'''
+				}
+				
+				if(database?.vendorName == EDatabaseType::POSTGRES){
+					pomXmlContent +=
+					'''		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId> 
+		</dependency>
+				''' 
+				}else if(database?.vendorName == EDatabaseType::MYSQL){
+					pomXmlContent +=
+					'''		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId> 
+			<version>8.0.26</version>
+		</dependency>
+				''' 
+				}else if(database?.vendorName == EDatabaseType::ORACLE){
+					pomXmlContent +=
+					'''		<dependency>
+			<groupId>com.oracle.database.jdbc</groupId>
+			<artifactId>ojdbc8</artifactId>
+			<version>19.8.0.0</version>
+		</dependency>
+				''' 
+				}
+			
+				pomXmlContent +='''
+			
+					<dependency>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-databind</artifactId>
+					</dependency>
+			
+					<dependency>
+						<groupId>com.fasterxml.jackson.core</groupId>
+						<artifactId>jackson-annotations</artifactId>
+					</dependency>
+			
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-devtools</artifactId>
+						<optional>true</optional>
+					</dependency>
+			
+					<dependency>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-test</artifactId>
+						<scope>test</scope>
+					</dependency>
+			
+					<dependency>
+						<groupId>org.springframework.security</groupId>
+						<artifactId>spring-security-test</artifactId>
+						<scope>test</scope>
+					</dependency>
+			
+				</dependencies>
+			
+				<build>
+					<plugins>
+						<plugin>
+							<groupId>org.springframework.boot</groupId>
+							<artifactId>spring-boot-maven-plugin</artifactId>
+						</plugin>
+					</plugins>
+				</build>
+			</project>
+			'''
+    	return pomXmlContent;
+    }
+
+	def String generateWebConfig(){
+		var content = ''''''
+		return content;
 	}
+
+	def String generatetemp(){
+		var content = ''''''
+		return content;
+	}
+
 }

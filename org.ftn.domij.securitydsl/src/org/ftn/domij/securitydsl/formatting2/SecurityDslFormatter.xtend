@@ -21,6 +21,8 @@ class SecurityDslFormatter extends AbstractFormatter2 {
 		for (model : application.app_models) {
 			model.format
 		}
+		
+		println("Application name: " + application.name)
 	}
 
 	def dispatch void format(User user, extension IFormattableDocument document) {

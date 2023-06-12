@@ -11,6 +11,7 @@ import org.eclipse.xtext.formatting2.AbstractFormatter2;
 import org.eclipse.xtext.formatting2.IFormattableDocument;
 import org.eclipse.xtext.resource.XtextResource;
 import org.eclipse.xtext.xbase.lib.Extension;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.ftn.domij.securitydsl.services.SecurityDslGrammarAccess;
 import security_dsl.Application;
 import security_dsl.Attribute;
@@ -32,6 +33,9 @@ public class SecurityDslFormatter extends AbstractFormatter2 {
     for (final Model model : _app_models) {
       document.<Model>format(model);
     }
+    String _name = application.getName();
+    String _plus = ("Application name: " + _name);
+    InputOutput.<String>println(_plus);
   }
 
   protected void _format(final User user, @Extension final IFormattableDocument document) {
