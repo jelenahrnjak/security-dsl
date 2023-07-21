@@ -25,6 +25,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -102,25 +103,30 @@
   <eClassifiers xsi:type="ecore:EClass" name="JWT" eSuperTypes="#//Security">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="audience" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="somesecret"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="jwt_claims" upperBound="-1"
         eType="#//Claim" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="registeredclaims" lowerBound="1"
+        eType="#//RegisteredClaims" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Claim">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//EClaimType"
         defaultValueLiteral="PRIVATE"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" lowerBound="1"
         eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EClaimType">
     <eLiterals name="PRIVATE"/>
     <eLiterals name="PUBLIC" value="1"/>
+    <eLiterals name="REGISTERED" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RegisteredClaims">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="audience" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="WEB"/>
   </eClassifiers>
 </ecore:EPackage>

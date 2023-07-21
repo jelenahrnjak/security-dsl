@@ -45,6 +45,7 @@
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EClaimType">
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PRIVATE"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PUBLIC"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/REGISTERED"/>
     </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_database"/>
@@ -59,6 +60,7 @@
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Model/model_attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Model/tableName"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Controller">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Controller/name"/>
@@ -94,15 +96,19 @@
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//JWT">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/signatureAlgorithm"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/issuer"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/expirationTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/audience"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/secret"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JWT/jwt_claims"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JWT/registeredclaims"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Claim">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Claim/claim_attribute"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/name"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//RegisteredClaims">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/expirationTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/issuer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/audience"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
