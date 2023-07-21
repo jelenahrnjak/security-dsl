@@ -1,7 +1,18 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: security_dsl
-Bundle-SymbolicName: security_dsl; singleton:=true
+Bundle-Name: %pluginName
+Bundle-SymbolicName: security_dsl;singleton:=true
+Automatic-Module-Name: security_dsl
 Bundle-Version: 0.1.0.qualifier
+Bundle-ClassPath: .
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: security_dsl,
+ security_dsl.impl,
+ security_dsl.util
 Require-Bundle: org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.ocl.pivot;visibility:=reexport,
+ org.eclipse.ocl.examples.codegen;visibility:=reexport,
  org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy

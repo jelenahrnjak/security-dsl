@@ -23,8 +23,6 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Long"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Integer"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/char"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Boolean"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/boolean"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Double"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/DateTime"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Date"/>
