@@ -1,11 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/security_dsl/src-gen" creationIcons="false" editDirectory="/security_dsl.edit/src-gen"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel"
+    modelDirectory="/security_dsl/src-gen" creationIcons="false" editDirectory="/security_dsl.edit/src-gen"
     editorDirectory="/security_dsl.editor/src-gen" modelPluginID="security_dsl" modelName="Security_dsl"
     rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" codeFormatting="true"
     importerID="org.eclipse.emf.importer.ecore" complianceLevel="5.0" copyrightFields="false"
     operationReflection="true" importOrganizing="true">
   <foreignModel>security_dsl.ecore</foreignModel>
   <testsDirectory xsi:nil="true"/>
-  <genPackages prefix="Security_dsl" disposableProviderFactory="true" ecorePackage="security_dsl.ecore#/"/>
+  <genPackages prefix="Security_dsl" disposableProviderFactory="true" ecorePackage="security_dsl.ecore#/">
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EDatabaseType">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EDatabaseType/PostgreSQL"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EDatabaseType/Oracle"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EDatabaseType/MySQL"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//ESecuirtyMechanism">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//ESecuirtyMechanism/JWT"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EType">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/String"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Float"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Long"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Integer"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/char"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/boolean"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Double"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/DateTime"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Date"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/int"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EEndpointMethod">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/GET"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/POST"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/PUT"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointMethod/DELETE"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EEndpointType">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointType/REGISTRATION"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointType/LOGIN"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointType/LOGOUT"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EEndpointType/OTHER"/>
+    </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EClaimType">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PRIVATE"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PUBLIC"/>
+    </genEnums>
+    <genClasses ecoreClass="security_dsl.ecore#//Application">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_database"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_controllers"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_security"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/description"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/group"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/artifact"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/packageName"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Model">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Model/model_attributes"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Controller">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Controller/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Controller/path"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Controller/controller_endpoints"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Security"/>
+    <genClasses ecoreClass="security_dsl.ecore#//Database">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Database/vendorName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Database/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Database/username"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Database/password"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Attribute">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/type"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/isIdentifier"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Role">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Role/role_instances"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//User"/>
+    <genClasses ecoreClass="security_dsl.ecore#//RoleInstance">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RoleInstance/name"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Authentication"/>
+    <genClasses ecoreClass="security_dsl.ecore#//Endpoint">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/funcionName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/role_authorities"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//JWT">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/signatureAlgorithm"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/issuer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/expirationTime"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/audience"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/secret"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JWT/jwt_claims"/>
+    </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//Claim">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/type"/>
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Claim/claim_attribute"/>
+    </genClasses>
+  </genPackages>
 </genmodel:GenModel>
