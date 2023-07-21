@@ -57,6 +57,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/group"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/artifact"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/packageName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/port"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/hostname"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Model">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Model/model_attributes"/>

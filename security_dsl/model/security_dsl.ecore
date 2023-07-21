@@ -21,6 +21,10 @@
         defaultValueLiteral="demo"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
+        defaultValueLiteral="8080"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+        defaultValueLiteral="localhost"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
     <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
