@@ -3,6 +3,7 @@
   <viewpoint:DAnalysis uid="_fSDAgCdBEe6A9KQHpsrZXA" selectedViews="_f-hsACdBEe6A9KQHpsrZXA _f-3DMCdBEe6A9KQHpsrZXA _f-44YCdBEe6A9KQHpsrZXA" version="15.0.0.202201261500">
     <semanticResources>security_dsl.ecore</semanticResources>
     <semanticResources>security_dsl.genmodel</semanticResources>
+    <semanticResources>Application.xmi</semanticResources>
     <ownedViews xmi:type="viewpoint:DView" uid="_f-hsACdBEe6A9KQHpsrZXA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Review']"/>
     </ownedViews>
