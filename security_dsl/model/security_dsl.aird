@@ -8,7 +8,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_f-3DMCdBEe6A9KQHpsrZXA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gBfgcCdBEe6A9KQHpsrZXA" name="security_dsl" repPath="#_gAVp4CdBEe6A9KQHpsrZXA" changeId="a0f582e0-c68e-48a4-88dd-c05dbc53dc42">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gBfgcCdBEe6A9KQHpsrZXA" name="security_dsl" repPath="#_gAVp4CdBEe6A9KQHpsrZXA" changeId="4320ae6e-d47a-43af-8a90-0f278bb268fe">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="security_dsl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -794,7 +794,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_ARQzIie8Ee6yJu8TJQtsOg" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_d91QESfEEe6uS9zXcboV5w" iconPath="/org.eclipse.emf.ecoretools.design/icons/full/obj16/EClass_abstract.gif" borderSize="1" borderSizeComputationExpression="1" borderColor="125,125,125" backgroundStyle="Liquid" foregroundColor="228,228,228">
         <labelFormat>italic</labelFormat>
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@conditionnalStyles.1/@style"/>
       </ownedStyle>
@@ -822,16 +822,16 @@
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_ncuJoCdGEe6A9KQHpsrZXA" name="name : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Controller/name"/>
         <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Controller/name"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_rLQ39idGEe6A9KQHpsrZXA" labelAlignment="LEFT" description="_uaZqQydCEe6A9KQHpsrZXA">
-          <labelFormat>bold</labelFormat>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_9TWhcSfEEe6uS9zXcboV5w" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_npT0ICdGEe6A9KQHpsrZXA" name="path : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Controller/path"/>
         <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Controller/path"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_q3hcoSdGEe6A9KQHpsrZXA" labelAlignment="LEFT" description="_uaZqQydCEe6A9KQHpsrZXA">
-          <labelFormat>bold</labelFormat>
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_9-RtwifEEe6uS9zXcboV5w" labelAlignment="LEFT">
+          <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
@@ -1023,7 +1023,7 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_u_1o4CdeEe6A9KQHpsrZXA" name="isIdentifier : EBooleanObject" tooltipText="">
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_u_1o4CdeEe6A9KQHpsrZXA" name="isIdentifier : EBoolean = false" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Attribute/isIdentifier"/>
         <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Attribute/isIdentifier"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_yV7a9ydeEe6A9KQHpsrZXA" labelAlignment="LEFT" description="_uaZqQydCEe6A9KQHpsrZXA">
@@ -1259,9 +1259,9 @@
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
       </ownedElements>
-      <ownedElements xmi:type="diagram:DNodeListElement" uid="_wxIe0CdHEe6A9KQHpsrZXA" name="funcionName : EString" tooltipText="">
-        <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Endpoint/funcionName"/>
-        <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Endpoint/funcionName"/>
+      <ownedElements xmi:type="diagram:DNodeListElement" uid="_wxIe0CdHEe6A9KQHpsrZXA" name="functionName : EString" tooltipText="">
+        <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Endpoint/functionName"/>
+        <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Endpoint/functionName"/>
         <ownedStyle xmi:type="diagram:BundledImage" uid="_zbYekydHEe6A9KQHpsrZXA" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>

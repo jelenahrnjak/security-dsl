@@ -92,7 +92,7 @@
     <genClasses ecoreClass="security_dsl.ecore#//Authentication"/>
     <genClasses ecoreClass="security_dsl.ecore#//Endpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/funcionName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/functionName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/role_authorities"/>

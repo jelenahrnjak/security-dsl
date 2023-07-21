@@ -2,7 +2,26 @@
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="security_dsl" nsURI="http://www.ftn.uns.ac.rs/security_dsl"
     nsPrefix="security_dsl">
+  <eAnnotations source="http://www.eclipse.org/OCL/Import">
+    <details key="ecore" value="http://www.eclipse.org/emf/2002/Ecore"/>
+  </eAnnotations>
+  <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+    <details key="invocationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="settingDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+    <details key="validationDelegates" value="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"/>
+  </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueTableName" value="self.app_models ->  isUnique(m | m.tableName.toLower())"/>
+      <details key="uniqueControllerName" value="self.app_controllers -> isUnique(c | c.name)"/>
+      <details key="uniqueControllerPath" value=" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() &lt;> c.path.toLower())"/>
+      <details key="controllerPath" value="self.app_controllers -> forAll(c | c.path.at(1) = '/')"/>
+      <details key="controllerNotNamedUserRole" value="not self.app_controllers -> exists(c | c.name.toLower() = 'user' or c.name.toLower() = 'role' or c.name.toLower() = 'usercontroller' or c.name.toLower() = 'rolecontroller')"/>
+      <details key="validPort" value="self.port >= 1024 and self.port &lt;= 49151"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_models" upperBound="-1"
@@ -27,13 +46,36 @@
         defaultValueLiteral="localhost"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueAttributeName uniqueCollumnName onlyOneIdentifier roleMustHaveStringAttribute roleCanHaveIdAndStringAttribute"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name)"/>
+      <details key="uniqueCollumnName" value="self.model_attributes -> isUnique(a | a.collumnName)"/>
+      <details key="onlyOneIdentifier" value="self.model_attributes -> select(a | a.isIdentifier) -> size() = 1"/>
+      <details key="roleMustHaveStringAttribute" value="self.oclIsTypeOf(Role) implies self.model_attributes -> exists(a | a.type = EType::_'String')"/>
+      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;&#x9;&#x9;    self.oclIsTypeOf(Role) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = 'String' and a.isIdentifier = true) -> size() = 1 )&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = 'String' and a.isIdentifier = false) -> size() = 1&#xA;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.isIdentifier = true) -> size() = 1&#xA;&#x9;&#x9;    )"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodAllowedRegistration methodAllowedLogin methodAllowedLogout"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueEndpoints" value="self.controller_endpoints -> isUnique(e | e.functionName) and self.controller_endpoints -> isUnique(e | e.url)"/>
+      <details key="urlStartsWithForwardSlash" value="self.controller_endpoints -> forAll(e | e.url.at(1) = '/')"/>
+      <details key="authenticationLimits" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() &lt;= 1&#xA;&#x9;&#x9;    ) "/>
+      <details key="loginExistanceForLogout" value="&#xA;&#x9;&#x9;    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1"/>
+      <details key="endpointLimits" value="&#xA;&#x9;&#x9;&#x9;not self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty()&#xA;&#x9;&#x9;    )"/>
+      <details key="methodAllowedRegistration" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method->isEmpty())) -> size() = 1"/>
+      <details key="methodAllowedLogin" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
+      <details key="methodAllowedLogout" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="controller_endpoints" upperBound="-1"
         eType="#//Endpoint" containment="true"/>
   </eClassifiers>
@@ -59,7 +101,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIdentifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBooleanObject"/>
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="collumnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Model">
@@ -85,8 +127,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller"/>
   <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueRoleAuthorities"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueRoleAuthorities" value="self.role_authorities -> isUnique(r | r.name)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="funcionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//EEndpointMethod"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//EEndpointType"
         defaultValueLiteral="OTHER"/>
@@ -106,6 +154,13 @@
     <eLiterals name="OTHER" value="3"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JWT" eSuperTypes="#//Security">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueClaims singleRegisteredClaim"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueClaims" value="self.jwt_claims -> isUnique(c | c.name)"/>
+      <details key="singleRegisteredClaim" value="&#xA;&#x9;        self.jwt_claims -> select(c | c.type = EClaimType::REGISTERED and c.name = 'subject') -> size() &lt;= 1&#xA;&#x9;        and&#xA;&#x9;        self.jwt_claims -> select(c | c.type = EClaimType::REGISTERED) -> size() &lt;= 1"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
@@ -116,6 +171,12 @@
         eType="#//RegisteredClaims" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Claim">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueClaimAttribute"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueClaimAttribute" value="Claim.allInstances() -> isUnique(c | c.claim_attribute)"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//EClaimType"
         defaultValueLiteral="PRIVATE"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" lowerBound="1"
@@ -128,6 +189,12 @@
     <eLiterals name="REGISTERED" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RegisteredClaims">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="expirationTimeGreaterThanZero"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="expirationTimeGreaterThanZero" value="self.expirationTime > 0"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
