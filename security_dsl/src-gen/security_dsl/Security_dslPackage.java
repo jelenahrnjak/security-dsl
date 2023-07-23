@@ -405,49 +405,13 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER_FEATURE_COUNT = 3;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Endpoint Limits</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
 	 * The operation id for the '<em>Method Allowed Login</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
-	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = 4;
+	int CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Authentication Limits</em>' operation.
@@ -456,16 +420,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = 5;
+	int CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Url Starts With Forward Slash</em>' operation.
+	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = 6;
+	int CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = 2;
+
+	/**
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
 	 * The operation id for the '<em>Unique Endpoints</em>' operation.
@@ -474,7 +447,43 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = 7;
+	int CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Url Starts With Forward Slash</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = 5;
+
+	/**
+	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = 6;
+
+	/**
+	 * The operation id for the '<em>Endpoint Limits</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
+	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = 8;
 
 	/**
 	 * The number of operations of the '<em>Controller</em>' class.
@@ -483,7 +492,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER_OPERATION_COUNT = 8;
+	int CONTROLLER_OPERATION_COUNT = 9;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.SecurityImpl <em>Security</em>}' class.
@@ -934,24 +943,6 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION_FEATURE_COUNT = CONTROLLER_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Endpoint Limits</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Method Allowed Login</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -959,24 +950,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTHENTICATION___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Authentication Limits</em>' operation.
@@ -988,13 +961,22 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Url Starts With Forward Slash</em>' operation.
+	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP;
+	int AUTHENTICATION___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Endpoints</em>' operation.
@@ -1004,6 +986,42 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTHENTICATION___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Url Starts With Forward Slash</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Endpoint Limits</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Authentication</em>' class.
@@ -1730,6 +1748,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getController__MethodAllowedRegistration__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Required For Other Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Method Required For Other Type</em>' operation.
+	 * @see security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getController__MethodRequiredForOtherType__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Endpoint Limits</em>}' operation.
@@ -2621,6 +2649,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getController__MethodAllowedRegistration__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Method Required For Other Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__MethodRequiredForOtherType__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Endpoint Limits</b></em>' operation.

@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getController()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueEndpoints'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='methodAllowedLogout'"
  * @generated
  */
 public interface Controller extends EObject {
@@ -96,6 +96,14 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.controller_endpoints -&gt; select(e | e.type = EEndpointType::OTHER) -&gt; forAll(e | e.method &lt;&gt; null)'"
+	 * @generated
+	 */
+	boolean methodRequiredForOtherType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tnot self.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; isEmpty()\n\t\t    )'"
 	 * @generated
 	 */
@@ -144,7 +152,7 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.controller_endpoints -&gt; isUnique(e | e.functionName) and self.controller_endpoints -&gt; isUnique(e | e.url)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.controller_endpoints -&gt; forAll(e1, e2 |  e1 &lt;&gt; e2 implies  (e1.functionName &lt;&gt; null and e2.functionName &lt;&gt; null implies e1.functionName &lt;&gt; e2.functionName) \n        and \n        (e1.url &lt;&gt; null and e2.url &lt;&gt; null implies e1.url &lt;&gt; e2.url))'"
 	 * @generated
 	 */
 	boolean uniqueEndpoints(DiagnosticChain diagnostics, Map<Object, Object> context);

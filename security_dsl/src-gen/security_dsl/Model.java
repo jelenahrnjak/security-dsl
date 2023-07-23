@@ -81,7 +81,7 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; isUnique(a | a.collumnName)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t self.model_attributes -&gt; exists(a | a.collumnName &lt;&gt; null) implies self.model_attributes -&gt; isUnique(a | a.collumnName)'"
 	 * @generated
 	 */
 	boolean uniqueCollumnName(DiagnosticChain diagnostics, Map<Object, Object> context);

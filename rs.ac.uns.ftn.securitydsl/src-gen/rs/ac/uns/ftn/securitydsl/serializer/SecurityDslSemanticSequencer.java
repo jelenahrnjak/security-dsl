@@ -87,17 +87,18 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *
 	 * Constraint:
 	 *     (
-	 *         name=EString 
-	 *         description=EString? 
-	 *         group=EString? 
 	 *         artifact=EString? 
+	 *         name=EString? 
+	 *         group=EString? 
 	 *         packageName=EString? 
+	 *         description=EString? 
 	 *         port=ELongObject? 
 	 *         hostname=EString? 
 	 *         app_database=Database? 
-	 *         (app_models+=Model app_models+=Model*)? 
-	 *         (app_controllers+=Controller app_controllers+=Controller*)? 
-	 *         app_security=Security?
+	 *         app_models+=User? 
+	 *         app_models+=Role? 
+	 *         app_security=Security? 
+	 *         app_controllers+=Authentication?
 	 *     )
 	 * </pre>
 	 */
@@ -112,7 +113,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Attribute returns Attribute
 	 *
 	 * Constraint:
-	 *     (isIdentifier?='isIdentifier' name=EString type=EType collumnName=EString?)
+	 *     (isIdentifier?='identifier'? name=EString type=EType collumnName=EString?)
 	 * </pre>
 	 */
 	protected void sequence_Attribute(ISerializationContext context, Attribute semanticObject) {
@@ -127,7 +128,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Authentication returns Authentication
 	 *
 	 * Constraint:
-	 *     (name=EString path=EString? (controller_endpoints+=Endpoint controller_endpoints+=Endpoint*)?)
+	 *     (name=EString path=EString (controller_endpoints+=Endpoint controller_endpoints+=Endpoint*)?)
 	 * </pre>
 	 */
 	protected void sequence_Authentication(ISerializationContext context, Authentication semanticObject) {
@@ -141,7 +142,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Claim returns Claim
 	 *
 	 * Constraint:
-	 *     (name=EString type=EClaimType? claim_attribute=[Attribute|EString])
+	 *     (type=EClaimType? name=EString claim_attribute=[Attribute|EString])
 	 * </pre>
 	 */
 	protected void sequence_Claim(ISerializationContext context, Claim semanticObject) {
@@ -170,10 +171,10 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Security_dslPackage.Literals.DATABASE__PASSWORD));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getDatabaseAccess().getVendorNameEDatabaseTypeEnumRuleCall_3_0(), semanticObject.getVendorName());
-		feeder.accept(grammarAccess.getDatabaseAccess().getUrlEStringParserRuleCall_5_0(), semanticObject.getUrl());
-		feeder.accept(grammarAccess.getDatabaseAccess().getUsernameEStringParserRuleCall_7_0(), semanticObject.getUsername());
-		feeder.accept(grammarAccess.getDatabaseAccess().getPasswordEStringParserRuleCall_9_0(), semanticObject.getPassword());
+		feeder.accept(grammarAccess.getDatabaseAccess().getVendorNameEDatabaseTypeEnumRuleCall_1_0(), semanticObject.getVendorName());
+		feeder.accept(grammarAccess.getDatabaseAccess().getUrlEStringParserRuleCall_3_0(), semanticObject.getUrl());
+		feeder.accept(grammarAccess.getDatabaseAccess().getUsernameEStringParserRuleCall_5_0(), semanticObject.getUsername());
+		feeder.accept(grammarAccess.getDatabaseAccess().getPasswordEStringParserRuleCall_7_0(), semanticObject.getPassword());
 		feeder.finish();
 	}
 	
@@ -205,7 +206,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     JWT returns JWT
 	 *
 	 * Constraint:
-	 *     (signatureAlgorithm=EString secret=EString? (jwt_claims+=Claim jwt_claims+=Claim*)? registeredclaims=RegisteredClaims)
+	 *     (signatureAlgorithm=EString registeredclaims=RegisteredClaims jwt_claims+=Claim* secret=EString?)
 	 * </pre>
 	 */
 	protected void sequence_JWT(ISerializationContext context, JWT semanticObject) {
@@ -242,7 +243,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Security_dslPackage.Literals.ROLE_INSTANCE__NAME));
 		}
 		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_2_0(), semanticObject.getName());
+		feeder.accept(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
 		feeder.finish();
 	}
 	

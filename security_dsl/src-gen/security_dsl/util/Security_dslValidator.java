@@ -157,7 +157,15 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__METHOD_ALLOWED_REGISTRATION = 15;
+	public static final int CONTROLLER__METHOD_ALLOWED_REGISTRATION = 17;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Method Required For Other Type' of 'Controller'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTROLLER__METHOD_REQUIRED_FOR_OTHER_TYPE = 18;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Endpoint Limits' of 'Controller'.
@@ -165,7 +173,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__ENDPOINT_LIMITS = 16;
+	public static final int CONTROLLER__ENDPOINT_LIMITS = 22;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Method Allowed Login' of 'Controller'.
@@ -173,7 +181,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__METHOD_ALLOWED_LOGIN = 17;
+	public static final int CONTROLLER__METHOD_ALLOWED_LOGIN = 15;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Method Allowed Logout' of 'Controller'.
@@ -181,7 +189,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__METHOD_ALLOWED_LOGOUT = 18;
+	public static final int CONTROLLER__METHOD_ALLOWED_LOGOUT = 23;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Login Existance For Logout' of 'Controller'.
@@ -189,7 +197,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__LOGIN_EXISTANCE_FOR_LOGOUT = 19;
+	public static final int CONTROLLER__LOGIN_EXISTANCE_FOR_LOGOUT = 21;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Authentication Limits' of 'Controller'.
@@ -197,7 +205,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__AUTHENTICATION_LIMITS = 20;
+	public static final int CONTROLLER__AUTHENTICATION_LIMITS = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Url Starts With Forward Slash' of 'Controller'.
@@ -205,7 +213,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__URL_STARTS_WITH_FORWARD_SLASH = 21;
+	public static final int CONTROLLER__URL_STARTS_WITH_FORWARD_SLASH = 20;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Endpoints' of 'Controller'.
@@ -213,7 +221,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__UNIQUE_ENDPOINTS = 22;
+	public static final int CONTROLLER__UNIQUE_ENDPOINTS = 19;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Role Authorities' of 'Endpoint'.
@@ -221,7 +229,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ENDPOINT__UNIQUE_ROLE_AUTHORITIES = 23;
+	public static final int ENDPOINT__UNIQUE_ROLE_AUTHORITIES = 24;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Claims' of 'JWT'.
@@ -229,7 +237,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__UNIQUE_CLAIMS = 24;
+	public static final int JWT__UNIQUE_CLAIMS = 25;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Registered Claim Subject' of 'JWT'.
@@ -237,7 +245,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__REGISTERED_CLAIM_SUBJECT = 25;
+	public static final int JWT__REGISTERED_CLAIM_SUBJECT = 26;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Single Registered Claim' of 'JWT'.
@@ -245,7 +253,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__SINGLE_REGISTERED_CLAIM = 26;
+	public static final int JWT__SINGLE_REGISTERED_CLAIM = 27;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Claim Attribute' of 'Claim'.
@@ -253,7 +261,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CLAIM__UNIQUE_CLAIM_ATTRIBUTE = 27;
+	public static final int CLAIM__UNIQUE_CLAIM_ATTRIBUTE = 28;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expiration Time Greater Than Zero' of 'Registered Claims'.
@@ -261,7 +269,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REGISTERED_CLAIMS__EXPIRATION_TIME_GREATER_THAN_ZERO = 28;
+	public static final int REGISTERED_CLAIMS__EXPIRATION_TIME_GREATER_THAN_ZERO = 29;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -269,7 +277,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 28;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 29;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -614,21 +622,23 @@ public class Security_dslValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(controller, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_uniqueEndpoints(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_methodAllowedRegistration(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_endpointLimits(controller, diagnostics, context);
+			result &= validateController_methodAllowedLogout(controller, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_methodAllowedLogin(controller, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_methodAllowedLogout(controller, diagnostics, context);
+			result &= validateController_authenticationLimits(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodAllowedRegistration(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodRequiredForOtherType(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_uniqueEndpoints(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_urlStartsWithForwardSlash(controller, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_loginExistanceForLogout(controller, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_authenticationLimits(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_urlStartsWithForwardSlash(controller, diagnostics, context);
+			result &= validateController_endpointLimits(controller, diagnostics, context);
 		return result;
 	}
 
@@ -652,6 +662,17 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateController_methodAllowedRegistration(Controller controller, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return controller.methodAllowedRegistration(diagnostics, context);
+	}
+
+	/**
+	 * Validates the methodRequiredForOtherType constraint of '<em>Controller</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateController_methodRequiredForOtherType(Controller controller, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return controller.methodRequiredForOtherType(diagnostics, context);
 	}
 
 	/**
@@ -858,21 +879,23 @@ public class Security_dslValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(authentication, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_uniqueEndpoints(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_methodAllowedRegistration(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_endpointLimits(authentication, diagnostics, context);
+			result &= validateController_methodAllowedLogout(authentication, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_methodAllowedLogin(authentication, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_methodAllowedLogout(authentication, diagnostics, context);
+			result &= validateController_authenticationLimits(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodAllowedRegistration(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodRequiredForOtherType(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_uniqueEndpoints(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_urlStartsWithForwardSlash(authentication, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_loginExistanceForLogout(authentication, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_authenticationLimits(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_urlStartsWithForwardSlash(authentication, diagnostics, context);
+			result &= validateController_endpointLimits(authentication, diagnostics, context);
 		return result;
 	}
 

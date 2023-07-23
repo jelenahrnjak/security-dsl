@@ -78,7 +78,7 @@ public interface Attribute extends EObject {
 	 * @return the value of the '<em>Is Identifier</em>' attribute.
 	 * @see #setIsIdentifier(boolean)
 	 * @see security_dsl.Security_dslPackage#getAttribute_IsIdentifier()
-	 * @model required="true"
+	 * @model
 	 * @generated
 	 */
 	boolean isIsIdentifier();

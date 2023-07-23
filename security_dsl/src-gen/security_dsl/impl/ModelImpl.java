@@ -491,7 +491,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = self.model_attributes->isUnique(a | a.collumnName)
+			 *         result : Boolean[?] = self.model_attributes->exists(a | a.collumnName <> null) implies
+			 *         self.model_attributes->isUnique(a | a.collumnName)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -511,26 +512,77 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
 					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
 							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-					/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator = ValueUtil
-							.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
 					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-					/*@Thrown*/ boolean result;
+					/*@NonInvalid*/ Boolean exists;
 					while (true) {
 						if (!ITERATOR_a.hasNext()) {
-							result = true;
+							if (accumulator == ValueUtil.FALSE_VALUE) {
+								exists = ValueUtil.FALSE_VALUE;
+							} else {
+								throw (InvalidValueException) accumulator;
+							}
 							break;
 						}
 						/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
 						/**
-						 * a.collumnName
+						 * a.collumnName <> null
 						 */
 						final /*@NonInvalid*/ String collumnName = a.getCollumnName();
+						final /*@NonInvalid*/ boolean ne = collumnName != null;
 						//
-						if (accumulator.includes(collumnName) == ValueUtil.TRUE_VALUE) {
-							result = false;
-							break; // Abort after second find
+						if (ne) { // Normal successful body evaluation result
+							exists = ValueUtil.TRUE_VALUE;
+							break; // Stop immediately
+						} else if (!ne) { // Normal unsuccessful body evaluation result
+							; // Carry on
+						} else { // Impossible badly typed result
+							accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+						}
+					}
+					final /*@Thrown*/ Boolean result;
+					if (exists == ValueUtil.FALSE_VALUE) {
+						result = ValueUtil.TRUE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_isUnique;
+						try {
+							/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
+									.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+							Iterator<Object> ITERATOR_a_0 = BOXED_model_attributes.iterator();
+							/*@Thrown*/ boolean isUnique;
+							while (true) {
+								if (!ITERATOR_a_0.hasNext()) {
+									isUnique = true;
+									break;
+								}
+								/*@NonInvalid*/ Attribute a_0 = (Attribute) ITERATOR_a_0.next();
+								/**
+								 * a.collumnName
+								 */
+								final /*@NonInvalid*/ String collumnName_0 = a_0.getCollumnName();
+								//
+								if (accumulator_0.includes(collumnName_0) == ValueUtil.TRUE_VALUE) {
+									isUnique = false;
+									break; // Abort after second find
+								} else {
+									accumulator_0.add(collumnName_0);
+								}
+							}
+							CAUGHT_isUnique = isUnique;
+						} catch (Exception e) {
+							CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
+						}
+						if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
+							result = ValueUtil.TRUE_VALUE;
 						} else {
-							accumulator.add(collumnName);
+							if (CAUGHT_isUnique instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_isUnique;
+							}
+							if (exists == null) {
+								result = null;
+							} else {
+								result = ValueUtil.FALSE_VALUE;
+							}
 						}
 					}
 					CAUGHT_result = result;

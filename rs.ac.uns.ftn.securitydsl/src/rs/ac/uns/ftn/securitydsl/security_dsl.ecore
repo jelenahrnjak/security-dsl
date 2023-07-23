@@ -52,7 +52,7 @@
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name)"/>
-      <details key="uniqueCollumnName" value="self.model_attributes -> isUnique(a | a.collumnName)"/>
+      <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.model_attributes -> exists(a | a.collumnName &lt;> null) implies self.model_attributes -> isUnique(a | a.collumnName)"/>
       <details key="onlyOneIdentifier" value="self.model_attributes -> select(a | a.isIdentifier) -> size() = 1"/>
       <details key="roleMustHaveStringAttribute" value="self.oclIsTypeOf(Role) implies self.model_attributes -> exists(a | a.type = EType::_'String')"/>
       <details key="roleCanHaveIdAndStringAttribute" value="&#xA;&#x9;&#x9;    self.oclIsTypeOf(Role) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = EType::_'String' and a.isIdentifier = true) -> size() = 1 )&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = EType::_'String' and a.isIdentifier = false) -> size() = 1&#xA;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.isIdentifier = true) -> size() = 1&#xA;&#x9;&#x9;    )"/>
@@ -64,10 +64,10 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodAllowedRegistration methodAllowedLogin methodAllowedLogout"/>
+      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodAllowedRegistration methodAllowedLogin methodAllowedLogout methodRequiredForOtherType"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueEndpoints" value="self.controller_endpoints -> isUnique(e | e.functionName) and self.controller_endpoints -> isUnique(e | e.url)"/>
+      <details key="uniqueEndpoints" value="&#xA;&#x9;&#x9;&#x9;self.controller_endpoints -> forAll(e1, e2 |  e1 &lt;> e2 implies  (e1.functionName &lt;> null and e2.functionName &lt;> null implies e1.functionName &lt;> e2.functionName) &#xA;        and &#xA;        (e1.url &lt;> null and e2.url &lt;> null implies e1.url &lt;> e2.url))"/>
       <details key="urlStartsWithForwardSlash" value="self.controller_endpoints -> forAll(e | e.url.at(1) = '/')"/>
       <details key="authenticationLimits" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() &lt;= 1&#xA;&#x9;&#x9;    ) "/>
       <details key="loginExistanceForLogout" value="&#xA;&#x9;&#x9;    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1"/>
@@ -75,6 +75,7 @@
       <details key="methodAllowedRegistration" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method->isEmpty())) -> size() &lt;= 1"/>
       <details key="methodAllowedLogin" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
       <details key="methodAllowedLogout" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
+      <details key="methodRequiredForOtherType" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method &lt;> null)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -102,8 +103,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="Attribute">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EType"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIdentifier" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="isIdentifier" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="collumnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Model">

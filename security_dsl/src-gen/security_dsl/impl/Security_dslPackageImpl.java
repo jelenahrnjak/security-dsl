@@ -558,24 +558,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * @generated
 	 */
 	public EOperation getController__MethodAllowedRegistration__DiagnosticChain_Map() {
-		return controllerEClass.getEOperations().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getController__EndpointLimits__DiagnosticChain_Map() {
-		return controllerEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getController__MethodAllowedLogin__DiagnosticChain_Map() {
 		return controllerEClass.getEOperations().get(2);
 	}
 
@@ -584,7 +566,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getController__MethodAllowedLogout__DiagnosticChain_Map() {
+	public EOperation getController__MethodRequiredForOtherType__DiagnosticChain_Map() {
 		return controllerEClass.getEOperations().get(3);
 	}
 
@@ -593,25 +575,34 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getController__EndpointLimits__DiagnosticChain_Map() {
+		return controllerEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getController__MethodAllowedLogin__DiagnosticChain_Map() {
+		return controllerEClass.getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getController__MethodAllowedLogout__DiagnosticChain_Map() {
+		return controllerEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getController__LoginExistanceForLogout__DiagnosticChain_Map() {
-		return controllerEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getController__AuthenticationLimits__DiagnosticChain_Map() {
-		return controllerEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getController__UrlStartsWithForwardSlash__DiagnosticChain_Map() {
 		return controllerEClass.getEOperations().get(6);
 	}
 
@@ -620,8 +611,26 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getController__AuthenticationLimits__DiagnosticChain_Map() {
+		return controllerEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getController__UrlStartsWithForwardSlash__DiagnosticChain_Map() {
+		return controllerEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EOperation getController__UniqueEndpoints__DiagnosticChain_Map() {
-		return controllerEClass.getEOperations().get(7);
+		return controllerEClass.getEOperations().get(4);
 	}
 
 	/**
@@ -1120,14 +1129,15 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		createEAttribute(controllerEClass, CONTROLLER__NAME);
 		createEAttribute(controllerEClass, CONTROLLER__PATH);
 		createEReference(controllerEClass, CONTROLLER__CONTROLLER_ENDPOINTS);
-		createEOperation(controllerEClass, CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP);
-		createEOperation(controllerEClass, CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP);
 		createEOperation(controllerEClass, CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP);
-		createEOperation(controllerEClass, CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP);
-		createEOperation(controllerEClass, CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP);
 		createEOperation(controllerEClass, CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP);
-		createEOperation(controllerEClass, CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(controllerEClass, CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP);
+		createEOperation(controllerEClass, CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP);
 
 		securityEClass = createEClass(SECURITY);
 
@@ -1418,48 +1428,8 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				-1, Controller.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES,
 				!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		op = initEOperation(getController__MethodAllowedRegistration__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"methodAllowedRegistration", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getController__EndpointLimits__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"endpointLimits", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = initEOperation(getController__MethodAllowedLogin__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"methodAllowedLogin", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getController__MethodAllowedLogout__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"methodAllowedLogout", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getController__LoginExistanceForLogout__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"loginExistanceForLogout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1478,8 +1448,18 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getController__UrlStartsWithForwardSlash__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"urlStartsWithForwardSlash", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getController__MethodAllowedRegistration__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"methodAllowedRegistration", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getController__MethodRequiredForOtherType__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "methodRequiredForOtherType", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1490,6 +1470,46 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 
 		op = initEOperation(getController__UniqueEndpoints__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"uniqueEndpoints", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getController__UrlStartsWithForwardSlash__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"urlStartsWithForwardSlash", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getController__LoginExistanceForLogout__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"loginExistanceForLogout", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getController__EndpointLimits__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"endpointLimits", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getController__MethodAllowedLogout__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"methodAllowedLogout", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1517,7 +1537,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Type(), this.getEType(), "type", null, 1, 1, Attribute.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAttribute_IsIdentifier(), ecorePackage.getEBoolean(), "isIdentifier", null, 1, 1,
+		initEAttribute(getAttribute_IsIdentifier(), ecorePackage.getEBoolean(), "isIdentifier", null, 0, 1,
 				Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_CollumnName(), ecorePackage.getEString(), "collumnName", null, 0, 1,
@@ -1706,7 +1726,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		addAnnotation(this, source, new String[] {});
 		addAnnotation(applicationEClass, source, new String[] { "constraints", "validPort" });
 		addAnnotation(modelEClass, source, new String[] { "constraints", "roleMustHaveStringAttribute" });
-		addAnnotation(controllerEClass, source, new String[] { "constraints", "uniqueEndpoints" });
+		addAnnotation(controllerEClass, source, new String[] { "constraints", "methodAllowedLogout" });
 		addAnnotation(endpointEClass, source, new String[] { "constraints", "uniqueRoleAuthorities" });
 		addAnnotation(jwtEClass, source, new String[] { "constraints", "singleRegisteredClaim" });
 		addAnnotation(claimEClass, source, new String[] { "constraints", "uniqueClaimAttribute" });
@@ -1742,30 +1762,32 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				"\n\t\t    self.oclIsTypeOf(Role) implies\n\t\t    (\n\t\t        self.model_attributes -> select(a | a.type = EType::_\'String\' and a.isIdentifier = true) -> size() = 1 )\n\t\t        or\n\t\t    (\n\t\t        self.model_attributes -> select(a | a.type = EType::_\'String\' and a.isIdentifier = false) -> size() = 1\n\t\t\t\tand\n\t\t        self.model_attributes -> select(a | a.isIdentifier = true) -> size() = 1\n\t\t    )" });
 		addAnnotation(getModel__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.oclIsTypeOf(Role) implies self.model_attributes -> size() <= 2" });
-		addAnnotation(getModel__UniqueCollumnName__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.model_attributes -> isUnique(a | a.collumnName)" });
+		addAnnotation(getModel__UniqueCollumnName__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n\t\t\t self.model_attributes -> exists(a | a.collumnName <> null) implies self.model_attributes -> isUnique(a | a.collumnName)" });
 		addAnnotation(getModel__OnlyOneIdentifier__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.model_attributes -> select(a | a.isIdentifier) -> size() = 1" });
 		addAnnotation(getModel__UniqueAttributeName__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.model_attributes -> isUnique(a | a.name)" });
 		addAnnotation(getModel__RoleMustHaveStringAttribute__DiagnosticChain_Map(), source, new String[] { "body",
 				"self.oclIsTypeOf(Role) implies self.model_attributes -> exists(a | a.type = EType::_\'String\')" });
-		addAnnotation(getController__MethodAllowedRegistration__DiagnosticChain_Map(), source, new String[] { "body",
-				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method->isEmpty())) -> size() <= 1" });
-		addAnnotation(getController__EndpointLimits__DiagnosticChain_Map(), source, new String[] { "body",
-				"\n\t\t\tnot self.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty()\n\t\t    )" });
 		addAnnotation(getController__MethodAllowedLogin__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0" });
-		addAnnotation(getController__MethodAllowedLogout__DiagnosticChain_Map(), source, new String[] { "body",
-				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0" });
-		addAnnotation(getController__LoginExistanceForLogout__DiagnosticChain_Map(), source, new String[] { "body",
-				"\n\t\t    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1" });
 		addAnnotation(getController__AuthenticationLimits__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n\t\t\tself.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() <= 1\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() <= 1\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() <= 1\n\t\t    ) " });
+		addAnnotation(getController__MethodAllowedRegistration__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method->isEmpty())) -> size() <= 1" });
+		addAnnotation(getController__MethodRequiredForOtherType__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method <> null)" });
+		addAnnotation(getController__UniqueEndpoints__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n\t\t\tself.controller_endpoints -> forAll(e1, e2 |  e1 <> e2 implies  (e1.functionName <> null and e2.functionName <> null implies e1.functionName <> e2.functionName) \n        and \n        (e1.url <> null and e2.url <> null implies e1.url <> e2.url))" });
 		addAnnotation(getController__UrlStartsWithForwardSlash__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.controller_endpoints -> forAll(e | e.url.at(1) = \'/\')" });
-		addAnnotation(getController__UniqueEndpoints__DiagnosticChain_Map(), source, new String[] { "body",
-				"self.controller_endpoints -> isUnique(e | e.functionName) and self.controller_endpoints -> isUnique(e | e.url)" });
+		addAnnotation(getController__LoginExistanceForLogout__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n\t\t    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1" });
+		addAnnotation(getController__EndpointLimits__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n\t\t\tnot self.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty()\n\t\t    )" });
+		addAnnotation(getController__MethodAllowedLogout__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0" });
 		addAnnotation(getEndpoint__UniqueRoleAuthorities__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.role_authorities -> isUnique(r | r.name)" });
 		addAnnotation(getJWT__UniqueClaims__DiagnosticChain_Map(), source,

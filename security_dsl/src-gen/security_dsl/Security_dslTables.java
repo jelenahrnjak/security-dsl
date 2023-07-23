@@ -108,6 +108,7 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_DELETE = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("DELETE");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LOGIN = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("LOGIN");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LOGOUT = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("LOGOUT");
+	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_OTHER = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("OTHER");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_POST = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("POST");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PUT = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("PUT");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_REGISTERED = Security_dslTables.ENUMid_EClaimType.getEnumerationLiteralId("REGISTERED");
