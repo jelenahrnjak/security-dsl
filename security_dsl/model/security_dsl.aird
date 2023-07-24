@@ -9,7 +9,7 @@
     </ownedViews>
     <ownedViews xmi:type="viewpoint:DView" uid="_f-3DMCdBEe6A9KQHpsrZXA">
       <viewpoint xmi:type="description:Viewpoint" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']"/>
-      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gBfgcCdBEe6A9KQHpsrZXA" name="security_dsl" repPath="#_gAVp4CdBEe6A9KQHpsrZXA" changeId="a17f07da-67d3-429e-b763-f28573bb26a9">
+      <ownedRepresentationDescriptors xmi:type="viewpoint:DRepresentationDescriptor" uid="_gBfgcCdBEe6A9KQHpsrZXA" name="security_dsl" repPath="#_gAVp4CdBEe6A9KQHpsrZXA" changeId="58332a92-3b12-4a7f-821c-42f3479ebd4e">
         <description xmi:type="description_1:DiagramDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']"/>
         <target xmi:type="ecore:EPackage" href="security_dsl.ecore#/"/>
       </ownedRepresentationDescriptors>
@@ -720,7 +720,7 @@
       <arrangeConstraints>KEEP_LOCATION</arrangeConstraints>
       <arrangeConstraints>KEEP_SIZE</arrangeConstraints>
       <arrangeConstraints>KEEP_RATIO</arrangeConstraints>
-      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_K-pesSfDEe6uS9zXcboV5w" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
+      <ownedStyle xmi:type="diagram:FlatContainerStyle" uid="_BtOzkSm5Ee65NZ8BvMrrfg" borderSize="1" borderSizeComputationExpression="1" backgroundStyle="Liquid" foregroundColor="255,252,216">
         <description xmi:type="style:FlatContainerStyleDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@style"/>
       </ownedStyle>
       <actualMapping xmi:type="description_1:ContainerMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']"/>
@@ -759,7 +759,7 @@
       <ownedElements xmi:type="diagram:DNodeListElement" uid="_tO4c4CdDEe6A9KQHpsrZXA" name="packageName : EString" tooltipText="">
         <target xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Application/packageName"/>
         <semanticElements xmi:type="ecore:EAttribute" href="security_dsl.ecore#//Application/packageName"/>
-        <ownedStyle xmi:type="diagram:BundledImage" uid="_vWLglSdDEe6A9KQHpsrZXA" labelAlignment="LEFT">
+        <ownedStyle xmi:type="diagram:BundledImage" uid="_BtSd9Cm5Ee65NZ8BvMrrfg" labelAlignment="LEFT">
           <description xmi:type="style:BundledImageDescription" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']/@style"/>
         </ownedStyle>
         <actualMapping xmi:type="description_1:NodeMapping" href="platform:/plugin/org.eclipse.emf.ecoretools.design/description/ecore.odesign#//@ownedViewpoints[name='Design']/@ownedRepresentations[name='Entities']/@defaultLayer/@containerMappings[name='EC%20EClass']/@subNodeMappings[name='EC%20EAttribute']"/>
