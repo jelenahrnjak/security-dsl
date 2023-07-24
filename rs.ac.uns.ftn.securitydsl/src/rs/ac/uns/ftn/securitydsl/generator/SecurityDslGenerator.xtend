@@ -28,7 +28,8 @@ class SecurityDslGenerator extends AbstractGenerator {
         new SecurityDslStaticFilesGenerator(fsa, app, capitalizedName, srcDestination)
         new SecurityDslResourcesGenerator(fsa, app)
         new SecurityDslControllerGenerator(fsa, app, srcDestination)
-        new SecurityDslModelGenerator(fsa, app, srcDestination)
+        new SecurityDslModelGenerator(resource,fsa, app, srcDestination)
         new SecurityDslJWTSpringGenerator(fsa, app, srcDestination)
+        
 	}
 }
