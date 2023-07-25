@@ -73,6 +73,7 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_Application = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Application", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Attribute = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Attribute", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Authentication = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Authentication", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_BasicAuthentication = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("BasicAuthentication", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Claim = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Claim", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Class = Security_dslTables.PACKid_$metamodel$.getClassId("Class", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Controller = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Controller", 0);
@@ -103,14 +104,12 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_subject = "subject";
 	public static final /*@NonInvalid*/ String STR_user = "user";
 	public static final /*@NonInvalid*/ String STR_usercontroller = "usercontroller";
+	public static final /*@NonInvalid*/ String STR_username = "username";
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Claim = TypeId.BAG.getSpecializedId(Security_dslTables.CLSSid_Claim);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Endpoint = TypeId.BAG.getSpecializedId(Security_dslTables.CLSSid_Endpoint);
-	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_DELETE = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("DELETE");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LOGIN = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("LOGIN");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LOGOUT = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("LOGOUT");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_OTHER = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("OTHER");
-	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_POST = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("POST");
-	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_PUT = Security_dslTables.ENUMid_EEndpointMethod.getEnumerationLiteralId("PUT");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_REGISTERED = Security_dslTables.ENUMid_EClaimType.getEnumerationLiteralId("REGISTERED");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_REGISTRATION = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("REGISTRATION");
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_String = Security_dslTables.ENUMid_EType.getEnumerationLiteralId("String");
@@ -122,7 +121,6 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_RoleInstance = TypeId.ORDERED_SET.getSpecializedId(Security_dslTables.CLSSid_RoleInstance);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Claim = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Claim);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Database = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Database);
-	public static final /*@NonInvalid*/ CollectionTypeId SET_ENUMid_EEndpointMethod = TypeId.SET.getSpecializedId(Security_dslTables.ENUMid_EEndpointMethod);
 
 	/**
 	 *	The type parameters for templated types and operations.

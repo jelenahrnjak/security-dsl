@@ -178,49 +178,31 @@ public interface Security_dslPackage extends EPackage {
 	int APPLICATION_FEATURE_COUNT = 11;
 
 	/**
+	 * The operation id for the '<em>Unique Controller Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 0;
+
+	/**
 	 * The operation id for the '<em>Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 0;
+	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
+	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Has Database For Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Unique Table Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
-	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 4;
+	int APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
 	 * The operation id for the '<em>Unique Controller Path</em>' operation.
@@ -229,16 +211,70 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 5;
+	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
-	 * The operation id for the '<em>Unique Controller Name</em>' operation.
+	 * The operation id for the '<em>Unique Table Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 6;
+	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 5;
+
+	/**
+	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 6;
+
+	/**
+	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
+	 * The operation id for the '<em>Has Username Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 8;
+
+	/**
+	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 9;
+
+	/**
+	 * The operation id for the '<em>Has Database For Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 10;
 
 	/**
 	 * The operation id for the '<em>Valid Port</em>' operation.
@@ -247,7 +283,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 7;
+	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 11;
 
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
@@ -256,7 +292,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_OPERATION_COUNT = 8;
+	int APPLICATION_OPERATION_COUNT = 12;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ModelImpl <em>Model</em>}' class.
@@ -296,58 +332,13 @@ public interface Security_dslPackage extends EPackage {
 	int MODEL_FEATURE_COUNT = 2;
 
 	/**
-	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Only One Identifier</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
 	 * The operation id for the '<em>One Credential</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
-	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 4;
-
-	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 5;
+	int MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
@@ -356,7 +347,34 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = 6;
+	int MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = 1;
+
+	/**
+	 * The operation id for the '<em>Has Username Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 2;
+
+	/**
+	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
+	 * The operation id for the '<em>Only One Identifier</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = 4;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -365,7 +383,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = 7;
+	int MODEL_OPERATION_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ControllerImpl <em>Controller</em>}' class.
@@ -414,13 +432,13 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER_FEATURE_COUNT = 3;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Login</em>' operation.
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = 0;
+	int CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Authentication Limits</em>' operation.
@@ -432,22 +450,22 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
+	 * The operation id for the '<em>Endpoint Limits</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = 2;
+	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
-	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = 3;
+	int CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
 	 * The operation id for the '<em>Unique Endpoints</em>' operation.
@@ -468,40 +486,13 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = 5;
 
 	/**
-	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = 6;
-
-	/**
-	 * The operation id for the '<em>Endpoint Limits</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 7;
-
-	/**
-	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = 8;
-
-	/**
 	 * The number of operations of the '<em>Controller</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER_OPERATION_COUNT = 9;
+	int CONTROLLER_OPERATION_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.SecurityImpl <em>Security</em>}' class.
@@ -715,13 +706,31 @@ public interface Security_dslPackage extends EPackage {
 	int ROLE_FEATURE_COUNT = MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
+	 * The operation id for the '<em>One Credential</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP;
+	int ROLE___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has Username Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
@@ -740,42 +749,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROLE___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>One Credential</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Role</em>' class.
@@ -824,13 +797,31 @@ public interface Security_dslPackage extends EPackage {
 	int USER_FEATURE_COUNT = MODEL_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
+	 * The operation id for the '<em>One Credential</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP;
+	int USER___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Has Username Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
@@ -849,42 +840,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>One Credential</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -979,13 +934,13 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION_FEATURE_COUNT = CONTROLLER_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Login</em>' operation.
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP;
+	int AUTHENTICATION___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Authentication Limits</em>' operation.
@@ -997,22 +952,22 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Method Allowed Registration</em>' operation.
+	 * The operation id for the '<em>Endpoint Limits</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP;
+	int AUTHENTICATION___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP;
+	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Endpoints</em>' operation.
@@ -1031,33 +986,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTHENTICATION___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP = CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Endpoint Limits</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Method Allowed Logout</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Authentication</em>' class.
@@ -1617,6 +1545,26 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getApplication__ControllerPath__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#roleCanHaveIdAndStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Can Have Id And String Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * @see security_dsl.Application#roleCanHaveIdAndStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#roleCantHaveAdditionalAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Cant Have Additional Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Role Cant Have Additional Attributes</em>' operation.
+	 * @see security_dsl.Application#roleCantHaveAdditionalAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Application#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Not Named User Role</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1655,6 +1603,26 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#roleMustHaveStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Must Have String Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Role Must Have String Attribute</em>' operation.
+	 * @see security_dsl.Application#roleMustHaveStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#hasUsernameAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Username Attribute</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Username Attribute</em>' operation.
+	 * @see security_dsl.Application#hasUsernameAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__HasUsernameAttribute__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Application#uniqueControllerPath(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Controller Path</em>}' operation.
@@ -1719,24 +1687,14 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getModel_TableName();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Model#roleCanHaveIdAndStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Can Have Id And String Attribute</em>}' operation.
+	 * Returns the meta object for the '{@link security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One Credential</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * @see security_dsl.Model#roleCanHaveIdAndStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>One Credential</em>' operation.
+	 * @see security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getModel__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.Model#roleCantHaveAdditionalAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Cant Have Additional Attributes</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Role Cant Have Additional Attributes</em>' operation.
-	 * @see security_dsl.Model#roleCantHaveAdditionalAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getModel__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+	EOperation getModel__OneCredential__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Model#uniqueCollumnName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Collumn Name</em>}' operation.
@@ -1759,16 +1717,6 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getModel__OnlyOneIdentifier__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One Credential</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>One Credential</em>' operation.
-	 * @see security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getModel__OneCredential__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.Model#uniqueAttributeName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Attribute Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1779,14 +1727,14 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getModel__UniqueAttributeName__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Model#roleMustHaveStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Must Have String Attribute</em>}' operation.
+	 * Returns the meta object for the '{@link security_dsl.Model#hasUsernameAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Username Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Role Must Have String Attribute</em>' operation.
-	 * @see security_dsl.Model#roleMustHaveStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Has Username Attribute</em>' operation.
+	 * @see security_dsl.Model#hasUsernameAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getModel__RoleMustHaveStringAttribute__DiagnosticChain_Map();
+	EOperation getModel__HasUsernameAttribute__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Controller <em>Controller</em>}'.
@@ -1832,16 +1780,6 @@ public interface Security_dslPackage extends EPackage {
 	EReference getController_Controller_endpoints();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#methodAllowedRegistration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Allowed Registration</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Method Allowed Registration</em>' operation.
-	 * @see security_dsl.Controller#methodAllowedRegistration(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__MethodAllowedRegistration__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Required For Other Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1860,26 +1798,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getController__EndpointLimits__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#methodAllowedLogin(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Allowed Login</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Method Allowed Login</em>' operation.
-	 * @see security_dsl.Controller#methodAllowedLogin(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__MethodAllowedLogin__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#methodAllowedLogout(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Allowed Logout</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Method Allowed Logout</em>' operation.
-	 * @see security_dsl.Controller#methodAllowedLogout(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__MethodAllowedLogout__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#loginExistanceForLogout(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Login Existance For Logout</em>}' operation.
@@ -2578,6 +2496,24 @@ public interface Security_dslPackage extends EPackage {
 				.getApplication__ControllerPath__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Role Can Have Id And String Attribute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Role Cant Have Additional Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Controller Not Named User Role</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2612,6 +2548,24 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Role Must Have String Attribute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Username Attribute</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__HasUsernameAttribute__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Unique Controller Path</b></em>' operation.
@@ -2667,22 +2621,13 @@ public interface Security_dslPackage extends EPackage {
 		EAttribute MODEL__TABLE_NAME = eINSTANCE.getModel_TableName();
 
 		/**
-		 * The meta object literal for the '<em><b>Role Can Have Id And String Attribute</b></em>' operation.
+		 * The meta object literal for the '<em><b>One Credential</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getModel__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Role Cant Have Additional Attributes</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getModel__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+		EOperation MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getModel__OneCredential__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Unique Collumn Name</b></em>' operation.
@@ -2703,15 +2648,6 @@ public interface Security_dslPackage extends EPackage {
 				.getModel__OnlyOneIdentifier__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>One Credential</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getModel__OneCredential__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Unique Attribute Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2721,13 +2657,13 @@ public interface Security_dslPackage extends EPackage {
 				.getModel__UniqueAttributeName__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Role Must Have String Attribute</b></em>' operation.
+		 * The meta object literal for the '<em><b>Has Username Attribute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getModel__RoleMustHaveStringAttribute__DiagnosticChain_Map();
+		EOperation MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getModel__HasUsernameAttribute__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.ControllerImpl <em>Controller</em>}' class.
@@ -2764,15 +2700,6 @@ public interface Security_dslPackage extends EPackage {
 		EReference CONTROLLER__CONTROLLER_ENDPOINTS = eINSTANCE.getController_Controller_endpoints();
 
 		/**
-		 * The meta object literal for the '<em><b>Method Allowed Registration</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__MethodAllowedRegistration__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Method Required For Other Type</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2789,24 +2716,6 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getController__EndpointLimits__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Method Allowed Login</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__MethodAllowedLogin__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Method Allowed Logout</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__MethodAllowedLogout__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Login Existance For Logout</b></em>' operation.

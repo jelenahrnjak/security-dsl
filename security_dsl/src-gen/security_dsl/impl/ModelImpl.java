@@ -25,13 +25,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
-
-import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
@@ -39,8 +36,6 @@ import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -51,7 +46,6 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator;
 
 import security_dsl.Attribute;
-import security_dsl.EType;
 import security_dsl.Model;
 import security_dsl.Security_dslPackage;
 import security_dsl.Security_dslTables;
@@ -160,29 +154,20 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean roleCanHaveIdAndStringAttribute(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Model::roleCanHaveIdAndStringAttribute";
+	public boolean oneCredential(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Model::oneCredential";
 		try {
 			/**
 			 *
-			 * inv roleCanHaveIdAndStringAttribute:
+			 * inv oneCredential:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.oclIsTypeOf(Role) implies
-			 *         self.model_attributes->select(a |
-			 *           (a.type = EType::String and a.identifier = true
-			 *           ))
-			 *         ->size() = 1 or
-			 *         self.model_attributes->select(a |
-			 *           (a.type = EType::String and a.identifier = false
-			 *           ))
-			 *         ->size() = 1 and
-			 *         self.model_attributes->select(a | a.identifier = true)
+			 *         result : Boolean[?] = self.oclIsTypeOf(User) implies
+			 *         self.model_attributes->select(a | a.credential)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -191,260 +176,17 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
 			if (le) {
 				local_0 = true;
 			} else {
-				/*@Caught*/ Object CAUGHT_result;
-				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
-							.getClass(Security_dslTables.CLSSid_Role, null);
-					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-							.evaluate(executor, this, TYP_security_dsl_c_c_Role_0).booleanValue();
-					final /*@Thrown*/ Boolean result;
-					if (!oclIsTypeOf) {
-						result = ValueUtil.TRUE_VALUE;
-					} else {
-						/*@Caught*/ Object CAUGHT_or;
-						try {
-							/*@Caught*/ Object CAUGHT_eq_0;
-							try {
-								final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-								final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-										.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute,
-												model_attributes);
-								/*@Thrown*/ Accumulator accumulator = ValueUtil
-										.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-								Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-								/*@Thrown*/ OrderedSetValue select;
-								while (true) {
-									if (!ITERATOR_a.hasNext()) {
-										select = accumulator;
-										break;
-									}
-									/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-									/**
-									 * a.type = EType::String and a.identifier = true
-									 */
-									final /*@NonInvalid*/ EType type = a.getType();
-									final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = Security_dslTables.ENUMid_EType
-											.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-									final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_String;
-									final /*@NonInvalid*/ Boolean and;
-									if (!eq) {
-										and = ValueUtil.FALSE_VALUE;
-									} else {
-										final /*@NonInvalid*/ boolean identifier = a.isIdentifier();
-										if (!identifier) {
-											and = ValueUtil.FALSE_VALUE;
-										} else {
-											and = ValueUtil.TRUE_VALUE;
-										}
-									}
-									if (and == null) {
-										throw new InvalidValueException(
-												"Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
-									}
-									//
-									if (and == ValueUtil.TRUE_VALUE) {
-										accumulator.add(a);
-									}
-								}
-								final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-								final /*@Thrown*/ boolean eq_0 = size.equals(Security_dslTables.INT_1);
-								CAUGHT_eq_0 = eq_0;
-							} catch (Exception e) {
-								CAUGHT_eq_0 = ValueUtil.createInvalidValue(e);
-							}
-							final /*@Thrown*/ Boolean or;
-							if (CAUGHT_eq_0 == ValueUtil.TRUE_VALUE) {
-								or = ValueUtil.TRUE_VALUE;
-							} else {
-								/*@Caught*/ Object CAUGHT_and_1;
-								try {
-									final /*@NonInvalid*/ List<Attribute> model_attributes_1 = this
-											.getModel_attributes();
-									final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes_1 = idResolver
-											.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute,
-													model_attributes_1);
-									/*@Caught*/ Object CAUGHT_eq_3;
-									try {
-										/*@Thrown*/ Accumulator accumulator_0 = ValueUtil
-												.createOrderedSetAccumulatorValue(
-														Security_dslTables.ORD_CLSSid_Attribute);
-										Iterator<Object> ITERATOR_a_0 = BOXED_model_attributes_1.iterator();
-										/*@Thrown*/ OrderedSetValue select_0;
-										while (true) {
-											if (!ITERATOR_a_0.hasNext()) {
-												select_0 = accumulator_0;
-												break;
-											}
-											/*@NonInvalid*/ Attribute a_0 = (Attribute) ITERATOR_a_0.next();
-											/**
-											 * a.type = EType::String and a.identifier = false
-											 */
-											final /*@NonInvalid*/ EType type_0 = a_0.getType();
-											final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = Security_dslTables.ENUMid_EType
-													.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
-											final /*@NonInvalid*/ boolean eq_1 = BOXED_type_0 == Security_dslTables.ELITid_String;
-											final /*@NonInvalid*/ Boolean and_0;
-											if (!eq_1) {
-												and_0 = ValueUtil.FALSE_VALUE;
-											} else {
-												final /*@NonInvalid*/ boolean identifier_0 = a_0.isIdentifier();
-												final /*@NonInvalid*/ boolean eq_2 = !identifier_0;
-												if (!eq_2) {
-													and_0 = ValueUtil.FALSE_VALUE;
-												} else {
-													and_0 = ValueUtil.TRUE_VALUE;
-												}
-											}
-											if (and_0 == null) {
-												throw new InvalidValueException(
-														"Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
-											}
-											//
-											if (and_0 == ValueUtil.TRUE_VALUE) {
-												accumulator_0.add(a_0);
-											}
-										}
-										final /*@Thrown*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE
-												.evaluate(select_0);
-										final /*@Thrown*/ boolean eq_3 = size_0.equals(Security_dslTables.INT_1);
-										CAUGHT_eq_3 = eq_3;
-									} catch (Exception e) {
-										CAUGHT_eq_3 = ValueUtil.createInvalidValue(e);
-									}
-									final /*@Thrown*/ Boolean and_1;
-									if (CAUGHT_eq_3 == ValueUtil.FALSE_VALUE) {
-										and_1 = ValueUtil.FALSE_VALUE;
-									} else {
-										/*@Thrown*/ Accumulator accumulator_1 = ValueUtil
-												.createOrderedSetAccumulatorValue(
-														Security_dslTables.ORD_CLSSid_Attribute);
-										Iterator<Object> ITERATOR_a_1 = BOXED_model_attributes_1.iterator();
-										/*@NonInvalid*/ OrderedSetValue select_1;
-										while (true) {
-											if (!ITERATOR_a_1.hasNext()) {
-												select_1 = accumulator_1;
-												break;
-											}
-											/*@NonInvalid*/ Attribute a_1 = (Attribute) ITERATOR_a_1.next();
-											/**
-											 * a.identifier
-											 */
-											final /*@NonInvalid*/ boolean identifier_1 = a_1.isIdentifier();
-											//
-											if (identifier_1) {
-												accumulator_1.add(a_1);
-											}
-										}
-										final /*@NonInvalid*/ IntegerValue size_1 = CollectionSizeOperation.INSTANCE
-												.evaluate(select_1);
-										final /*@NonInvalid*/ boolean eq_4 = size_1.equals(Security_dslTables.INT_1);
-										if (!eq_4) {
-											and_1 = ValueUtil.FALSE_VALUE;
-										} else {
-											if (CAUGHT_eq_3 instanceof InvalidValueException) {
-												throw (InvalidValueException) CAUGHT_eq_3;
-											}
-											and_1 = ValueUtil.TRUE_VALUE;
-										}
-									}
-									CAUGHT_and_1 = and_1;
-								} catch (Exception e) {
-									CAUGHT_and_1 = ValueUtil.createInvalidValue(e);
-								}
-								if (CAUGHT_and_1 == ValueUtil.TRUE_VALUE) {
-									or = ValueUtil.TRUE_VALUE;
-								} else {
-									if (CAUGHT_eq_0 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_eq_0;
-									}
-									if (CAUGHT_and_1 instanceof InvalidValueException) {
-										throw (InvalidValueException) CAUGHT_and_1;
-									}
-									if (CAUGHT_and_1 == null) {
-										or = null;
-									} else {
-										or = ValueUtil.FALSE_VALUE;
-									}
-								}
-							}
-							CAUGHT_or = or;
-						} catch (Exception e) {
-							CAUGHT_or = ValueUtil.createInvalidValue(e);
-						}
-						if (CAUGHT_or == ValueUtil.TRUE_VALUE) {
-							result = ValueUtil.TRUE_VALUE;
-						} else {
-							if (CAUGHT_or instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_or;
-							}
-							if (CAUGHT_or == null) {
-								result = null;
-							} else {
-								result = ValueUtil.FALSE_VALUE;
-							}
-						}
-					}
-					CAUGHT_result = result;
-				} catch (Exception e) {
-					CAUGHT_result = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean roleCantHaveAdditionalAttributes(final DiagnosticChain diagnostics,
-			final Map<Object, Object> context) {
-		final String constraintName = "Model::roleCantHaveAdditionalAttributes";
-		try {
-			/**
-			 *
-			 * inv roleCantHaveAdditionalAttributes:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[?] = self.oclIsTypeOf(Role) implies
-			 *         self.model_attributes->size() <= 2
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
-						.getClass(Security_dslTables.CLSSid_Role, null);
+				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_User_0 = idResolver
+						.getClass(Security_dslTables.CLSSid_User, null);
 				final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-						.evaluate(executor, this, TYP_security_dsl_c_c_Role_0).booleanValue();
+						.evaluate(executor, this, TYP_security_dsl_c_c_User_0).booleanValue();
 				final /*@NonInvalid*/ Boolean result;
 				if (!oclIsTypeOf) {
 					result = ValueUtil.TRUE_VALUE;
@@ -452,11 +194,28 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
 					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
 							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-					final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE
-							.evaluate(BOXED_model_attributes);
-					final /*@NonInvalid*/ boolean le_0 = OclComparableLessThanEqualOperation.INSTANCE
-							.evaluate(executor, size, Security_dslTables.INT_2).booleanValue();
-					if (le_0) {
+					/*@Thrown*/ Accumulator accumulator = ValueUtil
+							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					/*@NonInvalid*/ OrderedSetValue select;
+					while (true) {
+						if (!ITERATOR_a.hasNext()) {
+							select = accumulator;
+							break;
+						}
+						/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+						/**
+						 * a.credential
+						 */
+						final /*@NonInvalid*/ boolean credential = a.isCredential();
+						//
+						if (credential) {
+							accumulator.add(a);
+						}
+					}
+					final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+					final /*@NonInvalid*/ boolean eq = size.equals(Security_dslTables.INT_1);
+					if (eq) {
 						result = ValueUtil.TRUE_VALUE;
 					} else {
 						result = ValueUtil.FALSE_VALUE;
@@ -675,75 +434,6 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean oneCredential(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::oneCredential";
-		try {
-			/**
-			 *
-			 * inv oneCredential:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = self.model_attributes->select(a | a.credential)
-			 *         ->size() = 1
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-				/*@Thrown*/ Accumulator accumulator = ValueUtil
-						.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-				Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-				/*@NonInvalid*/ OrderedSetValue select;
-				while (true) {
-					if (!ITERATOR_a.hasNext()) {
-						select = accumulator;
-						break;
-					}
-					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-					/**
-					 * a.credential
-					 */
-					final /*@NonInvalid*/ boolean credential = a.isCredential();
-					//
-					if (credential) {
-						accumulator.add(a);
-					}
-				}
-				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-				final /*@NonInvalid*/ boolean result = size.equals(Security_dslTables.INT_1);
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean uniqueAttributeName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "Model::uniqueAttributeName";
 		try {
@@ -812,20 +502,20 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean roleMustHaveStringAttribute(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::roleMustHaveStringAttribute";
+	public boolean hasUsernameAttribute(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Model::hasUsernameAttribute";
 		try {
 			/**
 			 *
-			 * inv roleMustHaveStringAttribute:
+			 * inv hasUsernameAttribute:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.oclIsTypeOf(Role) implies
-			 *         self.model_attributes->exists(a | a.type = EType::String)
+			 *         result : Boolean[?] = self.oclIsTypeOf(User) implies
+			 *         self.model_attributes->exists(a | a.name = 'username' and a.credential = true)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -833,7 +523,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
@@ -842,51 +532,75 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
-							.getClass(Security_dslTables.CLSSid_Role, null);
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_User_0 = idResolver
+							.getClass(Security_dslTables.CLSSid_User, null);
 					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-							.evaluate(executor, this, TYP_security_dsl_c_c_Role_0).booleanValue();
+							.evaluate(executor, this, TYP_security_dsl_c_c_User_0).booleanValue();
 					final /*@Thrown*/ Boolean result;
 					if (!oclIsTypeOf) {
 						result = ValueUtil.TRUE_VALUE;
 					} else {
-						final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-						final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-								.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-						/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-						Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-						/*@NonInvalid*/ Boolean exists;
-						while (true) {
-							if (!ITERATOR_a.hasNext()) {
-								if (accumulator == ValueUtil.FALSE_VALUE) {
-									exists = ValueUtil.FALSE_VALUE;
-								} else {
-									throw (InvalidValueException) accumulator;
+						/*@Caught*/ Object CAUGHT_exists;
+						try {
+							final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
+							final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
+									.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+							Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+							/*@Thrown*/ Boolean exists;
+							while (true) {
+								if (!ITERATOR_a.hasNext()) {
+									if (accumulator == null) {
+										exists = null;
+									} else if (accumulator == ValueUtil.FALSE_VALUE) {
+										exists = ValueUtil.FALSE_VALUE;
+									} else {
+										throw (InvalidValueException) accumulator;
+									}
+									break;
 								}
-								break;
+								/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+								/**
+								 * a.name = 'username' and a.credential = true
+								 */
+								final /*@NonInvalid*/ String name = a.getName();
+								final /*@NonInvalid*/ boolean eq = name.equals(Security_dslTables.STR_username);
+								final /*@NonInvalid*/ Boolean and;
+								if (!eq) {
+									and = ValueUtil.FALSE_VALUE;
+								} else {
+									final /*@NonInvalid*/ boolean credential = a.isCredential();
+									if (!credential) {
+										and = ValueUtil.FALSE_VALUE;
+									} else {
+										and = ValueUtil.TRUE_VALUE;
+									}
+								}
+								//
+								if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
+									exists = ValueUtil.TRUE_VALUE;
+									break; // Stop immediately
+								} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
+									; // Carry on
+								} else if (and == null) { // Abnormal null body evaluation result
+									if (accumulator == ValueUtil.FALSE_VALUE) {
+										accumulator = null; // Cache a null failure
+									}
+								} else { // Impossible badly typed result
+									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+								}
 							}
-							/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-							/**
-							 * a.type = EType::String
-							 */
-							final /*@NonInvalid*/ EType type = a.getType();
-							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = Security_dslTables.ENUMid_EType
-									.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-							final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_String;
-							//
-							if (eq) { // Normal successful body evaluation result
-								exists = ValueUtil.TRUE_VALUE;
-								break; // Stop immediately
-							} else if (!eq) { // Normal unsuccessful body evaluation result
-								; // Carry on
-							} else { // Impossible badly typed result
-								accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
-							}
+							CAUGHT_exists = exists;
+						} catch (Exception e) {
+							CAUGHT_exists = ValueUtil.createInvalidValue(e);
 						}
-						if (exists == ValueUtil.TRUE_VALUE) {
+						if (CAUGHT_exists == ValueUtil.TRUE_VALUE) {
 							result = ValueUtil.TRUE_VALUE;
 						} else {
-							if (exists == null) {
+							if (CAUGHT_exists instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_exists;
+							}
+							if (CAUGHT_exists == null) {
 								result = null;
 							} else {
 								result = ValueUtil.FALSE_VALUE;
@@ -1002,23 +716,16 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case Security_dslPackage.MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP:
-			return roleCantHaveAdditionalAttributes((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
+			return oneCredential((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
+			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
+			return hasUsernameAttribute((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueAttributeName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
 			return onlyOneIdentifier((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
-			return oneCredential((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-			return roleMustHaveStringAttribute((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-			return roleCanHaveIdAndStringAttribute((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
-			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

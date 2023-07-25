@@ -9,6 +9,9 @@ import org.eclipse.emf.ecore.resource.Resource
 import java.util.ArrayList
 import java.util.List
 import security_dsl.EType
+import security_dsl.Security
+import security_dsl.JWT
+import security_dsl.BasicAuthentication
 
 class SecurityDslModelRepoGenerator  {
 	
@@ -20,12 +23,12 @@ class SecurityDslModelRepoGenerator  {
        	if (users.hasNext()) {
        		var user = users.next()
        		if(user.tableName === null) user.tableName = "users"
-       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName + '.model', user));
+       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName + '.model', user, app.app_security));
        		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user));
        		
 		}
         
-       	if (roles.hasNext()) {
+       	if (roles.hasNext() && app.app_security instanceof JWT) {
        		var role = roles.next()
        		if(role.tableName === null) role.tableName = "roles"
        		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(app.packageName + '.model', role));
@@ -47,7 +50,7 @@ class SecurityDslModelRepoGenerator  {
 		public interface UserRepository extends JpaRepository<User, ''' + getIdentifier(user.model_attributes).type + '''
 		> {
 			
-		    User findBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(''' + getCredential(user.model_attributes).type + ''' ''' + getIdentifier(user.model_attributes).name + ''');
+		    User findOneBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getIdentifier(user.model_attributes).name + ''');
 }
 				'''
 				return content;
@@ -73,8 +76,8 @@ class SecurityDslModelRepoGenerator  {
 		return content;
 	}
 	
-	def generateUserModel(String appMainPackage, User user) {
-	
+	def generateUserModel(String appMainPackage, User user, Security security) {
+		
 		var userContent =  '''
 		package ''' + appMainPackage+ '''
 		.model;
@@ -114,6 +117,7 @@ public class User implements UserDetails {
 		
 		userContent += generateAttributes(user.model_attributes)
 		
+		if(security instanceof JWT) {
 		userContent += '''    @JsonIgnore
     @Column(name = "password")
     private String password;
@@ -130,48 +134,95 @@ public class User implements UserDetails {
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     private List<Role> roles;
     
-		'''
-		
-		userContent += '''
-		    public void setPassword(String password) {
-		        Timestamp now = new Timestamp(new Date().getTime());
-		        this.setLastPasswordResetDate(now);
-		        this.password = password;
-		    }
-		
-		
-		    @JsonIgnore
-		    @Override
-		    public Collection<? extends GrantedAuthority> getAuthorities() {
-		        return this.roles;
-		    }
+    public void setPassword(String password) {
+        Timestamp now = new Timestamp(new Date().getTime());
+        this.setLastPasswordResetDate(now);
+        this.password = password;
+    }
 
-		    @Override
-		    public boolean isEnabled() {
-		        return enabled;
-		    }
-		
-		    @JsonIgnore
-		    @Override
-		    public boolean isAccountNonExpired() {
-		        return true;
-		    }
-		
-		    @JsonIgnore
-		    @Override
-		    public boolean isAccountNonLocked() {
-		        return true;
-		    }
-		
-		    @JsonIgnore
-		    @Override
-		    public boolean isCredentialsNonExpired() {
-		        return true;
-		    }
-		
+    @JsonIgnore
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return this.roles;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @JsonIgnore
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+'''
+}
+		if (security instanceof BasicAuthentication){
+			userContent += '''    private String password;
+
+    private String role;
+    
+	@JsonIgnore
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
+
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role));
+		return authorities;
+	}
+	
+	
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
+
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return username;
+	}
+			'''
 		}
-		'''
-		
+		userContent += '}'		
 		return userContent;
 	}
 	
@@ -263,6 +314,7 @@ public class Role implements GrantedAuthority {
 		}
 		
 		var content = '''    @Id
+    @GeneratedValue
 		'''
 		
 		for (attribute : attributes) {

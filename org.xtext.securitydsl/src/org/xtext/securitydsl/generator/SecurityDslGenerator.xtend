@@ -5,8 +5,7 @@ import org.eclipse.xtext.generator.AbstractGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import org.eclipse.xtext.generator.IGeneratorContext
 import security_dsl.Application
-import security_dsl.Role
-import security_dsl.User
+import security_dsl.BasicAuthentication
 
 class SecurityDslGenerator extends AbstractGenerator {
 
@@ -27,6 +26,10 @@ class SecurityDslGenerator extends AbstractGenerator {
         new SecurityDslControllerGenerator(fsa, app, srcDestination)
         new SecurityDslModelRepoGenerator(resource,fsa, app, srcDestination)
         new SecurityDslJWTSpringGenerator(fsa, app, srcDestination)
+        
+        if(app.app_security instanceof BasicAuthentication){
+       		new SecurityDslBasicAuthenticationGenerator(resource,fsa, app, srcDestination)
+        }
         
 	}
 }

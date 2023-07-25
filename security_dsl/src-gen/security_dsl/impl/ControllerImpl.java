@@ -36,8 +36,6 @@ import org.eclipse.ocl.pivot.library.AbstractSimpleOperation;
 import org.eclipse.ocl.pivot.library.LibraryIteration.LibraryIterationExtension;
 import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
-
-import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
@@ -57,9 +55,6 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 
 import org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator;
-
-import org.eclipse.ocl.pivot.values.SetValue;
-
 import security_dsl.Controller;
 import security_dsl.EEndpointMethod;
 import security_dsl.EEndpointType;
@@ -205,147 +200,6 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 					Security_dslPackage.CONTROLLER__CONTROLLER_ENDPOINTS);
 		}
 		return controller_endpoints;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean methodAllowedRegistration(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Controller::methodAllowedRegistration";
-		try {
-			/**
-			 *
-			 * inv methodAllowedRegistration:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = self.controller_endpoints->select(e |
-			 *           (e.type = EEndpointType::REGISTRATION and
-			 *             (e.method = EEndpointMethod::POST or e.method->isEmpty()
-			 *             )
-			 *           ))
-			 *         ->size() <= 1
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_result;
-				try {
-					final /*@NonInvalid*/ List<Endpoint> controller_endpoints = this.getController_endpoints();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_controller_endpoints = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Endpoint, controller_endpoints);
-					/*@Thrown*/ Accumulator accumulator = ValueUtil
-							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Endpoint);
-					Iterator<Object> ITERATOR_e_0 = BOXED_controller_endpoints.iterator();
-					/*@Thrown*/ OrderedSetValue select;
-					while (true) {
-						if (!ITERATOR_e_0.hasNext()) {
-							select = accumulator;
-							break;
-						}
-						/*@NonInvalid*/ Endpoint e_0 = (Endpoint) ITERATOR_e_0.next();
-						/**
-						 * e.type = EEndpointType::REGISTRATION and
-						 * (e.method = EEndpointMethod::POST or e.method->isEmpty()
-						 * )
-						 */
-						final /*@NonInvalid*/ EEndpointType type = e_0.getType();
-						final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = type == null ? null
-								: Security_dslTables.ENUMid_EEndpointType
-										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-						final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_REGISTRATION;
-						final /*@Thrown*/ Boolean and;
-						if (!eq) {
-							and = ValueUtil.FALSE_VALUE;
-						} else {
-							/*@Caught*/ Object CAUGHT_or;
-							try {
-								final /*@NonInvalid*/ EEndpointMethod method = e_0.getMethod();
-								final /*@NonInvalid*/ EnumerationLiteralId BOXED_method = method == null ? null
-										: Security_dslTables.ENUMid_EEndpointMethod
-												.getEnumerationLiteralId(ClassUtil.nonNullState(method.getName()));
-								final /*@NonInvalid*/ boolean eq_0 = BOXED_method == Security_dslTables.ELITid_POST;
-								final /*@Thrown*/ Boolean or;
-								if (eq_0) {
-									or = ValueUtil.TRUE_VALUE;
-								} else {
-									/*@Caught*/ Object CAUGHT_isEmpty;
-									try {
-										final /*@Thrown*/ SetValue oclAsSet = OclAnyOclAsSetOperation.INSTANCE.evaluate(
-												executor, Security_dslTables.SET_ENUMid_EEndpointMethod, BOXED_method);
-										final /*@Thrown*/ boolean isEmpty = CollectionIsEmptyOperation.INSTANCE
-												.evaluate(oclAsSet).booleanValue();
-										CAUGHT_isEmpty = isEmpty;
-									} catch (Exception e) {
-										CAUGHT_isEmpty = ValueUtil.createInvalidValue(e);
-									}
-									if (CAUGHT_isEmpty == ValueUtil.TRUE_VALUE) {
-										or = ValueUtil.TRUE_VALUE;
-									} else {
-										if (CAUGHT_isEmpty instanceof InvalidValueException) {
-											throw (InvalidValueException) CAUGHT_isEmpty;
-										}
-										or = ValueUtil.FALSE_VALUE;
-									}
-								}
-								CAUGHT_or = or;
-							} catch (Exception e) {
-								CAUGHT_or = ValueUtil.createInvalidValue(e);
-							}
-							if (CAUGHT_or == ValueUtil.FALSE_VALUE) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								if (CAUGHT_or instanceof InvalidValueException) {
-									throw (InvalidValueException) CAUGHT_or;
-								}
-								if (CAUGHT_or == null) {
-									and = null;
-								} else {
-									and = ValueUtil.TRUE_VALUE;
-								}
-							}
-						}
-						if (and == null) {
-							throw new InvalidValueException(
-									"Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
-						}
-						//
-						if (and == ValueUtil.TRUE_VALUE) {
-							accumulator.add(e_0);
-						}
-					}
-					final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-					final /*@Thrown*/ boolean result = OclComparableLessThanEqualOperation.INSTANCE
-							.evaluate(executor, size, Security_dslTables.INT_1).booleanValue();
-					CAUGHT_result = result;
-				} catch (Exception e) {
-					CAUGHT_result = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
 	}
 
 	/**
@@ -631,244 +485,6 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 							}
 						}
 					}
-					CAUGHT_result = result;
-				} catch (Exception e) {
-					CAUGHT_result = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean methodAllowedLogin(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Controller::methodAllowedLogin";
-		try {
-			/**
-			 *
-			 * inv methodAllowedLogin:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = self.controller_endpoints->select(e |
-			 *           (e.type = EEndpointType::LOGIN and
-			 *             (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE
-			 *             )
-			 *           ))
-			 *         ->size() = 0
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_result;
-				try {
-					final /*@NonInvalid*/ List<Endpoint> controller_endpoints = this.getController_endpoints();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_controller_endpoints = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Endpoint, controller_endpoints);
-					/*@Thrown*/ Accumulator accumulator = ValueUtil
-							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Endpoint);
-					Iterator<Object> ITERATOR_e_0 = BOXED_controller_endpoints.iterator();
-					/*@Thrown*/ OrderedSetValue select;
-					while (true) {
-						if (!ITERATOR_e_0.hasNext()) {
-							select = accumulator;
-							break;
-						}
-						/*@NonInvalid*/ Endpoint e_0 = (Endpoint) ITERATOR_e_0.next();
-						/**
-						 * e.type = EEndpointType::LOGIN and
-						 * (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE
-						 * )
-						 */
-						final /*@NonInvalid*/ EEndpointMethod method_0 = e_0.getMethod();
-						final /*@NonInvalid*/ EnumerationLiteralId BOXED_method_0 = method_0 == null ? null
-								: Security_dslTables.ENUMid_EEndpointMethod
-										.getEnumerationLiteralId(ClassUtil.nonNullState(method_0.getName()));
-						final /*@NonInvalid*/ EEndpointType type = e_0.getType();
-						final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = type == null ? null
-								: Security_dslTables.ENUMid_EEndpointType
-										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-						final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_LOGIN;
-						final /*@Thrown*/ Boolean and;
-						if (!eq) {
-							and = ValueUtil.FALSE_VALUE;
-						} else {
-							final /*@NonInvalid*/ boolean eq_0 = BOXED_method_0 == Security_dslTables.ELITid_PUT;
-							final /*@NonInvalid*/ Boolean or;
-							if (eq_0) {
-								or = ValueUtil.TRUE_VALUE;
-							} else {
-								final /*@NonInvalid*/ boolean eq_1 = BOXED_method_0 == Security_dslTables.ELITid_DELETE;
-								if (eq_1) {
-									or = ValueUtil.TRUE_VALUE;
-								} else {
-									or = ValueUtil.FALSE_VALUE;
-								}
-							}
-							if (or == ValueUtil.FALSE_VALUE) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								if (or == null) {
-									and = null;
-								} else {
-									and = ValueUtil.TRUE_VALUE;
-								}
-							}
-						}
-						if (and == null) {
-							throw new InvalidValueException(
-									"Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
-						}
-						//
-						if (and == ValueUtil.TRUE_VALUE) {
-							accumulator.add(e_0);
-						}
-					}
-					final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-					final /*@Thrown*/ boolean result = size.equals(Security_dslTables.INT_0);
-					CAUGHT_result = result;
-				} catch (Exception e) {
-					CAUGHT_result = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean methodAllowedLogout(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Controller::methodAllowedLogout";
-		try {
-			/**
-			 *
-			 * inv methodAllowedLogout:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[1] = self.controller_endpoints->select(e |
-			 *           (e.type = EEndpointType::LOGOUT and
-			 *             (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE
-			 *             )
-			 *           ))
-			 *         ->size() = 0
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_result;
-				try {
-					final /*@NonInvalid*/ List<Endpoint> controller_endpoints = this.getController_endpoints();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_controller_endpoints = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Endpoint, controller_endpoints);
-					/*@Thrown*/ Accumulator accumulator = ValueUtil
-							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Endpoint);
-					Iterator<Object> ITERATOR_e_0 = BOXED_controller_endpoints.iterator();
-					/*@Thrown*/ OrderedSetValue select;
-					while (true) {
-						if (!ITERATOR_e_0.hasNext()) {
-							select = accumulator;
-							break;
-						}
-						/*@NonInvalid*/ Endpoint e_0 = (Endpoint) ITERATOR_e_0.next();
-						/**
-						 * e.type = EEndpointType::LOGOUT and
-						 * (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE
-						 * )
-						 */
-						final /*@NonInvalid*/ EEndpointMethod method_0 = e_0.getMethod();
-						final /*@NonInvalid*/ EnumerationLiteralId BOXED_method_0 = method_0 == null ? null
-								: Security_dslTables.ENUMid_EEndpointMethod
-										.getEnumerationLiteralId(ClassUtil.nonNullState(method_0.getName()));
-						final /*@NonInvalid*/ EEndpointType type = e_0.getType();
-						final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = type == null ? null
-								: Security_dslTables.ENUMid_EEndpointType
-										.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
-						final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_LOGOUT;
-						final /*@Thrown*/ Boolean and;
-						if (!eq) {
-							and = ValueUtil.FALSE_VALUE;
-						} else {
-							final /*@NonInvalid*/ boolean eq_0 = BOXED_method_0 == Security_dslTables.ELITid_PUT;
-							final /*@NonInvalid*/ Boolean or;
-							if (eq_0) {
-								or = ValueUtil.TRUE_VALUE;
-							} else {
-								final /*@NonInvalid*/ boolean eq_1 = BOXED_method_0 == Security_dslTables.ELITid_DELETE;
-								if (eq_1) {
-									or = ValueUtil.TRUE_VALUE;
-								} else {
-									or = ValueUtil.FALSE_VALUE;
-								}
-							}
-							if (or == ValueUtil.FALSE_VALUE) {
-								and = ValueUtil.FALSE_VALUE;
-							} else {
-								if (or == null) {
-									and = null;
-								} else {
-									and = ValueUtil.TRUE_VALUE;
-								}
-							}
-						}
-						if (and == null) {
-							throw new InvalidValueException(
-									"Null body for \'OrderedSet(T).select(OrderedSet.T[?] | Lambda T() : Boolean[1]) : OrderedSet(T)\'");
-						}
-						//
-						if (and == ValueUtil.TRUE_VALUE) {
-							accumulator.add(e_0);
-						}
-					}
-					final /*@Thrown*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-					final /*@Thrown*/ boolean result = size.equals(Security_dslTables.INT_0);
 					CAUGHT_result = result;
 				} catch (Exception e) {
 					CAUGHT_result = ValueUtil.createInvalidValue(e);
@@ -1655,27 +1271,20 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case Security_dslPackage.CONTROLLER___METHOD_ALLOWED_LOGIN__DIAGNOSTICCHAIN_MAP:
-			return methodAllowedLogin((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP:
-			return authenticationLimits((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.CONTROLLER___METHOD_ALLOWED_REGISTRATION__DIAGNOSTICCHAIN_MAP:
-			return methodAllowedRegistration((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP:
 			return methodRequiredForOtherType((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.CONTROLLER___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP:
+			return authenticationLimits((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP:
+			return endpointLimits((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP:
+			return loginExistanceForLogout((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP:
 			return uniqueEndpoints((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.CONTROLLER___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP:
 			return urlStartsWithForwardSlash((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.CONTROLLER___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP:
-			return loginExistanceForLogout((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP:
-			return endpointLimits((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.CONTROLLER___METHOD_ALLOWED_LOGOUT__DIAGNOSTICCHAIN_MAP:
-			return methodAllowedLogout((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

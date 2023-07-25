@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getController()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='methodAllowedLogout'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='urlStartsWithForwardSlash'"
  * @generated
  */
 public interface Controller extends EObject {
@@ -88,14 +88,6 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method-&gt;isEmpty())) -&gt; size() &lt;= 1'"
-	 * @generated
-	 */
-	boolean methodAllowedRegistration(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.controller_endpoints -&gt; select(e | e.type = EEndpointType::OTHER) -&gt; forAll(e | e.method &lt;&gt; null)'"
 	 * @generated
 	 */
@@ -108,22 +100,6 @@ public interface Controller extends EObject {
 	 * @generated
 	 */
 	boolean endpointLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -&gt; size() = 0'"
-	 * @generated
-	 */
-	boolean methodAllowedLogin(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -&gt; size() = 0'"
-	 * @generated
-	 */
-	boolean methodAllowedLogout(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

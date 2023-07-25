@@ -1,10 +1,111 @@
 package org.xtext.securitydsl.generator;
 
+import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import security_dsl.Application;
 
 @SuppressWarnings("all")
 public class SecurityDslControllerGenerator {
   public SecurityDslControllerGenerator(final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
+  }
+
+  public String GenerateUserCForBasicAuthentication() {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package com.example.Demo.Basic.Authentication.endpoint.impl;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import com.example.Demo.Basic.Authentication.dto.RequestUserData;");
+    _builder.newLine();
+    _builder.append("import com.example.Demo.Basic.Authentication.entity.User;");
+    _builder.newLine();
+    _builder.append("import com.example.Demo.Basic.Authentication.service.IUserService;");
+    _builder.newLine();
+    _builder.append("import lombok.RequiredArgsConstructor;");
+    _builder.newLine();
+    _builder.append("import org.springframework.beans.BeanUtils;");
+    _builder.newLine();
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder.newLine();
+    _builder.append("import org.springframework.http.ResponseEntity;");
+    _builder.newLine();
+    _builder.append("import org.springframework.http.MediaType;");
+    _builder.newLine();
+    _builder.append("import org.springframework.security.access.prepost.PreAuthorize;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.RestController;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.RequestBody;");
+    _builder.newLine();
+    _builder.append("import org.springframework.web.bind.annotation.RequestMapping;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import java.util.List;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
+    _builder.newLine();
+    _builder.append("@RequestMapping(value = \"/auth\",");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("consumes = MediaType.APPLICATION_JSON_VALUE,");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("produces = MediaType.APPLICATION_JSON_VALUE)");
+    _builder.newLine();
+    _builder.append("@RestController");
+    _builder.newLine();
+    _builder.append("public class AuthController {");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("private final IUserService userService;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@GetMapping()");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@PreAuthorize(\"hasAuthority(\'ROLE_ADMIN\')\")");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ResponseEntity<List<User>> getDataUser() {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return ResponseEntity.ok(userService.findAll());");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@Override");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("@PostMapping(\"/register\")");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("public ResponseEntity<User> registerUser(RequestUserData request) {");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("User user = new User();");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("BeanUtils.copyProperties(request, user);");
+    _builder.newLine();
+    _builder.append("        ");
+    _builder.append("return ResponseEntity.ok(userService.save(user));");
+    _builder.newLine();
+    _builder.append("    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    String content = _builder.toString();
+    return content;
   }
 }

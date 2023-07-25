@@ -32,6 +32,7 @@ application:
               collumnName: "last_name"
           }
         ]
+        
       role:
       	tableName: "roles"
         attributes: [ 
@@ -49,16 +50,16 @@ application:
         
         
     security: 
-      jwt:
-        header: 
-            signatureAlgorithm: "HS512" 
-        payload:
-            claims: [
-            	{REGISTERED, expirationTime: 1800000},
-            	{REGISTERED, audience: "AUDIENCE_WEB"},
-            	{REGISTERED , subject : username}
-            ]
-
+    	basicAuthentication
+//      jwt:
+//        header: 
+//            signatureAlgorithm: "HS512" 
+//        payload:
+//            claims: [
+//            	{REGISTERED, expirationTime: 1800000},
+//            	{REGISTERED, audience: "AUDIENCE_WEB"},
+//            	{REGISTERED , subject : username}
+//            ]
  
     controller:
       auth: 

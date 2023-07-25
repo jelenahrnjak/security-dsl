@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getModel()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueCollumnName'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyOneIdentifier'"
  * @generated
  */
 public interface Model extends EObject {
@@ -65,18 +65,10 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.oclIsTypeOf(Role) implies\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n\t\t        or\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n\t\t\t\tand\n\t\t        self.model_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n\t\t    )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(User) implies\n\t\t\tself.model_attributes -&gt; select(a | a.credential) -&gt; size() = 1'"
 	 * @generated
 	 */
-	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.oclIsTypeOf(Role) implies self.model_attributes -&gt; size() &lt;= 2'"
-	 * @generated
-	 */
-	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean oneCredential(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -97,14 +89,6 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; select(a | a.credential) -&gt; size() = 1'"
-	 * @generated
-	 */
-	boolean oneCredential(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; isUnique(a | a.name)'"
 	 * @generated
 	 */
@@ -113,9 +97,9 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.oclIsTypeOf(Role) implies self.model_attributes -&gt; exists(a | a.type = EType::_\'String\')'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(User) implies\n        \tself.model_attributes -&gt; exists(a | a.name = \'username\' and a.credential = true)'"
 	 * @generated
 	 */
-	boolean roleMustHaveStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean hasUsernameAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Model

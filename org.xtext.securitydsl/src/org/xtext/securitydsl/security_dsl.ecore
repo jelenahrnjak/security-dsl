@@ -11,7 +11,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController"/>
+      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueTableName" value="self.app_models ->  isUnique(m | m.tableName.toLower())"/>
@@ -22,6 +22,10 @@
       <details key="validPort" value="self.port >= 1024 and self.port &lt;= 49151"/>
       <details key="hasDatabaseForModel" value="self.app_models -> isEmpty() or not self.app_database->isEmpty()"/>
       <details key="hasUserAndRoleModelsForController" value="self.app_controllers -> isEmpty() or (&#xA;&#x9;        self.app_models -> exists(m | m.oclIsTypeOf(User))&#xA;&#x9;        and&#xA;&#x9;        self.app_models -> exists(m | m.oclIsTypeOf(Role))&#xA;&#x9;    )"/>
+      <details key="hasUsernameAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(User))&#xA;&#x9;            -> forAll(user | user.model_attributes -> exists(a |  a.name = 'username' and a.credential = true))"/>
+      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        (&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role | &#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;            or&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role |&#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;                    and&#xA;                    role.model_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;                )&#xA;        )"/>
+      <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> exists(a | a.type = EType::_'String'))"/>
+      <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() &lt;= 2)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
@@ -48,16 +52,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueAttributeName uniqueCollumnName onlyOneIdentifier oneCredential roleMustHaveStringAttribute roleCanHaveIdAndStringAttribute roleCantHaveAdditionalAttributes"/>
+      <details key="constraints" value="uniqueAttributeName uniqueCollumnName onlyOneIdentifier oneCredential hasUsernameAttribute"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name)"/>
       <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.model_attributes -> exists(a | a.collumnName &lt;> null) implies self.model_attributes -> isUnique(a | a.collumnName)"/>
       <details key="onlyOneIdentifier" value="self.model_attributes -> select(a | a.identifier) -> size() = 1"/>
-      <details key="oneCredential" value="self.model_attributes -> select(a | a.credential) -> size() = 1"/>
-      <details key="roleMustHaveStringAttribute" value="self.oclIsTypeOf(Role) implies self.model_attributes -> exists(a | a.type = EType::_'String')"/>
-      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;&#x9;&#x9;    self.oclIsTypeOf(Role) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;&#x9;&#x9;&#x9;&#x9;and&#xA;&#x9;&#x9;        self.model_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;&#x9;&#x9;    )"/>
-      <details key="roleCantHaveAdditionalAttributes" value="self.oclIsTypeOf(Role) implies self.model_attributes -> size() &lt;= 2"/>
+      <details key="oneCredential" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;&#x9;&#x9;&#x9;self.model_attributes -> select(a | a.credential) -> size() = 1"/>
+      <details key="hasUsernameAttribute" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;        &#x9;self.model_attributes -> exists(a | a.name = 'username' and a.credential = true)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
@@ -65,7 +67,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodAllowedRegistration methodAllowedLogin methodAllowedLogout methodRequiredForOtherType"/>
+      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodRequiredForOtherType methodNotAllowedForRegistration methodNotAllowedForLogin methodNotAllowedForLogout"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueEndpoints" value="&#xA;&#x9;&#x9;&#x9;self.controller_endpoints -> forAll(e1, e2 |  e1 &lt;> e2 implies  (e1.functionName &lt;> null and e2.functionName &lt;> null implies e1.functionName &lt;> e2.functionName) &#xA;        and &#xA;        (e1.url &lt;> null and e2.url &lt;> null implies e1.url &lt;> e2.url))"/>
@@ -73,10 +75,10 @@
       <details key="authenticationLimits" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() &lt;= 1&#xA;&#x9;&#x9;    ) "/>
       <details key="loginExistanceForLogout" value="&#xA;&#x9;&#x9;    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1"/>
       <details key="endpointLimits" value="&#xA;&#x9;&#x9;&#x9;not self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty()&#xA;&#x9;&#x9;    )"/>
-      <details key="methodAllowedRegistration" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION and (e.method = EEndpointMethod::POST or e.method->isEmpty())) -> size() &lt;= 1"/>
-      <details key="methodAllowedLogin" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
-      <details key="methodAllowedLogout" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT and (e.method = EEndpointMethod::PUT or e.method = EEndpointMethod::DELETE)) -> size() = 0"/>
       <details key="methodRequiredForOtherType" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method &lt;> null)"/>
+      <details key="methodNotAllowedForRegistration" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> forAll(e | e.method = null)"/>
+      <details key="methodNotAllowedForLogin" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> forAll(e | e.method = null)"/>
+      <details key="methodNotAllowedForLogout" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> forAll(e | e.method = null)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
