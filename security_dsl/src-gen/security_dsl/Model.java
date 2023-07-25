@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getModel()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleMustHaveStringAttribute'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueCollumnName'"
  * @generated
  */
 public interface Model extends EObject {
@@ -65,7 +65,7 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.oclIsTypeOf(Role) implies\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.isIdentifier = true) -&gt; size() = 1 )\n\t\t        or\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.isIdentifier = false) -&gt; size() = 1\n\t\t\t\tand\n\t\t        self.model_attributes -&gt; select(a | a.isIdentifier = true) -&gt; size() = 1\n\t\t    )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.oclIsTypeOf(Role) implies\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n\t\t        or\n\t\t    (\n\t\t        self.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n\t\t\t\tand\n\t\t        self.model_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n\t\t    )'"
 	 * @generated
 	 */
 	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -89,10 +89,18 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; select(a | a.isIdentifier) -&gt; size() = 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; select(a | a.identifier) -&gt; size() = 1'"
 	 * @generated
 	 */
 	boolean onlyOneIdentifier(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; select(a | a.credential) -&gt; size() = 1'"
+	 * @generated
+	 */
+	boolean oneCredential(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

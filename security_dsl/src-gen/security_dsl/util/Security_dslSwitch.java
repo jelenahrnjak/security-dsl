@@ -172,6 +172,24 @@ public class Security_dslSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Security_dslPackage.OAUTH2: {
+			OAuth2 oAuth2 = (OAuth2) theEObject;
+			T result = caseOAuth2(oAuth2);
+			if (result == null)
+				result = caseSecurity(oAuth2);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case Security_dslPackage.BASIC_AUTHENTICATION: {
+			BasicAuthentication basicAuthentication = (BasicAuthentication) theEObject;
+			T result = caseBasicAuthentication(basicAuthentication);
+			if (result == null)
+				result = caseSecurity(basicAuthentication);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -384,6 +402,36 @@ public class Security_dslSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseRegisteredClaims(RegisteredClaims object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>OAuth2</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>OAuth2</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseOAuth2(OAuth2 object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Basic Authentication</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Basic Authentication</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBasicAuthentication(BasicAuthentication object) {
 		return null;
 	}
 

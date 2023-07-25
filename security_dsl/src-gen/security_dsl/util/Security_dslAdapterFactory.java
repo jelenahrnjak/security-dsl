@@ -137,6 +137,16 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseOAuth2(OAuth2 object) {
+			return createOAuth2Adapter();
+		}
+
+		@Override
+		public Adapter caseBasicAuthentication(BasicAuthentication object) {
+			return createBasicAuthenticationAdapter();
+		}
+
+		@Override
 		public Adapter defaultCase(EObject object) {
 			return createEObjectAdapter();
 		}
@@ -348,6 +358,34 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createRegisteredClaimsAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link security_dsl.OAuth2 <em>OAuth2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see security_dsl.OAuth2
+	 * @generated
+	 */
+	public Adapter createOAuth2Adapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link security_dsl.BasicAuthentication <em>Basic Authentication</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see security_dsl.BasicAuthentication
+	 * @generated
+	 */
+	public Adapter createBasicAuthenticationAdapter() {
 		return null;
 	}
 

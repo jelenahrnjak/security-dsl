@@ -14,9 +14,6 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EDatabaseType/Oracle"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EDatabaseType/MySQL"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//ESecuirtyMechanism">
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//ESecuirtyMechanism/JWT"/>
-    </genEnums>
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EType">
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/String"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EType/Float"/>
@@ -77,8 +74,9 @@
     <genClasses ecoreClass="security_dsl.ecore#//Attribute">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/isIdentifier"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/identifier"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/collumnName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Attribute/credential"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Role">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Role/role_instances"/>
@@ -111,5 +109,7 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/issuer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/audience"/>
     </genClasses>
+    <genClasses ecoreClass="security_dsl.ecore#//OAuth2"/>
+    <genClasses ecoreClass="security_dsl.ecore#//BasicAuthentication"/>
   </genPackages>
 </genmodel:GenModel>

@@ -79,6 +79,10 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 			return createClaim();
 		case Security_dslPackage.REGISTERED_CLAIMS:
 			return createRegisteredClaims();
+		case Security_dslPackage.OAUTH2:
+			return createOAuth2();
+		case Security_dslPackage.BASIC_AUTHENTICATION:
+			return createBasicAuthentication();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -94,8 +98,6 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 		switch (eDataType.getClassifierID()) {
 		case Security_dslPackage.EDATABASE_TYPE:
 			return createEDatabaseTypeFromString(eDataType, initialValue);
-		case Security_dslPackage.ESECUIRTY_MECHANISM:
-			return createESecuirtyMechanismFromString(eDataType, initialValue);
 		case Security_dslPackage.ETYPE:
 			return createETypeFromString(eDataType, initialValue);
 		case Security_dslPackage.EENDPOINT_METHOD:
@@ -119,8 +121,6 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 		switch (eDataType.getClassifierID()) {
 		case Security_dslPackage.EDATABASE_TYPE:
 			return convertEDatabaseTypeToString(eDataType, instanceValue);
-		case Security_dslPackage.ESECUIRTY_MECHANISM:
-			return convertESecuirtyMechanismToString(eDataType, instanceValue);
 		case Security_dslPackage.ETYPE:
 			return convertETypeToString(eDataType, instanceValue);
 		case Security_dslPackage.EENDPOINT_METHOD:
@@ -249,6 +249,26 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public OAuth2 createOAuth2() {
+		OAuth2Impl oAuth2 = new OAuth2Impl();
+		return oAuth2;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public BasicAuthentication createBasicAuthentication() {
+		BasicAuthenticationImpl basicAuthentication = new BasicAuthenticationImpl();
+		return basicAuthentication;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDatabaseType createEDatabaseTypeFromString(EDataType eDataType, String initialValue) {
 		EDatabaseType result = EDatabaseType.get(initialValue);
 		if (result == null)
@@ -263,28 +283,6 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 	 * @generated
 	 */
 	public String convertEDatabaseTypeToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public ESecuirtyMechanism createESecuirtyMechanismFromString(EDataType eDataType, String initialValue) {
-		ESecuirtyMechanism result = ESecuirtyMechanism.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException(
-					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String convertESecuirtyMechanismToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

@@ -121,6 +121,24 @@ public interface Security_dslFactory extends EFactory {
 	RegisteredClaims createRegisteredClaims();
 
 	/**
+	 * Returns a new object of class '<em>OAuth2</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>OAuth2</em>'.
+	 * @generated
+	 */
+	OAuth2 createOAuth2();
+
+	/**
+	 * Returns a new object of class '<em>Basic Authentication</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Basic Authentication</em>'.
+	 * @generated
+	 */
+	BasicAuthentication createBasicAuthentication();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

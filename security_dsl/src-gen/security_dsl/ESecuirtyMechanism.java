@@ -26,7 +26,16 @@ public enum ESecuirtyMechanism implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	JWT(0, "JWT", "JWT");
+	JWT(0, "JWT", "JWT"),
+	/**
+	* The '<em><b>Basic Authentication</b></em>' literal object.
+	* <!-- begin-user-doc -->
+	* <!-- end-user-doc -->
+	* @see #BASIC_AUTHENTICATION_VALUE
+	* @generated
+	* @ordered
+	*/
+	BASIC_AUTHENTICATION(1, "BasicAuthentication", "BasicAuthentication");
 
 	/**
 	 * The '<em><b>JWT</b></em>' literal value.
@@ -40,12 +49,23 @@ public enum ESecuirtyMechanism implements Enumerator {
 	public static final int JWT_VALUE = 0;
 
 	/**
+	 * The '<em><b>Basic Authentication</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #BASIC_AUTHENTICATION
+	 * @model name="BasicAuthentication"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int BASIC_AUTHENTICATION_VALUE = 1;
+
+	/**
 	 * An array of all the '<em><b>ESecuirty Mechanism</b></em>' enumerators.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final ESecuirtyMechanism[] VALUES_ARRAY = new ESecuirtyMechanism[] { JWT, };
+	private static final ESecuirtyMechanism[] VALUES_ARRAY = new ESecuirtyMechanism[] { JWT, BASIC_AUTHENTICATION, };
 
 	/**
 	 * A public read-only list of all the '<em><b>ESecuirty Mechanism</b></em>' enumerators.
@@ -103,6 +123,8 @@ public enum ESecuirtyMechanism implements Enumerator {
 		switch (value) {
 		case JWT_VALUE:
 			return JWT;
+		case BASIC_AUTHENTICATION_VALUE:
+			return BASIC_AUTHENTICATION;
 		}
 		return null;
 	}

@@ -296,40 +296,13 @@ public interface Security_dslPackage extends EPackage {
 	int MODEL_FEATURE_COUNT = 2;
 
 	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
 	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Only One Identifier</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = 3;
+	int MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
@@ -338,7 +311,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = 4;
+	int MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = 1;
+
+	/**
+	 * The operation id for the '<em>Only One Identifier</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = 2;
+
+	/**
+	 * The operation id for the '<em>One Credential</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
 	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
@@ -347,7 +338,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 5;
+	int MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 5;
+
+	/**
+	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = 6;
 
 	/**
 	 * The number of operations of the '<em>Model</em>' class.
@@ -356,7 +365,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_OPERATION_COUNT = 6;
+	int MODEL_OPERATION_COUNT = 7;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ControllerImpl <em>Controller</em>}' class.
@@ -615,13 +624,13 @@ public interface Security_dslPackage extends EPackage {
 	int ATTRIBUTE__TYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Is Identifier</b></em>' attribute.
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE__IS_IDENTIFIER = 2;
+	int ATTRIBUTE__IDENTIFIER = 2;
 
 	/**
 	 * The feature id for the '<em><b>Collumn Name</b></em>' attribute.
@@ -633,13 +642,22 @@ public interface Security_dslPackage extends EPackage {
 	int ATTRIBUTE__COLLUMN_NAME = 3;
 
 	/**
+	 * The feature id for the '<em><b>Credential</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__CREDENTIAL = 4;
+
+	/**
 	 * The number of structural features of the '<em>Attribute</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ATTRIBUTE_FEATURE_COUNT = 4;
+	int ATTRIBUTE_FEATURE_COUNT = 5;
 
 	/**
 	 * The number of operations of the '<em>Attribute</em>' class.
@@ -697,15 +715,6 @@ public interface Security_dslPackage extends EPackage {
 	int ROLE_FEATURE_COUNT = MODEL_FEATURE_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -713,24 +722,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROLE___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Only One Identifier</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ROLE___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
@@ -742,6 +733,24 @@ public interface Security_dslPackage extends EPackage {
 	int ROLE___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Only One Identifier</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>One Credential</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -749,6 +758,24 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int ROLE___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>Role</em>' class.
@@ -797,15 +824,6 @@ public interface Security_dslPackage extends EPackage {
 	int USER_FEATURE_COUNT = MODEL_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -813,24 +831,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Only One Identifier</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int USER___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Attribute Name</em>' operation.
@@ -842,6 +842,24 @@ public interface Security_dslPackage extends EPackage {
 	int USER___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Only One Identifier</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>One Credential</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -849,6 +867,24 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Unique Collumn Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP = MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -1334,6 +1370,62 @@ public interface Security_dslPackage extends EPackage {
 	int REGISTERED_CLAIMS_OPERATION_COUNT = 1;
 
 	/**
+	 * The meta object id for the '{@link security_dsl.impl.OAuth2Impl <em>OAuth2</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see security_dsl.impl.OAuth2Impl
+	 * @see security_dsl.impl.Security_dslPackageImpl#getOAuth2()
+	 * @generated
+	 */
+	int OAUTH2 = 14;
+
+	/**
+	 * The number of structural features of the '<em>OAuth2</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH2_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>OAuth2</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH2_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link security_dsl.impl.BasicAuthenticationImpl <em>Basic Authentication</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see security_dsl.impl.BasicAuthenticationImpl
+	 * @see security_dsl.impl.Security_dslPackageImpl#getBasicAuthentication()
+	 * @generated
+	 */
+	int BASIC_AUTHENTICATION = 15;
+
+	/**
+	 * The number of structural features of the '<em>Basic Authentication</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_AUTHENTICATION_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Basic Authentication</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BASIC_AUTHENTICATION_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 0;
+
+	/**
 	 * The meta object id for the '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1341,17 +1433,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEDatabaseType()
 	 * @generated
 	 */
-	int EDATABASE_TYPE = 14;
-
-	/**
-	 * The meta object id for the '{@link security_dsl.ESecuirtyMechanism <em>ESecuirty Mechanism</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see security_dsl.ESecuirtyMechanism
-	 * @see security_dsl.impl.Security_dslPackageImpl#getESecuirtyMechanism()
-	 * @generated
-	 */
-	int ESECUIRTY_MECHANISM = 15;
+	int EDATABASE_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EType <em>EType</em>}' enum.
@@ -1361,7 +1443,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEType()
 	 * @generated
 	 */
-	int ETYPE = 16;
+	int ETYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointMethod <em>EEndpoint Method</em>}' enum.
@@ -1371,7 +1453,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointMethod()
 	 * @generated
 	 */
-	int EENDPOINT_METHOD = 17;
+	int EENDPOINT_METHOD = 18;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointType <em>EEndpoint Type</em>}' enum.
@@ -1381,7 +1463,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointType()
 	 * @generated
 	 */
-	int EENDPOINT_TYPE = 18;
+	int EENDPOINT_TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EClaimType <em>EClaim Type</em>}' enum.
@@ -1391,7 +1473,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEClaimType()
 	 * @generated
 	 */
-	int ECLAIM_TYPE = 19;
+	int ECLAIM_TYPE = 20;
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Application <em>Application</em>}'.
@@ -1677,6 +1759,16 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getModel__OnlyOneIdentifier__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One Credential</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>One Credential</em>' operation.
+	 * @see security_dsl.Model#oneCredential(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getModel__OneCredential__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Model#uniqueAttributeName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Attribute Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1926,15 +2018,15 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getAttribute_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link security_dsl.Attribute#isIsIdentifier <em>Is Identifier</em>}'.
+	 * Returns the meta object for the attribute '{@link security_dsl.Attribute#isIdentifier <em>Identifier</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Is Identifier</em>'.
-	 * @see security_dsl.Attribute#isIsIdentifier()
+	 * @return the meta object for the attribute '<em>Identifier</em>'.
+	 * @see security_dsl.Attribute#isIdentifier()
 	 * @see #getAttribute()
 	 * @generated
 	 */
-	EAttribute getAttribute_IsIdentifier();
+	EAttribute getAttribute_Identifier();
 
 	/**
 	 * Returns the meta object for the attribute '{@link security_dsl.Attribute#getCollumnName <em>Collumn Name</em>}'.
@@ -1946,6 +2038,17 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getAttribute_CollumnName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Attribute#isCredential <em>Credential</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Credential</em>'.
+	 * @see security_dsl.Attribute#isCredential()
+	 * @see #getAttribute()
+	 * @generated
+	 */
+	EAttribute getAttribute_Credential();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Role <em>Role</em>}'.
@@ -2275,6 +2378,26 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getRegisteredClaims__ExpirationTimeGreaterThanZero__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for class '{@link security_dsl.OAuth2 <em>OAuth2</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>OAuth2</em>'.
+	 * @see security_dsl.OAuth2
+	 * @generated
+	 */
+	EClass getOAuth2();
+
+	/**
+	 * Returns the meta object for class '{@link security_dsl.BasicAuthentication <em>Basic Authentication</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Basic Authentication</em>'.
+	 * @see security_dsl.BasicAuthentication
+	 * @generated
+	 */
+	EClass getBasicAuthentication();
+
+	/**
 	 * Returns the meta object for enum '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2283,16 +2406,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getEDatabaseType();
-
-	/**
-	 * Returns the meta object for enum '{@link security_dsl.ESecuirtyMechanism <em>ESecuirty Mechanism</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>ESecuirty Mechanism</em>'.
-	 * @see security_dsl.ESecuirtyMechanism
-	 * @generated
-	 */
-	EEnum getESecuirtyMechanism();
 
 	/**
 	 * Returns the meta object for enum '{@link security_dsl.EType <em>EType</em>}'.
@@ -2590,6 +2703,15 @@ public interface Security_dslPackage extends EPackage {
 				.getModel__OnlyOneIdentifier__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>One Credential</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getModel__OneCredential__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Unique Attribute Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2801,12 +2923,12 @@ public interface Security_dslPackage extends EPackage {
 		EAttribute ATTRIBUTE__TYPE = eINSTANCE.getAttribute_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Is Identifier</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ATTRIBUTE__IS_IDENTIFIER = eINSTANCE.getAttribute_IsIdentifier();
+		EAttribute ATTRIBUTE__IDENTIFIER = eINSTANCE.getAttribute_Identifier();
 
 		/**
 		 * The meta object literal for the '<em><b>Collumn Name</b></em>' attribute feature.
@@ -2815,6 +2937,14 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ATTRIBUTE__COLLUMN_NAME = eINSTANCE.getAttribute_CollumnName();
+
+		/**
+		 * The meta object literal for the '<em><b>Credential</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ATTRIBUTE__CREDENTIAL = eINSTANCE.getAttribute_Credential();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.RoleImpl <em>Role</em>}' class.
@@ -3086,6 +3216,26 @@ public interface Security_dslPackage extends EPackage {
 				.getRegisteredClaims__ExpirationTimeGreaterThanZero__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '{@link security_dsl.impl.OAuth2Impl <em>OAuth2</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see security_dsl.impl.OAuth2Impl
+		 * @see security_dsl.impl.Security_dslPackageImpl#getOAuth2()
+		 * @generated
+		 */
+		EClass OAUTH2 = eINSTANCE.getOAuth2();
+
+		/**
+		 * The meta object literal for the '{@link security_dsl.impl.BasicAuthenticationImpl <em>Basic Authentication</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see security_dsl.impl.BasicAuthenticationImpl
+		 * @see security_dsl.impl.Security_dslPackageImpl#getBasicAuthentication()
+		 * @generated
+		 */
+		EClass BASIC_AUTHENTICATION = eINSTANCE.getBasicAuthentication();
+
+		/**
 		 * The meta object literal for the '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3094,16 +3244,6 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum EDATABASE_TYPE = eINSTANCE.getEDatabaseType();
-
-		/**
-		 * The meta object literal for the '{@link security_dsl.ESecuirtyMechanism <em>ESecuirty Mechanism</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see security_dsl.ESecuirtyMechanism
-		 * @see security_dsl.impl.Security_dslPackageImpl#getESecuirtyMechanism()
-		 * @generated
-		 */
-		EEnum ESECUIRTY_MECHANISM = eINSTANCE.getESecuirtyMechanism();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.EType <em>EType</em>}' enum.

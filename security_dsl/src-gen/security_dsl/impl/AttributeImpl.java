@@ -23,8 +23,9 @@ import security_dsl.Security_dslPackage;
  * <ul>
  *   <li>{@link security_dsl.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link security_dsl.impl.AttributeImpl#getType <em>Type</em>}</li>
- *   <li>{@link security_dsl.impl.AttributeImpl#isIsIdentifier <em>Is Identifier</em>}</li>
+ *   <li>{@link security_dsl.impl.AttributeImpl#isIdentifier <em>Identifier</em>}</li>
  *   <li>{@link security_dsl.impl.AttributeImpl#getCollumnName <em>Collumn Name</em>}</li>
+ *   <li>{@link security_dsl.impl.AttributeImpl#isCredential <em>Credential</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,24 +72,24 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	protected EType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isIsIdentifier() <em>Is Identifier</em>}' attribute.
+	 * The default value of the '{@link #isIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsIdentifier()
+	 * @see #isIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean IS_IDENTIFIER_EDEFAULT = false;
+	protected static final boolean IDENTIFIER_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isIsIdentifier() <em>Is Identifier</em>}' attribute.
+	 * The cached value of the '{@link #isIdentifier() <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isIsIdentifier()
+	 * @see #isIdentifier()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean isIdentifier = IS_IDENTIFIER_EDEFAULT;
+	protected boolean identifier = IDENTIFIER_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getCollumnName() <em>Collumn Name</em>}' attribute.
@@ -109,6 +110,26 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * @ordered
 	 */
 	protected String collumnName = COLLUMN_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isCredential() <em>Credential</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCredential()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean CREDENTIAL_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isCredential() <em>Credential</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isCredential()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean credential = CREDENTIAL_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -176,8 +197,8 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isIsIdentifier() {
-		return isIdentifier;
+	public boolean isIdentifier() {
+		return identifier;
 	}
 
 	/**
@@ -185,12 +206,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsIdentifier(boolean newIsIdentifier) {
-		boolean oldIsIdentifier = isIdentifier;
-		isIdentifier = newIsIdentifier;
+	public void setIdentifier(boolean newIdentifier) {
+		boolean oldIdentifier = identifier;
+		identifier = newIdentifier;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ATTRIBUTE__IS_IDENTIFIER,
-					oldIsIdentifier, isIdentifier));
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ATTRIBUTE__IDENTIFIER,
+					oldIdentifier, identifier));
 	}
 
 	/**
@@ -220,6 +241,28 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isCredential() {
+		return credential;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCredential(boolean newCredential) {
+		boolean oldCredential = credential;
+		credential = newCredential;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ATTRIBUTE__CREDENTIAL,
+					oldCredential, credential));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -227,10 +270,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 			return getName();
 		case Security_dslPackage.ATTRIBUTE__TYPE:
 			return getType();
-		case Security_dslPackage.ATTRIBUTE__IS_IDENTIFIER:
-			return isIsIdentifier();
+		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
+			return isIdentifier();
 		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
 			return getCollumnName();
+		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
+			return isCredential();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -249,11 +294,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		case Security_dslPackage.ATTRIBUTE__TYPE:
 			setType((EType) newValue);
 			return;
-		case Security_dslPackage.ATTRIBUTE__IS_IDENTIFIER:
-			setIsIdentifier((Boolean) newValue);
+		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
+			setIdentifier((Boolean) newValue);
 			return;
 		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
 			setCollumnName((String) newValue);
+			return;
+		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
+			setCredential((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -273,11 +321,14 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		case Security_dslPackage.ATTRIBUTE__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case Security_dslPackage.ATTRIBUTE__IS_IDENTIFIER:
-			setIsIdentifier(IS_IDENTIFIER_EDEFAULT);
+		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
+			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
 		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
 			setCollumnName(COLLUMN_NAME_EDEFAULT);
+			return;
+		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
+			setCredential(CREDENTIAL_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -295,10 +346,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case Security_dslPackage.ATTRIBUTE__TYPE:
 			return type != TYPE_EDEFAULT;
-		case Security_dslPackage.ATTRIBUTE__IS_IDENTIFIER:
-			return isIdentifier != IS_IDENTIFIER_EDEFAULT;
+		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
+			return identifier != IDENTIFIER_EDEFAULT;
 		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
 			return COLLUMN_NAME_EDEFAULT == null ? collumnName != null : !COLLUMN_NAME_EDEFAULT.equals(collumnName);
+		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
+			return credential != CREDENTIAL_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -318,10 +371,12 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		result.append(name);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", isIdentifier: ");
-		result.append(isIdentifier);
+		result.append(", identifier: ");
+		result.append(identifier);
 		result.append(", collumnName: ");
 		result.append(collumnName);
+		result.append(", credential: ");
+		result.append(credential);
 		result.append(')');
 		return result.toString();
 	}

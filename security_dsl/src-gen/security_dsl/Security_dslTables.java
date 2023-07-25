@@ -155,6 +155,7 @@ public class Security_dslTables extends AbstractTables
 		public static final EcoreExecutorType _Application = new EcoreExecutorType(Security_dslPackage.Literals.APPLICATION, PACKAGE, 0);
 		public static final EcoreExecutorType _Attribute = new EcoreExecutorType(Security_dslPackage.Literals.ATTRIBUTE, PACKAGE, 0);
 		public static final EcoreExecutorType _Authentication = new EcoreExecutorType(Security_dslPackage.Literals.AUTHENTICATION, PACKAGE, 0);
+		public static final EcoreExecutorType _BasicAuthentication = new EcoreExecutorType(Security_dslPackage.Literals.BASIC_AUTHENTICATION, PACKAGE, 0);
 		public static final EcoreExecutorType _Claim = new EcoreExecutorType(Security_dslPackage.Literals.CLAIM, PACKAGE, 0);
 		public static final EcoreExecutorType _Controller = new EcoreExecutorType(Security_dslPackage.Literals.CONTROLLER, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final EcoreExecutorType _Database = new EcoreExecutorType(Security_dslPackage.Literals.DATABASE, PACKAGE, 0);
@@ -162,11 +163,11 @@ public class Security_dslTables extends AbstractTables
 		public static final EcoreExecutorEnumeration _EDatabaseType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EDATABASE_TYPE, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EEndpointMethod = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EENDPOINT_METHOD, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EEndpointType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EENDPOINT_TYPE, PACKAGE, 0);
-		public static final EcoreExecutorEnumeration _ESecuirtyMechanism = new EcoreExecutorEnumeration(Security_dslPackage.Literals.ESECUIRTY_MECHANISM, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.ETYPE, PACKAGE, 0);
 		public static final EcoreExecutorType _Endpoint = new EcoreExecutorType(Security_dslPackage.Literals.ENDPOINT, PACKAGE, 0);
 		public static final EcoreExecutorType _JWT = new EcoreExecutorType(Security_dslPackage.Literals.JWT, PACKAGE, 0);
 		public static final EcoreExecutorType _Model = new EcoreExecutorType(Security_dslPackage.Literals.MODEL, PACKAGE, 0 | ExecutorType.ABSTRACT);
+		public static final EcoreExecutorType _OAuth2 = new EcoreExecutorType(Security_dslPackage.Literals.OAUTH2, PACKAGE, 0);
 		public static final EcoreExecutorType _RegisteredClaims = new EcoreExecutorType(Security_dslPackage.Literals.REGISTERED_CLAIMS, PACKAGE, 0);
 		public static final EcoreExecutorType _Role = new EcoreExecutorType(Security_dslPackage.Literals.ROLE, PACKAGE, 0);
 		public static final EcoreExecutorType _RoleInstance = new EcoreExecutorType(Security_dslPackage.Literals.ROLE_INSTANCE, PACKAGE, 0);
@@ -177,6 +178,7 @@ public class Security_dslTables extends AbstractTables
 			_Application,
 			_Attribute,
 			_Authentication,
+			_BasicAuthentication,
 			_Claim,
 			_Controller,
 			_Database,
@@ -184,11 +186,11 @@ public class Security_dslTables extends AbstractTables
 			_EDatabaseType,
 			_EEndpointMethod,
 			_EEndpointType,
-			_ESecuirtyMechanism,
 			_EType,
 			_Endpoint,
 			_JWT,
 			_Model,
+			_OAuth2,
 			_RegisteredClaims,
 			_Role,
 			_RoleInstance,
@@ -232,6 +234,11 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _Authentication__OclAny = new ExecutorFragment(Types._Authentication, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _Authentication__OclElement = new ExecutorFragment(Types._Authentication, OCLstdlibTables.Types._OclElement);
 
+		private static final ExecutorFragment _BasicAuthentication__BasicAuthentication = new ExecutorFragment(Types._BasicAuthentication, Security_dslTables.Types._BasicAuthentication);
+		private static final ExecutorFragment _BasicAuthentication__OclAny = new ExecutorFragment(Types._BasicAuthentication, OCLstdlibTables.Types._OclAny);
+		private static final ExecutorFragment _BasicAuthentication__OclElement = new ExecutorFragment(Types._BasicAuthentication, OCLstdlibTables.Types._OclElement);
+		private static final ExecutorFragment _BasicAuthentication__Security = new ExecutorFragment(Types._BasicAuthentication, Security_dslTables.Types._Security);
+
 		private static final ExecutorFragment _Claim__Claim = new ExecutorFragment(Types._Claim, Security_dslTables.Types._Claim);
 		private static final ExecutorFragment _Claim__OclAny = new ExecutorFragment(Types._Claim, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _Claim__OclElement = new ExecutorFragment(Types._Claim, OCLstdlibTables.Types._OclElement);
@@ -268,12 +275,6 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _EEndpointType__OclEnumeration = new ExecutorFragment(Types._EEndpointType, OCLstdlibTables.Types._OclEnumeration);
 		private static final ExecutorFragment _EEndpointType__OclType = new ExecutorFragment(Types._EEndpointType, OCLstdlibTables.Types._OclType);
 
-		private static final ExecutorFragment _ESecuirtyMechanism__ESecuirtyMechanism = new ExecutorFragment(Types._ESecuirtyMechanism, Security_dslTables.Types._ESecuirtyMechanism);
-		private static final ExecutorFragment _ESecuirtyMechanism__OclAny = new ExecutorFragment(Types._ESecuirtyMechanism, OCLstdlibTables.Types._OclAny);
-		private static final ExecutorFragment _ESecuirtyMechanism__OclElement = new ExecutorFragment(Types._ESecuirtyMechanism, OCLstdlibTables.Types._OclElement);
-		private static final ExecutorFragment _ESecuirtyMechanism__OclEnumeration = new ExecutorFragment(Types._ESecuirtyMechanism, OCLstdlibTables.Types._OclEnumeration);
-		private static final ExecutorFragment _ESecuirtyMechanism__OclType = new ExecutorFragment(Types._ESecuirtyMechanism, OCLstdlibTables.Types._OclType);
-
 		private static final ExecutorFragment _EType__EType = new ExecutorFragment(Types._EType, Security_dslTables.Types._EType);
 		private static final ExecutorFragment _EType__OclAny = new ExecutorFragment(Types._EType, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _EType__OclElement = new ExecutorFragment(Types._EType, OCLstdlibTables.Types._OclElement);
@@ -292,6 +293,11 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _Model__Model = new ExecutorFragment(Types._Model, Security_dslTables.Types._Model);
 		private static final ExecutorFragment _Model__OclAny = new ExecutorFragment(Types._Model, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _Model__OclElement = new ExecutorFragment(Types._Model, OCLstdlibTables.Types._OclElement);
+
+		private static final ExecutorFragment _OAuth2__OAuth2 = new ExecutorFragment(Types._OAuth2, Security_dslTables.Types._OAuth2);
+		private static final ExecutorFragment _OAuth2__OclAny = new ExecutorFragment(Types._OAuth2, OCLstdlibTables.Types._OclAny);
+		private static final ExecutorFragment _OAuth2__OclElement = new ExecutorFragment(Types._OAuth2, OCLstdlibTables.Types._OclElement);
+		private static final ExecutorFragment _OAuth2__Security = new ExecutorFragment(Types._OAuth2, Security_dslTables.Types._Security);
 
 		private static final ExecutorFragment _RegisteredClaims__OclAny = new ExecutorFragment(Types._RegisteredClaims, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _RegisteredClaims__OclElement = new ExecutorFragment(Types._RegisteredClaims, OCLstdlibTables.Types._OclElement);
@@ -398,11 +404,12 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Application__port = new EcoreExecutorProperty(Security_dslPackage.Literals.APPLICATION__PORT, Types._Application, 10);
 
 		public static final ExecutorProperty _Attribute__collumnName = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__COLLUMN_NAME, Types._Attribute, 0);
-		public static final ExecutorProperty _Attribute__isIdentifier = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__IS_IDENTIFIER, Types._Attribute, 1);
-		public static final ExecutorProperty _Attribute__name = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__NAME, Types._Attribute, 2);
-		public static final ExecutorProperty _Attribute__type = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__TYPE, Types._Attribute, 3);
-		public static final ExecutorProperty _Attribute__Claim__claim_attribute = new ExecutorPropertyWithImplementation("Claim", Types._Attribute, 4, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.CLAIM__CLAIM_ATTRIBUTE));
-		public static final ExecutorProperty _Attribute__Model__model_attributes = new ExecutorPropertyWithImplementation("Model", Types._Attribute, 5, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.MODEL__MODEL_ATTRIBUTES));
+		public static final ExecutorProperty _Attribute__credential = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__CREDENTIAL, Types._Attribute, 1);
+		public static final ExecutorProperty _Attribute__identifier = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__IDENTIFIER, Types._Attribute, 2);
+		public static final ExecutorProperty _Attribute__name = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__NAME, Types._Attribute, 3);
+		public static final ExecutorProperty _Attribute__type = new EcoreExecutorProperty(Security_dslPackage.Literals.ATTRIBUTE__TYPE, Types._Attribute, 4);
+		public static final ExecutorProperty _Attribute__Claim__claim_attribute = new ExecutorPropertyWithImplementation("Claim", Types._Attribute, 5, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.CLAIM__CLAIM_ATTRIBUTE));
+		public static final ExecutorProperty _Attribute__Model__model_attributes = new ExecutorPropertyWithImplementation("Model", Types._Attribute, 6, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.MODEL__MODEL_ATTRIBUTES));
 
 		public static final ExecutorProperty _Claim__claim_attribute = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__CLAIM_ATTRIBUTE, Types._Claim, 0);
 		public static final ExecutorProperty _Claim__name = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__NAME, Types._Claim, 1);
@@ -492,6 +499,15 @@ public class Security_dslTables extends AbstractTables
 			};
 		private static final int /*@NonNull*/ [] __Authentication = { 1,1,1,1 };
 
+		private static final ExecutorFragment /*@NonNull*/ [] _BasicAuthentication =
+			{
+				Fragments._BasicAuthentication__OclAny /* 0 */,
+				Fragments._BasicAuthentication__OclElement /* 1 */,
+				Fragments._BasicAuthentication__Security /* 2 */,
+				Fragments._BasicAuthentication__BasicAuthentication /* 3 */
+			};
+		private static final int /*@NonNull*/ [] __BasicAuthentication = { 1,1,1,1 };
+
 		private static final ExecutorFragment /*@NonNull*/ [] _Claim =
 			{
 				Fragments._Claim__OclAny /* 0 */,
@@ -556,16 +572,6 @@ public class Security_dslTables extends AbstractTables
 			};
 		private static final int /*@NonNull*/ [] __EEndpointType = { 1,1,1,1,1 };
 
-		private static final ExecutorFragment /*@NonNull*/ [] _ESecuirtyMechanism =
-			{
-				Fragments._ESecuirtyMechanism__OclAny /* 0 */,
-				Fragments._ESecuirtyMechanism__OclElement /* 1 */,
-				Fragments._ESecuirtyMechanism__OclType /* 2 */,
-				Fragments._ESecuirtyMechanism__OclEnumeration /* 3 */,
-				Fragments._ESecuirtyMechanism__ESecuirtyMechanism /* 4 */
-			};
-		private static final int /*@NonNull*/ [] __ESecuirtyMechanism = { 1,1,1,1,1 };
-
 		private static final ExecutorFragment /*@NonNull*/ [] _EType =
 			{
 				Fragments._EType__OclAny /* 0 */,
@@ -600,6 +606,15 @@ public class Security_dslTables extends AbstractTables
 				Fragments._Model__Model /* 2 */
 			};
 		private static final int /*@NonNull*/ [] __Model = { 1,1,1 };
+
+		private static final ExecutorFragment /*@NonNull*/ [] _OAuth2 =
+			{
+				Fragments._OAuth2__OclAny /* 0 */,
+				Fragments._OAuth2__OclElement /* 1 */,
+				Fragments._OAuth2__Security /* 2 */,
+				Fragments._OAuth2__OAuth2 /* 3 */
+			};
+		private static final int /*@NonNull*/ [] __OAuth2 = { 1,1,1,1 };
 
 		private static final ExecutorFragment /*@NonNull*/ [] _RegisteredClaims =
 			{
@@ -650,6 +665,7 @@ public class Security_dslTables extends AbstractTables
 			Types._Application.initFragments(_Application, __Application);
 			Types._Attribute.initFragments(_Attribute, __Attribute);
 			Types._Authentication.initFragments(_Authentication, __Authentication);
+			Types._BasicAuthentication.initFragments(_BasicAuthentication, __BasicAuthentication);
 			Types._Claim.initFragments(_Claim, __Claim);
 			Types._Controller.initFragments(_Controller, __Controller);
 			Types._Database.initFragments(_Database, __Database);
@@ -657,11 +673,11 @@ public class Security_dslTables extends AbstractTables
 			Types._EDatabaseType.initFragments(_EDatabaseType, __EDatabaseType);
 			Types._EEndpointMethod.initFragments(_EEndpointMethod, __EEndpointMethod);
 			Types._EEndpointType.initFragments(_EEndpointType, __EEndpointType);
-			Types._ESecuirtyMechanism.initFragments(_ESecuirtyMechanism, __ESecuirtyMechanism);
 			Types._EType.initFragments(_EType, __EType);
 			Types._Endpoint.initFragments(_Endpoint, __Endpoint);
 			Types._JWT.initFragments(_JWT, __JWT);
 			Types._Model.initFragments(_Model, __Model);
+			Types._OAuth2.initFragments(_OAuth2, __OAuth2);
 			Types._RegisteredClaims.initFragments(_RegisteredClaims, __RegisteredClaims);
 			Types._Role.initFragments(_Role, __Role);
 			Types._RoleInstance.initFragments(_RoleInstance, __RoleInstance);
@@ -770,6 +786,35 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+
+		private static final ExecutorOperation /*@NonNull*/ [] _BasicAuthentication__BasicAuthentication = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _BasicAuthentication__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final ExecutorOperation /*@NonNull*/ [] _BasicAuthentication__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final ExecutorOperation /*@NonNull*/ [] _BasicAuthentication__Security = {};
 
 		private static final ExecutorOperation /*@NonNull*/ [] _Claim__Claim = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _Claim__OclAny = {
@@ -991,40 +1036,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
-		private static final ExecutorOperation /*@NonNull*/ [] _ESecuirtyMechanism__ESecuirtyMechanism = {};
-		private static final ExecutorOperation /*@NonNull*/ [] _ESecuirtyMechanism__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _ESecuirtyMechanism__OclElement = {
-			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _ESecuirtyMechanism__OclEnumeration = {
-			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _ESecuirtyMechanism__OclType = {
-			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
-		};
-
 		private static final ExecutorOperation /*@NonNull*/ [] _EType__EType = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _EType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -1143,6 +1154,35 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
+
+		private static final ExecutorOperation /*@NonNull*/ [] _OAuth2__OAuth2 = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _OAuth2__OclAny = {
+			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
+			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
+			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
+			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
+			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
+			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
+			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
+			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
+			OCLstdlibTables.Operations._OclAny__toString /* toString() */
+		};
+		private static final ExecutorOperation /*@NonNull*/ [] _OAuth2__OclElement = {
+			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
+			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
+			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
+			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
+			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
+			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
+		};
+		private static final ExecutorOperation /*@NonNull*/ [] _OAuth2__Security = {};
 
 		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaims__RegisteredClaims = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaims__OclAny = {
@@ -1303,6 +1343,11 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Authentication__OclAny.initOperations(_Authentication__OclAny);
 			Fragments._Authentication__OclElement.initOperations(_Authentication__OclElement);
 
+			Fragments._BasicAuthentication__BasicAuthentication.initOperations(_BasicAuthentication__BasicAuthentication);
+			Fragments._BasicAuthentication__OclAny.initOperations(_BasicAuthentication__OclAny);
+			Fragments._BasicAuthentication__OclElement.initOperations(_BasicAuthentication__OclElement);
+			Fragments._BasicAuthentication__Security.initOperations(_BasicAuthentication__Security);
+
 			Fragments._Claim__Claim.initOperations(_Claim__Claim);
 			Fragments._Claim__OclAny.initOperations(_Claim__OclAny);
 			Fragments._Claim__OclElement.initOperations(_Claim__OclElement);
@@ -1339,12 +1384,6 @@ public class Security_dslTables extends AbstractTables
 			Fragments._EEndpointType__OclEnumeration.initOperations(_EEndpointType__OclEnumeration);
 			Fragments._EEndpointType__OclType.initOperations(_EEndpointType__OclType);
 
-			Fragments._ESecuirtyMechanism__ESecuirtyMechanism.initOperations(_ESecuirtyMechanism__ESecuirtyMechanism);
-			Fragments._ESecuirtyMechanism__OclAny.initOperations(_ESecuirtyMechanism__OclAny);
-			Fragments._ESecuirtyMechanism__OclElement.initOperations(_ESecuirtyMechanism__OclElement);
-			Fragments._ESecuirtyMechanism__OclEnumeration.initOperations(_ESecuirtyMechanism__OclEnumeration);
-			Fragments._ESecuirtyMechanism__OclType.initOperations(_ESecuirtyMechanism__OclType);
-
 			Fragments._EType__EType.initOperations(_EType__EType);
 			Fragments._EType__OclAny.initOperations(_EType__OclAny);
 			Fragments._EType__OclElement.initOperations(_EType__OclElement);
@@ -1363,6 +1402,11 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Model__Model.initOperations(_Model__Model);
 			Fragments._Model__OclAny.initOperations(_Model__OclAny);
 			Fragments._Model__OclElement.initOperations(_Model__OclElement);
+
+			Fragments._OAuth2__OAuth2.initOperations(_OAuth2__OAuth2);
+			Fragments._OAuth2__OclAny.initOperations(_OAuth2__OclAny);
+			Fragments._OAuth2__OclElement.initOperations(_OAuth2__OclElement);
+			Fragments._OAuth2__Security.initOperations(_OAuth2__Security);
 
 			Fragments._RegisteredClaims__OclAny.initOperations(_RegisteredClaims__OclAny);
 			Fragments._RegisteredClaims__OclElement.initOperations(_RegisteredClaims__OclElement);
@@ -1422,7 +1466,8 @@ public class Security_dslTables extends AbstractTables
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Attribute = {
 			Security_dslTables.Properties._Attribute__collumnName,
-			Security_dslTables.Properties._Attribute__isIdentifier,
+			Security_dslTables.Properties._Attribute__credential,
+			Security_dslTables.Properties._Attribute__identifier,
 			Security_dslTables.Properties._Attribute__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
@@ -1435,6 +1480,11 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
 			Security_dslTables.Properties._Controller__path
+		};
+
+		private static final ExecutorProperty /*@NonNull*/ [] _BasicAuthentication = {
+			OCLstdlibTables.Properties._OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Claim = {
@@ -1482,11 +1532,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
-		private static final ExecutorProperty /*@NonNull*/ [] _ESecuirtyMechanism = {
-			OCLstdlibTables.Properties._OclElement__oclContainer,
-			OCLstdlibTables.Properties._OclElement__oclContents
-		};
-
 		private static final ExecutorProperty /*@NonNull*/ [] _EType = {
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents
@@ -1516,6 +1561,11 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
 			Security_dslTables.Properties._Model__tableName
+		};
+
+		private static final ExecutorProperty /*@NonNull*/ [] _OAuth2 = {
+			OCLstdlibTables.Properties._OclElement__oclContainer,
+			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _RegisteredClaims = {
@@ -1559,6 +1609,7 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Application__Application.initProperties(_Application);
 			Fragments._Attribute__Attribute.initProperties(_Attribute);
 			Fragments._Authentication__Authentication.initProperties(_Authentication);
+			Fragments._BasicAuthentication__BasicAuthentication.initProperties(_BasicAuthentication);
 			Fragments._Claim__Claim.initProperties(_Claim);
 			Fragments._Controller__Controller.initProperties(_Controller);
 			Fragments._Database__Database.initProperties(_Database);
@@ -1566,11 +1617,11 @@ public class Security_dslTables extends AbstractTables
 			Fragments._EDatabaseType__EDatabaseType.initProperties(_EDatabaseType);
 			Fragments._EEndpointMethod__EEndpointMethod.initProperties(_EEndpointMethod);
 			Fragments._EEndpointType__EEndpointType.initProperties(_EEndpointType);
-			Fragments._ESecuirtyMechanism__ESecuirtyMechanism.initProperties(_ESecuirtyMechanism);
 			Fragments._EType__EType.initProperties(_EType);
 			Fragments._Endpoint__Endpoint.initProperties(_Endpoint);
 			Fragments._JWT__JWT.initProperties(_JWT);
 			Fragments._Model__Model.initProperties(_Model);
+			Fragments._OAuth2__OAuth2.initProperties(_OAuth2);
 			Fragments._RegisteredClaims__RegisteredClaims.initProperties(_RegisteredClaims);
 			Fragments._Role__Role.initProperties(_Role);
 			Fragments._RoleInstance__RoleInstance.initProperties(_RoleInstance);
@@ -1635,11 +1686,6 @@ public class Security_dslTables extends AbstractTables
 			_EEndpointType__OTHER
 		};
 
-		public static final EcoreExecutorEnumerationLiteral _ESecuirtyMechanism__JWT = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ESECUIRTY_MECHANISM.getEEnumLiteral("JWT"), Types._ESecuirtyMechanism, 0);
-		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _ESecuirtyMechanism = {
-			_ESecuirtyMechanism__JWT
-		};
-
 		public static final EcoreExecutorEnumerationLiteral _EType__String = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("String"), Types._EType, 0);
 		public static final EcoreExecutorEnumerationLiteral _EType__Float = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Float"), Types._EType, 1);
 		public static final EcoreExecutorEnumerationLiteral _EType__Long = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Long"), Types._EType, 2);
@@ -1669,7 +1715,6 @@ public class Security_dslTables extends AbstractTables
 			Types._EDatabaseType.initLiterals(_EDatabaseType);
 			Types._EEndpointMethod.initLiterals(_EEndpointMethod);
 			Types._EEndpointType.initLiterals(_EEndpointType);
-			Types._ESecuirtyMechanism.initLiterals(_ESecuirtyMechanism);
 			Types._EType.initLiterals(_EType);
 
 			Init.initEnd();

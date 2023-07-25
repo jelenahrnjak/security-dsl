@@ -175,14 +175,14 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *       let
 			 *         result : Boolean[?] = self.oclIsTypeOf(Role) implies
 			 *         self.model_attributes->select(a |
-			 *           (a.type = EType::String and a.isIdentifier = true
+			 *           (a.type = EType::String and a.identifier = true
 			 *           ))
 			 *         ->size() = 1 or
 			 *         self.model_attributes->select(a |
-			 *           (a.type = EType::String and a.isIdentifier = false
+			 *           (a.type = EType::String and a.identifier = false
 			 *           ))
 			 *         ->size() = 1 and
-			 *         self.model_attributes->select(a | a.isIdentifier = true)
+			 *         self.model_attributes->select(a | a.identifier = true)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -227,7 +227,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 									}
 									/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
 									/**
-									 * a.type = EType::String and a.isIdentifier = true
+									 * a.type = EType::String and a.identifier = true
 									 */
 									final /*@NonInvalid*/ EType type = a.getType();
 									final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = Security_dslTables.ENUMid_EType
@@ -237,8 +237,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 									if (!eq) {
 										and = ValueUtil.FALSE_VALUE;
 									} else {
-										final /*@NonInvalid*/ boolean isIdentifier = a.isIsIdentifier();
-										if (!isIdentifier) {
+										final /*@NonInvalid*/ boolean identifier = a.isIdentifier();
+										if (!identifier) {
 											and = ValueUtil.FALSE_VALUE;
 										} else {
 											and = ValueUtil.TRUE_VALUE;
@@ -284,7 +284,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 											}
 											/*@NonInvalid*/ Attribute a_0 = (Attribute) ITERATOR_a_0.next();
 											/**
-											 * a.type = EType::String and a.isIdentifier = false
+											 * a.type = EType::String and a.identifier = false
 											 */
 											final /*@NonInvalid*/ EType type_0 = a_0.getType();
 											final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = Security_dslTables.ENUMid_EType
@@ -294,8 +294,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 											if (!eq_1) {
 												and_0 = ValueUtil.FALSE_VALUE;
 											} else {
-												final /*@NonInvalid*/ boolean isIdentifier_0 = a_0.isIsIdentifier();
-												final /*@NonInvalid*/ boolean eq_2 = !isIdentifier_0;
+												final /*@NonInvalid*/ boolean identifier_0 = a_0.isIdentifier();
+												final /*@NonInvalid*/ boolean eq_2 = !identifier_0;
 												if (!eq_2) {
 													and_0 = ValueUtil.FALSE_VALUE;
 												} else {
@@ -334,11 +334,11 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 											}
 											/*@NonInvalid*/ Attribute a_1 = (Attribute) ITERATOR_a_1.next();
 											/**
-											 * a.isIdentifier
+											 * a.identifier
 											 */
-											final /*@NonInvalid*/ boolean isIdentifier_1 = a_1.isIsIdentifier();
+											final /*@NonInvalid*/ boolean identifier_1 = a_1.isIdentifier();
 											//
-											if (isIdentifier_1) {
+											if (identifier_1) {
 												accumulator_1.add(a_1);
 											}
 										}
@@ -618,7 +618,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = self.model_attributes->select(a | a.isIdentifier)
+			 *         result : Boolean[1] = self.model_attributes->select(a | a.identifier)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -648,11 +648,80 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 					}
 					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
 					/**
-					 * a.isIdentifier
+					 * a.identifier
 					 */
-					final /*@NonInvalid*/ boolean isIdentifier = a.isIsIdentifier();
+					final /*@NonInvalid*/ boolean identifier = a.isIdentifier();
 					//
-					if (isIdentifier) {
+					if (identifier) {
+						accumulator.add(a);
+					}
+				}
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+				final /*@NonInvalid*/ boolean result = size.equals(Security_dslTables.INT_1);
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, result, Security_dslTables.INT_0)
+						.booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean oneCredential(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Model::oneCredential";
+		try {
+			/**
+			 *
+			 * inv oneCredential:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[1] = self.model_attributes->select(a | a.credential)
+			 *         ->size() = 1
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			} else {
+				final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
+						.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+				Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+				/*@NonInvalid*/ OrderedSetValue select;
+				while (true) {
+					if (!ITERATOR_a.hasNext()) {
+						select = accumulator;
+						break;
+					}
+					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+					/**
+					 * a.credential
+					 */
+					final /*@NonInvalid*/ boolean credential = a.isCredential();
+					//
+					if (credential) {
 						accumulator.add(a);
 					}
 				}
@@ -933,21 +1002,23 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case Security_dslPackage.MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-			return roleCanHaveIdAndStringAttribute((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP:
 			return roleCantHaveAdditionalAttributes((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
-			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
-			return onlyOneIdentifier((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueAttributeName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
+			return onlyOneIdentifier((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
+			return oneCredential((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
 			return roleMustHaveStringAttribute((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
+			return roleCanHaveIdAndStringAttribute((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
+			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -25,7 +25,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
-
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
@@ -42,7 +41,6 @@ import org.eclipse.ocl.pivot.library.string.StringAtOperation;
 import org.eclipse.ocl.pivot.library.string.StringToLowerCaseOperation;
 
 import org.eclipse.ocl.pivot.messages.PivotMessages;
-
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 

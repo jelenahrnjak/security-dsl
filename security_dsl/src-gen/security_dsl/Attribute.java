@@ -15,8 +15,9 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link security_dsl.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link security_dsl.Attribute#getType <em>Type</em>}</li>
- *   <li>{@link security_dsl.Attribute#isIsIdentifier <em>Is Identifier</em>}</li>
+ *   <li>{@link security_dsl.Attribute#isIdentifier <em>Identifier</em>}</li>
  *   <li>{@link security_dsl.Attribute#getCollumnName <em>Collumn Name</em>}</li>
+ *   <li>{@link security_dsl.Attribute#isCredential <em>Credential</em>}</li>
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getAttribute()
@@ -72,26 +73,26 @@ public interface Attribute extends EObject {
 	void setType(EType value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Identifier</b></em>' attribute.
+	 * Returns the value of the '<em><b>Identifier</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Identifier</em>' attribute.
-	 * @see #setIsIdentifier(boolean)
-	 * @see security_dsl.Security_dslPackage#getAttribute_IsIdentifier()
-	 * @model
+	 * @return the value of the '<em>Identifier</em>' attribute.
+	 * @see #setIdentifier(boolean)
+	 * @see security_dsl.Security_dslPackage#getAttribute_Identifier()
+	 * @model required="true"
 	 * @generated
 	 */
-	boolean isIsIdentifier();
+	boolean isIdentifier();
 
 	/**
-	 * Sets the value of the '{@link security_dsl.Attribute#isIsIdentifier <em>Is Identifier</em>}' attribute.
+	 * Sets the value of the '{@link security_dsl.Attribute#isIdentifier <em>Identifier</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Identifier</em>' attribute.
-	 * @see #isIsIdentifier()
+	 * @param value the new value of the '<em>Identifier</em>' attribute.
+	 * @see #isIdentifier()
 	 * @generated
 	 */
-	void setIsIdentifier(boolean value);
+	void setIdentifier(boolean value);
 
 	/**
 	 * Returns the value of the '<em><b>Collumn Name</b></em>' attribute.
@@ -114,5 +115,28 @@ public interface Attribute extends EObject {
 	 * @generated
 	 */
 	void setCollumnName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Credential</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Credential</em>' attribute.
+	 * @see #setCredential(boolean)
+	 * @see security_dsl.Security_dslPackage#getAttribute_Credential()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isCredential();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Attribute#isCredential <em>Credential</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Credential</em>' attribute.
+	 * @see #isCredential()
+	 * @generated
+	 */
+	void setCredential(boolean value);
 
 } // Attribute
