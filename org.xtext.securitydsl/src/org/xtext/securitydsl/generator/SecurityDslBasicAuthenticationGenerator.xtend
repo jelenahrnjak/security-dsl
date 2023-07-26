@@ -13,16 +13,16 @@ class SecurityDslBasicAuthenticationGenerator {
 
 	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 		
-    	var Authentication authController = null;
     	var user = resource.allContents.filter(User).next() 
     	
     	for (c : app.app_controllers) {
-    		if(c instanceof Authentication) authController = c
-    		fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(app.packageName, authController))
+    		if(c instanceof Authentication){
+    		fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(app.packageName, c))    	
+    		}
+    		
     	}
     	
     	fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(app.packageName, user));
-    	fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, authController));
     	
 		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName + '.config'));
 		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
@@ -114,9 +114,13 @@ class SecurityDslBasicAuthenticationGenerator {
 	def generateApplicationSecurityConfig(String packageName, Authentication authController){
 		
 		var regEndpoint = ''
+		var loginEndpoint = ''
+		var logoutEndpoint = ''
 		
 		for (e : authController.controller_endpoints) {
 			if(e.type == EEndpointType::REGISTRATION) regEndpoint = authController.path + e.url
+			if(e.type == EEndpointType::LOGIN) loginEndpoint = authController.path + e.url
+			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = authController.path + e.url
 		}
 		
 		var content = '''
@@ -129,6 +133,7 @@ class SecurityDslBasicAuthenticationGenerator {
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
+		import org.springframework.security.authentication.AuthenticationManager;
 		import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 		import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 		import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -151,7 +156,7 @@ class SecurityDslBasicAuthenticationGenerator {
 		                .formLogin().disable()
 		                .logout().disable()
 		                .authorizeRequests().antMatchers("''' + regEndpoint + '''
-		").permitAll()
+		" , "''' + loginEndpoint  + '''", "''' + logoutEndpoint + '''").permitAll()
 		                .anyRequest().authenticated()
 		                .and().httpBasic();
 		
@@ -163,7 +168,13 @@ class SecurityDslBasicAuthenticationGenerator {
 		    {
 		        authentication.authenticationProvider(daoAuthenticationProvider());
 		    }
-		
+		    
+	        @Bean
+	        @Override
+	        public AuthenticationManager authenticationManagerBean() throws Exception {
+	            return super.authenticationManagerBean();
+	        }
+	
 		    @Bean
 		    public DaoAuthenticationProvider daoAuthenticationProvider(){
 		        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -201,101 +212,45 @@ public class PasswordEncoder {
 	return content;
 	}
 	
-	def generateAuthController(String packageName, Authentication authController){
-			
-			var regEndpoint = ''
+	def generateUserRequestDto(String packageName, User user){
 		
-			for (e : authController.controller_endpoints) {
-				if(e.type == EEndpointType::REGISTRATION) regEndpoint =  e.url
-			}
+		var content = '''
+		package ''' + packageName + '''
+		.dto;
 		
-			var content = '''
-			package ''' + packageName + '''
-			.controller;
-			
-			import ''' + packageName + '''
-			.dto.UserRequestDTO;
-			import ''' + packageName + '''
-			.model.User;
-			import ''' + packageName + '''
-			.service.IUserService;
-			import lombok.RequiredArgsConstructor;
-			import org.springframework.beans.BeanUtils;
-			import org.springframework.beans.factory.annotation.Autowired;
-			import org.springframework.http.ResponseEntity;
-			import org.springframework.http.MediaType;
-			import org.springframework.security.access.prepost.PreAuthorize;
-			import org.springframework.web.bind.annotation.RestController;
-			import org.springframework.web.bind.annotation.RequestBody;
-			import org.springframework.web.bind.annotation.RequestMapping;
-			import org.springframework.web.bind.annotation.PostMapping;
-			
-			import java.util.List;
-			
-			@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-			@RequestMapping(value = "''' + authController.path + '''
-			",
-			        consumes = MediaType.APPLICATION_JSON_VALUE,
-			        produces = MediaType.APPLICATION_JSON_VALUE)
-			@RestController
-			public class AuthController {
-			
-			    private final IUserService userService;
-			
-			    @PostMapping("''' + regEndpoint + '''
-			")
-			    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
-			        User user = new User();
-			        BeanUtils.copyProperties(request, user);
-			        return ResponseEntity.ok(userService.save(user));
-			    }
-			
-			
-			}
-			'''
+		import lombok.*;
 		
-			return content;
-		}
-		
-		def generateUserRequestDto(String packageName, User user){
-			
-			var content = '''
-			package ''' + packageName + '''
-			.dto;
-			
-			import lombok.*;
-			
-			@Getter
-			@Setter
-			@ToString
-			@AllArgsConstructor
-			@NoArgsConstructor
-			public class UserRequestDTO {
+		@Getter
+		@Setter
+		@ToString
+		@AllArgsConstructor
+		@NoArgsConstructor
+		public class UserRequestDTO {
 
-			''' + generateAttributes(user.model_attributes) + 
-			'''
-				private String password;
-			
-			    private String role;
-			}
-			
-			'''	
-			return content;
+		''' + generateAttributes(user.model_attributes) + 
+		'''
+			private String password;
+		
+		    private String role;
 		}
 		
-		def generateAttributes(List<Attribute> attributes){
-			var content = ''
-			
-			for(a : attributes){
-				if(!a.isIdentifier){
-				content += '''    private ''' + a.type +  ''' ''' + a.name+ 
-				''';
+		'''	
+		return content;
+	}
+	
+	def generateAttributes(List<Attribute> attributes){
+		var content = ''
+		
+		for(a : attributes){
+			if(!a.isIdentifier){
+			content += '''    private ''' + a.type +  ''' ''' + a.name+ 
+			''';
 
-				'''}
-			}
-			
-			return content
+			'''}
 		}
+		
+		return content
+	}
 		
 		
 }

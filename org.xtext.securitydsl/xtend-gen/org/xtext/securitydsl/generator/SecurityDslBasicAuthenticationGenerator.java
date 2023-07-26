@@ -19,19 +19,14 @@ import security_dsl.User;
 @SuppressWarnings("all")
 public class SecurityDslBasicAuthenticationGenerator {
   public SecurityDslBasicAuthenticationGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
-    Authentication authController = null;
     User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
     EList<Controller> _app_controllers = app.getApp_controllers();
     for (final Controller c : _app_controllers) {
-      {
-        if ((c instanceof Authentication)) {
-          authController = ((Authentication)c);
-        }
-        fsa.generateFile((srcDestination + "/config/ApplicationSecurityConfig.java"), this.generateApplicationSecurityConfig(app.getPackageName(), authController));
+      if ((c instanceof Authentication)) {
+        fsa.generateFile((srcDestination + "/config/ApplicationSecurityConfig.java"), this.generateApplicationSecurityConfig(app.getPackageName(), ((Authentication)c)));
       }
     }
     fsa.generateFile((srcDestination + "/dto/UserRequestDTO.java"), this.generateUserRequestDto(app.getPackageName(), user));
-    fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), authController));
     String _packageName = app.getPackageName();
     String _plus = (_packageName + ".config");
     fsa.generateFile((srcDestination + "/config/PasswordEncoder.java"), this.generatePassEncoder(_plus));
@@ -206,27 +201,47 @@ public class SecurityDslBasicAuthenticationGenerator {
 
   public String generateApplicationSecurityConfig(final String packageName, final Authentication authController) {
     String regEndpoint = "";
+    String loginEndpoint = "";
+    String logoutEndpoint = "";
     EList<Endpoint> _controller_endpoints = authController.getController_endpoints();
     for (final Endpoint e : _controller_endpoints) {
-      EEndpointType _type = e.getType();
-      boolean _equals = Objects.equal(_type, EEndpointType.REGISTRATION);
-      if (_equals) {
-        String _path = authController.getPath();
-        String _url = e.getUrl();
-        String _plus = (_path + _url);
-        regEndpoint = _plus;
+      {
+        EEndpointType _type = e.getType();
+        boolean _equals = Objects.equal(_type, EEndpointType.REGISTRATION);
+        if (_equals) {
+          String _path = authController.getPath();
+          String _url = e.getUrl();
+          String _plus = (_path + _url);
+          regEndpoint = _plus;
+        }
+        EEndpointType _type_1 = e.getType();
+        boolean _equals_1 = Objects.equal(_type_1, EEndpointType.LOGIN);
+        if (_equals_1) {
+          String _path_1 = authController.getPath();
+          String _url_1 = e.getUrl();
+          String _plus_1 = (_path_1 + _url_1);
+          loginEndpoint = _plus_1;
+        }
+        EEndpointType _type_2 = e.getType();
+        boolean _equals_2 = Objects.equal(_type_2, EEndpointType.LOGOUT);
+        if (_equals_2) {
+          String _path_2 = authController.getPath();
+          String _url_2 = e.getUrl();
+          String _plus_2 = (_path_2 + _url_2);
+          logoutEndpoint = _plus_2;
+        }
       }
     }
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    String _plus_1 = (_builder.toString() + packageName);
+    String _plus = (_builder.toString() + packageName);
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append(".config;");
     _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("import ");
-    String _plus_2 = (_plus_1 + _builder_1);
-    String _plus_3 = (_plus_2 + packageName);
+    String _plus_1 = (_plus + _builder_1);
+    String _plus_2 = (_plus_1 + packageName);
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append(".service.impl.UserServiceImpl;");
     _builder_2.newLine();
@@ -237,6 +252,8 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_2.append("import org.springframework.context.annotation.Bean;");
     _builder_2.newLine();
     _builder_2.append("import org.springframework.context.annotation.Configuration;");
+    _builder_2.newLine();
+    _builder_2.append("import org.springframework.security.authentication.AuthenticationManager;");
     _builder_2.newLine();
     _builder_2.append("import org.springframework.security.authentication.dao.DaoAuthenticationProvider;");
     _builder_2.newLine();
@@ -285,66 +302,96 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_2.newLine();
     _builder_2.append("                ");
     _builder_2.append(".authorizeRequests().antMatchers(\"");
-    String _plus_4 = (_plus_3 + _builder_2);
-    String _plus_5 = (_plus_4 + regEndpoint);
+    String _plus_3 = (_plus_2 + _builder_2);
+    String _plus_4 = (_plus_3 + regEndpoint);
     StringConcatenation _builder_3 = new StringConcatenation();
-    _builder_3.append("\").permitAll()");
-    _builder_3.newLine();
-    _builder_3.append("                ");
-    _builder_3.append(".anyRequest().authenticated()");
-    _builder_3.newLine();
-    _builder_3.append("                ");
-    _builder_3.append(".and().httpBasic();");
-    _builder_3.newLine();
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("}");
-    _builder_3.newLine();
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("@Autowired");
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("public void config(AuthenticationManagerBuilder authentication)");
-    _builder_3.newLine();
-    _builder_3.append("            ");
-    _builder_3.append("throws Exception");
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("{");
-    _builder_3.newLine();
-    _builder_3.append("        ");
-    _builder_3.append("authentication.authenticationProvider(daoAuthenticationProvider());");
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("}");
-    _builder_3.newLine();
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("@Bean");
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("public DaoAuthenticationProvider daoAuthenticationProvider(){");
-    _builder_3.newLine();
-    _builder_3.append("        ");
-    _builder_3.append("DaoAuthenticationProvider provider = new DaoAuthenticationProvider();");
-    _builder_3.newLine();
-    _builder_3.append("        ");
-    _builder_3.append("provider.setPasswordEncoder(bCryptPasswordEncoder);");
-    _builder_3.newLine();
-    _builder_3.append("        ");
-    _builder_3.append("provider.setUserDetailsService(userService);");
-    _builder_3.newLine();
-    _builder_3.append("        ");
-    _builder_3.append("return provider;");
-    _builder_3.newLine();
-    _builder_3.append("    ");
-    _builder_3.append("}");
-    _builder_3.newLine();
-    _builder_3.newLine();
-    _builder_3.append("}");
-    _builder_3.newLine();
-    String content = (_plus_5 + _builder_3);
+    _builder_3.append("\" , \"");
+    String _plus_5 = (_plus_4 + _builder_3);
+    String _plus_6 = (_plus_5 + loginEndpoint);
+    StringConcatenation _builder_4 = new StringConcatenation();
+    _builder_4.append("\", \"");
+    String _plus_7 = (_plus_6 + _builder_4);
+    String _plus_8 = (_plus_7 + logoutEndpoint);
+    StringConcatenation _builder_5 = new StringConcatenation();
+    _builder_5.append("\").permitAll()");
+    _builder_5.newLine();
+    _builder_5.append("\t\t                ");
+    _builder_5.append(".anyRequest().authenticated()");
+    _builder_5.newLine();
+    _builder_5.append("\t\t                ");
+    _builder_5.append(".and().httpBasic();");
+    _builder_5.newLine();
+    _builder_5.append("\t\t");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("}");
+    _builder_5.newLine();
+    _builder_5.append("\t\t");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("@Autowired");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("public void config(AuthenticationManagerBuilder authentication)");
+    _builder_5.newLine();
+    _builder_5.append("\t\t            ");
+    _builder_5.append("throws Exception");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("{");
+    _builder_5.newLine();
+    _builder_5.append("\t\t        ");
+    _builder_5.append("authentication.authenticationProvider(daoAuthenticationProvider());");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("}");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.newLine();
+    _builder_5.append("\t        ");
+    _builder_5.append("@Bean");
+    _builder_5.newLine();
+    _builder_5.append("\t        ");
+    _builder_5.append("@Override");
+    _builder_5.newLine();
+    _builder_5.append("\t        ");
+    _builder_5.append("public AuthenticationManager authenticationManagerBean() throws Exception {");
+    _builder_5.newLine();
+    _builder_5.append("\t            ");
+    _builder_5.append("return super.authenticationManagerBean();");
+    _builder_5.newLine();
+    _builder_5.append("\t        ");
+    _builder_5.append("}");
+    _builder_5.newLine();
+    _builder_5.append("\t");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("@Bean");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("public DaoAuthenticationProvider daoAuthenticationProvider(){");
+    _builder_5.newLine();
+    _builder_5.append("\t\t        ");
+    _builder_5.append("DaoAuthenticationProvider provider = new DaoAuthenticationProvider();");
+    _builder_5.newLine();
+    _builder_5.append("\t\t        ");
+    _builder_5.append("provider.setPasswordEncoder(bCryptPasswordEncoder);");
+    _builder_5.newLine();
+    _builder_5.append("\t\t        ");
+    _builder_5.append("provider.setUserDetailsService(userService);");
+    _builder_5.newLine();
+    _builder_5.append("\t\t        ");
+    _builder_5.append("return provider;");
+    _builder_5.newLine();
+    _builder_5.append("\t\t    ");
+    _builder_5.append("}");
+    _builder_5.newLine();
+    _builder_5.append("\t\t");
+    _builder_5.newLine();
+    _builder_5.append("\t\t");
+    _builder_5.append("}");
+    _builder_5.newLine();
+    String content = (_plus_8 + _builder_5);
     return content;
   }
 
@@ -385,119 +432,6 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_1.newLine();
     String _plus_1 = (_plus + _builder_1);
     content = _plus_1;
-    return content;
-  }
-
-  public String generateAuthController(final String packageName, final Authentication authController) {
-    String regEndpoint = "";
-    EList<Endpoint> _controller_endpoints = authController.getController_endpoints();
-    for (final Endpoint e : _controller_endpoints) {
-      EEndpointType _type = e.getType();
-      boolean _equals = Objects.equal(_type, EEndpointType.REGISTRATION);
-      if (_equals) {
-        regEndpoint = e.getUrl();
-      }
-    }
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package ");
-    String _plus = (_builder.toString() + packageName);
-    StringConcatenation _builder_1 = new StringConcatenation();
-    _builder_1.append(".controller;");
-    _builder_1.newLine();
-    _builder_1.newLine();
-    _builder_1.append("import ");
-    String _plus_1 = (_plus + _builder_1);
-    String _plus_2 = (_plus_1 + packageName);
-    StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append(".dto.UserRequestDTO;");
-    _builder_2.newLine();
-    _builder_2.append("import ");
-    String _plus_3 = (_plus_2 + _builder_2);
-    String _plus_4 = (_plus_3 + packageName);
-    StringConcatenation _builder_3 = new StringConcatenation();
-    _builder_3.append(".model.User;");
-    _builder_3.newLine();
-    _builder_3.append("import ");
-    String _plus_5 = (_plus_4 + _builder_3);
-    String _plus_6 = (_plus_5 + packageName);
-    StringConcatenation _builder_4 = new StringConcatenation();
-    _builder_4.append(".service.IUserService;");
-    _builder_4.newLine();
-    _builder_4.append("import lombok.RequiredArgsConstructor;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.beans.BeanUtils;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.beans.factory.annotation.Autowired;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.http.ResponseEntity;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.http.MediaType;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.security.access.prepost.PreAuthorize;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.web.bind.annotation.RestController;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.web.bind.annotation.RequestBody;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.web.bind.annotation.RequestMapping;");
-    _builder_4.newLine();
-    _builder_4.append("import org.springframework.web.bind.annotation.PostMapping;");
-    _builder_4.newLine();
-    _builder_4.newLine();
-    _builder_4.append("import java.util.List;");
-    _builder_4.newLine();
-    _builder_4.newLine();
-    _builder_4.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
-    _builder_4.newLine();
-    _builder_4.append("@RequestMapping(value = \"");
-    String _plus_7 = (_plus_6 + _builder_4);
-    String _path = authController.getPath();
-    String _plus_8 = (_plus_7 + _path);
-    StringConcatenation _builder_5 = new StringConcatenation();
-    _builder_5.append("\",");
-    _builder_5.newLine();
-    _builder_5.append("        ");
-    _builder_5.append("consumes = MediaType.APPLICATION_JSON_VALUE,");
-    _builder_5.newLine();
-    _builder_5.append("        ");
-    _builder_5.append("produces = MediaType.APPLICATION_JSON_VALUE)");
-    _builder_5.newLine();
-    _builder_5.append("@RestController");
-    _builder_5.newLine();
-    _builder_5.append("public class AuthController {");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("private final IUserService userService;");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("@PostMapping(\"");
-    String _plus_9 = (_plus_8 + _builder_5);
-    String _plus_10 = (_plus_9 + regEndpoint);
-    StringConcatenation _builder_6 = new StringConcatenation();
-    _builder_6.append("\")");
-    _builder_6.newLine();
-    _builder_6.append("    ");
-    _builder_6.append("public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("User user = new User();");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("BeanUtils.copyProperties(request, user);");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("return ResponseEntity.ok(userService.save(user));");
-    _builder_6.newLine();
-    _builder_6.append("    ");
-    _builder_6.append("}");
-    _builder_6.newLine();
-    _builder_6.newLine();
-    _builder_6.newLine();
-    _builder_6.append("}");
-    _builder_6.newLine();
-    String content = (_plus_10 + _builder_6);
     return content;
   }
 
