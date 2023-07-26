@@ -22,12 +22,11 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
 	
 	@Override
-    public User save(User user) {
-    	if (userRepository.find(newUser.getUsername()) != null) {
+    public User save(User newUser) {
+    	if (userRepository.findByUsername(newUser.getUsername()) != null) {
     		throw new RuntimeException("User already exists");
 
     		}
-    	newUser.setRole("user");
         String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
         newUser.setPassword(encoderPassword);
         
@@ -38,14 +37,16 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     public List<User> findAll() {
         return userRepository.findAll();
     }
-    		
-    @Override
-    public User find(String username) {
-        return userRepository.findOneByUsername();
- }
+    
   	@Override
  	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
- 	return userRepository.findByUsername(username)
- 		.orElseThrow(() ->
- 		new UsernameNotFoundException("User Not Found"));
+  		User user = userRepository.findByUsername(username);
+  		
+		if(user == null) {
+			throw new UsernameNotFoundException("User Not Found");
+		}
+ 	
+ 		return user;
+ 		
  	}
+ }

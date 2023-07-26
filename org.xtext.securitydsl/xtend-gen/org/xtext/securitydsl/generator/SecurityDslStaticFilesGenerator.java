@@ -7,29 +7,26 @@ import security_dsl.Application;
 @SuppressWarnings("all")
 public class SecurityDslStaticFilesGenerator {
   public SecurityDslStaticFilesGenerator(final IFileSystemAccess2 fsa, final Application app, final String capitalizedName, final String srcDestination) {
-    fsa.generateFile(((srcDestination + capitalizedName) + "Application.java"), SecurityDslStaticFilesGenerator.mainClassGenerator(app.getPackageName(), app.getName()));
+    fsa.generateFile(((srcDestination + capitalizedName) + "Application.java"), SecurityDslStaticFilesGenerator.mainClassGenerator(app.getPackageName(), (capitalizedName + "Application")));
     String _artifact = app.getArtifact();
     String _plus = (_artifact + "/README.md");
     fsa.generateFile(_plus, app.getDescription());
     String _replace = srcDestination.replace("main", "test");
     String _plus_1 = (_replace + capitalizedName);
     String _plus_2 = (_plus_1 + "ApplicationTests.java");
-    String _packageName = app.getPackageName();
-    String _name = app.getName();
-    String _plus_3 = (_name + "Tests");
-    fsa.generateFile(_plus_2, this.generateTests(_packageName, _plus_3));
+    fsa.generateFile(_plus_2, this.generateTests(app.getPackageName(), (capitalizedName + "Tests")));
     String _artifact_1 = app.getArtifact();
-    String _plus_4 = (_artifact_1 + "/.mvn/wrapper/MavenWrapperDownloader.java");
-    fsa.generateFile(_plus_4, this.generateMavenWrappaerDownloader());
+    String _plus_3 = (_artifact_1 + "/.mvn/wrapper/MavenWrapperDownloader.java");
+    fsa.generateFile(_plus_3, this.generateMavenWrappaerDownloader());
     String _artifact_2 = app.getArtifact();
-    String _plus_5 = (_artifact_2 + "/.mvn/wrapper/maven-wrapper.properties");
-    fsa.generateFile(_plus_5, this.genMavenWrapperProperties());
+    String _plus_4 = (_artifact_2 + "/.mvn/wrapper/maven-wrapper.properties");
+    fsa.generateFile(_plus_4, this.genMavenWrapperProperties());
     String _artifact_3 = app.getArtifact();
-    String _plus_6 = (_artifact_3 + "/mvnw");
-    fsa.generateFile(_plus_6, this.generateMvnw());
+    String _plus_5 = (_artifact_3 + "/mvnw");
+    fsa.generateFile(_plus_5, this.generateMvnw());
     String _artifact_4 = app.getArtifact();
-    String _plus_7 = (_artifact_4 + "/mvnw.cmd");
-    fsa.generateFile(_plus_7, this.generateMvnwCmd());
+    String _plus_6 = (_artifact_4 + "/mvnw.cmd");
+    fsa.generateFile(_plus_6, this.generateMvnwCmd());
   }
 
   public CharSequence genMavenWrapperProperties() {

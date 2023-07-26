@@ -36,7 +36,7 @@ public class SecurityDslBasicAuthenticationGenerator {
     String _plus = (_packageName + ".config");
     fsa.generateFile((srcDestination + "/config/PasswordEncoder.java"), this.generatePassEncoder(_plus));
     fsa.generateFile((srcDestination + "/service/IUserService.java"), this.generateIUserService(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/service/impl/UserService.java"), this.generateUserServiceImpl(app.getPackageName()));
+    fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImpl(app.getPackageName()));
   }
 
   public String generateIUserService(final String packageName) {
@@ -51,7 +51,6 @@ public class SecurityDslBasicAuthenticationGenerator {
     String _plus_1 = (_plus + _builder_1);
     String _plus_2 = (_plus_1 + packageName);
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("\t\t");
     _builder_2.append(".model.User;");
     _builder_2.newLine();
     _builder_2.newLine();
@@ -63,10 +62,6 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_2.newLine();
     _builder_2.append("\t");
     _builder_2.append("User save(User user);");
-    _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("\t");
-    _builder_2.append("User find(String username);");
     _builder_2.newLine();
     _builder_2.newLine();
     _builder_2.append("\t");
@@ -143,10 +138,10 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.append("@Override");
     _builder_4.newLine();
     _builder_4.append("    ");
-    _builder_4.append("public User save(User user) {");
+    _builder_4.append("public User save(User newUser) {");
     _builder_4.newLine();
     _builder_4.append("    \t");
-    _builder_4.append("if (userRepository.find(newUser.getUsername()) != null) {");
+    _builder_4.append("if (userRepository.findByUsername(newUser.getUsername()) != null) {");
     _builder_4.newLine();
     _builder_4.append("    \t\t");
     _builder_4.append("throw new RuntimeException(\"User already exists\");");
@@ -154,9 +149,6 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.newLine();
     _builder_4.append("    \t\t");
     _builder_4.append("}");
-    _builder_4.newLine();
-    _builder_4.append("    \t");
-    _builder_4.append("newUser.setRole(\"user\");");
     _builder_4.newLine();
     _builder_4.append("        ");
     _builder_4.append("String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());");
@@ -185,19 +177,7 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.append("    ");
     _builder_4.append("}");
     _builder_4.newLine();
-    _builder_4.append("    \t\t");
-    _builder_4.newLine();
     _builder_4.append("    ");
-    _builder_4.append("@Override");
-    _builder_4.newLine();
-    _builder_4.append("    ");
-    _builder_4.append("public User find(String username) {");
-    _builder_4.newLine();
-    _builder_4.append("        ");
-    _builder_4.append("return userRepository.findOneByUsername();");
-    _builder_4.newLine();
-    _builder_4.append(" ");
-    _builder_4.append("}");
     _builder_4.newLine();
     _builder_4.append("  \t");
     _builder_4.append("@Override");
@@ -215,6 +195,9 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.append("new UsernameNotFoundException(\"User Not Found\"));");
     _builder_4.newLine();
     _builder_4.append(" \t");
+    _builder_4.append("}");
+    _builder_4.newLine();
+    _builder_4.append(" ");
     _builder_4.append("}");
     _builder_4.newLine();
     String content = (_plus_6 + _builder_4);
@@ -458,6 +441,8 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.newLine();
     _builder_4.append("import org.springframework.web.bind.annotation.RequestMapping;");
     _builder_4.newLine();
+    _builder_4.append("import org.springframework.web.bind.annotation.PostMapping;");
+    _builder_4.newLine();
     _builder_4.newLine();
     _builder_4.append("import java.util.List;");
     _builder_4.newLine();
@@ -487,38 +472,14 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_5.newLine();
     _builder_5.newLine();
     _builder_5.append("    ");
-    _builder_5.append("@Override");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("@GetMapping()");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("@PreAuthorize(\"hasAuthority(\'ROLE_ADMIN\')\")");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("public ResponseEntity<List<User>> getDataUser() {");
-    _builder_5.newLine();
-    _builder_5.append("        ");
-    _builder_5.append("return ResponseEntity.ok(userService.findAll());");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("}");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("@Override");
-    _builder_5.newLine();
-    _builder_5.append("    ");
     _builder_5.append("@PostMapping(\"");
     String _plus_9 = (_plus_8 + _builder_5);
-    String _path_1 = authController.getPath();
-    String _plus_10 = (_plus_9 + _path_1);
-    String _plus_11 = (_plus_10 + regEndpoint);
+    String _plus_10 = (_plus_9 + regEndpoint);
     StringConcatenation _builder_6 = new StringConcatenation();
     _builder_6.append("\")");
     _builder_6.newLine();
     _builder_6.append("    ");
-    _builder_6.append("public ResponseEntity<User> registerUser(RequestUserData request) {");
+    _builder_6.append("public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {");
     _builder_6.newLine();
     _builder_6.append("        ");
     _builder_6.append("User user = new User();");
@@ -536,7 +497,7 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_6.newLine();
     _builder_6.append("}");
     _builder_6.newLine();
-    String content = (_plus_11 + _builder_6);
+    String content = (_plus_10 + _builder_6);
     return content;
   }
 
@@ -561,13 +522,17 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_1.newLine();
     _builder_1.append("@NoArgsConstructor");
     _builder_1.newLine();
-    _builder_1.append("public class RequestUserDTO {");
+    _builder_1.append("public class UserRequestDTO {");
     _builder_1.newLine();
     _builder_1.newLine();
     String _plus_1 = (_plus + _builder_1);
     String _generateAttributes = this.generateAttributes(user.getModel_attributes());
     String _plus_2 = (_plus_1 + _generateAttributes);
     StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("\t");
+    _builder_2.append("private String password;");
+    _builder_2.newLine();
+    _builder_2.newLine();
     _builder_2.append("    ");
     _builder_2.append("private String role;");
     _builder_2.newLine();
@@ -581,21 +546,27 @@ public class SecurityDslBasicAuthenticationGenerator {
   public String generateAttributes(final List<Attribute> attributes) {
     String content = "";
     for (final Attribute a : attributes) {
-      String _content = content;
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("    ");
-      _builder.append("private ");
-      EType _type = a.getType();
-      String _plus = (_builder.toString() + _type);
-      StringConcatenation _builder_1 = new StringConcatenation();
-      _builder_1.append(" ");
-      String _plus_1 = (_plus + _builder_1);
-      String _name = a.getName();
-      String _plus_2 = (_plus_1 + _name);
-      StringConcatenation _builder_2 = new StringConcatenation();
-      _builder_2.newLine();
-      String _plus_3 = (_plus_2 + _builder_2);
-      content = (_content + _plus_3);
+      boolean _isIdentifier = a.isIdentifier();
+      boolean _not = (!_isIdentifier);
+      if (_not) {
+        String _content = content;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("    ");
+        _builder.append("private ");
+        EType _type = a.getType();
+        String _plus = (_builder.toString() + _type);
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append(" ");
+        String _plus_1 = (_plus + _builder_1);
+        String _name = a.getName();
+        String _plus_2 = (_plus_1 + _name);
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append(";");
+        _builder_2.newLine();
+        _builder_2.newLine();
+        String _plus_3 = (_plus_2 + _builder_2);
+        content = (_content + _plus_3);
+      }
     }
     return content;
   }

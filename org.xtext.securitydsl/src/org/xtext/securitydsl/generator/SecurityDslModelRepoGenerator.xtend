@@ -23,7 +23,7 @@ class SecurityDslModelRepoGenerator  {
        	if (users.hasNext()) {
        		var user = users.next()
        		if(user.tableName === null) user.tableName = "users"
-       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName + '.model', user, app.app_security));
+       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName, user, app.app_security));
        		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user));
        		
 		}
@@ -31,7 +31,7 @@ class SecurityDslModelRepoGenerator  {
        	if (roles.hasNext() && app.app_security instanceof JWT) {
        		var role = roles.next()
        		if(role.tableName === null) role.tableName = "roles"
-       		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(app.packageName + '.model', role));
+       		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(app.packageName , role));
        		fsa.generateFile(srcDestination + '/repository/RoleRepository.java', generateRoleRepository(app.packageName, role));
        		
 		}
@@ -41,7 +41,8 @@ class SecurityDslModelRepoGenerator  {
 		var content = '''
 		package ''' + packageName+ '''
 		.repository;
-
+		
+		import java.util.Optional;
 		import org.springframework.data.jpa.repository.JpaRepository;
 		
 		import ''' + packageName+ '''
@@ -50,7 +51,7 @@ class SecurityDslModelRepoGenerator  {
 		public interface UserRepository extends JpaRepository<User, ''' + getIdentifier(user.model_attributes).type + '''
 		> {
 			
-		    User findOneBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getIdentifier(user.model_attributes).name + ''');
+		    User findBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getCredential(user.model_attributes).name + ''');
 }
 				'''
 				return content;
@@ -83,6 +84,7 @@ class SecurityDslModelRepoGenerator  {
 		.model;
 		
 		import java.sql.Timestamp;
+		import java.util.ArrayList;
 		import java.util.Collection;
 		import java.util.Date;
 		import java.util.List;
@@ -101,6 +103,7 @@ class SecurityDslModelRepoGenerator  {
 		import lombok.Setter;
 		
 		import org.springframework.security.core.GrantedAuthority;
+		import org.springframework.security.core.authority.SimpleGrantedAuthority;
 		import org.springframework.security.core.userdetails.UserDetails;
 		
 		import com.fasterxml.jackson.annotation.JsonIgnore;

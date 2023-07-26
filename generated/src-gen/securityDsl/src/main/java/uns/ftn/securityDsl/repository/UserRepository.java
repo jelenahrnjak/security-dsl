@@ -1,10 +1,11 @@
 package uns.ftn.securityDsl.repository;
 
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import uns.ftn.securityDsl.model.User;
 
-public interface UserRepository extends JpaRepository<User, String> {
+public interface UserRepository extends JpaRepository<User, Long> {
 	
-    User findOneByUsername(String username);
+    User findByUsername(String username);
 }

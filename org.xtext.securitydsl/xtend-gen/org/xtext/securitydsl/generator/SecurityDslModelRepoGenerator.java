@@ -32,9 +32,7 @@ public class SecurityDslModelRepoGenerator {
       if (_tripleEquals) {
         user.setTableName("users");
       }
-      String _packageName = app.getPackageName();
-      String _plus = (_packageName + ".model");
-      fsa.generateFile((srcDestination + "/model/User.java"), this.generateUserModel(_plus, user, app.getApp_security()));
+      fsa.generateFile((srcDestination + "/model/User.java"), this.generateUserModel(app.getPackageName(), user, app.getApp_security()));
       fsa.generateFile((srcDestination + "/repository/UserRepository.java"), this.generateUserRepository(app.getPackageName(), user));
     }
     if ((roles.hasNext() && (app.getApp_security() instanceof JWT))) {
@@ -44,9 +42,7 @@ public class SecurityDslModelRepoGenerator {
       if (_tripleEquals_1) {
         role.setTableName("roles");
       }
-      String _packageName_1 = app.getPackageName();
-      String _plus_1 = (_packageName_1 + ".model");
-      fsa.generateFile((srcDestination + "/model/Role.java"), this.generateRoleModel(_plus_1, role));
+      fsa.generateFile((srcDestination + "/model/Role.java"), this.generateRoleModel(app.getPackageName(), role));
       fsa.generateFile((srcDestination + "/repository/RoleRepository.java"), this.generateRoleRepository(app.getPackageName(), role));
     }
   }
@@ -58,6 +54,8 @@ public class SecurityDslModelRepoGenerator {
     StringConcatenation _builder_1 = new StringConcatenation();
     _builder_1.append(".repository;");
     _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("import java.util.Optional;");
     _builder_1.newLine();
     _builder_1.append("import org.springframework.data.jpa.repository.JpaRepository;");
     _builder_1.newLine();
@@ -79,14 +77,14 @@ public class SecurityDslModelRepoGenerator {
     _builder_3.append("\t");
     _builder_3.newLine();
     _builder_3.append("    ");
-    _builder_3.append("User findOneBy");
+    _builder_3.append("User findBy");
     String _plus_5 = (_plus_4 + _builder_3);
     String _firstUpper = StringExtensions.toFirstUpper(this.getCredential(user.getModel_attributes()).getName());
     String _plus_6 = (_plus_5 + _firstUpper);
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("(String ");
     String _plus_7 = (_plus_6 + _builder_4);
-    String _name = this.getIdentifier(user.getModel_attributes()).getName();
+    String _name = this.getCredential(user.getModel_attributes()).getName();
     String _plus_8 = (_plus_7 + _name);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append(");");
@@ -155,6 +153,8 @@ public class SecurityDslModelRepoGenerator {
     _builder_1.newLine();
     _builder_1.append("import java.sql.Timestamp;");
     _builder_1.newLine();
+    _builder_1.append("import java.util.ArrayList;");
+    _builder_1.newLine();
     _builder_1.append("import java.util.Collection;");
     _builder_1.newLine();
     _builder_1.append("import java.util.Date;");
@@ -188,6 +188,8 @@ public class SecurityDslModelRepoGenerator {
     _builder_1.newLine();
     _builder_1.newLine();
     _builder_1.append("import org.springframework.security.core.GrantedAuthority;");
+    _builder_1.newLine();
+    _builder_1.append("import org.springframework.security.core.authority.SimpleGrantedAuthority;");
     _builder_1.newLine();
     _builder_1.append("import org.springframework.security.core.userdetails.UserDetails;");
     _builder_1.newLine();

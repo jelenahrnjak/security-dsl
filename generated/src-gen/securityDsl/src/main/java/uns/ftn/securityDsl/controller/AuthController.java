@@ -12,6 +12,7 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -24,16 +25,8 @@ public class AuthController {
 
     private final IUserService userService;
 
-    @Override
-    @GetMapping()
-    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-    public ResponseEntity<List<User>> getDataUser() {
-        return ResponseEntity.ok(userService.findAll());
-    }
-
-    @Override
-    @PostMapping("/auth/registration")
-    public ResponseEntity<User> registerUser(RequestUserData request) {
+    @PostMapping("/registration")
+    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
         User user = new User();
         BeanUtils.copyProperties(request, user);
         return ResponseEntity.ok(userService.save(user));

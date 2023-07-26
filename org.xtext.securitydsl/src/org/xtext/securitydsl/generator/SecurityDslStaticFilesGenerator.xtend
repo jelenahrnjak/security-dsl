@@ -8,9 +8,9 @@ class SecurityDslStaticFilesGenerator {
 	
 	new(IFileSystemAccess2 fsa, Application app, String capitalizedName, String srcDestination){
 				
-		fsa.generateFile(srcDestination + capitalizedName + 'Application.java', mainClassGenerator(app.packageName, app.name));
+		fsa.generateFile(srcDestination + capitalizedName + 'Application.java', mainClassGenerator(app.packageName, capitalizedName + 'Application'));
 		fsa.generateFile(app.artifact + '/README.md', app.description);
-		fsa.generateFile(srcDestination.replace('main', 'test') + capitalizedName + 'ApplicationTests.java', generateTests(app.packageName, app.name + 'Tests'))
+		fsa.generateFile(srcDestination.replace('main', 'test') + capitalizedName + 'ApplicationTests.java', generateTests(app.packageName, capitalizedName + 'Tests'))
 	
 		fsa.generateFile(app.artifact + '/.mvn/wrapper/MavenWrapperDownloader.java', generateMavenWrappaerDownloader());
 		fsa.generateFile(app.artifact + '/.mvn/wrapper/maven-wrapper.properties', genMavenWrapperProperties());

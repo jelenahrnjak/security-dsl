@@ -26,7 +26,7 @@ class SecurityDslBasicAuthenticationGenerator {
     	
 		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName + '.config'));
 		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
-		fsa.generateFile(srcDestination + '/service/impl/UserService.java', generateUserServiceImpl(app.packageName));
+		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName));
 		
 	}
 	
@@ -37,15 +37,13 @@ class SecurityDslBasicAuthenticationGenerator {
 		.service;
 		
 		import '''+ packageName + '''
-				.model.User;
+		.model.User;
 		
 		import java.util.List;
 		
 		public interface IUserService {
 		
 			User save(User user);
-		
-			User find(String username);
 
 			List<User> findAll();
 		
@@ -85,12 +83,11 @@ class SecurityDslBasicAuthenticationGenerator {
 		    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 			
 			@Override
-		    public User save(User user) {
-		    	if (userRepository.find(newUser.getUsername()) != null) {
+		    public User save(User newUser) {
+		    	if (userRepository.findByUsername(newUser.getUsername()) != null) {
 		    		throw new RuntimeException("User already exists");
 
 		    		}
-		    	newUser.setRole("user");
 		        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
 		        newUser.setPassword(encoderPassword);
 		        
@@ -101,17 +98,14 @@ class SecurityDslBasicAuthenticationGenerator {
 		    public List<User> findAll() {
 		        return userRepository.findAll();
 		    }
-		    		
-		    @Override
-		    public User find(String username) {
-		        return userRepository.findOneByUsername();
-		 }
+		    
 		  	@Override
 		 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		 	return userRepository.findByUsername(username)
 		 		.orElseThrow(() ->
 		 		new UsernameNotFoundException("User Not Found"));
 		 	}
+		 }
 		'''
 
 		return content
@@ -234,6 +228,7 @@ public class PasswordEncoder {
 			import org.springframework.web.bind.annotation.RestController;
 			import org.springframework.web.bind.annotation.RequestBody;
 			import org.springframework.web.bind.annotation.RequestMapping;
+			import org.springframework.web.bind.annotation.PostMapping;
 			
 			import java.util.List;
 			
@@ -247,17 +242,9 @@ public class PasswordEncoder {
 			
 			    private final IUserService userService;
 			
-			    @Override
-			    @GetMapping()
-			    @PreAuthorize("hasAuthority('ROLE_ADMIN')")
-			    public ResponseEntity<List<User>> getDataUser() {
-			        return ResponseEntity.ok(userService.findAll());
-			    }
-			
-			    @Override
-			    @PostMapping("''' + authController.path + regEndpoint + '''
+			    @PostMapping("''' + regEndpoint + '''
 			")
-			    public ResponseEntity<User> registerUser(RequestUserData request) {
+			    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
 			        User user = new User();
 			        BeanUtils.copyProperties(request, user);
 			        return ResponseEntity.ok(userService.save(user));
@@ -283,10 +270,12 @@ public class PasswordEncoder {
 			@ToString
 			@AllArgsConstructor
 			@NoArgsConstructor
-			public class RequestUserDTO {
+			public class UserRequestDTO {
 
 			''' + generateAttributes(user.model_attributes) + 
 			'''
+				private String password;
+			
 			    private String role;
 			}
 			
@@ -298,10 +287,11 @@ public class PasswordEncoder {
 			var content = ''
 			
 			for(a : attributes){
+				if(!a.isIdentifier){
 				content += '''    private ''' + a.type +  ''' ''' + a.name+ 
-				'''
+				''';
 
-				'''
+				'''}
 			}
 			
 			return content

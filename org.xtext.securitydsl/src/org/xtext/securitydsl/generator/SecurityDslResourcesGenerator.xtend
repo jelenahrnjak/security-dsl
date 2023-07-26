@@ -4,18 +4,20 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
 import security_dsl.EDatabaseType
 import security_dsl.Database
+import security_dsl.BasicAuthentication
 
 class SecurityDslResourcesGenerator {
 
 	new(IFileSystemAccess2 fsa, Application app){
 
-		var resourcesDest = app.artifact + '/src/main/resouces/'
+		var resourcesDest = app.artifact + '/src/main/resources/'
 		fsa.generateFile(resourcesDest + 'application.properties', generateApplicationProperties(app))
 		fsa.generateFile(app.artifact + '/pom.xml', generatePomXml(app))
 
 	}
 	
 	def generatePomXml(Application app) {
+		
 		var content = '''
 		<?xml version="1.0" encoding="UTF-8"?>
 		<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -60,18 +62,20 @@ class SecurityDslResourcesGenerator {
 			databaseDependency = '''			<dependency>
 			    <groupId>mysql</groupId>
 			    <artifactId>mysql-connector-java</artifactId>
-			</dependency>'''
+			</dependency>
+			'''
 		}
 		case EDatabaseType::POSTGRE_SQL : {
 			databaseDependency = '''			<dependency>
-							<groupId>org.postgresql</groupId>
-							<artifactId>postgresql</artifactId>
-			</dependency>'''
+				<groupId>org.postgresql</groupId>
+				<artifactId>postgresql</artifactId>
+			</dependency>
+			'''
 		}
 		case EDatabaseType::ORACLE: {
 			databaseDependency = '''			<dependency>
-						    <groupId>com.oracle.database.jdbc</groupId>
-						    <artifactId>ojdbc8</artifactId>
+				<groupId>com.oracle.database.jdbc</groupId>
+				<artifactId>ojdbc8</artifactId>
 			</dependency>
 			'''
 		}
@@ -79,8 +83,19 @@ class SecurityDslResourcesGenerator {
 	
 	var securityDependency = ''
 	
+	if(app.app_security instanceof BasicAuthentication){
+		securityDependency = '''			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-security</artifactId>
+			</dependency>
+			'''
+	}
 	
-	content += databaseDependency
+	
+	content += '''
+	''' + databaseDependency + '''
+	''' + securityDependency + '''
+	'''
 	
 	content += '''			<dependency>
 				<groupId>org.projectlombok</groupId>
@@ -126,7 +141,7 @@ class SecurityDslResourcesGenerator {
 	def static generateApplicationProperties(Application app) {
          
       var propertiesContent = '''
-      sprint.application.name''' +app.name + '''
+      sprint.application.name=''' +app.name + '''
       
       server.port=''' +app.port + '''
       

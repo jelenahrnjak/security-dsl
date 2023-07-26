@@ -4,12 +4,12 @@ application:
     description: "This is an app that is generated with security DSL"
 	port: 8080
 	hostname: "localhost"
-
+	
     database: 
       vendor: PostgreSQL
-      url: "localhost:5432/securitydsl" 
-      username: "securitydsl" 
-      password: "securitydsl" 
+      url: "localhost:5432/securityDsl" 
+      username: "securityDsl" 
+      password: "securityDsl" 
       
    model:
       user: 
@@ -17,9 +17,14 @@ application:
         attributes: [ 
           {
               identifier
+              name: "id"
+              type: Long
+          },
+          {
               credential
               name: "username"
               type: String 
+              collumnName: "username"
           },
           {
               name: "firstName"
