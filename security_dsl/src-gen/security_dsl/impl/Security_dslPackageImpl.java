@@ -377,96 +377,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * @generated
 	 */
 	public EOperation getApplication__ControllerPath__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(2);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__ControllerNotNamedUserRole__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(5);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__HasDatabaseForModel__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__UniqueTableName__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__HasUsernameAttribute__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__UniqueControllerPath__DiagnosticChain_Map() {
-		return applicationEClass.getEOperations().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getApplication__UniqueControllerName__DiagnosticChain_Map() {
 		return applicationEClass.getEOperations().get(0);
 	}
 
@@ -475,8 +385,107 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getApplication__ValidPort__DiagnosticChain_Map() {
+	public EOperation getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map() {
 		return applicationEClass.getEOperations().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__ControllerNotNamedUserRole__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__HasDatabaseForModel__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__UniqueTableName__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(9);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__HasUsernameAttribute__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__UniqueControllerPath__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__UniqueControllerName__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__BasicAuthNoRoleAttributes__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getApplication__ValidPort__DiagnosticChain_Map() {
+		return applicationEClass.getEOperations().get(10);
 	}
 
 	/**
@@ -1132,18 +1141,19 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		createEAttribute(applicationEClass, APPLICATION__PACKAGE_NAME);
 		createEAttribute(applicationEClass, APPLICATION__PORT);
 		createEAttribute(applicationEClass, APPLICATION__HOSTNAME);
-		createEOperation(applicationEClass, APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP);
-		createEOperation(applicationEClass, APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP);
-		createEOperation(applicationEClass, APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(applicationEClass, APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP);
-		createEOperation(applicationEClass, APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
-		createEOperation(applicationEClass, APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 		createEOperation(applicationEClass, APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
+		createEOperation(applicationEClass, APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP);
 
 		modelEClass = createEClass(MODEL);
 		createEReference(modelEClass, MODEL__MODEL_ATTRIBUTES);
@@ -1303,41 +1313,11 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				Application.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 
-		EOperation op = initEOperation(getApplication__UniqueControllerName__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "uniqueControllerName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		EOperation op = initEOperation(getApplication__ControllerPath__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "controllerPath", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		EGenericType g1 = createEGenericType(ecorePackage.getEMap());
 		EGenericType g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getApplication__ControllerPath__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"controllerPath", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "roleCantHaveAdditionalAttributes", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getApplication__UniqueControllerPath__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
-				"uniqueControllerPath", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
 		g1.getETypeArguments().add(g2);
@@ -1363,26 +1343,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "hasUserAndRoleModelsForController", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
-		op = initEOperation(getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "roleMustHaveStringAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
-		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
-		g1 = createEGenericType(ecorePackage.getEMap());
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		g2 = createEGenericType(ecorePackage.getEJavaObject());
-		g1.getETypeArguments().add(g2);
-		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
-
 		op = initEOperation(getApplication__HasUsernameAttribute__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
 				"hasUsernameAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
@@ -1393,8 +1353,18 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
-		op = initEOperation(getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map(),
-				ecorePackage.getEBoolean(), "roleCanHaveIdAndStringAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		op = initEOperation(getApplication__UniqueControllerPath__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"uniqueControllerPath", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "hasUserAndRoleModelsForController", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1413,8 +1383,58 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		g1.getETypeArguments().add(g2);
 		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
 
+		op = initEOperation(getApplication__UniqueControllerName__DiagnosticChain_Map(), ecorePackage.getEBoolean(),
+				"uniqueControllerName", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getApplication__BasicAuthNoRoleAttributes__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "basicAuthNoRoleAttributes", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "roleMustHaveStringAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
 		op = initEOperation(getApplication__ValidPort__DiagnosticChain_Map(), ecorePackage.getEBoolean(), "validPort",
 				0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "roleCanHaveIdAndStringAttribute", 0, 1, IS_UNIQUE, IS_ORDERED);
+		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
+		g1 = createEGenericType(ecorePackage.getEMap());
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		g2 = createEGenericType(ecorePackage.getEJavaObject());
+		g1.getETypeArguments().add(g2);
+		addEParameter(op, g1, "context", 0, 1, IS_UNIQUE, IS_ORDERED);
+
+		op = initEOperation(getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map(),
+				ecorePackage.getEBoolean(), "roleCantHaveAdditionalAttributes", 0, 1, IS_UNIQUE, IS_ORDERED);
 		addEParameter(op, ecorePackage.getEDiagnosticChain(), "diagnostics", 0, 1, IS_UNIQUE, IS_ORDERED);
 		g1 = createEGenericType(ecorePackage.getEMap());
 		g2 = createEGenericType(ecorePackage.getEJavaObject());
@@ -1760,7 +1780,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore";
 		addAnnotation(this, source, new String[] {});
-		addAnnotation(applicationEClass, source, new String[] { "constraints", "validPort" });
+		addAnnotation(applicationEClass, source, new String[] { "constraints", "roleCantHaveAdditionalAttributes" });
 		addAnnotation(modelEClass, source, new String[] { "constraints", "onlyOneIdentifier" });
 		addAnnotation(controllerEClass, source, new String[] { "constraints", "urlStartsWithForwardSlash" });
 		addAnnotation(endpointEClass, source, new String[] { "constraints", "uniqueRoleAuthorities" });
@@ -1777,33 +1797,35 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 */
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot";
-		addAnnotation(getApplication__UniqueControllerName__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.app_controllers -> isUnique(c | c.name)" });
 		addAnnotation(getApplication__ControllerPath__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.app_controllers -> forAll(c | c.path.at(1) = \'/\')" });
-		addAnnotation(getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map(), source, new String[] {
-				"body",
-				"\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() <= 2)" });
-		addAnnotation(getApplication__UniqueControllerPath__DiagnosticChain_Map(), source, new String[] { "body",
-				" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() <> c.path.toLower())" });
-		addAnnotation(getApplication__UniqueTableName__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.app_models ->  isUnique(m | m.tableName.toLower())" });
+		addAnnotation(getApplication__UniqueTableName__DiagnosticChain_Map(), source, new String[] { "body",
+				"self.app_models -> select(m | m.tableName <> null) -> isUnique(m | m.tableName.toLower())" });
 		addAnnotation(getApplication__ControllerNotNamedUserRole__DiagnosticChain_Map(), source, new String[] { "body",
 				"not self.app_controllers -> exists(c | c.name.toLower() = \'user\' or c.name.toLower() = \'role\' or c.name.toLower() = \'usercontroller\' or c.name.toLower() = \'rolecontroller\')" });
+		addAnnotation(getApplication__HasUsernameAttribute__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -> select(m | m.oclIsTypeOf(User))\n\t            -> forAll(user | user.model_attributes -> exists(a |  a.name = \'username\' and a.credential = true))" });
+		addAnnotation(getApplication__UniqueControllerPath__DiagnosticChain_Map(), source, new String[] { "body",
+				" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() <> c.path.toLower())" });
 		addAnnotation(getApplication__HasUserAndRoleModelsForController__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"self.app_controllers -> isEmpty() or (\n\t        self.app_models -> exists(m | m.oclIsTypeOf(User))\n\t        and\n\t        self.app_models -> exists(m | m.oclIsTypeOf(Role))\n\t    )" });
+		addAnnotation(getApplication__HasDatabaseForModel__DiagnosticChain_Map(), source,
+				new String[] { "body", "self.app_models -> isEmpty() or not self.app_database->isEmpty()" });
+		addAnnotation(getApplication__UniqueControllerName__DiagnosticChain_Map(), source,
+				new String[] { "body", "self.app_controllers -> isUnique(c | c.name)" });
+		addAnnotation(getApplication__BasicAuthNoRoleAttributes__DiagnosticChain_Map(), source, new String[] { "body",
+				"\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -> select(m | m.oclIsTypeOf(Role))\n\t            -> forAll(role | role.model_attributes -> size() = 0)" });
 		addAnnotation(getApplication__RoleMustHaveStringAttribute__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n        \tself.app_security.oclIsTypeOf(JWT) implies\n\t        self.app_models -> select(m | m.oclIsTypeOf(Role))\n\t            -> forAll(role | role.model_attributes -> exists(a | a.type = EType::_\'String\'))" });
-		addAnnotation(getApplication__HasUsernameAttribute__DiagnosticChain_Map(), source, new String[] { "body",
-				"\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -> select(m | m.oclIsTypeOf(User))\n\t            -> forAll(user | user.model_attributes -> exists(a |  a.name = \'username\' and a.credential = true))" });
+		addAnnotation(getApplication__ValidPort__DiagnosticChain_Map(), source,
+				new String[] { "body", "self.port >= 1024 and self.port <= 49151" });
 		addAnnotation(getApplication__RoleCanHaveIdAndStringAttribute__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        (\n            self.app_models -> select(m | m.oclIsTypeOf(Role))\n                -> forAll(role | \n                    role.model_attributes -> select(a | a.type = EType::_\'String\' and a.identifier = true) -> size() = 1 )\n            or\n            self.app_models -> select(m | m.oclIsTypeOf(Role))\n                -> forAll(role |\n                    role.model_attributes -> select(a | a.type = EType::_\'String\' and a.identifier = false) -> size() = 1\n                    and\n                    role.model_attributes -> select(a | a.identifier = true) -> size() = 1\n                )\n        )" });
-		addAnnotation(getApplication__HasDatabaseForModel__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.app_models -> isEmpty() or not self.app_database->isEmpty()" });
-		addAnnotation(getApplication__ValidPort__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.port >= 1024 and self.port <= 49151" });
+		addAnnotation(getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map(), source, new String[] {
+				"body",
+				"\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() <= 2)" });
 		addAnnotation(getModel__OneCredential__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n\t\t\tself.oclIsTypeOf(User) implies\n\t\t\tself.model_attributes -> select(a | a.credential) -> size() = 1" });
 		addAnnotation(getModel__UniqueCollumnName__DiagnosticChain_Map(), source, new String[] { "body",
@@ -1812,8 +1834,8 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				"\n\t\t\tself.oclIsTypeOf(User) implies\n        \tself.model_attributes -> exists(a | a.name = \'username\' and a.credential = true)" });
 		addAnnotation(getModel__UniqueAttributeName__DiagnosticChain_Map(), source,
 				new String[] { "body", "self.model_attributes -> isUnique(a | a.name)" });
-		addAnnotation(getModel__OnlyOneIdentifier__DiagnosticChain_Map(), source,
-				new String[] { "body", "self.model_attributes -> select(a | a.identifier) -> size() = 1" });
+		addAnnotation(getModel__OnlyOneIdentifier__DiagnosticChain_Map(), source, new String[] { "body",
+				"self.model_attributes -> size() > 0 implies self.model_attributes -> select(a | a.identifier) -> size() = 1" });
 		addAnnotation(getController__MethodRequiredForOtherType__DiagnosticChain_Map(), source, new String[] { "body",
 				"\n        \tself.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method <> null)" });
 		addAnnotation(getController__AuthenticationLimits__DiagnosticChain_Map(), source, new String[] { "body",

@@ -8,12 +8,15 @@ import security_dsl.EEndpointType
 import security_dsl.User
 import java.util.List
 import security_dsl.Attribute
+import security_dsl.Role
+import security_dsl.RoleInstance
 
 class SecurityDslBasicAuthenticationGenerator {
 
 	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 		
     	var user = resource.allContents.filter(User).next() 
+    	var role = resource.allContents.filter(Role).next() 
     	
     	for (c : app.app_controllers) {
     		if(c instanceof Authentication){
@@ -27,6 +30,8 @@ class SecurityDslBasicAuthenticationGenerator {
 		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName + '.config'));
 		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
 		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName));
+		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName));
+		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
 		
 	}
 	
@@ -84,7 +89,7 @@ class SecurityDslBasicAuthenticationGenerator {
 			
 			@Override
 		    public User save(User newUser) {
-		    	if (userRepository.findByUsername(newUser.getUsername()) != null) {
+		    	if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
 		    		throw new RuntimeException("User already exists");
 
 		    		}
@@ -218,6 +223,9 @@ public class PasswordEncoder {
 		package ''' + packageName + '''
 		.dto;
 		
+		import ''' + packageName + '''
+		.model.enumeration.Role;
+		
 		import lombok.*;
 		
 		@Getter
@@ -231,7 +239,7 @@ public class PasswordEncoder {
 		'''
 			private String password;
 		
-		    private String role;
+		    private Role role;
 		}
 		
 		'''	
@@ -252,5 +260,36 @@ public class PasswordEncoder {
 		return content
 	}
 		
+	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances){
+		var content = '''
+		package ''' + packageName + '''
+		.model.enumeration;
+		
+		public enum Role {
+		
+		''' 
+		for (var  i = 0 ; i <roleInstances.size; i++) {
+			
+			content += '    ' + roleInstances.get(i).name.toUpperCase
+			
+			if(i != roleInstances.size - 1)
+				content+= ''',
+				'''
+			
+		}
+		
+		if(roleInstances.size != 0)
+			content += ''';
+			'''
+		
+		
+		content += '''    public String getAuthority() {
+    	return this.name();
+    }
+}
+		'''
+		
+		return content
+	}
 		
 }

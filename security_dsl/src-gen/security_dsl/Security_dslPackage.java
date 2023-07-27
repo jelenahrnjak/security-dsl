@@ -178,40 +178,13 @@ public interface Security_dslPackage extends EPackage {
 	int APPLICATION_FEATURE_COUNT = 11;
 
 	/**
-	 * The operation id for the '<em>Unique Controller Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
 	 * The operation id for the '<em>Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Unique Controller Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 3;
+	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Unique Table Name</em>' operation.
@@ -220,7 +193,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 4;
+	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
 	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
@@ -229,25 +202,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 5;
-
-	/**
-	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 6;
-
-	/**
-	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 7;
+	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
 	 * The operation id for the '<em>Has Username Attribute</em>' operation.
@@ -256,16 +211,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 8;
+	int APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 3;
 
 	/**
-	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * The operation id for the '<em>Unique Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 9;
+	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 5;
 
 	/**
 	 * The operation id for the '<em>Has Database For Model</em>' operation.
@@ -274,7 +238,34 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 10;
+	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 6;
+
+	/**
+	 * The operation id for the '<em>Unique Controller Name</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
+	 * The operation id for the '<em>Basic Auth No Role Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 8;
+
+	/**
+	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 9;
 
 	/**
 	 * The operation id for the '<em>Valid Port</em>' operation.
@@ -283,7 +274,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 11;
+	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 10;
+
+	/**
+	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 11;
+
+	/**
+	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 12;
 
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
@@ -292,7 +301,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_OPERATION_COUNT = 12;
+	int APPLICATION_OPERATION_COUNT = 13;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ModelImpl <em>Model</em>}' class.
@@ -1645,6 +1654,16 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getApplication__UniqueControllerName__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#basicAuthNoRoleAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Basic Auth No Role Attributes</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Basic Auth No Role Attributes</em>' operation.
+	 * @see security_dsl.Application#basicAuthNoRoleAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__BasicAuthNoRoleAttributes__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Application#validPort(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Port</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2584,6 +2603,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getApplication__UniqueControllerName__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Basic Auth No Role Attributes</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__BasicAuthNoRoleAttributes__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Valid Port</b></em>' operation.

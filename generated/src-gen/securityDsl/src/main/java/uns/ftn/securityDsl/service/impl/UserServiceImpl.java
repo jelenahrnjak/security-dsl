@@ -23,7 +23,7 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 	
 	@Override
     public User save(User newUser) {
-    	if (userRepository.findByUsername(newUser.getUsername()) != null) {
+    	if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
     		throw new RuntimeException("User already exists");
 
     		}
@@ -40,13 +40,8 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
     
   	@Override
  	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-  		User user = userRepository.findByUsername(username);
-  		
-		if(user == null) {
-			throw new UsernameNotFoundException("User Not Found");
-		}
- 	
- 		return user;
- 		
+ 	return userRepository.findByUsername(username)
+ 		.orElseThrow(() ->
+ 		new UsernameNotFoundException("User Not Found"));
  	}
  }

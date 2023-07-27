@@ -21,35 +21,37 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final UserServiceImpl userService;
 
+
     @Override
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.csrf().disable()
                 .formLogin().disable()
                 .logout().disable()
-                .authorizeRequests().antMatchers("/auth/registration", "/auth/login", "/auth/logout").permitAll()
-                .anyRequest().authenticated()
-                .and().httpBasic();
-    }
-
-    @Bean
-    @Override
-    public AuthenticationManager authenticationManagerBean() throws Exception {
-        return super.authenticationManagerBean();
-    }
-    
-    @Autowired
-    public void config(AuthenticationManagerBuilder authentication)
-            throws Exception
-    {
-        authentication.authenticationProvider(daoAuthenticationProvider());
-    }
-
-    @Bean
-    public DaoAuthenticationProvider daoAuthenticationProvider(){
-        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(bCryptPasswordEncoder);
-        provider.setUserDetailsService(userService);
-        return provider;
-    }
-
-}
+                .authorizeRequests().antMatchers("/auth/registration" , "/auth/login", "/auth/logout").permitAll()
+		                .anyRequest().authenticated()
+		                .and().httpBasic();
+		
+		    }
+		
+		    @Autowired
+		    public void config(AuthenticationManagerBuilder authentication)
+		            throws Exception
+		    {
+		        authentication.authenticationProvider(daoAuthenticationProvider());
+		    }
+		    
+	        @Bean
+	        @Override
+	        public AuthenticationManager authenticationManagerBean() throws Exception {
+	            return super.authenticationManagerBean();
+	        }
+	
+		    @Bean
+		    public DaoAuthenticationProvider daoAuthenticationProvider(){
+		        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
+		        provider.setPasswordEncoder(bCryptPasswordEncoder);
+		        provider.setUserDetailsService(userService);
+		        return provider;
+		    }
+		
+		}

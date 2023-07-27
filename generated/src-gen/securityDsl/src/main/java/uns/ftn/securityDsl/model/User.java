@@ -1,5 +1,7 @@
 package uns.ftn.securityDsl.model;
 
+import uns.ftn.securityDsl.model.enumeration.Role;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -8,6 +10,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,8 +51,9 @@ public class User implements UserDetails {
     private String lastName;
 
     private String password;
-
-    private String role;
+			
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
 	@JsonIgnore
 	@Override
@@ -78,7 +83,7 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role));
+		authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
 		return authorities;
 	}
 	

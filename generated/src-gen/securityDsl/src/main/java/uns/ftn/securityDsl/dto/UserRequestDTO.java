@@ -1,5 +1,7 @@
 package uns.ftn.securityDsl.dto;
 
+import uns.ftn.securityDsl.model.enumeration.Role;
+
 import lombok.*;
 
 @Getter
@@ -17,6 +19,6 @@ public class UserRequestDTO {
 
 	private String password;
 
-    private String role;
+    private Role role;
 }
 

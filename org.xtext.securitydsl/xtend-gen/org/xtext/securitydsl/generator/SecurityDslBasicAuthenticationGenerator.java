@@ -14,12 +14,15 @@ import security_dsl.Controller;
 import security_dsl.EEndpointType;
 import security_dsl.EType;
 import security_dsl.Endpoint;
+import security_dsl.Role;
+import security_dsl.RoleInstance;
 import security_dsl.User;
 
 @SuppressWarnings("all")
 public class SecurityDslBasicAuthenticationGenerator {
   public SecurityDslBasicAuthenticationGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
     User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
+    Role role = Iterators.<Role>filter(resource.getAllContents(), Role.class).next();
     EList<Controller> _app_controllers = app.getApp_controllers();
     for (final Controller c : _app_controllers) {
       if ((c instanceof Authentication)) {
@@ -32,6 +35,8 @@ public class SecurityDslBasicAuthenticationGenerator {
     fsa.generateFile((srcDestination + "/config/PasswordEncoder.java"), this.generatePassEncoder(_plus));
     fsa.generateFile((srcDestination + "/service/IUserService.java"), this.generateIUserService(app.getPackageName()));
     fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImpl(app.getPackageName()));
+    fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImpl(app.getPackageName()));
+    fsa.generateFile((srcDestination + "/model/enumeration/Role.java"), this.generateRoleEnumeration(app.getPackageName(), role.getRole_instances()));
   }
 
   public String generateIUserService(final String packageName) {
@@ -136,7 +141,7 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_4.append("public User save(User newUser) {");
     _builder_4.newLine();
     _builder_4.append("    \t");
-    _builder_4.append("if (userRepository.findByUsername(newUser.getUsername()) != null) {");
+    _builder_4.append("if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {");
     _builder_4.newLine();
     _builder_4.append("    \t\t");
     _builder_4.append("throw new RuntimeException(\"User already exists\");");
@@ -443,37 +448,44 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_1.append(".dto;");
     _builder_1.newLine();
     _builder_1.newLine();
-    _builder_1.append("import lombok.*;");
-    _builder_1.newLine();
-    _builder_1.newLine();
-    _builder_1.append("@Getter");
-    _builder_1.newLine();
-    _builder_1.append("@Setter");
-    _builder_1.newLine();
-    _builder_1.append("@ToString");
-    _builder_1.newLine();
-    _builder_1.append("@AllArgsConstructor");
-    _builder_1.newLine();
-    _builder_1.append("@NoArgsConstructor");
-    _builder_1.newLine();
-    _builder_1.append("public class UserRequestDTO {");
-    _builder_1.newLine();
-    _builder_1.newLine();
+    _builder_1.append("import ");
     String _plus_1 = (_plus + _builder_1);
-    String _generateAttributes = this.generateAttributes(user.getModel_attributes());
-    String _plus_2 = (_plus_1 + _generateAttributes);
+    String _plus_2 = (_plus_1 + packageName);
     StringConcatenation _builder_2 = new StringConcatenation();
-    _builder_2.append("\t");
-    _builder_2.append("private String password;");
+    _builder_2.append(".model.enumeration.Role;");
     _builder_2.newLine();
     _builder_2.newLine();
-    _builder_2.append("    ");
-    _builder_2.append("private String role;");
-    _builder_2.newLine();
-    _builder_2.append("}");
+    _builder_2.append("import lombok.*;");
     _builder_2.newLine();
     _builder_2.newLine();
-    String content = (_plus_2 + _builder_2);
+    _builder_2.append("@Getter");
+    _builder_2.newLine();
+    _builder_2.append("@Setter");
+    _builder_2.newLine();
+    _builder_2.append("@ToString");
+    _builder_2.newLine();
+    _builder_2.append("@AllArgsConstructor");
+    _builder_2.newLine();
+    _builder_2.append("@NoArgsConstructor");
+    _builder_2.newLine();
+    _builder_2.append("public class UserRequestDTO {");
+    _builder_2.newLine();
+    _builder_2.newLine();
+    String _plus_3 = (_plus_2 + _builder_2);
+    String _generateAttributes = this.generateAttributes(user.getModel_attributes());
+    String _plus_4 = (_plus_3 + _generateAttributes);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("\t");
+    _builder_3.append("private String password;");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("    ");
+    _builder_3.append("private Role role;");
+    _builder_3.newLine();
+    _builder_3.append("}");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    String content = (_plus_4 + _builder_3);
     return content;
   }
 
@@ -502,6 +514,62 @@ public class SecurityDslBasicAuthenticationGenerator {
         content = (_content + _plus_3);
       }
     }
+    return content;
+  }
+
+  public String generateRoleEnumeration(final String packageName, final List<RoleInstance> roleInstances) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _plus = (_builder.toString() + packageName);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append(".model.enumeration;");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("public enum Role {");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    String content = (_plus + _builder_1);
+    for (int i = 0; (i < roleInstances.size()); i++) {
+      {
+        String _content = content;
+        String _upperCase = roleInstances.get(i).getName().toUpperCase();
+        String _plus_1 = ("    " + _upperCase);
+        content = (_content + _plus_1);
+        int _size = roleInstances.size();
+        int _minus = (_size - 1);
+        boolean _notEquals = (i != _minus);
+        if (_notEquals) {
+          String _content_1 = content;
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append(",");
+          _builder_2.newLine();
+          content = (_content_1 + _builder_2);
+        }
+      }
+    }
+    int _size = roleInstances.size();
+    boolean _notEquals = (_size != 0);
+    if (_notEquals) {
+      String _content = content;
+      StringConcatenation _builder_2 = new StringConcatenation();
+      _builder_2.append(";");
+      _builder_2.newLine();
+      content = (_content + _builder_2);
+    }
+    String _content_1 = content;
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append("    ");
+    _builder_3.append("public String getAuthority() {");
+    _builder_3.newLine();
+    _builder_3.append("    \t");
+    _builder_3.append("return this.name();");
+    _builder_3.newLine();
+    _builder_3.append("    ");
+    _builder_3.append("}");
+    _builder_3.newLine();
+    _builder_3.append("}");
+    _builder_3.newLine();
+    content = (_content_1 + _builder_3);
     return content;
   }
 }

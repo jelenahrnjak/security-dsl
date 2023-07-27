@@ -81,7 +81,7 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; select(a | a.identifier) -&gt; size() = 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; size() &gt; 0 implies self.model_attributes -&gt; select(a | a.identifier) -&gt; size() = 1'"
 	 * @generated
 	 */
 	boolean onlyOneIdentifier(DiagnosticChain diagnostics, Map<Object, Object> context);

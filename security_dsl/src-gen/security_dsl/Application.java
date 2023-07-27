@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getApplication()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='validPort'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleCantHaveAdditionalAttributes'"
  * @generated
  */
 public interface Application extends EObject {
@@ -308,7 +308,7 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt;  isUnique(m | m.tableName.toLower())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt; select(m | m.tableName &lt;&gt; null) -&gt; isUnique(m | m.tableName.toLower())'"
 	 * @generated
 	 */
 	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -352,6 +352,14 @@ public interface Application extends EObject {
 	 * @generated
 	 */
 	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.model_attributes -&gt; size() = 0)'"
+	 * @generated
+	 */
+	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

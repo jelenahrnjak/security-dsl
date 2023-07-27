@@ -51,7 +51,7 @@ class SecurityDslModelRepoGenerator  {
 		public interface UserRepository extends JpaRepository<User, ''' + getIdentifier(user.model_attributes).type + '''
 		> {
 			
-		    User findBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getCredential(user.model_attributes).name + ''');
+		    Optional<User> findBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getCredential(user.model_attributes).name + ''');
 }
 				'''
 				return content;
@@ -83,6 +83,18 @@ class SecurityDslModelRepoGenerator  {
 		package ''' + appMainPackage+ '''
 		.model;
 		
+		'''
+		
+		if(security instanceof BasicAuthentication){
+			userContent +=  '''
+		import ''' + appMainPackage+ '''
+		.model.enumeration.Role;
+		
+		'''
+		}
+			
+		
+		userContent += '''
 		import java.sql.Timestamp;
 		import java.util.ArrayList;
 		import java.util.Collection;
@@ -91,6 +103,8 @@ class SecurityDslModelRepoGenerator  {
 		
 		import javax.persistence.Column;
 		import javax.persistence.Entity;
+		import javax.persistence.EnumType;
+		import javax.persistence.Enumerated;
 		import javax.persistence.FetchType;
 		import javax.persistence.GeneratedValue;
 		import javax.persistence.GenerationType;
@@ -176,8 +190,9 @@ public class User implements UserDetails {
 }
 		if (security instanceof BasicAuthentication){
 			userContent += '''    private String password;
-
-    private String role;
+			
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
 	@JsonIgnore
 	@Override
@@ -207,7 +222,7 @@ public class User implements UserDetails {
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role));
+		authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
 		return authorities;
 	}
 	

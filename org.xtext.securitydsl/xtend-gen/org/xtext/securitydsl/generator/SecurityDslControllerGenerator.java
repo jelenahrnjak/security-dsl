@@ -6,9 +6,11 @@ import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import security_dsl.Application;
 import security_dsl.Authentication;
+import security_dsl.BasicAuthentication;
 import security_dsl.Controller;
 import security_dsl.EEndpointType;
 import security_dsl.Endpoint;
+import security_dsl.Security;
 
 @SuppressWarnings("all")
 public class SecurityDslControllerGenerator {
@@ -16,12 +18,12 @@ public class SecurityDslControllerGenerator {
     EList<Controller> _app_controllers = app.getApp_controllers();
     for (final Controller c : _app_controllers) {
       if ((c instanceof Authentication)) {
-        fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), ((Authentication)c)));
+        fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), ((Authentication)c), app.getApp_security()));
       }
     }
   }
 
-  public String generateAuthController(final String packageName, final Authentication authController) {
+  public String generateAuthController(final String packageName, final Authentication authController, final Security security) {
     String regEndpoint = "";
     String loginEndpoint = "";
     String logoutEndpoint = "";
@@ -31,26 +33,17 @@ public class SecurityDslControllerGenerator {
         EEndpointType _type = e.getType();
         boolean _equals = Objects.equal(_type, EEndpointType.REGISTRATION);
         if (_equals) {
-          String _path = authController.getPath();
-          String _url = e.getUrl();
-          String _plus = (_path + _url);
-          regEndpoint = _plus;
+          regEndpoint = e.getUrl();
         }
         EEndpointType _type_1 = e.getType();
         boolean _equals_1 = Objects.equal(_type_1, EEndpointType.LOGIN);
         if (_equals_1) {
-          String _path_1 = authController.getPath();
-          String _url_1 = e.getUrl();
-          String _plus_1 = (_path_1 + _url_1);
-          loginEndpoint = _plus_1;
+          loginEndpoint = e.getUrl();
         }
         EEndpointType _type_2 = e.getType();
         boolean _equals_2 = Objects.equal(_type_2, EEndpointType.LOGOUT);
         if (_equals_2) {
-          String _path_2 = authController.getPath();
-          String _url_2 = e.getUrl();
-          String _plus_2 = (_path_2 + _url_2);
-          logoutEndpoint = _plus_2;
+          logoutEndpoint = e.getUrl();
         }
       }
     }
@@ -106,9 +99,6 @@ public class SecurityDslControllerGenerator {
     _builder_4.append("import org.springframework.web.bind.annotation.PostMapping;");
     _builder_4.newLine();
     _builder_4.newLine();
-    _builder_4.append("import java.util.List;");
-    _builder_4.newLine();
-    _builder_4.newLine();
     _builder_4.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
     _builder_4.newLine();
     _builder_4.append("@RequestMapping(value = \"");
@@ -116,13 +106,7 @@ public class SecurityDslControllerGenerator {
     String _path = authController.getPath();
     String _plus_8 = (_plus_7 + _path);
     StringConcatenation _builder_5 = new StringConcatenation();
-    _builder_5.append("\",");
-    _builder_5.newLine();
-    _builder_5.append("        ");
-    _builder_5.append("consumes = MediaType.APPLICATION_JSON_VALUE,");
-    _builder_5.newLine();
-    _builder_5.append("        ");
-    _builder_5.append("produces = MediaType.APPLICATION_JSON_VALUE)");
+    _builder_5.append("\")");
     _builder_5.newLine();
     _builder_5.append("@RestController");
     _builder_5.newLine();
@@ -132,85 +116,94 @@ public class SecurityDslControllerGenerator {
     _builder_5.append("    ");
     _builder_5.append("private final IUserService userService;");
     _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("@PostMapping(\"");
-    String _plus_9 = (_plus_8 + _builder_5);
-    String _plus_10 = (_plus_9 + regEndpoint);
-    StringConcatenation _builder_6 = new StringConcatenation();
-    _builder_6.append("\")");
-    _builder_6.newLine();
-    _builder_6.append("    ");
-    _builder_6.append("public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("User user = new User();");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("BeanUtils.copyProperties(request, user);");
-    _builder_6.newLine();
-    _builder_6.append("        ");
-    _builder_6.append("return ResponseEntity.ok(userService.save(user));");
-    _builder_6.newLine();
-    _builder_6.append("    ");
-    _builder_6.append("}");
-    _builder_6.newLine();
-    _builder_6.append("    ");
-    _builder_6.newLine();
-    _builder_6.append("\t");
-    _builder_6.append("@PostMapping(\"");
-    String _plus_11 = (_plus_10 + _builder_6);
-    String _plus_12 = (_plus_11 + loginEndpoint);
+    String content = (_plus_8 + _builder_5);
+    if ((security instanceof BasicAuthentication)) {
+      String _content = content;
+      StringConcatenation _builder_6 = new StringConcatenation();
+      _builder_6.append("    ");
+      _builder_6.append("private final AuthenticationManager  authenticationManager;");
+      content = (_content + _builder_6);
+    }
+    String _content_1 = content;
     StringConcatenation _builder_7 = new StringConcatenation();
-    _builder_7.append("\")");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("public ResponseEntity<User> login(@RequestBody UserRequestDTO request) {");
-    _builder_7.newLine();
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("Authentication authentication = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("authentication = authenticationManager.authenticate(authentication);");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("SecurityContextHolder.getContext().setAuthentication(authentication);");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("User user = (User) authentication.getPrincipal();");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("return ResponseEntity.ok(user);");
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("}");
-    _builder_7.newLine();
-    _builder_7.newLine();
-    _builder_7.append("\t");
-    _builder_7.append("@GetMapping(\"");
-    String _plus_13 = (_plus_12 + _builder_7);
-    String _plus_14 = (_plus_13 + logoutEndpoint);
+    _builder_7.append("    ");
+    _builder_7.append("@PostMapping(\"");
+    String _plus_9 = (_builder_7.toString() + regEndpoint);
     StringConcatenation _builder_8 = new StringConcatenation();
     _builder_8.append("\")");
     _builder_8.newLine();
-    _builder_8.append("\t");
-    _builder_8.append("public ResponseEntity<Void> logout() {");
+    _builder_8.append("    ");
+    _builder_8.append("public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {");
     _builder_8.newLine();
-    _builder_8.append("\t");
-    _builder_8.append("SecurityContextHolder.clearContext();");
+    _builder_8.append("        ");
+    _builder_8.append("User user = new User();");
     _builder_8.newLine();
-    _builder_8.append("\t");
-    _builder_8.append("return ResponseEntity.ok().build();");
+    _builder_8.append("        ");
+    _builder_8.append("BeanUtils.copyProperties(request, user);");
     _builder_8.newLine();
-    _builder_8.append("\t");
+    _builder_8.append("        ");
+    _builder_8.append("return ResponseEntity.ok(userService.save(user));");
+    _builder_8.newLine();
+    _builder_8.append("    ");
     _builder_8.append("}");
     _builder_8.newLine();
+    _builder_8.append("    ");
     _builder_8.newLine();
-    _builder_8.newLine();
-    _builder_8.append("}");
-    _builder_8.newLine();
-    String content = (_plus_14 + _builder_8);
+    _builder_8.append("\t");
+    _builder_8.append("@PostMapping(\"");
+    String _plus_10 = (_plus_9 + _builder_8);
+    String _plus_11 = (_plus_10 + loginEndpoint);
+    StringConcatenation _builder_9 = new StringConcatenation();
+    _builder_9.append("\")");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("public ResponseEntity<User> login(@RequestBody UserRequestDTO request) {");
+    _builder_9.newLine();
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("Authentication authentication = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("authentication = authenticationManager.authenticate(authentication);");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("SecurityContextHolder.getContext().setAuthentication(authentication);");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("User user = (User) authentication.getPrincipal();");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("return ResponseEntity.ok(user);");
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("}");
+    _builder_9.newLine();
+    _builder_9.newLine();
+    _builder_9.append("\t");
+    _builder_9.append("@GetMapping(\"");
+    String _plus_12 = (_plus_11 + _builder_9);
+    String _plus_13 = (_plus_12 + logoutEndpoint);
+    StringConcatenation _builder_10 = new StringConcatenation();
+    _builder_10.append("\")");
+    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("public ResponseEntity<Void> logout() {");
+    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("SecurityContextHolder.clearContext();");
+    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("return ResponseEntity.ok().build();");
+    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("}");
+    _builder_10.newLine();
+    _builder_10.newLine();
+    _builder_10.newLine();
+    _builder_10.append("}");
+    _builder_10.newLine();
+    String _plus_14 = (_plus_13 + _builder_10);
+    content = (_content_1 + _plus_14);
     return content;
   }
 }

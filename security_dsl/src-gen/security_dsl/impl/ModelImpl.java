@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
@@ -377,7 +378,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = self.model_attributes->select(a | a.identifier)
+			 *         result : Boolean[?] = self.model_attributes->size() > 0 implies
+			 *         self.model_attributes->select(a | a.identifier)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -396,27 +398,41 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 				final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
 				final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
 						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-				/*@Thrown*/ Accumulator accumulator = ValueUtil
-						.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-				Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-				/*@NonInvalid*/ OrderedSetValue select;
-				while (true) {
-					if (!ITERATOR_a.hasNext()) {
-						select = accumulator;
-						break;
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE
+						.evaluate(BOXED_model_attributes);
+				final /*@NonInvalid*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE
+						.evaluate(executor, size, Security_dslTables.INT_0).booleanValue();
+				final /*@NonInvalid*/ Boolean result;
+				if (!gt) {
+					result = ValueUtil.TRUE_VALUE;
+				} else {
+					/*@Thrown*/ Accumulator accumulator = ValueUtil
+							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					/*@NonInvalid*/ OrderedSetValue select;
+					while (true) {
+						if (!ITERATOR_a.hasNext()) {
+							select = accumulator;
+							break;
+						}
+						/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+						/**
+						 * a.identifier
+						 */
+						final /*@NonInvalid*/ boolean identifier = a.isIdentifier();
+						//
+						if (identifier) {
+							accumulator.add(a);
+						}
 					}
-					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-					/**
-					 * a.identifier
-					 */
-					final /*@NonInvalid*/ boolean identifier = a.isIdentifier();
-					//
-					if (identifier) {
-						accumulator.add(a);
+					final /*@NonInvalid*/ IntegerValue size_0 = CollectionSizeOperation.INSTANCE.evaluate(select);
+					final /*@NonInvalid*/ boolean eq = size_0.equals(Security_dslTables.INT_1);
+					if (eq) {
+						result = ValueUtil.TRUE_VALUE;
+					} else {
+						result = ValueUtil.FALSE_VALUE;
 					}
 				}
-				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
-				final /*@NonInvalid*/ boolean result = size.equals(Security_dslTables.INT_1);
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, result, Security_dslTables.INT_0)

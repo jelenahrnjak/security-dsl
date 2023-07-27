@@ -37,20 +37,8 @@ application:
               collumnName: "last_name"
           }
         ]
-        
+
       role:
-      	tableName: "roles"
-        attributes: [ 
-          {
-              identifier
-              name: "id"
-              type: Long 
-          },
-          {
-              name: "name"
-              type: String 
-          }
-        ]
         roles: ["admin", "user"]
         
         

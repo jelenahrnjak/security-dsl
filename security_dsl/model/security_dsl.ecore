@@ -11,10 +11,10 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes"/>
+      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueTableName" value="self.app_models ->  isUnique(m | m.tableName.toLower())"/>
+      <details key="uniqueTableName" value="self.app_models -> select(m | m.tableName &lt;> null) -> isUnique(m | m.tableName.toLower())"/>
       <details key="uniqueControllerName" value="self.app_controllers -> isUnique(c | c.name)"/>
       <details key="uniqueControllerPath" value=" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() &lt;> c.path.toLower())"/>
       <details key="controllerPath" value="self.app_controllers -> forAll(c | c.path.at(1) = '/')"/>
@@ -26,6 +26,7 @@
       <details key="roleCanHaveIdAndStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        (&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role | &#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;            or&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role |&#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;                    and&#xA;                    role.model_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;                )&#xA;        )"/>
       <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> exists(a | a.type = EType::_'String'))"/>
       <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() &lt;= 2)"/>
+      <details key="basicAuthNoRoleAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> size() = 0)"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
@@ -57,7 +58,7 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name)"/>
       <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.model_attributes -> exists(a | a.collumnName &lt;> null) implies self.model_attributes -> isUnique(a | a.collumnName)"/>
-      <details key="onlyOneIdentifier" value="self.model_attributes -> select(a | a.identifier) -> size() = 1"/>
+      <details key="onlyOneIdentifier" value="self.model_attributes -> size() > 0 implies self.model_attributes -> select(a | a.identifier) -> size() = 1"/>
       <details key="oneCredential" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;&#x9;&#x9;&#x9;self.model_attributes -> select(a | a.credential) -> size() = 1"/>
       <details key="hasUsernameAttribute" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;        &#x9;self.model_attributes -> exists(a | a.name = 'username' and a.credential = true)"/>
     </eAnnotations>

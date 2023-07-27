@@ -1579,8 +1579,8 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = self.app_models->isUnique(m |
-			 *           m.tableName.toLower())
+			 *         result : Boolean[1] = self.app_models->select(m | m.tableName <> null)
+			 *         ->isUnique(m | m.tableName.toLower())
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -1600,31 +1600,51 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 					final /*@NonInvalid*/ List<Model> app_models = this.getApp_models();
 					final /*@NonInvalid*/ OrderedSetValue BOXED_app_models = idResolver
 							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Model, app_models);
-					/*@Thrown*/ Accumulator accumulator = ValueUtil
-							.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Model);
+					/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator = ValueUtil
+							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Model);
 					Iterator<Object> ITERATOR_m = BOXED_app_models.iterator();
-					/*@Thrown*/ boolean result;
+					/*@NonInvalid*/ OrderedSetValue select;
 					while (true) {
 						if (!ITERATOR_m.hasNext()) {
-							result = true;
+							select = accumulator;
 							break;
 						}
 						/*@NonInvalid*/ Model m = (Model) ITERATOR_m.next();
 						/**
-						 * m.tableName.toLower()
+						 * m.tableName <> null
 						 */
 						final /*@NonInvalid*/ String tableName = m.getTableName();
-						if (tableName == null) {
+						final /*@NonInvalid*/ boolean ne = tableName != null;
+						//
+						if (ne) {
+							accumulator.add(m);
+						}
+					}
+					/*@Thrown*/ Accumulator accumulator_0 = ValueUtil
+							.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Model);
+					Iterator<Object> ITERATOR_m_0 = select.iterator();
+					/*@Thrown*/ boolean result;
+					while (true) {
+						if (!ITERATOR_m_0.hasNext()) {
+							result = true;
+							break;
+						}
+						/*@NonInvalid*/ Model m_0 = (Model) ITERATOR_m_0.next();
+						/**
+						 * m.tableName.toLower()
+						 */
+						final /*@NonInvalid*/ String tableName_0 = m_0.getTableName();
+						if (tableName_0 == null) {
 							throw new InvalidValueException(
 									"Null \'\'String\'\' rather than \'\'OclVoid\'\' value required");
 						}
-						final /*@Thrown*/ String toLower = StringToLowerCaseOperation.INSTANCE.evaluate(tableName);
+						final /*@Thrown*/ String toLower = StringToLowerCaseOperation.INSTANCE.evaluate(tableName_0);
 						//
-						if (accumulator.includes(toLower) == ValueUtil.TRUE_VALUE) {
+						if (accumulator_0.includes(toLower) == ValueUtil.TRUE_VALUE) {
 							result = false;
 							break; // Abort after second find
 						} else {
-							accumulator.add(toLower);
+							accumulator_0.add(toLower);
 						}
 					}
 					CAUGHT_result = result;
@@ -2432,6 +2452,144 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean basicAuthNoRoleAttributes(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Application::basicAuthNoRoleAttributes";
+		try {
+			/**
+			 *
+			 * inv basicAuthNoRoleAttributes:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : Boolean[?] = self.app_security.oclIsTypeOf(BasicAuthentication) implies
+			 *         self.app_models->select(m | m.oclIsTypeOf(Role))
+			 *         ->forAll(role | role.model_attributes->size() = 0)
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_0;
+			if (le) {
+				local_0 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_result;
+				try {
+					/*@Caught*/ Object CAUGHT_oclIsTypeOf;
+					try {
+						final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_BasicAuthentication_0 = idResolver
+								.getClass(Security_dslTables.CLSSid_BasicAuthentication, null);
+						final /*@NonInvalid*/ Security app_security = this.getApp_security();
+						final /*@Thrown*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
+								.evaluate(executor, app_security, TYP_security_dsl_c_c_BasicAuthentication_0)
+								.booleanValue();
+						CAUGHT_oclIsTypeOf = oclIsTypeOf;
+					} catch (Exception e) {
+						CAUGHT_oclIsTypeOf = ValueUtil.createInvalidValue(e);
+					}
+					final /*@Thrown*/ Boolean result;
+					if (CAUGHT_oclIsTypeOf == ValueUtil.FALSE_VALUE) {
+						result = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@NonInvalid*/ List<Model> app_models = this.getApp_models();
+						final /*@NonInvalid*/ OrderedSetValue BOXED_app_models = idResolver
+								.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Model, app_models);
+						/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator = ValueUtil
+								.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Model);
+						Iterator<Object> ITERATOR_m = BOXED_app_models.iterator();
+						/*@NonInvalid*/ OrderedSetValue select;
+						while (true) {
+							if (!ITERATOR_m.hasNext()) {
+								select = accumulator;
+								break;
+							}
+							/*@NonInvalid*/ Model m = (Model) ITERATOR_m.next();
+							/**
+							 * m.oclIsTypeOf(Role)
+							 */
+							final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
+									.getClass(Security_dslTables.CLSSid_Role, null);
+							final /*@NonInvalid*/ boolean oclIsTypeOf_0 = OclAnyOclIsTypeOfOperation.INSTANCE
+									.evaluate(executor, m, TYP_security_dsl_c_c_Role_0).booleanValue();
+							//
+							if (oclIsTypeOf_0) {
+								accumulator.add(m);
+							}
+						}
+						/*@Thrown*/ Object accumulator_0 = ValueUtil.TRUE_VALUE;
+						Iterator<Object> ITERATOR_role = select.iterator();
+						/*@NonInvalid*/ Boolean forAll;
+						while (true) {
+							if (!ITERATOR_role.hasNext()) {
+								if (accumulator_0 == ValueUtil.TRUE_VALUE) {
+									forAll = ValueUtil.TRUE_VALUE;
+								} else {
+									throw (InvalidValueException) accumulator_0;
+								}
+								break;
+							}
+							/*@NonInvalid*/ Model role = (Model) ITERATOR_role.next();
+							/**
+							 * role.model_attributes->size() = 0
+							 */
+							final /*@NonInvalid*/ List<Attribute> model_attributes = role.getModel_attributes();
+							final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
+									.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+							final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE
+									.evaluate(BOXED_model_attributes);
+							final /*@NonInvalid*/ boolean eq = size.equals(Security_dslTables.INT_0);
+							//
+							if (!eq) { // Normal unsuccessful body evaluation result
+								forAll = ValueUtil.FALSE_VALUE;
+								break; // Stop immediately
+							} else if (eq) { // Normal successful body evaluation result
+								; // Carry on
+							} else { // Impossible badly typed result
+								accumulator_0 = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
+							}
+						}
+						if (forAll == ValueUtil.TRUE_VALUE) {
+							result = ValueUtil.TRUE_VALUE;
+						} else {
+							if (CAUGHT_oclIsTypeOf instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_oclIsTypeOf;
+							}
+							if (forAll == null) {
+								result = null;
+							} else {
+								result = ValueUtil.FALSE_VALUE;
+							}
+						}
+					}
+					CAUGHT_result = result;
+				} catch (Exception e) {
+					CAUGHT_result = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
+						.booleanValue();
+				local_0 = logDiagnostic;
+			}
+			return local_0;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean validPort(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "Application::validPort";
 		try {
@@ -2709,35 +2867,38 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case Security_dslPackage.APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP:
-			return uniqueControllerName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP:
 			return controllerPath((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP:
-			return roleCantHaveAdditionalAttributes((DiagnosticChain) arguments.get(0),
-					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP:
-			return uniqueControllerPath((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueTableName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP:
 			return controllerNotNamedUserRole((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
+			return hasUsernameAttribute((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP:
+			return uniqueControllerPath((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP:
 			return hasUserAndRoleModelsForController((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP:
+			return hasDatabaseForModel((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP:
+			return uniqueControllerName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP:
+			return basicAuthNoRoleAttributes((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
 			return roleMustHaveStringAttribute((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-			return hasUsernameAttribute((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP:
+			return validPort((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
 			return roleCanHaveIdAndStringAttribute((DiagnosticChain) arguments.get(0),
 					(Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP:
-			return hasDatabaseForModel((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP:
-			return validPort((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP:
+			return roleCantHaveAdditionalAttributes((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

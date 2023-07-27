@@ -4,6 +4,8 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
 import security_dsl.Authentication
 import security_dsl.EEndpointType
+import security_dsl.Security
+import security_dsl.BasicAuthentication
 
 class SecurityDslControllerGenerator {
 	
@@ -11,23 +13,23 @@ class SecurityDslControllerGenerator {
 			
 			for (c : app.app_controllers) {
     			if(c instanceof Authentication){
-    			fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, c));
+    			fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, c, app.app_security));
     			}
     		}
 		}
 	
 	
 	
-	def generateAuthController(String packageName, Authentication authController){
+	def generateAuthController(String packageName, Authentication authController, Security security){
 			
 		var regEndpoint = ''
 		var loginEndpoint = ''
 		var logoutEndpoint = ''
 		
 		for (e : authController.controller_endpoints) {
-			if(e.type == EEndpointType::REGISTRATION) regEndpoint = authController.path + e.url
-			if(e.type == EEndpointType::LOGIN) loginEndpoint = authController.path + e.url
-			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = authController.path + e.url
+			if(e.type == EEndpointType::REGISTRATION) regEndpoint =  e.url
+			if(e.type == EEndpointType::LOGIN) loginEndpoint = e.url
+			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = e.url
 		}
 		
 	
@@ -55,19 +57,19 @@ class SecurityDslControllerGenerator {
 		import org.springframework.web.bind.annotation.GetMapping;
 		import org.springframework.web.bind.annotation.PostMapping;
 		
-		import java.util.List;
-		
 		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 		@RequestMapping(value = "''' + authController.path + '''
-		",
-		        consumes = MediaType.APPLICATION_JSON_VALUE,
-		        produces = MediaType.APPLICATION_JSON_VALUE)
+		")
 		@RestController
 		public class AuthController {
 		
 		    private final IUserService userService;
+		'''
+		if(security instanceof BasicAuthentication){
+			content += '''    private final AuthenticationManager  authenticationManager;'''
+		}
 		
-		    @PostMapping("''' + regEndpoint + '''
+		content += '''    @PostMapping("''' + regEndpoint + '''
 		")
 		    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
 		        User user = new User();
