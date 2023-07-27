@@ -39,31 +39,30 @@ application:
         ]
 
       role:
-        attributes: [ 
-          {
-              identifier
-              name: "id"
-              type: Long 
-          },
-          {
-              name: "name"
-              type: String 
-          }
-        ]
-        roles: ["admin", "user"]
-        
+//        attributes: [ 
+//          {
+//              identifier
+//              name: "id"
+//              type: Long 
+//          },
+//          {
+//              name: "name"
+//              type: String 
+//          }
+//        ]
+        roles: ["admin", client "user"]
         
     security: 
-    	//basicAuthentication
-      jwt:
-        header: 
-            signatureAlgorithm: "HS512" 
-        payload:
-            claims: [
-            	{REGISTERED, expirationTime: 1800000},
-            	{REGISTERED, audience: "AUDIENCE_WEB"},
-            	{REGISTERED , subject : username}
-            ]
+    	basicAuthentication
+//      jwt:
+//        header: 
+//            signatureAlgorithm: "HS512" 
+//        payload:
+//            claims: [
+//            	{REGISTERED, expirationTime: 1800000},
+//            	{REGISTERED, audience: "AUDIENCE_WEB"},
+//            	{REGISTERED , subject : username}
+//            ]
  
     controller:
       auth: 

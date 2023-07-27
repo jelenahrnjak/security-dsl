@@ -1,5 +1,7 @@
 package uns.ftn.securityDsl.model;
 
+import uns.ftn.securityDsl.model.enumeration.Role;
+
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -48,55 +50,53 @@ public class User implements UserDetails {
     @Column(name = "last_name")
     private String lastName;
 
-    @JsonIgnore
-    @Column(name = "password")
     private String password;
-
-    @Column(name = "enabled")
-    private boolean enabled;
-
-    @Column(name = "last_password_reset_date")
-    private Timestamp lastPasswordResetDate;
+			
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
-    
-    public void setPassword(String password) {
-        Timestamp now = new Timestamp(new Date().getTime());
-        this.setLastPasswordResetDate(now);
-        this.password = password;
-    }
+	@JsonIgnore
+	@Override
+	public boolean isEnabled() {
+		return true;
+	}
 
-    @JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
-    }
+	@JsonIgnore
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonLocked() {
+		return true;
+	}
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
+	@JsonIgnore
+	@Override
+	public boolean isAccountNonExpired() {
+		return true;
+	}
 
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
+	@JsonIgnore
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		Collection<GrantedAuthority> authorities = new ArrayList<>();
+		authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
+		return authorities;
+	}
+	
+	
+	@Override
+	public String getPassword() {
+		// TODO Auto-generated method stub
+		return password;
+	}
 
-    @JsonIgnore
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
+	@Override
+	public String getUsername() {
+		// TODO Auto-generated method stub
+		return username	;
+}
 }

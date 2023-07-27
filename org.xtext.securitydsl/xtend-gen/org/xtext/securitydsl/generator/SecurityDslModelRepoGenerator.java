@@ -152,7 +152,6 @@ public class SecurityDslModelRepoGenerator {
     _builder_1.append(".dto;");
     _builder_1.newLine();
     _builder_1.newLine();
-    _builder_1.newLine();
     _builder_1.append("import lombok.*;");
     _builder_1.newLine();
     _builder_1.newLine();
@@ -175,6 +174,10 @@ public class SecurityDslModelRepoGenerator {
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append("    ");
     _builder_2.append("private String password;");
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.append("    ");
+    _builder_2.append("private String role;");
     _builder_2.newLine();
     _builder_2.newLine();
     _builder_2.append("}");

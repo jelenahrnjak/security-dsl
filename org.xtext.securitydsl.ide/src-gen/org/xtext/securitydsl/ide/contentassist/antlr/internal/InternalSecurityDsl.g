@@ -3383,6 +3383,7 @@ rule__RoleInstance__Group__1
 	}
 :
 	rule__RoleInstance__Group__1__Impl
+	rule__RoleInstance__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3394,9 +3395,35 @@ rule__RoleInstance__Group__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRoleInstanceAccess().getNameAssignment_1()); }
-	(rule__RoleInstance__NameAssignment_1)
-	{ after(grammarAccess.getRoleInstanceAccess().getNameAssignment_1()); }
+	{ before(grammarAccess.getRoleInstanceAccess().getClientAssignment_1()); }
+	(rule__RoleInstance__ClientAssignment_1)?
+	{ after(grammarAccess.getRoleInstanceAccess().getClientAssignment_1()); }
+)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RoleInstance__Group__2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	rule__RoleInstance__Group__2__Impl
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RoleInstance__Group__2__Impl
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+(
+	{ before(grammarAccess.getRoleInstanceAccess().getNameAssignment_2()); }
+	(rule__RoleInstance__NameAssignment_2)
+	{ after(grammarAccess.getRoleInstanceAccess().getNameAssignment_2()); }
 )
 ;
 finally {
@@ -6088,15 +6115,34 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__RoleInstance__NameAssignment_1
+rule__RoleInstance__ClientAssignment_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_1_0()); }
+		{ before(grammarAccess.getRoleInstanceAccess().getClientClientKeyword_1_0()); }
+		(
+			{ before(grammarAccess.getRoleInstanceAccess().getClientClientKeyword_1_0()); }
+			'client'
+			{ after(grammarAccess.getRoleInstanceAccess().getClientClientKeyword_1_0()); }
+		)
+		{ after(grammarAccess.getRoleInstanceAccess().getClientClientKeyword_1_0()); }
+	)
+;
+finally {
+	restoreStackSize(stackSize);
+}
+
+rule__RoleInstance__NameAssignment_2
+	@init {
+		int stackSize = keepStackSize();
+	}
+:
+	(
+		{ before(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_2_0()); }
 		ruleEString
-		{ after(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_1_0()); }
+		{ after(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_2_0()); }
 	)
 ;
 finally {

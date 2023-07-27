@@ -84,12 +84,11 @@ class SecurityDslModelRepoGenerator  {
 		return content;
 	}
 	
-		def generateUserRequestDto(String packageName, User user){
+	def generateUserRequestDto(String packageName, User user){
 		
 		var content = '''
 		package ''' + packageName + '''
 		.dto;
-		
 		
 		import lombok.*;
 		
@@ -102,6 +101,8 @@ class SecurityDslModelRepoGenerator  {
 
 		''' + generateAttributesForDto(user.model_attributes) + 
 		'''    private String password;
+
+    private String role;
 
 }
 		'''	

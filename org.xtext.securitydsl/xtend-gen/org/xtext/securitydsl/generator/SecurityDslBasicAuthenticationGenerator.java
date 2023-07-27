@@ -1,11 +1,13 @@
 package org.xtext.securitydsl.generator;
 
 import com.google.common.collect.Iterators;
+import java.util.ArrayList;
 import java.util.List;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
+import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
 import security_dsl.Application;
 import security_dsl.Attribute;
@@ -29,19 +31,9 @@ public class SecurityDslBasicAuthenticationGenerator {
     }
     fsa.generateFile((srcDestination + "/config/PasswordEncoder.java"), this.generatePassEncoder(app.getPackageName()));
     fsa.generateFile((srcDestination + "/service/IUserService.java"), this.generateIUserService(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImpl(app.getPackageName(), credentialNameUser, this.getClientRoleInstance(role.getRole_instances())));
+    fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImpl(app.getPackageName(), credentialNameUser, this.getNotClienRoles(role.getRole_instances())));
     fsa.generateFile((srcDestination + "/model/enumeration/Role.java"), this.generateRoleEnumeration(app.getPackageName(), role.getRole_instances()));
     fsa.generateFile((srcDestination + "/exception/ResourceConflictException.java"), this.generateException(app.getPackageName()));
-  }
-
-  public String getClientRoleInstance(final List<RoleInstance> instances) {
-    for (final RoleInstance r : instances) {
-      boolean _isClient = r.isClient();
-      if (_isClient) {
-        return r.getName();
-      }
-    }
-    return null;
   }
 
   public String generateException(final String appMainPackage) {
@@ -115,24 +107,30 @@ public class SecurityDslBasicAuthenticationGenerator {
     StringConcatenation _builder_2 = new StringConcatenation();
     _builder_2.append(".model.User;");
     _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("import java.util.List;");
-    _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("public interface IUserService {");
-    _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("\t");
-    _builder_2.append("User save(User user);");
-    _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("\t");
-    _builder_2.append("List<User> findAll();");
-    _builder_2.newLine();
-    _builder_2.newLine();
-    _builder_2.append("}");
-    _builder_2.newLine();
-    String content = (_plus_2 + _builder_2);
+    _builder_2.append("import ");
+    String _plus_3 = (_plus_2 + _builder_2);
+    String _plus_4 = (_plus_3 + packageName);
+    StringConcatenation _builder_3 = new StringConcatenation();
+    _builder_3.append(".dto.UserRequestDTO;");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("import java.util.List;");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("public interface IUserService {");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("\t");
+    _builder_3.append("User save(UserRequestDTO request);");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("\t");
+    _builder_3.append("List<User> findAll();");
+    _builder_3.newLine();
+    _builder_3.newLine();
+    _builder_3.append("}");
+    _builder_3.newLine();
+    String content = (_plus_4 + _builder_3);
     return content;
   }
 
@@ -146,7 +144,7 @@ public class SecurityDslBasicAuthenticationGenerator {
     return null;
   }
 
-  public String generateUserServiceImpl(final String packageName, final String credentialName, final String clientRole) {
+  public String generateUserServiceImpl(final String packageName, final String credentialName, final List<RoleInstance> notClientRoles) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _plus = (_builder.toString() + packageName);
@@ -178,79 +176,101 @@ public class SecurityDslBasicAuthenticationGenerator {
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append(".model.enumeration.Role;");
     _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("import lombok.RequiredArgsConstructor;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.beans.factory.annotation.Autowired;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.security.core.userdetails.UserDetails;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.security.core.userdetails.UserDetailsService;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.security.core.userdetails.UsernameNotFoundException;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;");
-    _builder_5.newLine();
-    _builder_5.append("import org.springframework.stereotype.Service;");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("import java.util.List;");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
-    _builder_5.newLine();
-    _builder_5.append("@Service");
-    _builder_5.newLine();
-    _builder_5.append("public class UserServiceImpl implements UserDetailsService, IUserService {");
-    _builder_5.newLine();
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("private final UserRepository userRepository;");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("private final BCryptPasswordEncoder bCryptPasswordEncoder;");
-    _builder_5.newLine();
-    _builder_5.append("\t");
-    _builder_5.newLine();
-    _builder_5.append("\t");
-    _builder_5.append("@Override");
-    _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("public User save(User newUser) {");
-    _builder_5.newLine();
-    _builder_5.append("    \t");
-    _builder_5.append("if (userRepository.findBy");
+    _builder_5.append("import ");
     String _plus_9 = (_plus_8 + _builder_5);
-    String _firstUpper = StringExtensions.toFirstUpper(credentialName);
-    String _plus_10 = (_plus_9 + _firstUpper);
+    String _plus_10 = (_plus_9 + packageName);
     StringConcatenation _builder_6 = new StringConcatenation();
-    _builder_6.append("(newUser.get");
+    _builder_6.append(".dto.UserRequestDTO;");
+    _builder_6.newLine();
+    _builder_6.newLine();
+    _builder_6.append("import lombok.RequiredArgsConstructor;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.beans.BeanUtils;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.beans.factory.annotation.Autowired;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.security.core.userdetails.UserDetails;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.security.core.userdetails.UserDetailsService;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.security.core.userdetails.UsernameNotFoundException;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;");
+    _builder_6.newLine();
+    _builder_6.append("import org.springframework.stereotype.Service;");
+    _builder_6.newLine();
+    _builder_6.newLine();
+    _builder_6.append("import java.util.List;");
+    _builder_6.newLine();
+    _builder_6.newLine();
+    _builder_6.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
+    _builder_6.newLine();
+    _builder_6.append("@Service");
+    _builder_6.newLine();
+    _builder_6.append("public class UserServiceImpl implements UserDetailsService, IUserService {");
+    _builder_6.newLine();
+    _builder_6.newLine();
+    _builder_6.append("    ");
+    _builder_6.append("private final UserRepository userRepository;");
+    _builder_6.newLine();
+    _builder_6.append("    ");
+    _builder_6.append("private final BCryptPasswordEncoder bCryptPasswordEncoder;");
+    _builder_6.newLine();
+    _builder_6.append("\t");
+    _builder_6.newLine();
+    _builder_6.append("\t");
+    _builder_6.append("@Override");
+    _builder_6.newLine();
+    _builder_6.append("    ");
+    _builder_6.append("public User save(UserRequestDTO request) {");
+    _builder_6.newLine();
+    _builder_6.append("    \t");
+    _builder_6.append("User newUser = new User();");
+    _builder_6.newLine();
+    _builder_6.append("    \t");
+    _builder_6.append("BeanUtils.copyProperties(request, newUser);");
+    _builder_6.newLine();
+    _builder_6.append("    \t");
+    _builder_6.append("newUser.setRole(Role.valueOf(request.getRole()));");
+    _builder_6.newLine();
+    _builder_6.append("    \t");
+    _builder_6.append("if (userRepository.findBy");
     String _plus_11 = (_plus_10 + _builder_6);
-    String _firstUpper_1 = StringExtensions.toFirstUpper(credentialName);
-    String _plus_12 = (_plus_11 + _firstUpper_1);
+    String _firstUpper = StringExtensions.toFirstUpper(credentialName);
+    String _plus_12 = (_plus_11 + _firstUpper);
     StringConcatenation _builder_7 = new StringConcatenation();
-    _builder_7.append("()).isPresent()) {");
-    _builder_7.newLine();
-    _builder_7.append("    \t\t");
-    _builder_7.append("throw new RuntimeException(\"User already exists\");");
-    _builder_7.newLine();
-    _builder_7.newLine();
-    _builder_7.append("    \t\t");
-    _builder_7.append("}");
-    _builder_7.newLine();
-    _builder_7.append("        ");
-    _builder_7.append("String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());");
-    _builder_7.newLine();
-    _builder_7.append("        ");
-    _builder_7.append("newUser.setPassword(encoderPassword);");
-    _builder_7.newLine();
-    _builder_7.append("        ");
-    _builder_7.append("newUser.setRole(Role.");
+    _builder_7.append("(newUser.get");
     String _plus_13 = (_plus_12 + _builder_7);
-    String _upperCase = clientRole.toUpperCase();
-    String _plus_14 = (_plus_13 + _upperCase);
+    String _firstUpper_1 = StringExtensions.toFirstUpper(credentialName);
+    String _plus_14 = (_plus_13 + _firstUpper_1);
     StringConcatenation _builder_8 = new StringConcatenation();
-    _builder_8.append(")");
+    _builder_8.append("()).isPresent()) {");
+    _builder_8.newLine();
+    _builder_8.append("    \t\t");
+    _builder_8.append("throw new RuntimeException(\"User already exists\");");
+    _builder_8.newLine();
+    _builder_8.newLine();
+    _builder_8.append("    \t\t");
+    _builder_8.append("}");
+    _builder_8.newLine();
+    _builder_8.append("    \t\t");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("if(!checkRoleForRegistration(newUser.getRole())) { ");
+    _builder_8.newLine();
+    _builder_8.append("\t\t\t");
+    _builder_8.append("throw new RuntimeException(\"Role not valid\");");
+    _builder_8.newLine();
+    _builder_8.append("\t\t");
+    _builder_8.append("}");
+    _builder_8.newLine();
+    _builder_8.append("    \t");
+    _builder_8.newLine();
+    _builder_8.append("        ");
+    _builder_8.append("String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());");
+    _builder_8.newLine();
+    _builder_8.append("        ");
+    _builder_8.append("newUser.setPassword(encoderPassword);");
     _builder_8.newLine();
     _builder_8.append("    \t");
     _builder_8.append("return userRepository.saveAndFlush(newUser);");
@@ -259,54 +279,125 @@ public class SecurityDslBasicAuthenticationGenerator {
     _builder_8.append("}");
     _builder_8.newLine();
     _builder_8.newLine();
-    _builder_8.append("    ");
-    _builder_8.append("@Override");
-    _builder_8.newLine();
-    _builder_8.append("    ");
-    _builder_8.append("public List<User> findAll() {");
-    _builder_8.newLine();
-    _builder_8.append("        ");
-    _builder_8.append("return userRepository.findAll();");
-    _builder_8.newLine();
     _builder_8.append("\t");
-    _builder_8.append("}");
+    _builder_8.append("private boolean checkRoleForRegistration(Role role) {");
     _builder_8.newLine();
+    _builder_8.append("\t\t");
     _builder_8.newLine();
-    _builder_8.append("\t");
-    _builder_8.append("@Override");
-    _builder_8.newLine();
-    _builder_8.append("\t");
-    _builder_8.append("public UserDetails loadUserByUsername(String ");
-    String _plus_15 = (_plus_14 + _builder_8);
-    String _plus_16 = (_plus_15 + credentialName);
-    StringConcatenation _builder_9 = new StringConcatenation();
-    _builder_9.append(") throws UsernameNotFoundException {");
-    _builder_9.newLine();
-    _builder_9.append("\t\t");
-    _builder_9.append("return userRepository.findBy");
-    String _plus_17 = (_plus_16 + _builder_9);
-    String _firstUpper_2 = StringExtensions.toFirstUpper(credentialName);
-    String _plus_18 = (_plus_17 + _firstUpper_2);
-    StringConcatenation _builder_10 = new StringConcatenation();
-    _builder_10.append("(");
-    String _plus_19 = (_plus_18 + _builder_10);
-    String _plus_20 = (_plus_19 + credentialName);
+    String content = (_plus_14 + _builder_8);
+    int _size = notClientRoles.size();
+    boolean _greaterThan = (_size > 0);
+    if (_greaterThan) {
+      String _content = content;
+      StringConcatenation _builder_9 = new StringConcatenation();
+      _builder_9.append("        ");
+      _builder_9.append("if(");
+      content = (_content + _builder_9);
+      for (int i = 0; (i < notClientRoles.size()); i++) {
+        {
+          String _content_1 = content;
+          StringConcatenation _builder_10 = new StringConcatenation();
+          _builder_10.append("role.equals(Role.");
+          String _upperCase = notClientRoles.get(i).getName().toUpperCase();
+          String _plus_15 = (_builder_10.toString() + _upperCase);
+          StringConcatenation _builder_11 = new StringConcatenation();
+          _builder_11.append(")");
+          String _plus_16 = (_plus_15 + _builder_11);
+          content = (_content_1 + _plus_16);
+          int _size_1 = notClientRoles.size();
+          int _minus = (_size_1 - 1);
+          boolean _equals = (i == _minus);
+          if (_equals) {
+            String _content_2 = content;
+            content = (_content_2 + ") {");
+          } else {
+            String _content_3 = content;
+            content = (_content_3 + " or ");
+          }
+        }
+      }
+      String _content_1 = content;
+      StringConcatenation _builder_10 = new StringConcatenation();
+      _builder_10.append("        ");
+      _builder_10.append("return false;");
+      _builder_10.newLine();
+      _builder_10.newLine();
+      _builder_10.append("    ");
+      _builder_10.append("}");
+      _builder_10.newLine();
+      _builder_10.newLine();
+      content = (_content_1 + _builder_10);
+    }
+    String _content_2 = content;
     StringConcatenation _builder_11 = new StringConcatenation();
-    _builder_11.append(")");
+    _builder_11.append("    \t");
+    _builder_11.append("return true;");
+    _builder_11.newLine();
+    _builder_11.append("    ");
+    _builder_11.append("}");
     _builder_11.newLine();
     _builder_11.append("\t\t\t");
-    _builder_11.append(".orElseThrow(() ->");
     _builder_11.newLine();
-    _builder_11.append("\t\t\t\t");
-    _builder_11.append("new UsernameNotFoundException(\"User Not Found\"));");
+    _builder_11.append("    ");
+    _builder_11.append("@Override");
+    _builder_11.newLine();
+    _builder_11.append("    ");
+    _builder_11.append("public List<User> findAll() {");
+    _builder_11.newLine();
+    _builder_11.append("        ");
+    _builder_11.append("return userRepository.findAll();");
     _builder_11.newLine();
     _builder_11.append("\t");
     _builder_11.append("}");
     _builder_11.newLine();
-    _builder_11.append("}");
     _builder_11.newLine();
-    String content = (_plus_20 + _builder_11);
+    _builder_11.append("\t");
+    _builder_11.append("@Override");
+    _builder_11.newLine();
+    _builder_11.append("\t");
+    _builder_11.append("public UserDetails loadUserByUsername(String ");
+    String _plus_15 = (_builder_11.toString() + credentialName);
+    StringConcatenation _builder_12 = new StringConcatenation();
+    _builder_12.append(") throws UsernameNotFoundException {");
+    _builder_12.newLine();
+    _builder_12.append("\t\t");
+    _builder_12.append("return userRepository.findBy");
+    String _plus_16 = (_plus_15 + _builder_12);
+    String _firstUpper_2 = StringExtensions.toFirstUpper(credentialName);
+    String _plus_17 = (_plus_16 + _firstUpper_2);
+    StringConcatenation _builder_13 = new StringConcatenation();
+    _builder_13.append("(");
+    String _plus_18 = (_plus_17 + _builder_13);
+    String _plus_19 = (_plus_18 + credentialName);
+    StringConcatenation _builder_14 = new StringConcatenation();
+    _builder_14.append(")");
+    _builder_14.newLine();
+    _builder_14.append("\t\t\t");
+    _builder_14.append(".orElseThrow(() ->");
+    _builder_14.newLine();
+    _builder_14.append("\t\t\t\t");
+    _builder_14.append("new UsernameNotFoundException(\"User Not Found\"));");
+    _builder_14.newLine();
+    _builder_14.append("\t");
+    _builder_14.append("}");
+    _builder_14.newLine();
+    _builder_14.append("}");
+    _builder_14.newLine();
+    String _plus_20 = (_plus_19 + _builder_14);
+    content = (_content_2 + _plus_20);
     return content;
+  }
+
+  public ArrayList<RoleInstance> getNotClienRoles(final List<RoleInstance> instances) {
+    ArrayList<RoleInstance> notClients = CollectionLiterals.<RoleInstance>newArrayList();
+    for (final RoleInstance ri : instances) {
+      boolean _isClient = ri.isClient();
+      boolean _not = (!_isClient);
+      if (_not) {
+        notClients.add(ri);
+      }
+    }
+    return notClients;
   }
 
   public String generateApplicationSecurityConfig(final String packageName, final Authentication authController) {

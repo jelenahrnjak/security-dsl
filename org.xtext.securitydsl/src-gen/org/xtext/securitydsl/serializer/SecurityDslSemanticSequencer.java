@@ -272,17 +272,11 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     RoleInstance returns RoleInstance
 	 *
 	 * Constraint:
-	 *     name=EString
+	 *     (client?='client'? name=EString)
 	 * </pre>
 	 */
 	protected void sequence_RoleInstance(ISerializationContext context, RoleInstance semanticObject) {
-		if (errorAcceptor != null) {
-			if (transientValues.isValueTransient(semanticObject, Security_dslPackage.Literals.ROLE_INSTANCE__NAME) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, Security_dslPackage.Literals.ROLE_INSTANCE__NAME));
-		}
-		SequenceFeeder feeder = createSequencerFeeder(context, semanticObject);
-		feeder.accept(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_1_0(), semanticObject.getName());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

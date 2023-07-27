@@ -1053,10 +1053,24 @@ ruleRoleInstance returns [EObject current=null]
 		)
 		(
 			(
+				lv_client_1_0='client'
 				{
-					newCompositeNode(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_1_0());
+					newLeafNode(lv_client_1_0, grammarAccess.getRoleInstanceAccess().getClientClientKeyword_1_0());
 				}
-				lv_name_1_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElement(grammarAccess.getRoleInstanceRule());
+					}
+					setWithLastConsumed($current, "client", lv_client_1_0 != null, "client");
+				}
+			)
+		)?
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getRoleInstanceAccess().getNameEStringParserRuleCall_2_0());
+				}
+				lv_name_2_0=ruleEString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getRoleInstanceRule());
@@ -1064,7 +1078,7 @@ ruleRoleInstance returns [EObject current=null]
 					set(
 						$current,
 						"name",
-						lv_name_1_0,
+						lv_name_2_0,
 						"org.xtext.securitydsl.SecurityDsl.EString");
 					afterParserOrEnumRuleCall();
 				}

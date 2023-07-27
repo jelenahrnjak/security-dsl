@@ -5,6 +5,7 @@ import security_dsl.Application
 import security_dsl.EDatabaseType
 import security_dsl.Database
 import security_dsl.BasicAuthentication
+import security_dsl.JWT
 
 class SecurityDslResourcesGenerator {
 
@@ -88,7 +89,15 @@ class SecurityDslResourcesGenerator {
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-starter-security</artifactId>
 			</dependency>
-			'''
+		'''
+	}else if(app.app_security instanceof JWT){
+		
+		securityDependency += '''			<dependency>
+				<groupId>io.jsonwebtoken</groupId>
+				<artifactId>jjwt</artifactId>
+				<version>0.6.0</version>
+			</dependency>
+		'''
 	}
 	
 	

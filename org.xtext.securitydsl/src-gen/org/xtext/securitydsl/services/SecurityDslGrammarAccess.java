@@ -751,26 +751,34 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.RoleInstance");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Action cRoleInstanceAction_0 = (Action)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameEStringParserRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
+		private final Assignment cClientAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final Keyword cClientClientKeyword_1_0 = (Keyword)cClientAssignment_1.eContents().get(0);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		
 		//RoleInstance returns RoleInstance:
 		//    {RoleInstance}
-		//     name=EString;
+		//    (client?='client')? name=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{RoleInstance}
-		// name=EString
+		//(client?='client')? name=EString
 		public Group getGroup() { return cGroup; }
 		
 		//{RoleInstance}
 		public Action getRoleInstanceAction_0() { return cRoleInstanceAction_0; }
 		
+		//(client?='client')?
+		public Assignment getClientAssignment_1() { return cClientAssignment_1; }
+		
+		//'client'
+		public Keyword getClientClientKeyword_1_0() { return cClientClientKeyword_1_0; }
+		
 		//name=EString
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
 		//EString
-		public RuleCall getNameEStringParserRuleCall_1_0() { return cNameEStringParserRuleCall_1_0; }
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 	}
 	public class EndpointElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Endpoint");
@@ -1844,7 +1852,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	//RoleInstance returns RoleInstance:
 	//    {RoleInstance}
-	//     name=EString;
+	//    (client?='client')? name=EString;
 	public RoleInstanceElements getRoleInstanceAccess() {
 		return pRoleInstance;
 	}

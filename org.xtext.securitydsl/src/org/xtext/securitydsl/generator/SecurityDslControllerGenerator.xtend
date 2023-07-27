@@ -54,13 +54,14 @@ class SecurityDslControllerGenerator {
 		.controller;
 		
 		import ''' + packageName + '''
-		.dto.UserRequestDTO;
-		import ''' + packageName + '''
 		.model.User;
 		import ''' + packageName + '''
+		.dto.UserRequestDTO;
+		import ''' + packageName + '''
 		.service.IUserService;
+		'''
+		content += '''
 		import lombok.RequiredArgsConstructor;
-		import org.springframework.beans.BeanUtils;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.Authentication;
 		import org.springframework.http.ResponseEntity;
@@ -88,21 +89,19 @@ class SecurityDslControllerGenerator {
 		content += '''    @PostMapping("''' + regEndpoint + '''
 		")
 		    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
-		        User user = new User();
-		        BeanUtils.copyProperties(request, user);
-		        return ResponseEntity.ok(userService.save(user));
+		        return ResponseEntity.ok(userService.save(request));
 		    }
 		    
 			@PostMapping("''' + loginEndpoint + '''
 		")
 			public ResponseEntity<User> login(@RequestBody UserRequestDTO request) {
 		
-			Authentication authentication = new UsernamePasswordAuthenticationToken(request.get''' + credentialNameUser.toFirstUpper + '''
-		, request.getPassword());
-			authentication = authenticationManager.authenticate(authentication);
-			SecurityContextHolder.getContext().setAuthentication(authentication);
-			User user = (User) authentication.getPrincipal();
-			return ResponseEntity.ok(user);
+				Authentication authentication = new UsernamePasswordAuthenticationToken(request.get''' + credentialNameUser.toFirstUpper + '''
+			(), request.getPassword());
+				authentication = authenticationManager.authenticate(authentication);
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+				User user = (User) authentication.getPrincipal();
+				return ResponseEntity.ok(user);
 			}
 		
 			@GetMapping("''' + logoutEndpoint + '''

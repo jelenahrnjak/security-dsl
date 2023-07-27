@@ -10,6 +10,7 @@ import java.util.List
 import security_dsl.Attribute
 import security_dsl.Role
 import security_dsl.RoleInstance
+import java.util.ArrayList
 
 class SecurityDslBasicAuthenticationGenerator {
 
@@ -30,18 +31,11 @@ class SecurityDslBasicAuthenticationGenerator {
     	
 		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
 		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
-		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName, credentialNameUser, getClientRoleInstance(role.role_instances)));
+		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName, credentialNameUser, getNotClienRoles(role.role_instances)));
 		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
 		fsa.generateFile(srcDestination + '/exception/ResourceConflictException.java', generateException(app.packageName))
 		
 		
-	}
-	
-	def getClientRoleInstance(List<RoleInstance> instances){
-		
-		for (r : instances) {
-			if(r.client) return r.name
-		}
 	}
 	
 	def String generateException(String appMainPackage){
@@ -80,12 +74,14 @@ class SecurityDslBasicAuthenticationGenerator {
 		
 		import '''+ packageName + '''
 		.model.User;
+		import '''+ packageName + '''
+		.dto.UserRequestDTO;
 		
 		import java.util.List;
 		
 		public interface IUserService {
 		
-			User save(User user);
+			User save(UserRequestDTO request);
 
 			List<User> findAll();
 		
@@ -104,7 +100,7 @@ class SecurityDslBasicAuthenticationGenerator {
 		
 	}
 	
-	def generateUserServiceImpl(String packageName, String credentialName, String clientRole){
+	def generateUserServiceImpl(String packageName, String credentialName, List<RoleInstance> notClientRoles){
 		
 		var content = '''
 		package ''' + packageName + '''
@@ -118,8 +114,11 @@ class SecurityDslBasicAuthenticationGenerator {
 		.service.IUserService;
 		import ''' + packageName + '''
 		.model.enumeration.Role;
+		import ''' + packageName + '''
+		.dto.UserRequestDTO;
 		
 		import lombok.RequiredArgsConstructor;
+		import org.springframework.beans.BeanUtils;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.userdetails.UserDetails;
 		import org.springframework.security.core.userdetails.UserDetailsService;
@@ -137,40 +136,82 @@ class SecurityDslBasicAuthenticationGenerator {
 		    private final BCryptPasswordEncoder bCryptPasswordEncoder;
 			
 			@Override
-		    public User save(User newUser) {
+		    public User save(UserRequestDTO request) {
+		    	User newUser = new User();
+		    	BeanUtils.copyProperties(request, newUser);
+		    	newUser.setRole(Role.valueOf(request.getRole()));
 		    	if (userRepository.findBy''' + credentialName.toFirstUpper + '''
 		(newUser.get''' + credentialName.toFirstUpper + '''
 		()).isPresent()) {
 		    		throw new RuntimeException("User already exists");
 
 		    		}
+		    		
+				if(!checkRoleForRegistration(newUser.getRole())) { 
+					throw new RuntimeException("Role not valid");
+				}
+		    	
 		        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
 		        newUser.setPassword(encoderPassword);
-		        newUser.setRole(Role.''' + clientRole.toUpperCase + '''
-		)
 		    	return userRepository.saveAndFlush(newUser);
 		    }
 		
-		    @Override
-		    public List<User> findAll() {
-		        return userRepository.findAll();
+			private boolean checkRoleForRegistration(Role role) {
+				
+			'''
+			if(notClientRoles.size > 0){
+			content += '''        if('''
+			
+			for(var i = 0; i < notClientRoles.size ; i++){
+				content += '''role.equals(Role.''' + notClientRoles.get(i).name.toUpperCase + '''
+				)'''
+				
+				if(i == notClientRoles.size - 1){
+					content+= ') {'
+				}else{
+					content += ' or '
+				}
 			}
-		
-			@Override
-			public UserDetails loadUserByUsername(String '''+ credentialName + '''
-		 ) throws UsernameNotFoundException {
-		 		return userRepository.findBy''' + credentialName.toFirstUpper + '''
-		 (''' + credentialName +'''
-		 )
-		 			.orElseThrow(() ->
-		 				new UsernameNotFoundException("User Not Found"));
-		 	}
-		 }
-		'''
+			
+    	content += '''        return false;
+
+    }
+
+		'''}
+				
+		content += '''    	return true;
+    }
+			
+    @Override
+    public List<User> findAll() {
+        return userRepository.findAll();
+	}
+
+	@Override
+	public UserDetails loadUserByUsername(String '''+ credentialName + '''
+ ) throws UsernameNotFoundException {
+ 		return userRepository.findBy''' + credentialName.toFirstUpper + '''
+ (''' + credentialName +'''
+ )
+ 			.orElseThrow(() ->
+ 				new UsernameNotFoundException("User Not Found"));
+ 	}
+ }
+'''
 
 		return content
 	}
 
+	def getNotClienRoles(List<RoleInstance> instances){
+		
+		var ArrayList<RoleInstance> notClients = newArrayList
+		
+		for (ri : instances) {
+			if(!ri.client) notClients.add(ri)
+		}
+		
+		return notClients;
+	}
 	def generateApplicationSecurityConfig(String packageName, Authentication authController){
 		
 		var content = '''

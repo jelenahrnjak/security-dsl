@@ -34,6 +34,7 @@
 'basicAuthentication'=82
 'char'=18
 'claims:'=73
+'client'=85
 'collumnName:'=57
 'controller:'=47
 'credential'=84
@@ -153,3 +154,4 @@ T__81=81
 T__82=82
 T__83=83
 T__84=84
+T__85=85
