@@ -84,6 +84,7 @@
     <genClasses ecoreClass="security_dsl.ecore#//User"/>
     <genClasses ecoreClass="security_dsl.ecore#//RoleInstance">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RoleInstance/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RoleInstance/client"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Authentication"/>
     <genClasses ecoreClass="security_dsl.ecore#//Endpoint">

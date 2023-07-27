@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link security_dsl.RoleInstance#getName <em>Name</em>}</li>
+ *   <li>{@link security_dsl.RoleInstance#isClient <em>Client</em>}</li>
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getRoleInstance()
@@ -42,5 +43,28 @@ public interface RoleInstance extends EObject {
 	 * @generated
 	 */
 	void setName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Client</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Client</em>' attribute.
+	 * @see #setClient(boolean)
+	 * @see security_dsl.Security_dslPackage#getRoleInstance_Client()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isClient();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.RoleInstance#isClient <em>Client</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Client</em>' attribute.
+	 * @see #isClient()
+	 * @generated
+	 */
+	void setClient(boolean value);
 
 } // RoleInstance

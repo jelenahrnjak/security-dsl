@@ -23,7 +23,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public class AuthController {
 
     private final IUserService userService;
-    private final AuthenticationManager  authenticationManager;    @PostMapping("/registration")
+    @PostMapping("/registration")
     public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
         User user = new User();
         BeanUtils.copyProperties(request, user);

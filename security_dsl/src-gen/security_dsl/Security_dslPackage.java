@@ -879,13 +879,22 @@ public interface Security_dslPackage extends EPackage {
 	int ROLE_INSTANCE__NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Client</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE_INSTANCE__CLIENT = 1;
+
+	/**
 	 * The number of structural features of the '<em>Role Instance</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE_INSTANCE_FEATURE_COUNT = 1;
+	int ROLE_INSTANCE_FEATURE_COUNT = 2;
 
 	/**
 	 * The number of operations of the '<em>Role Instance</em>' class.
@@ -2040,6 +2049,17 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getRoleInstance_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.RoleInstance#isClient <em>Client</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client</em>'.
+	 * @see security_dsl.RoleInstance#isClient()
+	 * @see #getRoleInstance()
+	 * @generated
+	 */
+	EAttribute getRoleInstance_Client();
+
+	/**
 	 * Returns the meta object for class '{@link security_dsl.Authentication <em>Authentication</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2928,6 +2948,14 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ROLE_INSTANCE__NAME = eINSTANCE.getRoleInstance_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Client</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ROLE_INSTANCE__CLIENT = eINSTANCE.getRoleInstance_Client();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.AuthenticationImpl <em>Authentication</em>}' class.

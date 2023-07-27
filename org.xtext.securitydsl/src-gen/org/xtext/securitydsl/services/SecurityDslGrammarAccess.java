@@ -756,11 +756,11 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		
 		//RoleInstance returns RoleInstance:
 		//    {RoleInstance}
-		//    name=EString;
+		//     name=EString;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{RoleInstance}
-		//name=EString
+		// name=EString
 		public Group getGroup() { return cGroup; }
 		
 		//{RoleInstance}
@@ -1844,7 +1844,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	//RoleInstance returns RoleInstance:
 	//    {RoleInstance}
-	//    name=EString;
+	//     name=EString;
 	public RoleInstanceElements getRoleInstanceAccess() {
 		return pRoleInstance;
 	}

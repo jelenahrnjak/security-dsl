@@ -448,9 +448,10 @@ public class Security_dslTables extends AbstractTables
 
 		public static final ExecutorProperty _Role__role_instances = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE__ROLE_INSTANCES, Types._Role, 0);
 
-		public static final ExecutorProperty _RoleInstance__name = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE_INSTANCE__NAME, Types._RoleInstance, 0);
-		public static final ExecutorProperty _RoleInstance__Endpoint__role_authorities = new ExecutorPropertyWithImplementation("Endpoint", Types._RoleInstance, 1, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.ENDPOINT__ROLE_AUTHORITIES));
-		public static final ExecutorProperty _RoleInstance__Role__role_instances = new ExecutorPropertyWithImplementation("Role", Types._RoleInstance, 2, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.ROLE__ROLE_INSTANCES));
+		public static final ExecutorProperty _RoleInstance__client = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE_INSTANCE__CLIENT, Types._RoleInstance, 0);
+		public static final ExecutorProperty _RoleInstance__name = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE_INSTANCE__NAME, Types._RoleInstance, 1);
+		public static final ExecutorProperty _RoleInstance__Endpoint__role_authorities = new ExecutorPropertyWithImplementation("Endpoint", Types._RoleInstance, 2, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.ENDPOINT__ROLE_AUTHORITIES));
+		public static final ExecutorProperty _RoleInstance__Role__role_instances = new ExecutorPropertyWithImplementation("Role", Types._RoleInstance, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.ROLE__ROLE_INSTANCES));
 
 		public static final ExecutorProperty _Security__Application__app_security = new ExecutorPropertyWithImplementation("Application", Types._Security, 0, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.APPLICATION__APP_SECURITY));
 		static {
@@ -1583,6 +1584,7 @@ public class Security_dslTables extends AbstractTables
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _RoleInstance = {
+			Security_dslTables.Properties._RoleInstance__client,
 			Security_dslTables.Properties._RoleInstance__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents

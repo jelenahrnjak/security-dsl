@@ -84,7 +84,7 @@ EBoolean returns ecore::EBoolean:
 
 RoleInstance returns RoleInstance:
 	{RoleInstance}
-	name=EString;
+	(client?='client')? name=EString;
 
 Endpoint returns Endpoint:
 	'{'

@@ -34,6 +34,7 @@ public class SecurityDslModelRepoGenerator {
       }
       fsa.generateFile((srcDestination + "/model/User.java"), this.generateUserModel(app.getPackageName(), user, app.getApp_security()));
       fsa.generateFile((srcDestination + "/repository/UserRepository.java"), this.generateUserRepository(app.getPackageName(), user));
+      fsa.generateFile((srcDestination + "/dto/UserRequestDTO.java"), this.generateUserRequestDto(app.getPackageName(), user));
     }
     if ((roles.hasNext() && (app.getApp_security() instanceof JWT))) {
       Role role = roles.next();
@@ -48,6 +49,7 @@ public class SecurityDslModelRepoGenerator {
   }
 
   public String generateUserRepository(final String packageName, final User user) {
+    String credentialName = this.getCredential(user.getModel_attributes()).getName();
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _plus = (_builder.toString() + packageName);
@@ -79,13 +81,12 @@ public class SecurityDslModelRepoGenerator {
     _builder_3.append("    ");
     _builder_3.append("Optional<User> findBy");
     String _plus_5 = (_plus_4 + _builder_3);
-    String _firstUpper = StringExtensions.toFirstUpper(this.getCredential(user.getModel_attributes()).getName());
+    String _firstUpper = StringExtensions.toFirstUpper(credentialName);
     String _plus_6 = (_plus_5 + _firstUpper);
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("(String ");
     String _plus_7 = (_plus_6 + _builder_4);
-    String _name = this.getCredential(user.getModel_attributes()).getName();
-    String _plus_8 = (_plus_7 + _name);
+    String _plus_8 = (_plus_7 + credentialName);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append(");");
     _builder_5.newLine();
@@ -96,6 +97,7 @@ public class SecurityDslModelRepoGenerator {
   }
 
   public String generateRoleRepository(final String appMainPackage, final Role role) {
+    String stringAttribute = this.getStringAttributeForRole(role.getModel_attributes()).getName();
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _plus = (_builder.toString() + appMainPackage);
@@ -127,13 +129,12 @@ public class SecurityDslModelRepoGenerator {
     _builder_3.append("\t");
     _builder_3.append("List<Role> findBy");
     String _plus_5 = (_plus_4 + _builder_3);
-    String _firstUpper = StringExtensions.toFirstUpper(this.getStringAttributeForRole(role.getModel_attributes()).getName());
+    String _firstUpper = StringExtensions.toFirstUpper(stringAttribute);
     String _plus_6 = (_plus_5 + _firstUpper);
     StringConcatenation _builder_4 = new StringConcatenation();
     _builder_4.append("(String ");
     String _plus_7 = (_plus_6 + _builder_4);
-    String _name = this.getStringAttributeForRole(role.getModel_attributes()).getName();
-    String _plus_8 = (_plus_7 + _name);
+    String _plus_8 = (_plus_7 + stringAttribute);
     StringConcatenation _builder_5 = new StringConcatenation();
     _builder_5.append(");");
     _builder_5.newLine();
@@ -143,7 +144,75 @@ public class SecurityDslModelRepoGenerator {
     return content;
   }
 
+  public String generateUserRequestDto(final String packageName, final User user) {
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("package ");
+    String _plus = (_builder.toString() + packageName);
+    StringConcatenation _builder_1 = new StringConcatenation();
+    _builder_1.append(".dto;");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("import lombok.*;");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    _builder_1.append("@Getter");
+    _builder_1.newLine();
+    _builder_1.append("@Setter");
+    _builder_1.newLine();
+    _builder_1.append("@ToString");
+    _builder_1.newLine();
+    _builder_1.append("@AllArgsConstructor");
+    _builder_1.newLine();
+    _builder_1.append("@NoArgsConstructor");
+    _builder_1.newLine();
+    _builder_1.append("public class UserRequestDTO {");
+    _builder_1.newLine();
+    _builder_1.newLine();
+    String _plus_1 = (_plus + _builder_1);
+    String _generateAttributesForDto = this.generateAttributesForDto(user.getModel_attributes());
+    String _plus_2 = (_plus_1 + _generateAttributesForDto);
+    StringConcatenation _builder_2 = new StringConcatenation();
+    _builder_2.append("    ");
+    _builder_2.append("private String password;");
+    _builder_2.newLine();
+    _builder_2.newLine();
+    _builder_2.append("}");
+    _builder_2.newLine();
+    String content = (_plus_2 + _builder_2);
+    return content;
+  }
+
+  public String generateAttributesForDto(final List<Attribute> attributes) {
+    String content = "";
+    for (final Attribute a : attributes) {
+      boolean _isIdentifier = a.isIdentifier();
+      boolean _not = (!_isIdentifier);
+      if (_not) {
+        String _content = content;
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("    ");
+        _builder.append("private ");
+        EType _type = a.getType();
+        String _plus = (_builder.toString() + _type);
+        StringConcatenation _builder_1 = new StringConcatenation();
+        _builder_1.append(" ");
+        String _plus_1 = (_plus + _builder_1);
+        String _name = a.getName();
+        String _plus_2 = (_plus_1 + _name);
+        StringConcatenation _builder_2 = new StringConcatenation();
+        _builder_2.append(";");
+        _builder_2.newLine();
+        _builder_2.newLine();
+        String _plus_3 = (_plus_2 + _builder_2);
+        content = (_content + _plus_3);
+      }
+    }
+    return content;
+  }
+
   public String generateUserModel(final String appMainPackage, final User user, final Security security) {
+    String credentialName = this.getCredential(user.getModel_attributes()).getName();
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     String _plus = (_builder.toString() + appMainPackage);
@@ -513,12 +582,16 @@ public class SecurityDslModelRepoGenerator {
       _builder_7.append("// TODO Auto-generated method stub");
       _builder_7.newLine();
       _builder_7.append("\t\t");
-      _builder_7.append("return username;");
-      _builder_7.newLine();
-      _builder_7.append("\t");
-      _builder_7.append("}");
-      _builder_7.newLine();
-      userContent = (_userContent_4 + _builder_7);
+      _builder_7.append("return ");
+      String _plus_5 = (_builder_7.toString() + credentialName);
+      StringConcatenation _builder_8 = new StringConcatenation();
+      _builder_8.append("\t");
+      _builder_8.append(";");
+      _builder_8.newLine();
+      _builder_8.append("}");
+      _builder_8.newLine();
+      String _plus_6 = (_plus_5 + _builder_8);
+      userContent = (_userContent_4 + _plus_6);
     }
     String _userContent_5 = userContent;
     userContent = (_userContent_5 + "}");

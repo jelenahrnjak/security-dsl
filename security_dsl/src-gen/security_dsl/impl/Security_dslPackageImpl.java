@@ -808,6 +808,15 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getRoleInstance_Client() {
+		return (EAttribute) roleInstanceEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getAuthentication() {
 		return authenticationEClass;
 	}
@@ -1197,6 +1206,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 
 		roleInstanceEClass = createEClass(ROLE_INSTANCE);
 		createEAttribute(roleInstanceEClass, ROLE_INSTANCE__NAME);
+		createEAttribute(roleInstanceEClass, ROLE_INSTANCE__CLIENT);
 
 		authenticationEClass = createEClass(AUTHENTICATION);
 
@@ -1609,6 +1619,9 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getRoleInstance_Name(), ecorePackage.getEString(), "name", null, 1, 1, RoleInstance.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getRoleInstance_Client(), ecorePackage.getEBoolean(), "client", "false", 1, 1,
+				RoleInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(authenticationEClass, Authentication.class, "Authentication", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);

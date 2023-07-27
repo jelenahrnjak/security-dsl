@@ -125,6 +125,8 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="RoleInstance">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="client" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller"/>
   <eClassifiers xsi:type="ecore:EClass" name="Endpoint">

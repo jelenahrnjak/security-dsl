@@ -18,6 +18,8 @@ class SecurityDslBasicAuthenticationGenerator {
     	var user = resource.allContents.filter(User).next() 
     	var role = resource.allContents.filter(Role).next() 
     	
+    	var credentialNameUser = getCredential(user.model_attributes).name
+    	
     	for (c : app.app_controllers) {
     		if(c instanceof Authentication){
     		fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(app.packageName, c))    	
@@ -25,14 +27,49 @@ class SecurityDslBasicAuthenticationGenerator {
     		
     	}
     	
-    	fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(app.packageName, user));
     	
-		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName + '.config'));
+		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
 		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
-		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName));
-		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName));
+		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName, credentialNameUser, getClientRoleInstance(role.role_instances)));
 		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
+		fsa.generateFile(srcDestination + '/exception/ResourceConflictException.java', generateException(app.packageName))
 		
+		
+	}
+	
+	def getClientRoleInstance(List<RoleInstance> instances){
+		
+		for (r : instances) {
+			if(r.client) return r.name
+		}
+	}
+	
+	def String generateException(String appMainPackage){
+		var content = '''
+		package ''' + appMainPackage+ '''
+		.exception;
+		
+		public class ResourceConflictException extends RuntimeException {
+			private static final long serialVersionUID = 1791564636123821405L;
+		
+			private Long resourceId;
+		
+			public ResourceConflictException(Long resourceId, String message) {
+				super(message);
+				this.setResourceId(resourceId);
+			}
+		
+			public Long getResourceId() {
+				return resourceId;
+			}
+		
+			public void setResourceId(Long resourceId) {
+				this.resourceId = resourceId;
+			}
+		
+		}
+		'''
+		return content;
 	}
 	
 	def generateIUserService(String packageName) {
@@ -57,7 +94,17 @@ class SecurityDslBasicAuthenticationGenerator {
 		return content
 	}
 	
-	def generateUserServiceImpl(String packageName){
+	def getCredential(List<Attribute> attributes){
+		
+		for (a : attributes) {
+		    if (a.isCredential) {
+		        return a
+		    } 
+		}
+		
+	}
+	
+	def generateUserServiceImpl(String packageName, String credentialName, String clientRole){
 		
 		var content = '''
 		package ''' + packageName + '''
@@ -69,6 +116,8 @@ class SecurityDslBasicAuthenticationGenerator {
 		.repository.UserRepository;
 		import ''' + packageName + '''
 		.service.IUserService;
+		import ''' + packageName + '''
+		.model.enumeration.Role;
 		
 		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.factory.annotation.Autowired;
@@ -89,26 +138,32 @@ class SecurityDslBasicAuthenticationGenerator {
 			
 			@Override
 		    public User save(User newUser) {
-		    	if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
+		    	if (userRepository.findBy''' + credentialName.toFirstUpper + '''
+		(newUser.get''' + credentialName.toFirstUpper + '''
+		()).isPresent()) {
 		    		throw new RuntimeException("User already exists");
 
 		    		}
 		        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
 		        newUser.setPassword(encoderPassword);
-		        
+		        newUser.setRole(Role.''' + clientRole.toUpperCase + '''
+		)
 		    	return userRepository.saveAndFlush(newUser);
 		    }
 		
 		    @Override
 		    public List<User> findAll() {
 		        return userRepository.findAll();
-		    }
-		    
-		  	@Override
-		 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-		 	return userRepository.findByUsername(username)
-		 		.orElseThrow(() ->
-		 		new UsernameNotFoundException("User Not Found"));
+			}
+		
+			@Override
+			public UserDetails loadUserByUsername(String '''+ credentialName + '''
+		 ) throws UsernameNotFoundException {
+		 		return userRepository.findBy''' + credentialName.toFirstUpper + '''
+		 (''' + credentialName +'''
+		 )
+		 			.orElseThrow(() ->
+		 				new UsernameNotFoundException("User Not Found"));
 		 	}
 		 }
 		'''
@@ -117,16 +172,6 @@ class SecurityDslBasicAuthenticationGenerator {
 	}
 
 	def generateApplicationSecurityConfig(String packageName, Authentication authController){
-		
-		var regEndpoint = ''
-		var loginEndpoint = ''
-		var logoutEndpoint = ''
-		
-		for (e : authController.controller_endpoints) {
-			if(e.type == EEndpointType::REGISTRATION) regEndpoint = authController.path + e.url
-			if(e.type == EEndpointType::LOGIN) loginEndpoint = authController.path + e.url
-			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = authController.path + e.url
-		}
 		
 		var content = '''
 		package ''' + packageName + '''
@@ -160,8 +205,8 @@ class SecurityDslBasicAuthenticationGenerator {
 		        httpSecurity.csrf().disable()
 		                .formLogin().disable()
 		                .logout().disable()
-		                .authorizeRequests().antMatchers("''' + regEndpoint + '''
-		" , "''' + loginEndpoint  + '''", "''' + logoutEndpoint + '''").permitAll()
+		                .authorizeRequests().antMatchers("''' + authController.path + '''
+		/**").permitAll()
 		                .anyRequest().authenticated()
 		                .and().httpBasic();
 		
@@ -174,12 +219,12 @@ class SecurityDslBasicAuthenticationGenerator {
 		        authentication.authenticationProvider(daoAuthenticationProvider());
 		    }
 		    
-	        @Bean
-	        @Override
-	        public AuthenticationManager authenticationManagerBean() throws Exception {
-	            return super.authenticationManagerBean();
-	        }
-	
+			@Bean
+			@Override
+			public AuthenticationManager authenticationManagerBean() throws Exception {
+				return super.authenticationManagerBean();
+			}
+
 		    @Bean
 		    public DaoAuthenticationProvider daoAuthenticationProvider(){
 		        DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
@@ -196,70 +241,28 @@ class SecurityDslBasicAuthenticationGenerator {
 	
 	def generatePassEncoder(String packageName){
 	
-	var content = ''
-	content =  '''
-	package ''' + packageName + ''';
-
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-@Configuration
-public class PasswordEncoder {
-
-    @Bean
-    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
-}
-		'''
-	
-	return content;
-	}
-	
-	def generateUserRequestDto(String packageName, User user){
-		
-		var content = '''
+		var content = ''
+		content =  '''
 		package ''' + packageName + '''
-		.dto;
-		
-		import ''' + packageName + '''
-		.model.enumeration.Role;
-		
-		import lombok.*;
-		
-		@Getter
-		@Setter
-		@ToString
-		@AllArgsConstructor
-		@NoArgsConstructor
-		public class UserRequestDTO {
+		.config;
 
-		''' + generateAttributes(user.model_attributes) + 
-		'''
-			private String password;
+		import org.springframework.context.annotation.Bean;
+		import org.springframework.context.annotation.Configuration;
+		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 		
-		    private Role role;
+		@Configuration
+		public class PasswordEncoder {
+		
+		    @Bean
+		    public BCryptPasswordEncoder bCryptPasswordEncoder(){
+		        return new BCryptPasswordEncoder();
+		    }
 		}
+			'''
 		
-		'''	
 		return content;
 	}
 	
-	def generateAttributes(List<Attribute> attributes){
-		var content = ''
-		
-		for(a : attributes){
-			if(!a.isIdentifier){
-			content += '''    private ''' + a.type +  ''' ''' + a.name+ 
-			''';
-
-			'''}
-		}
-		
-		return content
-	}
-		
 	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances){
 		var content = '''
 		package ''' + packageName + '''

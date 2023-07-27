@@ -6,21 +6,37 @@ import security_dsl.Authentication
 import security_dsl.EEndpointType
 import security_dsl.Security
 import security_dsl.BasicAuthentication
+import security_dsl.Attribute
+import java.util.List
+import security_dsl.User
+import org.eclipse.emf.ecore.resource.Resource
 
 class SecurityDslControllerGenerator {
 	
-		new(IFileSystemAccess2 fsa, Application app, String srcDestination){
+		new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 			
+	    	var user = resource.allContents.filter(User).next()
+	    	
+	    	var userCredentialName = getCredential(user.model_attributes).name
 			for (c : app.app_controllers) {
     			if(c instanceof Authentication){
-    			fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, c, app.app_security));
+    			fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, c, app.app_security, userCredentialName));
     			}
     		}
 		}
 	
 	
+	def getCredential(List<Attribute> attributes){
+		
+		for (a : attributes) {
+		    if (a.isCredential) {
+		        return a
+		    } 
+		}
+		
+	}
 	
-	def generateAuthController(String packageName, Authentication authController, Security security){
+	def generateAuthController(String packageName, Authentication authController, Security security, String credentialNameUser){
 			
 		var regEndpoint = ''
 		var loginEndpoint = ''
@@ -81,7 +97,8 @@ class SecurityDslControllerGenerator {
 		")
 			public ResponseEntity<User> login(@RequestBody UserRequestDTO request) {
 		
-			Authentication authentication = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());
+			Authentication authentication = new UsernamePasswordAuthenticationToken(request.get''' + credentialNameUser.toFirstUpper + '''
+		, request.getPassword());
 			authentication = authenticationManager.authenticate(authentication);
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			User user = (User) authentication.getPrincipal();

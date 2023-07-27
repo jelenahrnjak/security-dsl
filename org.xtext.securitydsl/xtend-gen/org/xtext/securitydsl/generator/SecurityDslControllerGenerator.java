@@ -1,29 +1,47 @@
 package org.xtext.securitydsl.generator;
 
 import com.google.common.base.Objects;
+import com.google.common.collect.Iterators;
+import java.util.List;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
+import org.eclipse.xtext.xbase.lib.StringExtensions;
 import security_dsl.Application;
+import security_dsl.Attribute;
 import security_dsl.Authentication;
 import security_dsl.BasicAuthentication;
 import security_dsl.Controller;
 import security_dsl.EEndpointType;
 import security_dsl.Endpoint;
 import security_dsl.Security;
+import security_dsl.User;
 
 @SuppressWarnings("all")
 public class SecurityDslControllerGenerator {
-  public SecurityDslControllerGenerator(final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
+  public SecurityDslControllerGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
+    User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
+    String userCredentialName = this.getCredential(user.getModel_attributes()).getName();
     EList<Controller> _app_controllers = app.getApp_controllers();
     for (final Controller c : _app_controllers) {
       if ((c instanceof Authentication)) {
-        fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), ((Authentication)c), app.getApp_security()));
+        fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), ((Authentication)c), app.getApp_security(), userCredentialName));
       }
     }
   }
 
-  public String generateAuthController(final String packageName, final Authentication authController, final Security security) {
+  public Attribute getCredential(final List<Attribute> attributes) {
+    for (final Attribute a : attributes) {
+      boolean _isCredential = a.isCredential();
+      if (_isCredential) {
+        return a;
+      }
+    }
+    return null;
+  }
+
+  public String generateAuthController(final String packageName, final Authentication authController, final Security security, final String credentialNameUser) {
     String regEndpoint = "";
     String loginEndpoint = "";
     String logoutEndpoint = "";
@@ -161,49 +179,54 @@ public class SecurityDslControllerGenerator {
     _builder_9.newLine();
     _builder_9.newLine();
     _builder_9.append("\t");
-    _builder_9.append("Authentication authentication = new UsernamePasswordAuthenticationToken(request.getUsername(), request.getPassword());");
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("authentication = authenticationManager.authenticate(authentication);");
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("SecurityContextHolder.getContext().setAuthentication(authentication);");
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("User user = (User) authentication.getPrincipal();");
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("return ResponseEntity.ok(user);");
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("}");
-    _builder_9.newLine();
-    _builder_9.newLine();
-    _builder_9.append("\t");
-    _builder_9.append("@GetMapping(\"");
+    _builder_9.append("Authentication authentication = new UsernamePasswordAuthenticationToken(request.get");
     String _plus_12 = (_plus_11 + _builder_9);
-    String _plus_13 = (_plus_12 + logoutEndpoint);
+    String _firstUpper = StringExtensions.toFirstUpper(credentialNameUser);
+    String _plus_13 = (_plus_12 + _firstUpper);
     StringConcatenation _builder_10 = new StringConcatenation();
-    _builder_10.append("\")");
+    _builder_10.append(", request.getPassword());");
     _builder_10.newLine();
     _builder_10.append("\t");
-    _builder_10.append("public ResponseEntity<Void> logout() {");
+    _builder_10.append("authentication = authenticationManager.authenticate(authentication);");
     _builder_10.newLine();
     _builder_10.append("\t");
-    _builder_10.append("SecurityContextHolder.clearContext();");
+    _builder_10.append("SecurityContextHolder.getContext().setAuthentication(authentication);");
     _builder_10.newLine();
     _builder_10.append("\t");
-    _builder_10.append("return ResponseEntity.ok().build();");
+    _builder_10.append("User user = (User) authentication.getPrincipal();");
+    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("return ResponseEntity.ok(user);");
     _builder_10.newLine();
     _builder_10.append("\t");
     _builder_10.append("}");
     _builder_10.newLine();
     _builder_10.newLine();
-    _builder_10.newLine();
-    _builder_10.append("}");
-    _builder_10.newLine();
+    _builder_10.append("\t");
+    _builder_10.append("@GetMapping(\"");
     String _plus_14 = (_plus_13 + _builder_10);
-    content = (_content_1 + _plus_14);
+    String _plus_15 = (_plus_14 + logoutEndpoint);
+    StringConcatenation _builder_11 = new StringConcatenation();
+    _builder_11.append("\")");
+    _builder_11.newLine();
+    _builder_11.append("\t");
+    _builder_11.append("public ResponseEntity<Void> logout() {");
+    _builder_11.newLine();
+    _builder_11.append("\t");
+    _builder_11.append("SecurityContextHolder.clearContext();");
+    _builder_11.newLine();
+    _builder_11.append("\t");
+    _builder_11.append("return ResponseEntity.ok().build();");
+    _builder_11.newLine();
+    _builder_11.append("\t");
+    _builder_11.append("}");
+    _builder_11.newLine();
+    _builder_11.newLine();
+    _builder_11.newLine();
+    _builder_11.append("}");
+    _builder_11.newLine();
+    String _plus_16 = (_plus_15 + _builder_11);
+    content = (_content_1 + _plus_16);
     return content;
   }
 }

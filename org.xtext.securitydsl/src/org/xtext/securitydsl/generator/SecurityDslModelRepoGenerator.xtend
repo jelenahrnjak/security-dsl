@@ -25,8 +25,9 @@ class SecurityDslModelRepoGenerator  {
        		if(user.tableName === null) user.tableName = "users"
        		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName, user, app.app_security));
        		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user));
-       		
+       	    fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(app.packageName, user));
 		}
+        
         
        	if (roles.hasNext() && app.app_security instanceof JWT) {
        		var role = roles.next()
@@ -38,6 +39,9 @@ class SecurityDslModelRepoGenerator  {
 	}
 	
 	def generateUserRepository(String packageName, User user) {
+		
+		var credentialName = getCredential(user.model_attributes).name
+		
 		var content = '''
 		package ''' + packageName+ '''
 		.repository;
@@ -51,13 +55,16 @@ class SecurityDslModelRepoGenerator  {
 		public interface UserRepository extends JpaRepository<User, ''' + getIdentifier(user.model_attributes).type + '''
 		> {
 			
-		    Optional<User> findBy''' + getCredential(user.model_attributes).name.toFirstUpper + '''(String ''' + getCredential(user.model_attributes).name + ''');
+		    Optional<User> findBy''' + credentialName.toFirstUpper + '''(String ''' + credentialName + ''');
 }
 				'''
 				return content;
 	}
 	
 	def String generateRoleRepository(String appMainPackage, Role role){
+		
+		var stringAttribute = getStringAttributeForRole(role.model_attributes).name
+		
 		var content = '''
 		package ''' + appMainPackage+ '''
 		.repository;
@@ -71,13 +78,54 @@ class SecurityDslModelRepoGenerator  {
 		public interface RoleRepository extends JpaRepository<Role, ''' + getIdentifier(role.model_attributes).type + '''
 		> {
 			
-			List<Role> findBy''' + getStringAttributeForRole(role.model_attributes).name.toFirstUpper + '''(String ''' + getStringAttributeForRole(role.model_attributes).name + ''');
+			List<Role> findBy''' + stringAttribute.toFirstUpper + '''(String ''' + stringAttribute + ''');
 }
 		'''
 		return content;
 	}
 	
+		def generateUserRequestDto(String packageName, User user){
+		
+		var content = '''
+		package ''' + packageName + '''
+		.dto;
+		
+		
+		import lombok.*;
+		
+		@Getter
+		@Setter
+		@ToString
+		@AllArgsConstructor
+		@NoArgsConstructor
+		public class UserRequestDTO {
+
+		''' + generateAttributesForDto(user.model_attributes) + 
+		'''    private String password;
+
+}
+		'''	
+		
+		return content;
+	}
+	
+	def generateAttributesForDto(List<Attribute> attributes){
+		var content = ''
+		
+		for(a : attributes){
+			if(!a.isIdentifier){
+			content += '''    private ''' + a.type +  ''' ''' + a.name+ 
+			''';
+
+			'''}
+		}
+		
+		return content
+	}
+	
 	def generateUserModel(String appMainPackage, User user, Security security) {
+		
+		var credentialName = getCredential(user.model_attributes).name
 		
 		var userContent =  '''
 		package ''' + appMainPackage+ '''
@@ -236,7 +284,8 @@ public class User implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return username;
+		return ''' + credentialName + '''
+		;
 	}
 			'''
 		}
