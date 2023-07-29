@@ -10,7 +10,7 @@ public class AuthenticationRequestDTO {
     }
 
     public AuthenticationRequestDTO(String username, String password) {
-        this.setUsername(username);
+        this.setUsername(username;
         this.setPassword(password);
     }
 

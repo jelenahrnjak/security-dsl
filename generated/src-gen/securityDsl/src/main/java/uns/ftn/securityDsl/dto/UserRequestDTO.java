@@ -9,14 +9,14 @@ import lombok.*;
 @NoArgsConstructor
 public class UserRequestDTO {
 
-    private String username;
-
-    private String firstName;
-
-    private String lastName;
-
+	private String username;
+	
+	private String firstName;
+	
+	private String lastName;
+	
     private String password;
 
-    private String role;
+	private String role;
 
 }

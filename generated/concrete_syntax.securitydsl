@@ -53,7 +53,7 @@ application:
         roles: ["admin", client "user"]
         
     security: 
-    	//basicAuthentication
+    //basicAuthentication
       jwt:
         header: 
             signatureAlgorithm: "HS512" 

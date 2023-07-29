@@ -13,14 +13,14 @@ import javax.persistence.*;
 @Entity
 @Table(name="roles")
 public class Role implements GrantedAuthority {
-		
+
     private static final long serialVersionUID = 1L;
-		
+
     @Id
     @GeneratedValue
-    private Long id;
+    private Long  id ;
 
-    private String name;
+    private String  name ;
 
     @JsonIgnore
     @Override

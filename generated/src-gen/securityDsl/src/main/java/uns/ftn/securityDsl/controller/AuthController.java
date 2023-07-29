@@ -44,8 +44,8 @@ public class AuthController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 		User user = (User) authentication.getPrincipal();
 		String jwt = tokenUtils.generateToken(user.getUsername());
-				int expiresIn = tokenUtils.getExpiredIn();
-				return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
+		int expiresIn = tokenUtils.getExpiredIn();
+		return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
 		}
 
 	@GetMapping("/logout")

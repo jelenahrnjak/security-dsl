@@ -30,23 +30,23 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Getter
 @Setter
 @Entity
-@Table(name="users")
+@Table(name="users
 public class User implements UserDetails {
-		
+
     private static final long serialVersionUID = 1L;
-			
+
     @Id
     @GeneratedValue
-    private Long id;
+    private Long  id ;
 
     @Column(name = "username")
-    private String username;
+    private String  username ;
 
     @Column(name = "first_name")
-    private String firstName;
+    private String  firstName ;
 
     @Column(name = "last_name")
-    private String lastName;
+    private String  lastName ;
 
     @JsonIgnore
     @Column(name = "password")
