@@ -22,7 +22,6 @@ class SecurityDslGenerator extends AbstractGenerator {
 			app.name = app.artifact
 		}
 		
-		
 		app.packageName = app.group + '.' + app.name
 	
 	   	var capitalizedName= (app.name).substring(0, 1).toUpperCase() + (app.name).substring(1);
@@ -33,6 +32,8 @@ class SecurityDslGenerator extends AbstractGenerator {
         new SecurityDslResourcesGenerator(fsa, app)
         new SecurityDslControllerGenerator(resource, fsa, app, srcDestination)
         new SecurityDslModelRepoGenerator(resource,fsa, app, srcDestination)
+       	new SecurityDslServiceGenerator(resource,fsa, app, srcDestination)
+        
         
         if(app.app_security instanceof BasicAuthentication){
        		new SecurityDslBasicAuthenticationGenerator(resource,fsa, app, srcDestination)
@@ -57,8 +58,6 @@ class SecurityDslGenerator extends AbstractGenerator {
         		subjectClaim.claim_attribute = getCredential(user.model_attributes)
         		jwt.jwt_claims.add(subjectClaim)
         	}
-        		
-        	
         	
        		new SecurityDslJWTGenerator(resource,fsa, app, srcDestination)
         }

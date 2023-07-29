@@ -1,25 +1,18 @@
 package org.xtext.securitydsl.generator
 
+import java.util.List
+import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
-import org.eclipse.emf.ecore.resource.Resource
 import security_dsl.Authentication
-import security_dsl.EEndpointType
-import security_dsl.User
-import java.util.List
-import security_dsl.Attribute
 import security_dsl.Role
 import security_dsl.RoleInstance
-import java.util.ArrayList
 
 class SecurityDslBasicAuthenticationGenerator {
 
 	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 		
-    	var user = resource.allContents.filter(User).next() 
     	var role = resource.allContents.filter(Role).next() 
-    	
-    	var credentialNameUser = getCredential(user.model_attributes).name
     	
     	for (c : app.app_controllers) {
     		if(c instanceof Authentication){
@@ -30,18 +23,15 @@ class SecurityDslBasicAuthenticationGenerator {
     	
     	
 		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
-		fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName));
-		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImpl(app.packageName, credentialNameUser, getNotClienRoles(role.role_instances)));
 		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
 		fsa.generateFile(srcDestination + '/exception/ResourceConflictException.java', generateException(app.packageName))
 		
 		
 	}
 	
-	def String generateException(String appMainPackage){
+	def String generateException(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.exception;
+		package «packageName».exception;
 		
 		public class ResourceConflictException extends RuntimeException {
 			private static final long serialVersionUID = 1791564636123821405L;
@@ -66,160 +56,12 @@ class SecurityDslBasicAuthenticationGenerator {
 		return content;
 	}
 	
-	def generateIUserService(String packageName) {
-		
-		var content = '''
-		package '''+ packageName + '''
-		.service;
-		
-		import '''+ packageName + '''
-		.model.User;
-		import '''+ packageName + '''
-		.dto.UserRequestDTO;
-		
-		import java.util.List;
-		
-		public interface IUserService {
-		
-			User save(UserRequestDTO request);
-
-			List<User> findAll();
-		
-		}
-		'''
-		return content
-	}
-	
-	def getCredential(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isCredential) {
-		        return a
-		    } 
-		}
-		
-	}
-	
-	def generateUserServiceImpl(String packageName, String credentialName, List<RoleInstance> notClientRoles){
-		
-		var content = '''
-		package ''' + packageName + '''
-		.service.impl;
-		
-		import  ''' + packageName + '''
-		.model.User;
-		import ''' + packageName + '''
-		.repository.UserRepository;
-		import ''' + packageName + '''
-		.service.IUserService;
-		import ''' + packageName + '''
-		.model.enumeration.Role;
-		import ''' + packageName + '''
-		.dto.UserRequestDTO;
-		
-		import lombok.RequiredArgsConstructor;
-		import org.springframework.beans.BeanUtils;
-		import org.springframework.beans.factory.annotation.Autowired;
-		import org.springframework.security.core.userdetails.UserDetails;
-		import org.springframework.security.core.userdetails.UserDetailsService;
-		import org.springframework.security.core.userdetails.UsernameNotFoundException;
-		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-		import org.springframework.stereotype.Service;
-		
-		import java.util.List;
-		
-		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-		@Service
-		public class UserServiceImpl implements UserDetailsService, IUserService {
-		
-		    private final UserRepository userRepository;
-		    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-			
-			@Override
-		    public User save(UserRequestDTO request) {
-		    	User newUser = new User();
-		    	BeanUtils.copyProperties(request, newUser);
-		    	newUser.setRole(Role.valueOf(request.getRole()));
-		    	if (userRepository.findBy''' + credentialName.toFirstUpper + '''
-		(newUser.get''' + credentialName.toFirstUpper + '''
-		()).isPresent()) {
-		    		throw new RuntimeException("User already exists");
-
-		    		}
-		    		
-				if(!checkRoleForRegistration(newUser.getRole())) { 
-					throw new RuntimeException("Role not valid");
-				}
-		    	
-		        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
-		        newUser.setPassword(encoderPassword);
-		    	return userRepository.saveAndFlush(newUser);
-		    }
-		
-			private boolean checkRoleForRegistration(Role role) {
-				
-			'''
-			if(notClientRoles.size > 0){
-			content += '''        if('''
-			
-			for(var i = 0; i < notClientRoles.size ; i++){
-				content += '''role.equals(Role.''' + notClientRoles.get(i).name.toUpperCase + '''
-				)'''
-				
-				if(i == notClientRoles.size - 1){
-					content+= ') {'
-				}else{
-					content += ' or '
-				}
-			}
-			
-    	content += '''        return false;
-
-    }
-
-		'''}
-				
-		content += '''    	return true;
-    }
-			
-    @Override
-    public List<User> findAll() {
-        return userRepository.findAll();
-	}
-
-	@Override
-	public UserDetails loadUserByUsername(String '''+ credentialName + '''
- ) throws UsernameNotFoundException {
- 		return userRepository.findBy''' + credentialName.toFirstUpper + '''
- (''' + credentialName +'''
- )
- 			.orElseThrow(() ->
- 				new UsernameNotFoundException("User Not Found"));
- 	}
- }
-'''
-
-		return content
-	}
-
-	def getNotClienRoles(List<RoleInstance> instances){
-		
-		var ArrayList<RoleInstance> notClients = newArrayList
-		
-		for (ri : instances) {
-			if(!ri.client) notClients.add(ri)
-		}
-		
-		return notClients;
-	}
 	def generateApplicationSecurityConfig(String packageName, Authentication authController){
 		
 		var content = '''
-		package ''' + packageName + '''
-		.config;
+		package «packageName».config;
 		
-		import ''' + packageName + '''
-		.service.impl.UserServiceImpl;
+		import «packageName».service.impl.UserServiceImpl;
 		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
@@ -246,8 +88,7 @@ class SecurityDslBasicAuthenticationGenerator {
 		        httpSecurity.csrf().disable()
 		                .formLogin().disable()
 		                .logout().disable()
-		                .authorizeRequests().antMatchers("''' + authController.path + '''
-		/**").permitAll()
+		                .authorizeRequests().antMatchers("«authController.path»/**").permitAll()
 		                .anyRequest().authenticated()
 		                .and().httpBasic();
 		
@@ -284,8 +125,7 @@ class SecurityDslBasicAuthenticationGenerator {
 	
 		var content = ''
 		content =  '''
-		package ''' + packageName + '''
-		.config;
+		package «packageName».config;
 
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
@@ -306,8 +146,7 @@ class SecurityDslBasicAuthenticationGenerator {
 	
 	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances){
 		var content = '''
-		package ''' + packageName + '''
-		.model.enumeration;
+		package «packageName».model.enumeration;
 		
 		public enum Role {
 		

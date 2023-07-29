@@ -47,6 +47,7 @@ public class SecurityDslGenerator extends AbstractGenerator {
     new SecurityDslResourcesGenerator(fsa, app);
     new SecurityDslControllerGenerator(resource, fsa, app, srcDestination);
     new SecurityDslModelRepoGenerator(resource, fsa, app, srcDestination);
+    new SecurityDslServiceGenerator(resource, fsa, app, srcDestination);
     Security _app_security = app.getApp_security();
     if ((_app_security instanceof BasicAuthentication)) {
       new SecurityDslBasicAuthenticationGenerator(resource, fsa, app, srcDestination);

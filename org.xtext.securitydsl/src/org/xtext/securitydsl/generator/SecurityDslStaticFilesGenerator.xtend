@@ -134,21 +134,18 @@ class SecurityDslStaticFilesGenerator {
 	def static mainClassGenerator(String packageName, String appName){
 		
 		return '''
-		package '''+ packageName +'''
-		;
+		package «packageName»;
 		
 		import org.springframework.boot.SpringApplication;
 		import org.springframework.boot.autoconfigure.SpringBootApplication;
 		import org.springframework.scheduling.annotation.EnableScheduling;
 		
 		@SpringBootApplication
-		public class ''' + appName+''' 
-		{
+		public class «appName»{
 		
 			public static void main(String[] args) {
 				
-				SpringApplication.run('''+appName+ '''
-		.class, args);
+				SpringApplication.run(«appName».class, args);
 		
 			}
 		
@@ -159,15 +156,13 @@ class SecurityDslStaticFilesGenerator {
 	
 	def generateTests(String packageName, String appName) {
 		return '''
-		package '''+ packageName +'''
-		;
+		package «packageName»;
 		
 		import org.junit.jupiter.api.Test;
 		import org.springframework.boot.test.context.SpringBootTest;
 		
 		@SpringBootTest
-		class ''' +appName+'''
-		{
+		class «appName»{
 		
 			@Test
 			void contextLoads() {

@@ -10,7 +10,6 @@ import java.util.List
 import java.util.ArrayList
 import security_dsl.EType
 import security_dsl.User
-import security_dsl.Role
 import security_dsl.Claim
 import security_dsl.EClaimType
 import security_dsl.Authentication
@@ -22,28 +21,27 @@ class SecurityDslJWTGenerator {
 	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 		
     	var user = resource.allContents.filter(User).next() 
-    	var role = resource.allContents.filter(Role).next() 
     	
 		var credentialNameUser = getCredential(user.model_attributes).name
     	
 		fsa.generateFile(srcDestination + '/config/WebConfig.java', generateWebConfig(app.packageName))
 		fsa.generateFile(srcDestination + '/config/WebSecurityConfig.java', generateWebSecurityConfig(app.packageName, getAuthController(app.app_controllers)))
 		fsa.generateFile(srcDestination + '/util/TokenUtils.java', generateTokenUtils(app.packageName, app.app_security as JWT, credentialNameUser))
-		fsa.generateFile(srcDestination + '/dto/UserTokenState.java', generateUserTokenStateDTO(app.packageName))
-		fsa.generateFile(srcDestination + '/dto/JwtAuthenticationRequest.java', generateJwtAuthenticationRequestDTO(app.packageName, credentialNameUser))
+		fsa.generateFile(srcDestination + '/dto/UserTokenStateDTO.java', generateUserTokenStateDTO(app.packageName))
     	
     	fsa.generateFile(srcDestination + '/security/auth/RestAuthenticationEntryPoint.java', generateRestAuthenticationEntryPoint(app.packageName))
 		fsa.generateFile(srcDestination + '/security/auth/TokenBasedAuthentication.java', generateTokenBasedAuthentication(app.packageName))
 		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter(app.packageName))
 		    	
+		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter(app.packageName))
+		
 		
 	}
 	
 	
-	def String generateTokenAuthenticationFilter(String appMainPackage){
+	def String generateTokenAuthenticationFilter(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.security.auth;
+		package «packageName».security.auth;
 		
 		import java.io.IOException;
 		
@@ -52,8 +50,7 @@ class SecurityDslJWTGenerator {
 		import javax.servlet.http.HttpServletRequest;
 		import javax.servlet.http.HttpServletResponse;
 		
-		import ''' + appMainPackage+ '''
-		.util.TokenUtils;
+		import «packageName».util.TokenUtils;
 		import org.apache.commons.logging.Log;
 		import org.apache.commons.logging.LogFactory;
 		import org.springframework.security.core.context.SecurityContextHolder;
@@ -117,10 +114,9 @@ class SecurityDslJWTGenerator {
 		return content;
 	}
 	
-	def String generateTokenBasedAuthentication(String appMainPackage){
+	def String generateTokenBasedAuthentication(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.security.auth;
+		package «packageName».security.auth;
 		
 		import org.springframework.security.authentication.AbstractAuthenticationToken;
 		import org.springframework.security.core.userdetails.UserDetails;
@@ -165,11 +161,9 @@ class SecurityDslJWTGenerator {
 		return content;
 	}
 	
-	
-	def String generateRestAuthenticationEntryPoint(String appMainPackage){
+	def String generateRestAuthenticationEntryPoint(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.security.auth;
+		package «packageName».security.auth;
 		import org.springframework.security.core.AuthenticationException;
 		import org.springframework.security.web.AuthenticationEntryPoint;
 		import org.springframework.stereotype.Component;
@@ -192,10 +186,9 @@ class SecurityDslJWTGenerator {
 		return content;
 	}
 	
-	def String generateException(String appMainPackage){
+	def String generateException(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.exception;
+		package «packageName».exception;
 		
 		public class ResourceConflictException extends RuntimeException {
 			private static final long serialVersionUID = 1791564636123821405L;
@@ -229,10 +222,9 @@ class SecurityDslJWTGenerator {
     	}
 	}
 	
-	def String generateWebConfig(String appMainPackage){
+	def String generateWebConfig(String packageName){
 		var webConfig = '''
-			package ''' + appMainPackage + '''
-			.config;
+			package «packageName».config;
 			
 			import org.springframework.context.annotation.Configuration;
 			import org.springframework.web.servlet.config.annotation.CorsRegistry;
@@ -256,7 +248,7 @@ class SecurityDslJWTGenerator {
 		
 	}
 	
-	def generateWebSecurityConfig(String appMainPackage, Authentication authController){
+	def generateWebSecurityConfig(String packageName, Authentication authController){
 		
 		var loginEndpoint = ''
 		
@@ -265,19 +257,13 @@ class SecurityDslJWTGenerator {
 		}
 		
 		var config = '''
-		package ''' + appMainPackage+ '''
-		.config;
+		package «packageName».config;
 		
-		import ''' + appMainPackage+ '''
-		.security.auth.RestAuthenticationEntryPoint;
-		import ''' + appMainPackage+ '''
-		.security.auth.TokenAuthenticationFilter;
-		import ''' + appMainPackage+ '''
-		.service.impl.CustomUserDetailsService;
-		import ''' + appMainPackage+ '''
-		.service.impl.UserServiceImpl;
-		import ''' + appMainPackage+ '''
-		.util.TokenUtils;
+		import «packageName».security.auth.RestAuthenticationEntryPoint;
+		import «packageName».security.auth.TokenAuthenticationFilter;
+		import «packageName».service.impl.CustomUserDetailsService;
+		import «packageName».service.impl.UserServiceImpl;
+		import «packageName».util.TokenUtils;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
@@ -334,8 +320,7 @@ class SecurityDslJWTGenerator {
 		
 		                .exceptionHandling().authenticationEntryPoint(restAuthenticationEntryPoint).and()
 		
-		                .authorizeRequests().antMatchers("''' + authController.path + '''
-		/**").permitAll()
+		                .authorizeRequests().antMatchers("«authController.path»/**").permitAll()
 		
 		                .anyRequest().authenticated().and()
 		                .cors().and()
@@ -347,8 +332,7 @@ class SecurityDslJWTGenerator {
 		    @Override
 		    public void configure(WebSecurity web) throws Exception {
 		
-		        web.ignoring().antMatchers(HttpMethod.POST, "''' +  loginEndpoint + '''
-		");
+		        web.ignoring().antMatchers(HttpMethod.POST, "«loginEndpoint»");
 		        web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "favicon.ico", "/**/*.html",
 		                "/**/*.css", "/**/*.js");
 		    }
@@ -359,13 +343,12 @@ class SecurityDslJWTGenerator {
 		return config;
 	}
 
-	def String generateTokenUtils(String appMainPackage, JWT jwt, String credentialNameUser){
+	def String generateTokenUtils(String packageName, JWT jwt, String credentialNameUser){
 
 		var RegisteredClaims regClaim = jwt.registeredclaims;
 		
 		var utils = '''
-		package ''' + appMainPackage+ '''
-		.util;
+		package «packageName».util;
 		
 		import java.util.Date;
 		
@@ -379,37 +362,29 @@ class SecurityDslJWTGenerator {
 		import io.jsonwebtoken.ExpiredJwtException;
 		import io.jsonwebtoken.Jwts;
 		import io.jsonwebtoken.SignatureAlgorithm;
-		import '''+ appMainPackage + '''
-		.model.User;
+		import «packageName».model.User;
 		
 		@Component
 		public class TokenUtils {
 		
-			private String ISSUER "''' + regClaim.issuer + '''
-		";
+			private String ISSUER "«regClaim.issuer»";
 
-			public String SECRET = "''' + jwt.secret+ '''
-		";
+			public String SECRET = "«jwt.secret»";
 		
-			private int EXPIRES_IN = ''' + regClaim.expirationTime+ '''
-		;
+			private int EXPIRES_IN = «regClaim.expirationTime»;
 			
 			@Value("Authorization")
 			private String AUTH_HEADER;
 			
-			private static final String AUDIENCE_WEB = "''' + regClaim.audience+ '''
-		";
+			private static final String AUDIENCE_WEB = "«regClaim.audience»";
 			// Algoritam za potpisivanje JWT
-			private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.''' + jwt.signatureAlgorithm+ '''
-		;
+			private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.«jwt.signatureAlgorithm»;
 			
 		
-			public String generateToken(String ''' + credentialNameUser + '''
-		) {
+			public String generateToken(String «credentialNameUser») {
 				return Jwts.builder()
 						.setIssuer(ISSUER)
-						.setSubject(''' + findSubjectClaim(jwt.jwt_claims).claim_attribute.name + '''
-		)
+						.setSubject(«findSubjectClaim(jwt.jwt_claims).claim_attribute.name»)
 						.setAudience(generateAudience())
 						.setIssuedAt(new Date())
 						.setExpiration(generateExpirationDate())
@@ -519,8 +494,7 @@ class SecurityDslJWTGenerator {
 				final Date created = getIssuedAtDateFromToken(token);
 			
 				return (credential != null 
-					&& credential.equals(userDetails.get''' + credentialNameUser.toFirstUpper + '''
-		()) 
+					&& credential.equals(userDetails.get«credentialNameUser.toFirstUpper»()) 
 					&& !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));  
 			}
 			
@@ -591,22 +565,21 @@ class SecurityDslJWTGenerator {
 		}
 	}
 	
-	def String generateUserTokenStateDTO(String appMainPackage){
+	def String generateUserTokenStateDTO(String packageName){
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.dto;
+		package «packageName».dto;
 		
-		public class UserTokenState {
+		public class UserTokenStateDTO {
 			
 		    private String accessToken;
 		    private Long expiresIn;
 		
-		    public UserTokenState() {
+		    public UserTokenStateDTO() {
 		        this.accessToken = null;
 		        this.expiresIn = null;
 		    }
 		
-		    public UserTokenState(String accessToken, long expiresIn) {
+		    public UserTokenStateDTO(String accessToken, long expiresIn) {
 		        this.accessToken = accessToken;
 		        this.expiresIn = expiresIn;
 		    }
@@ -632,53 +605,4 @@ class SecurityDslJWTGenerator {
 		return content;
 	}
 
-	
-	def String generateJwtAuthenticationRequestDTO(String appMainPackage, String credentialNameUser){
-		var content = '''
-		package ''' + appMainPackage+ '''
-		.dto;
-		
-		public class JwtAuthenticationRequest {
-			
-		    private String ''' + credentialNameUser + '''
-		;
-		    private String password;
-		
-		    public JwtAuthenticationRequest() {
-		        super();
-		    }
-		
-		    public JwtAuthenticationRequest(String ''' + credentialNameUser + '''
-		, String password) {
-		        this.set''' + credentialNameUser.toFirstUpper + '''
-		(''' + credentialNameUser + '''
-		);
-		        this.setPassword(password);
-		    }
-		
-		    public String get''' + credentialNameUser.toFirstUpper + '''
-		() {
-		        return this.''' + credentialNameUser + '''
-		;
-		    }
-		
-		    public void set''' + credentialNameUser.toFirstUpper + '''
-		(String ''' + credentialNameUser + '''
-		) {
-		        this.''' + credentialNameUser + '''
-		= ''' + credentialNameUser + '''
-		;
-		    }
-		
-		    public String getPassword() {
-		        return this.password;
-		    }
-		
-		    public void setPassword(String password) {
-		        this.password = password;
-		    }
-		}
-		'''
-		return content;
-	}
 }

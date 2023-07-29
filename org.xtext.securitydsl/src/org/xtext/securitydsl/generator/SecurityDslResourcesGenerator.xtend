@@ -2,9 +2,8 @@ package org.xtext.securitydsl.generator
 
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
-import security_dsl.EDatabaseType
-import security_dsl.Database
 import security_dsl.BasicAuthentication
+import security_dsl.EDatabaseType
 import security_dsl.JWT
 
 class SecurityDslResourcesGenerator {

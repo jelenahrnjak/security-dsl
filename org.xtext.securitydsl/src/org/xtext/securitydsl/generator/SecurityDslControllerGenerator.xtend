@@ -10,6 +10,7 @@ import security_dsl.Attribute
 import java.util.List
 import security_dsl.User
 import org.eclipse.emf.ecore.resource.Resource
+import security_dsl.JWT
 
 class SecurityDslControllerGenerator {
 	
@@ -50,20 +51,28 @@ class SecurityDslControllerGenerator {
 		
 	
 		var content = '''
-		package ''' + packageName + '''
-		.controller;
+		package «packageName».controller;
 		
-		import ''' + packageName + '''
-		.model.User;
-		import ''' + packageName + '''
-		.dto.UserRequestDTO;
-		import ''' + packageName + '''
-		.service.IUserService;
+		import «packageName».model.User;
+		import «packageName».dto.UserRequestDTO;
+		import «packageName».dto.AuthenticationRequestDTO;
+		import «packageName».service.IUserService;
 		'''
+		
+		if(security instanceof JWT){
+			content += '''
+			import «packageName».dto.UserTokenStateDTO;
+			import «packageName».security.util.TokenUtils;
+			
+			import org.springframework.web.util.UriComponentsBuilder;
+			'''
+		}
 		content += '''
 		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.Authentication;
+		import org.springframework.http.MediaType;
+		import org.springframework.http.HttpStatus;
 		import org.springframework.http.ResponseEntity;
 		import org.springframework.security.authentication.AuthenticationManager;
 		import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -75,44 +84,54 @@ class SecurityDslControllerGenerator {
 		import org.springframework.web.bind.annotation.PostMapping;
 		
 		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-		@RequestMapping(value = "''' + authController.path + '''
-		")
+		@RequestMapping(value = "«authController.path»", produces = MediaType.APPLICATION_JSON_VALUE))
 		@RestController
 		public class AuthController {
 		
 		    private final IUserService userService;
-		'''
-		if(security instanceof BasicAuthentication){
-			content += '''    private final AuthenticationManager  authenticationManager;'''
-		}
-		
-		content += '''    @PostMapping("''' + regEndpoint + '''
-		")
-		    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
-		        return ResponseEntity.ok(userService.save(request));
-		    }
 		    
-			@PostMapping("''' + loginEndpoint + '''
-		")
-			public ResponseEntity<User> login(@RequestBody UserRequestDTO request) {
+		   	private final AuthenticationManager  authenticationManager;
+		'''
 		
-				Authentication authentication = new UsernamePasswordAuthenticationToken(request.get''' + credentialNameUser.toFirstUpper + '''
-			(), request.getPassword());
-				authentication = authenticationManager.authenticate(authentication);
-				SecurityContextHolder.getContext().setAuthentication(authentication);
-				User user = (User) authentication.getPrincipal();
-				return ResponseEntity.ok(user);
-			}
+		var loginMethod = ''
+		var loginRet = ''
 		
-			@GetMapping("''' + logoutEndpoint + '''
-		")
-			public ResponseEntity<Void> logout() {
-			SecurityContextHolder.clearContext();
-			return ResponseEntity.ok().build();
-			}
-		
-		
+		if(security instanceof JWT){
+			content += '''    private final TokenUtils tokenUtils;'''
+			
+			loginMethod = '''
+			String jwt = tokenUtils.generateToken(user.getUsername());
+			int expiresIn = tokenUtils.getExpiredIn();
+			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
+					'''
+		 loginRet = 'UserTokenStateDTO'
+					
+		}else if (security instanceof BasicAuthentication){
+			loginMethod = '''return ResponseEntity.ok(user);'''
+			loginRet = 'User'
 		}
+		
+		content += '''    @PostMapping("«regEndpoint»")
+    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
+        return ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
+    }
+    
+	@PostMapping("«loginEndpoint»")
+	public ResponseEntity<«loginRet»> login(@RequestBody AuthenticationRequestDTO request) {
+
+		Authentication authentication = new UsernamePasswordAuthenticationToken(request.get«credentialNameUser.toFirstUpper»(), request.getPassword());
+		authentication = authenticationManager.authenticate(authentication);
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		User user = (User) authentication.getPrincipal();
+		«loginMethod»}
+
+	@GetMapping("«logoutEndpoint»")
+	public ResponseEntity<Void> logout() {
+		SecurityContextHolder.clearContext();
+		return ResponseEntity.ok().build();
+	}
+
+}
 		'''
 	
 		return content;

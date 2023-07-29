@@ -22,10 +22,13 @@ class SecurityDslModelRepoGenerator  {
 	    
        	if (users.hasNext()) {
        		var user = users.next()
+			var credentialNameUser = getCredential(user.model_attributes).name
        		if(user.tableName === null) user.tableName = "users"
-       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName, user, app.app_security));
-       		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user));
+       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName, user, app.app_security, credentialNameUser));
+       		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user, credentialNameUser));
        	    fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(app.packageName, user));
+       	    fsa.generateFile(srcDestination + '/dto/AuthenticationRequestDTO.java', generateAuthenticationRequestDTO(app.packageName, credentialNameUser))
+       	    
 		}
         
         
@@ -38,48 +41,80 @@ class SecurityDslModelRepoGenerator  {
 		}
 	}
 	
-	def generateUserRepository(String packageName, User user) {
+	
+	def String generateAuthenticationRequestDTO(String packageName, String credentialNameUser){
+		var content = '''
+		package «packageName».dto;
 		
-		var credentialName = getCredential(user.model_attributes).name
+		public class AuthenticationRequestDTO {
+			
+		    private String «credentialNameUser»;
+		    private String password;
+		
+		    public AuthenticationRequestDTO() {
+		        super();
+		    }
+		
+		    public AuthenticationRequestDTO(String «credentialNameUser», String password) {
+		        this.set«credentialNameUser.toFirstUpper»(«credentialNameUser»;
+		        this.setPassword(password);
+		    }
+		
+		    public String get«credentialNameUser.toFirstUpper»() {
+		        return this.«credentialNameUser»;
+		    }
+		
+		    public void set«credentialNameUser.toFirstUpper»(String «credentialNameUser») {
+		        this.«credentialNameUser»= «credentialNameUser»;
+		    }
+		
+		    public String getPassword() {
+		        return this.password;
+		    }
+		
+		    public void setPassword(String password) {
+		        this.password = password;
+		    }
+		}
+		'''
+		return content;
+	}
+	
+	def generateUserRepository(String packageName, User user, String credentialName) {
 		
 		var content = '''
-		package ''' + packageName+ '''
-		.repository;
+		package «packageName».repository;
 		
 		import java.util.Optional;
 		import org.springframework.data.jpa.repository.JpaRepository;
 		
-		import ''' + packageName+ '''
-		.model.User;
+		import «packageName».model.User;
 		
-		public interface UserRepository extends JpaRepository<User, ''' + getIdentifier(user.model_attributes).type + '''
-		> {
+		public interface UserRepository extends JpaRepository<User, «getIdentifier(user.model_attributes).type»> {
 			
-		    Optional<User> findBy''' + credentialName.toFirstUpper + '''(String ''' + credentialName + ''');
-}
+		    Optional<User> findBy«credentialName.toFirstUpper»(String «credentialName»);
+
+		}
 				'''
 				return content;
 	}
 	
-	def String generateRoleRepository(String appMainPackage, Role role){
+	def String generateRoleRepository(String packageName, Role role){
 		
 		var stringAttribute = getStringAttributeForRole(role.model_attributes).name
 		
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.repository;
+		package «packageName».repository;
 		
 		import java.util.List;
 		import org.springframework.data.jpa.repository.JpaRepository;
 		
-		import ''' + appMainPackage+ '''
-		.model.Role;
+		import «packageName».model.Role;
 
-		public interface RoleRepository extends JpaRepository<Role, ''' + getIdentifier(role.model_attributes).type + '''
-		> {
+		public interface RoleRepository extends JpaRepository<Role, «getIdentifier(role.model_attributes).type»> {
 			
-			List<Role> findBy''' + stringAttribute.toFirstUpper + '''(String ''' + stringAttribute + ''');
-}
+			List<Role> findBy«stringAttribute.toFirstUpper»(String «stringAttribute»);
+		}
 		'''
 		return content;
 	}
@@ -87,8 +122,7 @@ class SecurityDslModelRepoGenerator  {
 	def generateUserRequestDto(String packageName, User user){
 		
 		var content = '''
-		package ''' + packageName + '''
-		.dto;
+		package «packageName».dto;
 		
 		import lombok.*;
 		
@@ -99,12 +133,12 @@ class SecurityDslModelRepoGenerator  {
 		@NoArgsConstructor
 		public class UserRequestDTO {
 
-		''' + generateAttributesForDto(user.model_attributes) + 
-		'''    private String password;
+			«generateAttributesForDto(user.model_attributes)»
+		    private String password;
 
-    private String role;
+			private String role;
 
-}
+		}
 		'''	
 		
 		return content;
@@ -115,8 +149,7 @@ class SecurityDslModelRepoGenerator  {
 		
 		for(a : attributes){
 			if(!a.isIdentifier){
-			content += '''    private ''' + a.type +  ''' ''' + a.name+ 
-			''';
+			content += '''private «a.type» «a.name»;
 
 			'''}
 		}
@@ -124,22 +157,19 @@ class SecurityDslModelRepoGenerator  {
 		return content
 	}
 	
-	def generateUserModel(String appMainPackage, User user, Security security) {
+	def generateUserModel(String packageName, User user, Security security, String credentialName) {
 		
-		var credentialName = getCredential(user.model_attributes).name
 		
 		var userContent =  '''
-		package ''' + appMainPackage+ '''
-		.model;
+		package «packageName».model;
 		
 		'''
 		
 		if(security instanceof BasicAuthentication){
 			userContent +=  '''
-		import ''' + appMainPackage+ '''
-		.model.enumeration.Role;
-		
-		'''
+			import «packageName».model.enumeration.Role;
+
+			'''
 		}
 			
 		
@@ -174,11 +204,11 @@ class SecurityDslModelRepoGenerator  {
 		@Getter
 		@Setter
 		@Entity
-		@Table(name="''' + user.tableName + '''")
-public class User implements UserDetails {
+		@Table(name="«user.tableName»
+		public class User implements UserDetails {
 		
-    private static final long serialVersionUID = 1L;
-			
+		    private static final long serialVersionUID = 1L;
+		
 			'''
 		
 		userContent += generateAttributes(user.model_attributes)
@@ -285,8 +315,7 @@ public class User implements UserDetails {
 	@Override
 	public String getUsername() {
 		// TODO Auto-generated method stub
-		return ''' + credentialName + '''
-		;
+		return «credentialName»;
 	}
 			'''
 		}
@@ -294,10 +323,9 @@ public class User implements UserDetails {
 		return userContent;
 	}
 	
-	def generateRoleModel(String appMainPackage, Role role) {
+	def generateRoleModel(String packageName, Role role) {
 		var content = '''
-		package ''' + appMainPackage+ '''
-		.model;
+		package «packageName».model;
 		
 		import lombok.Getter;
 		import lombok.Setter;
@@ -310,10 +338,10 @@ public class User implements UserDetails {
 		@Getter
 		@Setter
 		@Entity
-		@Table(name="''' + role.tableName + '''")
-public class Role implements GrantedAuthority {
+		@Table(name="«role.tableName»")
+		public class Role implements GrantedAuthority {
 		
-    private static final long serialVersionUID = 1L;
+		    private static final long serialVersionUID = 1L;
 		
 		    '''
 		content += generateAttributes(role.model_attributes)
@@ -323,7 +351,7 @@ public class Role implements GrantedAuthority {
 		content += '''    @JsonIgnore
     @Override
     public String getAuthority() {
-    	return ''' + stringAttribute.name + ''';
+    	return «stringAttribute.name»;
     }
 
 }'''
@@ -386,13 +414,10 @@ public class Role implements GrantedAuthority {
 		'''
 		
 		for (attribute : attributes) {
-			if(attribute.collumnName !== null) content += '''    @Column(name = "'''+ attribute.collumnName + '''")
+			if(attribute.collumnName !== null) content += '''    @Column(name = "«attribute.collumnName»")
 			'''
-			
-			content += '''    private '''+ (attribute.type.toString()).substring(0, 1).toUpperCase() + (attribute.type.toString()).substring(1).toLowerCase() + 
-			     ' ' + attribute.name + '''
-			;
-			
+			content += '''    private «attribute.type»  «attribute.name» ;
+
 			'''
 		}
 		
