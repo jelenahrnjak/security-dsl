@@ -16,6 +16,7 @@ import security_dsl.BasicAuthentication;
 import security_dsl.EType;
 import security_dsl.JWT;
 import security_dsl.Role;
+import security_dsl.RoleInstance;
 import security_dsl.Security;
 import security_dsl.User;
 
@@ -45,8 +46,13 @@ public class SecurityDslModelRepoGenerator {
       if (_tripleEquals_1) {
         role.setTableName("roles");
       }
+      String stringAttribute = this.getStringAttributeForRole(role.getModel_attributes()).getName();
+      String roleId = this.getIdentifier(role.getModel_attributes()).getName();
       fsa.generateFile((srcDestination + "/model/Role.java"), this.generateRoleModel(app.getPackageName(), role));
-      fsa.generateFile((srcDestination + "/repository/RoleRepository.java"), this.generateRoleRepository(app.getPackageName(), role));
+      fsa.generateFile((srcDestination + "/repository/RoleRepository.java"), this.generateRoleRepository(app.getPackageName(), role, stringAttribute));
+      String _artifact = app.getArtifact();
+      String _plus = (_artifact + "/src/main/resources/data.sql");
+      fsa.generateFile(_plus, this.generateSQLScript(role.getTableName(), stringAttribute, role.getRole_instances(), roleId));
     }
   }
 
@@ -91,7 +97,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.append(_firstUpper, "        ");
     _builder.append("(");
     _builder.append(credentialNameUser, "        ");
-    _builder.append(";");
+    _builder.append(");");
     _builder.newLineIfNotEmpty();
     _builder.append("        ");
     _builder.append("this.setPassword(password);");
@@ -198,8 +204,7 @@ public class SecurityDslModelRepoGenerator {
     return content;
   }
 
-  public String generateRoleRepository(final String packageName, final Role role) {
-    String stringAttribute = this.getStringAttributeForRole(role.getModel_attributes()).getName();
+  public String generateRoleRepository(final String packageName, final Role role, final String stringAttribute) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     _builder.append(packageName);
@@ -380,6 +385,7 @@ public class SecurityDslModelRepoGenerator {
     _builder_2.append("@Table(name=\"");
     String _tableName = user.getTableName();
     _builder_2.append(_tableName);
+    _builder_2.append("\")");
     _builder_2.newLineIfNotEmpty();
     _builder_2.append("public class User implements UserDetails {");
     _builder_2.newLine();
@@ -828,12 +834,37 @@ public class SecurityDslModelRepoGenerator {
         _builder_2.append("  ");
         String _name = attribute.getName();
         _builder_2.append(_name, "    ");
-        _builder_2.append(" ;");
+        _builder_2.append(";");
         _builder_2.newLineIfNotEmpty();
         _builder_2.newLine();
         content = (_content_1 + _builder_2);
       }
     }
     return content;
+  }
+
+  public CharSequence generateSQLScript(final String tableName, final String stringAttribute, final List<RoleInstance> rInstances, final String id) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      for(final RoleInstance role : rInstances) {
+        _builder.append("INSERT INTO ");
+        String _upperCase = tableName.toUpperCase();
+        _builder.append(_upperCase);
+        _builder.append(" (");
+        _builder.append(id);
+        _builder.append(", ");
+        _builder.append(stringAttribute);
+        _builder.append(") VALUES (");
+        int _indexOf = rInstances.indexOf(role);
+        int _plus = (_indexOf + 1);
+        _builder.append(_plus);
+        _builder.append(", \'");
+        String _name = role.getName();
+        _builder.append(_name);
+        _builder.append("\');");
+        _builder.newLineIfNotEmpty();
+      }
+    }
+    return _builder;
   }
 }

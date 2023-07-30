@@ -12,19 +12,21 @@ class SecurityDslBasicAuthenticationGenerator {
 
 	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
 		
-    	var role = resource.allContents.filter(Role).next() 
+    	var roles = resource.allContents.filter(Role)
     	
     	for (c : app.app_controllers) {
     		if(c instanceof Authentication){
     		fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(app.packageName, c))    	
     		}
-    		
     	}
     	
-    	
-		fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
-		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
+		//fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
 		fsa.generateFile(srcDestination + '/exception/ResourceConflictException.java', generateException(app.packageName))
+		
+		if(roles.hasNext()){
+			var role = roles.next()
+			fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
+		}
 		
 		
 	}
@@ -56,13 +58,12 @@ class SecurityDslBasicAuthenticationGenerator {
 		return content;
 	}
 	
-	def generateApplicationSecurityConfig(String packageName, Authentication authController){
-		
-		var content = '''
+	def generateApplicationSecurityConfig(String packageName, Authentication authController)'''
 		package «packageName».config;
 		
 		import «packageName».service.impl.UserServiceImpl;
-		import lombok.RequiredArgsConstructor;
+		
+		import uns.ftn.securityDsl.service.impl.UserServiceImpl;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
@@ -73,15 +74,20 @@ class SecurityDslBasicAuthenticationGenerator {
 		import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 		import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-		
-		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+
 		@Configuration
 		@EnableWebSecurity
 		public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 		
-		    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-		    private final UserServiceImpl userService;
+			@Autowired
+		    private  BCryptPasswordEncoder bCryptPasswordEncoder;
+			@Autowired
+		    private  UserServiceImpl userService;
 		
+		    @Bean
+		    public BCryptPasswordEncoder bCryptPasswordEncoder() {
+		        return new BCryptPasswordEncoder();
+		    }
 		
 		    @Override
 		    protected void configure(HttpSecurity httpSecurity) throws Exception {
@@ -117,62 +123,25 @@ class SecurityDslBasicAuthenticationGenerator {
 		
 		}
 		'''
-	
-		return content;
-	}
-	
-	def generatePassEncoder(String packageName){
-	
-		var content = ''
-		content =  '''
-		package «packageName».config;
-
-		import org.springframework.context.annotation.Bean;
-		import org.springframework.context.annotation.Configuration;
-		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 		
-		@Configuration
-		public class PasswordEncoder {
-		
-		    @Bean
-		    public BCryptPasswordEncoder bCryptPasswordEncoder(){
-		        return new BCryptPasswordEncoder();
-		    }
-		}
-			'''
-		
-		return content;
-	}
-	
-	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances){
-		var content = '''
+	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances)'''
 		package «packageName».model.enumeration;
-		
+
 		public enum Role {
-		
-		''' 
-		for (var  i = 0 ; i <roleInstances.size; i++) {
-			
-			content += '    ' + roleInstances.get(i).name.toUpperCase
-			
-			if(i != roleInstances.size - 1)
-				content+= ''',
-				'''
-			
+
+			«FOR i : 0 .. (roleInstances.size - 1)»
+			«roleInstances.get(i).name»
+		«IF i != roleInstances.size - 1»
+		,
+		«ELSEIF i == roleInstances.size - 1 && roleInstances.size != 0»
+		;
+		«ENDIF»
+			«ENDFOR»
+
+		    public String getAuthority() {
+				return this.name();
+			}
 		}
-		
-		if(roleInstances.size != 0)
-			content += ''';
-			'''
-		
-		
-		content += '''    public String getAuthority() {
-    	return this.name();
-    }
-}
 		'''
-		
-		return content
-	}
 		
 }

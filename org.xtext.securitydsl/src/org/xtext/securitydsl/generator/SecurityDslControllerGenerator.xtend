@@ -26,7 +26,6 @@ class SecurityDslControllerGenerator {
     		}
 		}
 	
-	
 	def getCredential(List<Attribute> attributes){
 		
 		for (a : attributes) {
@@ -57,17 +56,13 @@ class SecurityDslControllerGenerator {
 		import «packageName».dto.UserRequestDTO;
 		import «packageName».dto.AuthenticationRequestDTO;
 		import «packageName».service.IUserService;
-		'''
 		
-		if(security instanceof JWT){
-			content += '''
-			import «packageName».dto.UserTokenStateDTO;
-			import «packageName».security.util.TokenUtils;
-			
-			import org.springframework.web.util.UriComponentsBuilder;
-			'''
-		}
-		content += '''
+		«IF security instanceof JWT»
+		import «packageName».dto.UserTokenStateDTO;
+		import «packageName».util.TokenUtils;
+		
+		import org.springframework.web.util.UriComponentsBuilder;
+		«ENDIF»
 		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.Authentication;
@@ -84,54 +79,45 @@ class SecurityDslControllerGenerator {
 		import org.springframework.web.bind.annotation.PostMapping;
 		
 		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
-		@RequestMapping(value = "«authController.path»", produces = MediaType.APPLICATION_JSON_VALUE))
+		@RequestMapping(value = "«authController.path»", produces = MediaType.APPLICATION_JSON_VALUE)
 		@RestController
 		public class AuthController {
 		
 		    private final IUserService userService;
 		    
 		   	private final AuthenticationManager  authenticationManager;
-		'''
 		
-		var loginMethod = ''
-		var loginRet = ''
-		
-		if(security instanceof JWT){
-			content += '''    private final TokenUtils tokenUtils;'''
-			
-			loginMethod = '''
-			String jwt = tokenUtils.generateToken(user.getUsername());
-			int expiresIn = tokenUtils.getExpiredIn();
-			return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
-					'''
-		 loginRet = 'UserTokenStateDTO'
-					
-		}else if (security instanceof BasicAuthentication){
-			loginMethod = '''return ResponseEntity.ok(user);'''
-			loginRet = 'User'
+			«IF security instanceof JWT»
+			private final TokenUtils tokenUtils;
+			«ENDIF»
+		   @PostMapping("«regEndpoint»")
+		    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
+		        return new ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
+		    }
+		    
+			@PostMapping("«loginEndpoint»")
+			public ResponseEntity<«IF security instanceof JWT»UserTokenStateDTO«ELSEIF security instanceof BasicAuthentication»User«ENDIF»> login(@RequestBody AuthenticationRequestDTO request) {
+
+				Authentication authentication = new UsernamePasswordAuthenticationToken(request.get«credentialNameUser.toFirstUpper»(), request.getPassword());
+				authentication = authenticationManager.authenticate(authentication);
+				SecurityContextHolder.getContext().setAuthentication(authentication);
+				User user = (User) authentication.getPrincipal();
+				«IF security instanceof JWT»
+				String jwt = tokenUtils.generateToken(user.getUsername());
+				int expiresIn = tokenUtils.getExpiredIn();
+				return ResponseEntity.ok(new UserTokenStateDTO(jwt, expiresIn));
+				«ELSEIF security instanceof BasicAuthentication»
+				return ResponseEntity.ok(user);	
+				«ENDIF»
+			}
+
+			@GetMapping("«logoutEndpoint»")
+			public ResponseEntity<Void> logout() {
+				SecurityContextHolder.clearContext();
+				return ResponseEntity.ok().build();
+			}
+
 		}
-		
-		content += '''    @PostMapping("«regEndpoint»")
-    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
-        return ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
-    }
-    
-	@PostMapping("«loginEndpoint»")
-	public ResponseEntity<«loginRet»> login(@RequestBody AuthenticationRequestDTO request) {
-
-		Authentication authentication = new UsernamePasswordAuthenticationToken(request.get«credentialNameUser.toFirstUpper»(), request.getPassword());
-		authentication = authenticationManager.authenticate(authentication);
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		User user = (User) authentication.getPrincipal();
-		«loginMethod»}
-
-	@GetMapping("«logoutEndpoint»")
-	public ResponseEntity<Void> logout() {
-		SecurityContextHolder.clearContext();
-		return ResponseEntity.ok().build();
-	}
-
-}
 		'''
 	
 		return content;

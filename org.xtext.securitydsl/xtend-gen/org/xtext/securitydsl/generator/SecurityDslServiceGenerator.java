@@ -29,11 +29,14 @@ public class SecurityDslServiceGenerator {
       User user = users.next();
       Role role = roles.next();
       String userCredentialName = this.getCredential(user.getModel_attributes()).getName();
-      String stringAttributeRole = this.getStringAttributeForRole(role.getModel_attributes()).getName();
       fsa.generateFile((srcDestination + "/service/IUserService.java"), this.generateIUserService(app.getPackageName(), userCredentialName));
       fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImplBasic(app.getPackageName(), app.getApp_security(), userCredentialName, this.getNotClienRoles(role.getRole_instances())));
-      fsa.generateFile((srcDestination + "/service/RoleServiceImpl.java"), this.generateRoleServiceImpl(app.getPackageName(), stringAttributeRole));
-      fsa.generateFile((srcDestination + "/service/IRoleService.java"), this.generateIRoleService(app.getPackageName(), stringAttributeRole));
+      Security _app_security = app.getApp_security();
+      if ((_app_security instanceof JWT)) {
+        String stringAttributeRole = this.getStringAttributeForRole(role.getModel_attributes()).getName();
+        fsa.generateFile((srcDestination + "/service/impl/RoleServiceImpl.java"), this.generateRoleServiceImpl(app.getPackageName(), stringAttributeRole));
+        fsa.generateFile((srcDestination + "/service/IRoleService.java"), this.generateIRoleService(app.getPackageName(), stringAttributeRole));
+      }
     }
   }
 
@@ -78,11 +81,9 @@ public class SecurityDslServiceGenerator {
       _builder_2.append("newUser.setEnabled(true);");
       _builder_2.newLine();
       _builder_2.newLine();
-      _builder_2.append("\t");
-      _builder_2.append("List<Role> roles = roleService.findByName(newUser.getRole();");
+      _builder_2.append("List<Role> roles = roleService.findByName(request.getRole());");
       _builder_2.newLine();
-      _builder_2.append("\t");
-      _builder_2.append("newRole.setRoles(roles);");
+      _builder_2.append("newUser.setRoles(roles);");
       _builder_2.newLine();
       endOfSave = _builder_2.toString();
     } else {
@@ -102,8 +103,6 @@ public class SecurityDslServiceGenerator {
     }
     String _content_2 = content;
     StringConcatenation _builder_5 = new StringConcatenation();
-    _builder_5.newLine();
-    _builder_5.append("import lombok.RequiredArgsConstructor;");
     _builder_5.newLine();
     _builder_5.append("import org.springframework.beans.BeanUtils;");
     _builder_5.newLine();
@@ -126,27 +125,35 @@ public class SecurityDslServiceGenerator {
     _builder_5.append("import java.util.List;");
     _builder_5.newLine();
     _builder_5.newLine();
-    _builder_5.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
-    _builder_5.newLine();
     _builder_5.append("@Service");
     _builder_5.newLine();
     _builder_5.append("public class UserServiceImpl implements UserDetailsService, IUserService {");
     _builder_5.newLine();
     _builder_5.newLine();
-    _builder_5.append("    ");
-    _builder_5.append("private final UserRepository userRepository;");
+    _builder_5.append("\t");
+    _builder_5.append("@Autowired");
     _builder_5.newLine();
     _builder_5.append("    ");
-    _builder_5.append("private final BCryptPasswordEncoder bCryptPasswordEncoder;");
+    _builder_5.append("private UserRepository userRepository;");
+    _builder_5.newLine();
+    _builder_5.append("    ");
+    _builder_5.newLine();
+    _builder_5.append("    ");
+    _builder_5.append("@Autowired");
+    _builder_5.newLine();
+    _builder_5.append("    ");
+    _builder_5.append("private BCryptPasswordEncoder bCryptPasswordEncoder;");
     _builder_5.newLine();
     content = (_content_2 + _builder_5);
     if ((sec instanceof JWT)) {
       String _content_3 = content;
       StringConcatenation _builder_6 = new StringConcatenation();
-      _builder_6.append("    ");
-      _builder_6.append("private final IRoleService roleService;");
+      _builder_6.append("\t");
+      _builder_6.append("@Autowired");
       _builder_6.newLine();
-      _builder_6.append(" ");
+      _builder_6.append("\t");
+      _builder_6.append("private IRoleService roleService;");
+      _builder_6.newLine();
       _builder_6.newLine();
       content = (_content_3 + _builder_6);
     }
@@ -227,17 +234,20 @@ public class SecurityDslServiceGenerator {
         {
           String _content_6 = content;
           StringConcatenation _builder_9 = new StringConcatenation();
-          _builder_9.append("role.equals(");
-          String _upperCase = notClientRoles.get(i).getName().toUpperCase();
-          _builder_9.append(_upperCase);
-          _builder_9.append(")");
+          _builder_9.append("role.equals(\"");
+          String _name = notClientRoles.get(i).getName();
+          _builder_9.append(_name);
+          _builder_9.append("\")");
           content = (_content_6 + _builder_9);
           int _size_1 = notClientRoles.size();
           int _minus = (_size_1 - 1);
           boolean _equals = (i == _minus);
           if (_equals) {
             String _content_7 = content;
-            content = (_content_7 + ") {");
+            StringConcatenation _builder_10 = new StringConcatenation();
+            _builder_10.append(") {");
+            _builder_10.newLine();
+            content = (_content_7 + _builder_10);
           } else {
             String _content_8 = content;
             content = (_content_8 + " or ");
@@ -250,7 +260,7 @@ public class SecurityDslServiceGenerator {
       _builder_9.append("return false;");
       _builder_9.newLine();
       _builder_9.newLine();
-      _builder_9.append("    ");
+      _builder_9.append("    \t");
       _builder_9.append("}");
       _builder_9.newLine();
       _builder_9.newLine();
@@ -401,24 +411,37 @@ public class SecurityDslServiceGenerator {
     _builder.append(".service.IRoleService;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    _builder.append("import java.util.List;");
+    _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
     _builder.newLine();
+    _builder.append("import org.springframework.stereotype.Service;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("import lombok.RequiredArgsConstructor;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@RequiredArgsConstructor(onConstructor = @__(@Autowired))");
+    _builder.newLine();
+    _builder.append("@Service");
     _builder.newLine();
     _builder.append("public class RoleServiceImpl implements IRoleService {");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("private final RoleRepository roleRepository;");
     _builder.newLine();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@Override");
     _builder.newLine();
     _builder.append("\t");
-    _builder.append("List<Role> findBy");
+    _builder.append("public List<Role> findBy");
     String _firstUpper = StringExtensions.toFirstUpper(roleStringAttribute);
     _builder.append(_firstUpper, "\t");
     _builder.append("(String ");
     _builder.append(roleStringAttribute, "\t");
     _builder.append("){");
     _builder.newLineIfNotEmpty();
-    _builder.append("\t");
+    _builder.append("\t\t");
     _builder.append("return this.roleRepository.findByName(name); ");
     _builder.newLine();
     _builder.append("\t");

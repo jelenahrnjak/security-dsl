@@ -3,11 +3,8 @@ package uns.ftn.securityDsl.service.impl;
 import  uns.ftn.securityDsl.model.User;
 import uns.ftn.securityDsl.repository.UserRepository;
 import uns.ftn.securityDsl.service.IUserService;
-import uns.ftn.securityDsl.dto.UserRequestDTO;import uns.ftn.securityDsl.model.Role;
-import uns.ftn.securityDsl.service.IRoleService;
+import uns.ftn.securityDsl.dto.UserRequestDTO;import uns.ftn.securityDsl.model.enumeration.Role;
 
-
-import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,22 +17,19 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @Service
 public class UserServiceImpl implements UserDetailsService, IUserService {
 
-    private final UserRepository userRepository;
-    private final BCryptPasswordEncoder bCryptPasswordEncoder;
-    private final IRoleService roleService;
- 
+	@Autowired
+    private UserRepository userRepository;
+    
+    @Autowired
+    private BCryptPasswordEncoder bCryptPasswordEncoder;
     @Override
     public User save(UserRequestDTO request) {
     	User newUser = new User();
     	BeanUtils.copyProperties(request, newUser);
-    	newUser.setEnabled(true);
-    	
-    		List<Role> roles = roleService.findByName(newUser.getRole();
-    		newRole.setRoles(roles);
+    	newUser.setRole(Role.valueOf(request.getRole()));
     	if (userRepository.findByUsername(newUser.getUsername()).isPresent()) {
     		throw new RuntimeException("User already exists");
 
@@ -52,9 +46,10 @@ public class UserServiceImpl implements UserDetailsService, IUserService {
 
 	private boolean checkRoleForRegistration(String role) {
 		
-        if(role.equals(ADMIN)) {        return false;
+        if(role.equals("admin")) {
+        return false;
 
-    }
+    	}
 
     	return true;
     }

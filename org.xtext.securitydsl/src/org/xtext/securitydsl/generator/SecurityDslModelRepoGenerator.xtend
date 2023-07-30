@@ -12,6 +12,7 @@ import security_dsl.EType
 import security_dsl.Security
 import security_dsl.JWT
 import security_dsl.BasicAuthentication
+import security_dsl.RoleInstance
 
 class SecurityDslModelRepoGenerator  {
 	
@@ -35,8 +36,11 @@ class SecurityDslModelRepoGenerator  {
        	if (roles.hasNext() && app.app_security instanceof JWT) {
        		var role = roles.next()
        		if(role.tableName === null) role.tableName = "roles"
+			var stringAttribute = getStringAttributeForRole(role.model_attributes).name
+			var roleId = getIdentifier(role.model_attributes).name
        		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(app.packageName , role));
-       		fsa.generateFile(srcDestination + '/repository/RoleRepository.java', generateRoleRepository(app.packageName, role));
+       		fsa.generateFile(srcDestination + "/repository/RoleRepository.java" ,  generateRoleRepository(app.getPackageName(), role, stringAttribute));
+       		fsa.generateFile(app.artifact + '/src/main/resources/data.sql', generateSQLScript(role.tableName, stringAttribute, role.role_instances, roleId));
        		
 		}
 	}
@@ -56,7 +60,7 @@ class SecurityDslModelRepoGenerator  {
 		    }
 		
 		    public AuthenticationRequestDTO(String «credentialNameUser», String password) {
-		        this.set«credentialNameUser.toFirstUpper»(«credentialNameUser»;
+		        this.set«credentialNameUser.toFirstUpper»(«credentialNameUser»);
 		        this.setPassword(password);
 		    }
 		
@@ -99,9 +103,8 @@ class SecurityDslModelRepoGenerator  {
 				return content;
 	}
 	
-	def String generateRoleRepository(String packageName, Role role){
+	def String generateRoleRepository(String packageName, Role role, String stringAttribute){
 		
-		var stringAttribute = getStringAttributeForRole(role.model_attributes).name
 		
 		var content = '''
 		package «packageName».repository;
@@ -204,7 +207,7 @@ class SecurityDslModelRepoGenerator  {
 		@Getter
 		@Setter
 		@Entity
-		@Table(name="«user.tableName»
+		@Table(name="«user.tableName»")
 		public class User implements UserDetails {
 		
 		    private static final long serialVersionUID = 1L;
@@ -416,11 +419,18 @@ class SecurityDslModelRepoGenerator  {
 		for (attribute : attributes) {
 			if(attribute.collumnName !== null) content += '''    @Column(name = "«attribute.collumnName»")
 			'''
-			content += '''    private «attribute.type»  «attribute.name» ;
+			content += '''    private «attribute.type»  «attribute.name»;
 
 			'''
 		}
 		
 		return content;
 	}
+	
+	
+	def generateSQLScript(String tableName, String stringAttribute, List<RoleInstance> rInstances, String id)'''
+		«FOR role : rInstances»
+		INSERT INTO «tableName.toUpperCase» («id», «stringAttribute») VALUES («rInstances.indexOf(role) + 1», '«role.name»');
+		«ENDFOR»
+	'''
 }

@@ -78,9 +78,8 @@ class SecurityDslJWTGenerator {
 		    public void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain chain)
 		            throws IOException, ServletException {
 		
-		
 		        String credential;
-		
+		        String authToken = tokenUtils.getToken(request);
 		
 		        try {
 		
@@ -261,13 +260,12 @@ class SecurityDslJWTGenerator {
 		
 		import «packageName».security.auth.RestAuthenticationEntryPoint;
 		import «packageName».security.auth.TokenAuthenticationFilter;
-		import «packageName».service.impl.CustomUserDetailsService;
 		import «packageName».service.impl.UserServiceImpl;
 		import «packageName».util.TokenUtils;
+		
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
-		import org.springframework.context.annotation.Lazy;
 		import org.springframework.http.HttpMethod;
 		import org.springframework.security.authentication.AuthenticationManager;
 		import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -277,23 +275,26 @@ class SecurityDslJWTGenerator {
 		import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 		import org.springframework.security.config.http.SessionCreationPolicy;
 		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-		import org.springframework.security.crypto.password.PasswordEncoder;
 		import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 		
 		@Configuration
 		@EnableGlobalMethodSecurity(prePostEnabled = true)
 		public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+			
+			@Autowired
+			private UserServiceImpl userService;
+			
+			@Autowired
+			private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+			
+			@Autowired
+			private TokenUtils tokenUtils;
 		
-		    @Bean
-		    public PasswordEncoder passwordEncoder() {
-		        return new BCryptPasswordEncoder();
-		    }
-		
-		    @Autowired
-		    private CustomUserDetailsService customUserDetailsService;
-		
-		    @Autowired
-		    private RestAuthenticationEntryPoint restAuthenticationEntryPoint;
+			@Bean
+			public BCryptPasswordEncoder passwordEncoder() {
+				return new BCryptPasswordEncoder();
+			}
+
 		
 		    @Bean
 		    @Override
@@ -305,12 +306,9 @@ class SecurityDslJWTGenerator {
 		    public void configure(AuthenticationManagerBuilder auth) throws Exception {
 		        auth
 		
-		                .userDetailsService(customUserDetailsService)
+		                .userDetailsService(userService)
 		                .passwordEncoder(passwordEncoder());
 		    }
-		
-		    @Autowired
-		    private TokenUtils tokenUtils;
 		
 		    @Override
 		    protected void configure(HttpSecurity http) throws Exception {
@@ -324,7 +322,7 @@ class SecurityDslJWTGenerator {
 		
 		                .anyRequest().authenticated().and()
 		                .cors().and()
-		                .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, customUserDetailsService), BasicAuthenticationFilter.class);
+		                .addFilterBefore(new TokenAuthenticationFilter(tokenUtils, userService), BasicAuthenticationFilter.class);
 		
 		        http.csrf().disable();
 		    }
@@ -367,7 +365,7 @@ class SecurityDslJWTGenerator {
 		@Component
 		public class TokenUtils {
 		
-			private String ISSUER "«regClaim.issuer»";
+			private String ISSUER = "«regClaim.issuer»";
 
 			public String SECRET = "«jwt.secret»";
 		
@@ -415,6 +413,7 @@ class SecurityDslJWTGenerator {
 			}
 			
 			public String getCredentialFromToken(String token) {
+				
 				String credential;
 				
 				try {

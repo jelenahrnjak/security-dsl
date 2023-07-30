@@ -25,17 +25,20 @@ class SecurityDslServiceGenerator {
 	    		var user = users.next()
 	    		var role = roles.next()
 		    	var userCredentialName = getCredential(user.model_attributes).name
-		    	var stringAttributeRole = getStringAttributeForRole(role.model_attributes).name
 		    	
 		    	fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName, userCredentialName));
 	    		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImplBasic(app.packageName, app.app_security, userCredentialName, getNotClienRoles(role.role_instances)));
 	    		
-		    	fsa.generateFile(srcDestination + '/service/RoleServiceImpl.java', generateRoleServiceImpl(app.packageName, stringAttributeRole));
-		    	fsa.generateFile(srcDestination + '/service/IRoleService.java', generateIRoleService(app.packageName, stringAttributeRole));
-	    	}
+	    		if(app.app_security instanceof JWT){
+		    		var stringAttributeRole = getStringAttributeForRole(role.model_attributes).name
+		    		fsa.generateFile(srcDestination + '/service/impl/RoleServiceImpl.java', generateRoleServiceImpl(app.packageName, stringAttributeRole));
+		    		fsa.generateFile(srcDestination + '/service/IRoleService.java', generateIRoleService(app.packageName, stringAttributeRole));
+		    	}
+		    }
+	    
 	    	
 	    	
-	}
+		}
 	
 	
 	def generateUserServiceImplBasic(String packageName, Security sec, String credentialName, List<RoleInstance> notClientRoles){
@@ -60,8 +63,8 @@ class SecurityDslServiceGenerator {
 			endOfSave = '''
 		newUser.setEnabled(true);
 
-			List<Role> roles = roleService.findByName(newUser.getRole();
-			newRole.setRoles(roles);
+		List<Role> roles = roleService.findByName(request.getRole());
+		newUser.setRoles(roles);
 		'''
 		}else if(sec instanceof BasicAuthentication){
 		
@@ -74,7 +77,6 @@ class SecurityDslServiceGenerator {
 		
 		content += '''
 		
-		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.BeanUtils;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.userdetails.UserDetails;
@@ -87,17 +89,20 @@ class SecurityDslServiceGenerator {
 		
 		import java.util.List;
 		
-		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
 		@Service
 		public class UserServiceImpl implements UserDetailsService, IUserService {
 		
-		    private final UserRepository userRepository;
-		    private final BCryptPasswordEncoder bCryptPasswordEncoder;
+			@Autowired
+		    private UserRepository userRepository;
+		    
+		    @Autowired
+		    private BCryptPasswordEncoder bCryptPasswordEncoder;
 		''' 
 		
 		if(sec instanceof JWT){
-			content += '''    private final IRoleService roleService;
- 
+			content += '''	@Autowired
+	private IRoleService roleService;
+
 			'''
 		}
 		    
@@ -127,10 +132,11 @@ class SecurityDslServiceGenerator {
 			content += '''        if('''
 			
 			for(var i = 0; i < notClientRoles.size ; i++){
-				content += '''role.equals(«notClientRoles.get(i).name.toUpperCase»)'''
+				content += '''role.equals("«notClientRoles.get(i).name»")'''
 				
 				if(i == notClientRoles.size - 1){
-					content+= ') {'
+					content+= ''') {
+						'''
 				}else{
 					content += ' or '
 				}
@@ -138,7 +144,7 @@ class SecurityDslServiceGenerator {
 			
     	content += '''        return false;
 
-    }
+    	}
 
 		'''}
 				
@@ -224,13 +230,20 @@ class SecurityDslServiceGenerator {
 		import «packageName».repository.RoleRepository;
 		import «packageName».service.IRoleService;
 		
-		import java.util.List;
+		import org.springframework.beans.factory.annotation.Autowired;
+		import org.springframework.stereotype.Service;
 		
+		import lombok.RequiredArgsConstructor;
+		
+		@RequiredArgsConstructor(onConstructor = @__(@Autowired))
+		@Service
 		public class RoleServiceImpl implements IRoleService {
+
+			private final RoleRepository roleRepository;
 		
 			@Override
-			List<Role> findBy«roleStringAttribute.toFirstUpper»(String «roleStringAttribute»){
-			return this.roleRepository.findByName(name); 
+			public List<Role> findBy«roleStringAttribute.toFirstUpper»(String «roleStringAttribute»){
+				return this.roleRepository.findByName(name); 
 			}
 
 		}

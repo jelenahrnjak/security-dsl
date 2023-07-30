@@ -2,7 +2,6 @@ package org.xtext.securitydsl.generator
 
 import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
-import security_dsl.BasicAuthentication
 import security_dsl.EDatabaseType
 import security_dsl.JWT
 
@@ -47,25 +46,6 @@ class SecurityDslResourcesGenerator {
 			}
 		}
 		
-		var securityDependency = ''
-	
-		if(app.app_security instanceof BasicAuthentication){
-			securityDependency = '''			
-			<dependency>
-					<groupId>org.springframework.boot</groupId>
-					<artifactId>spring-boot-starter-security</artifactId>
-				</dependency>
-			'''
-		}else if(app.app_security instanceof JWT){
-			
-			securityDependency += '''			
-			<dependency>
-					<groupId>io.jsonwebtoken</groupId>
-					<artifactId>jjwt</artifactId>
-					<version>0.6.0</version>
-				</dependency>
-			'''
-		}
 		
 		var content = '''
 		<?xml version="1.0" encoding="UTF-8"?>
@@ -121,7 +101,26 @@ class SecurityDslResourcesGenerator {
 					<version>2.4.4</version>
 				</dependency>
 				«databaseDependency»
-				«securityDependency»
+				<dependency>
+					<groupId>org.springframework.boot</groupId>
+					<artifactId>spring-boot-starter-security</artifactId>	
+				</dependency>
+				«IF app.app_security instanceof JWT»
+				<dependency>
+					<groupId>io.jsonwebtoken</groupId>
+					<artifactId>jjwt</artifactId>
+					<version>0.6.0</version>
+				</dependency>
+				<dependency>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-databind</artifactId>
+				</dependency>
+				<dependency>
+					<groupId>com.fasterxml.jackson.core</groupId>
+					<artifactId>jackson-annotations</artifactId>
+				</dependency>
+					
+				«ENDIF»
 			</dependencies>
 			<build>
 				<plugins>
@@ -192,6 +191,10 @@ class SecurityDslResourcesGenerator {
             spring.jpa.show-sql=true
             spring.jpa.hibernate.ddl-auto=create-drop
             spring.jpa.properties.hibernate.jdbc.lob.non_contextual_creation=true
+            spring.jpa.properties.hibernate.format_sql=true 
+            spring.sql.init.mode=always
+            spring.jpa.defer-datasource-initialization=true   
+            spring.jpa.open-in-view=false
             '''
       }  
         
