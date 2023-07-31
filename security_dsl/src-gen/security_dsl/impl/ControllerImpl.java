@@ -651,10 +651,10 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Authentication = idResolver
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Authentication_0 = idResolver
 							.getClass(Security_dslTables.CLSSid_Authentication, null);
 					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-							.evaluate(executor, this, TYP_security_dsl_c_c_Authentication).booleanValue();
+							.evaluate(executor, this, TYP_security_dsl_c_c_Authentication_0).booleanValue();
 					final /*@Thrown*/ Boolean result;
 					if (!oclIsTypeOf) {
 						result = ValueUtil.TRUE_VALUE;

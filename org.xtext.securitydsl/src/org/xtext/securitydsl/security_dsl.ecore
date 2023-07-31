@@ -11,7 +11,7 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes"/>
+      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes doesntHaveModelAndControllerForOauth"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueTableName" value="self.app_models -> select(m | m.tableName &lt;> null) -> isUnique(m | m.tableName.toLower())"/>
@@ -27,6 +27,7 @@
       <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> exists(a | a.type = EType::_'String'))"/>
       <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() &lt;= 2)"/>
       <details key="basicAuthNoRoleAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> size() = 0)"/>
+      <details key="doesntHaveModelAndControllerForOauth" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(OAuth2) implies&#xA;        (&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(User)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_controllers -> select(c | c.oclIsTypeOf(Authentication)) -> size() = 0&#xA;        )"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
@@ -205,6 +206,32 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="audience" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="WEB"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="OAuth2" eSuperTypes="#//Security"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OAuth2" eSuperTypes="#//Security">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueProviders"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueProviders" value=" self.providers -> isUnique(p | p.name)"/>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="providers" lowerBound="1"
+        upperBound="-1" eType="#//Provider" containment="true"/>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="BasicAuthentication" eSuperTypes="#//Security"/>
+  <eClassifiers xsi:type="ecore:EEnum" name="EOAuthProvider">
+    <eLiterals name="google"/>
+    <eLiterals name="github" value="1"/>
+    <eLiterals name="facebook" value="2"/>
+    <eLiterals name="azure" value="3"/>
+    <eLiterals name="linkedin" value="4"/>
+    <eLiterals name="twitter" value="5"/>
+    <eLiterals name="instagram" value="6"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Provider">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//EOAuthProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientSecret" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="redirectUri" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
 </ecore:EPackage>

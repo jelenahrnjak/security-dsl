@@ -12,6 +12,7 @@ import java.util.List
 import security_dsl.EClaimType
 import security_dsl.Attribute
 import security_dsl.User
+import security_dsl.OAuth2
 
 class SecurityDslGenerator extends AbstractGenerator {
 
@@ -35,14 +36,11 @@ class SecurityDslGenerator extends AbstractGenerator {
        	new SecurityDslServiceGenerator(resource,fsa, app, srcDestination)
         
         
+    	var user = resource.allContents.filter(User).next() 
+        
         if(app.app_security instanceof BasicAuthentication){
        		new SecurityDslBasicAuthenticationGenerator(resource,fsa, app, srcDestination)
-        }
-        
-        
-    	var user = resource.allContents.filter(User).next() 
-    	
-        if(app.app_security instanceof JWT){
+        }else if(app.app_security instanceof JWT){
         	
         	var JWT jwt = app.app_security as JWT
         	
@@ -60,6 +58,10 @@ class SecurityDslGenerator extends AbstractGenerator {
         	}
         	
        		new SecurityDslJWTGenerator(resource,fsa, app, srcDestination)
+        	
+        }else if(app.app_security instanceof OAuth2){
+        	
+       		new SecurityDslOAuth2Generator(fsa, app.packageName, srcDestination)
         }
         
 	}

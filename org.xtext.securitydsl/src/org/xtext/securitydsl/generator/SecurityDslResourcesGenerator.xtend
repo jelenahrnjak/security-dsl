@@ -4,6 +4,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 import security_dsl.Application
 import security_dsl.EDatabaseType
 import security_dsl.JWT
+import security_dsl.OAuth2
 
 class SecurityDslResourcesGenerator {
 
@@ -204,6 +205,17 @@ class SecurityDslResourcesGenerator {
 		server.hostname=«app.hostname»
 		
 		«databaseProperties»
+		
+      «IF app.app_security instanceof OAuth2»
+		«var OAuth2 oauth = app.app_security as OAuth2»
+      	«FOR p : oauth.providers»
+			spring.security.oauth2.client.registration.«p.name.toString.toLowerCase».client-id=«p.clientId»
+			spring.security.oauth2.client.registration.«p.name.toString.toLowerCase».secret=«p.clientSecret»
+			«IF p.redirectUri !== null»
+			spring.security.oauth2.client.registration.«p.name.toString.toLowerCase».client-id=«p.redirectUri»
+			«ENDIF»
+      	«ENDFOR»
+      «ENDIF»
       '''
       
       

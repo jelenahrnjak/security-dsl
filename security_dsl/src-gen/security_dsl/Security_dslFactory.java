@@ -139,6 +139,15 @@ public interface Security_dslFactory extends EFactory {
 	BasicAuthentication createBasicAuthentication();
 
 	/**
+	 * Returns a new object of class '<em>Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Provider</em>'.
+	 * @generated
+	 */
+	Provider createProvider();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -190,6 +190,13 @@ public class Security_dslSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case Security_dslPackage.PROVIDER: {
+			Provider provider = (Provider) theEObject;
+			T result = caseProvider(provider);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -432,6 +439,21 @@ public class Security_dslSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseBasicAuthentication(BasicAuthentication object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Provider</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Provider</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseProvider(Provider object) {
 		return null;
 	}
 

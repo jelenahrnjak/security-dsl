@@ -1776,16 +1776,198 @@ ruleOAuth2 returns [EObject current=null]
 	leaveRule();
 }:
 	(
-		(
-			{
-				$current = forceCreateModelElement(
-					grammarAccess.getOAuth2Access().getOAuth2Action_0(),
-					$current);
-			}
-		)
-		otherlv_1='OAuth2.0'
+		otherlv_0='OAuth2.0:'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getOAuth2Access().getOAuth20Keyword_1());
+			newLeafNode(otherlv_0, grammarAccess.getOAuth2Access().getOAuth20Keyword_0());
+		}
+		otherlv_1='providers:'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getOAuth2Access().getProvidersKeyword_1());
+		}
+		otherlv_2='['
+		{
+			newLeafNode(otherlv_2, grammarAccess.getOAuth2Access().getLeftSquareBracketKeyword_2());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getOAuth2Access().getProvidersProviderParserRuleCall_3_0());
+				}
+				lv_providers_3_0=ruleProvider
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getOAuth2Rule());
+					}
+					add(
+						$current,
+						"providers",
+						lv_providers_3_0,
+						"org.xtext.securitydsl.SecurityDsl.Provider");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		(
+			otherlv_4=','
+			{
+				newLeafNode(otherlv_4, grammarAccess.getOAuth2Access().getCommaKeyword_4_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getOAuth2Access().getProvidersProviderParserRuleCall_4_1_0());
+					}
+					lv_providers_5_0=ruleProvider
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getOAuth2Rule());
+						}
+						add(
+							$current,
+							"providers",
+							lv_providers_5_0,
+							"org.xtext.securitydsl.SecurityDsl.Provider");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)*
+		otherlv_6=']'
+		{
+			newLeafNode(otherlv_6, grammarAccess.getOAuth2Access().getRightSquareBracketKeyword_5());
+		}
+	)
+;
+
+// Entry rule entryRuleProvider
+entryRuleProvider returns [EObject current=null]:
+	{ newCompositeNode(grammarAccess.getProviderRule()); }
+	iv_ruleProvider=ruleProvider
+	{ $current=$iv_ruleProvider.current; }
+	EOF;
+
+// Rule Provider
+ruleProvider returns [EObject current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		otherlv_0='{'
+		{
+			newLeafNode(otherlv_0, grammarAccess.getProviderAccess().getLeftCurlyBracketKeyword_0());
+		}
+		otherlv_1='name:'
+		{
+			newLeafNode(otherlv_1, grammarAccess.getProviderAccess().getNameKeyword_1());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProviderAccess().getNameEOAuthProviderEnumRuleCall_2_0());
+				}
+				lv_name_2_0=ruleEOAuthProvider
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProviderRule());
+					}
+					set(
+						$current,
+						"name",
+						lv_name_2_0,
+						"org.xtext.securitydsl.SecurityDsl.EOAuthProvider");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_3=','
+		{
+			newLeafNode(otherlv_3, grammarAccess.getProviderAccess().getCommaKeyword_3());
+		}
+		otherlv_4='clientId:'
+		{
+			newLeafNode(otherlv_4, grammarAccess.getProviderAccess().getClientIdKeyword_4());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProviderAccess().getClientIdEStringParserRuleCall_5_0());
+				}
+				lv_clientId_5_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProviderRule());
+					}
+					set(
+						$current,
+						"clientId",
+						lv_clientId_5_0,
+						"org.xtext.securitydsl.SecurityDsl.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_6=','
+		{
+			newLeafNode(otherlv_6, grammarAccess.getProviderAccess().getCommaKeyword_6());
+		}
+		otherlv_7='clientSecret:'
+		{
+			newLeafNode(otherlv_7, grammarAccess.getProviderAccess().getClientSecretKeyword_7());
+		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getProviderAccess().getClientSecretEStringParserRuleCall_8_0());
+				}
+				lv_clientSecret_8_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getProviderRule());
+					}
+					set(
+						$current,
+						"clientSecret",
+						lv_clientSecret_8_0,
+						"org.xtext.securitydsl.SecurityDsl.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
+		otherlv_9=','
+		{
+			newLeafNode(otherlv_9, grammarAccess.getProviderAccess().getCommaKeyword_9());
+		}
+		(
+			otherlv_10='redirectUri:'
+			{
+				newLeafNode(otherlv_10, grammarAccess.getProviderAccess().getRedirectUriKeyword_10_0());
+			}
+			(
+				(
+					{
+						newCompositeNode(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_10_1_0());
+					}
+					lv_redirectUri_11_0=ruleEString
+					{
+						if ($current==null) {
+							$current = createModelElementForParent(grammarAccess.getProviderRule());
+						}
+						set(
+							$current,
+							"redirectUri",
+							lv_redirectUri_11_0,
+							"org.xtext.securitydsl.SecurityDsl.EString");
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_12='}'
+		{
+			newLeafNode(otherlv_12, grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_11());
 		}
 	)
 ;
@@ -2087,6 +2269,73 @@ ruleEClaimType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getEClaimTypeAccess().getREGISTEREDEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getEClaimTypeAccess().getREGISTEREDEnumLiteralDeclaration_2());
+			}
+		)
+	)
+;
+
+// Rule EOAuthProvider
+ruleEOAuthProvider returns [Enumerator current=null]
+@init {
+	enterRule();
+}
+@after {
+	leaveRule();
+}:
+	(
+		(
+			enumLiteral_0='GOOGLE'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getGoogleEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_0, grammarAccess.getEOAuthProviderAccess().getGoogleEnumLiteralDeclaration_0());
+			}
+		)
+		    |
+		(
+			enumLiteral_1='GITHUB'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getGithubEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_1, grammarAccess.getEOAuthProviderAccess().getGithubEnumLiteralDeclaration_1());
+			}
+		)
+		    |
+		(
+			enumLiteral_2='FACEBOOK'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getFacebookEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_2, grammarAccess.getEOAuthProviderAccess().getFacebookEnumLiteralDeclaration_2());
+			}
+		)
+		    |
+		(
+			enumLiteral_3='MICROSOFT_AZURE'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getAzureEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_3, grammarAccess.getEOAuthProviderAccess().getAzureEnumLiteralDeclaration_3());
+			}
+		)
+		    |
+		(
+			enumLiteral_4='LINKEDIN'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getLinkedinEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_4, grammarAccess.getEOAuthProviderAccess().getLinkedinEnumLiteralDeclaration_4());
+			}
+		)
+		    |
+		(
+			enumLiteral_5='TWITTER'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getTwitterEnumLiteralDeclaration_5().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_5, grammarAccess.getEOAuthProviderAccess().getTwitterEnumLiteralDeclaration_5());
+			}
+		)
+		    |
+		(
+			enumLiteral_6='INSTAGRAM'
+			{
+				$current = grammarAccess.getEOAuthProviderAccess().getInstagramEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
+				newLeafNode(enumLiteral_6, grammarAccess.getEOAuthProviderAccess().getInstagramEnumLiteralDeclaration_6());
 			}
 		)
 	)

@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getApplication()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleCantHaveAdditionalAttributes'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleMustHaveStringAttribute'"
  * @generated
  */
 public interface Application extends EObject {
@@ -288,6 +288,14 @@ public interface Application extends EObject {
 	 * @generated
 	 */
 	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
+	 * @generated
+	 */
+	boolean doesntHaveModelAndControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

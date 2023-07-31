@@ -83,6 +83,8 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 			return createOAuth2();
 		case Security_dslPackage.BASIC_AUTHENTICATION:
 			return createBasicAuthentication();
+		case Security_dslPackage.PROVIDER:
+			return createProvider();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -106,6 +108,8 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 			return createEEndpointTypeFromString(eDataType, initialValue);
 		case Security_dslPackage.ECLAIM_TYPE:
 			return createEClaimTypeFromString(eDataType, initialValue);
+		case Security_dslPackage.EO_AUTH_PROVIDER:
+			return createEOAuthProviderFromString(eDataType, initialValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -129,6 +133,8 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 			return convertEEndpointTypeToString(eDataType, instanceValue);
 		case Security_dslPackage.ECLAIM_TYPE:
 			return convertEClaimTypeToString(eDataType, instanceValue);
+		case Security_dslPackage.EO_AUTH_PROVIDER:
+			return convertEOAuthProviderToString(eDataType, instanceValue);
 		default:
 			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
@@ -269,6 +275,16 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public Provider createProvider() {
+		ProviderImpl provider = new ProviderImpl();
+		return provider;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EDatabaseType createEDatabaseTypeFromString(EDataType eDataType, String initialValue) {
 		EDatabaseType result = EDatabaseType.get(initialValue);
 		if (result == null)
@@ -371,6 +387,28 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 	 * @generated
 	 */
 	public String convertEClaimTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOAuthProvider createEOAuthProviderFromString(EDataType eDataType, String initialValue) {
+		EOAuthProvider result = EOAuthProvider.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException(
+					"The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertEOAuthProviderToString(EDataType eDataType, Object instanceValue) {
 		return instanceValue == null ? null : instanceValue.toString();
 	}
 

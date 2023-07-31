@@ -40,6 +40,7 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getEEndpointMethodAccess().getAlternatives(), "rule__EEndpointMethod__Alternatives");
 			builder.put(grammarAccess.getEEndpointTypeAccess().getAlternatives(), "rule__EEndpointType__Alternatives");
 			builder.put(grammarAccess.getEClaimTypeAccess().getAlternatives(), "rule__EClaimType__Alternatives");
+			builder.put(grammarAccess.getEOAuthProviderAccess().getAlternatives(), "rule__EOAuthProvider__Alternatives");
 			builder.put(grammarAccess.getApplicationAccess().getGroup(), "rule__Application__Group__0");
 			builder.put(grammarAccess.getApplicationAccess().getGroup_2(), "rule__Application__Group_2__0");
 			builder.put(grammarAccess.getApplicationAccess().getGroup_3(), "rule__Application__Group_3__0");
@@ -88,6 +89,9 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRegisteredClaimsAccess().getGroup_5(), "rule__RegisteredClaims__Group_5__0");
 			builder.put(grammarAccess.getRegisteredClaimsAccess().getGroup_6(), "rule__RegisteredClaims__Group_6__0");
 			builder.put(grammarAccess.getOAuth2Access().getGroup(), "rule__OAuth2__Group__0");
+			builder.put(grammarAccess.getOAuth2Access().getGroup_4(), "rule__OAuth2__Group_4__0");
+			builder.put(grammarAccess.getProviderAccess().getGroup(), "rule__Provider__Group__0");
+			builder.put(grammarAccess.getProviderAccess().getGroup_10(), "rule__Provider__Group_10__0");
 			builder.put(grammarAccess.getBasicAuthenticationAccess().getGroup(), "rule__BasicAuthentication__Group__0");
 			builder.put(grammarAccess.getEIntAccess().getGroup(), "rule__EInt__Group__0");
 			builder.put(grammarAccess.getApplicationAccess().getArtifactAssignment_2_1(), "rule__Application__ArtifactAssignment_2_1");
@@ -141,6 +145,12 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRegisteredClaimsAccess().getExpirationTimeAssignment_3(), "rule__RegisteredClaims__ExpirationTimeAssignment_3");
 			builder.put(grammarAccess.getRegisteredClaimsAccess().getIssuerAssignment_5_4(), "rule__RegisteredClaims__IssuerAssignment_5_4");
 			builder.put(grammarAccess.getRegisteredClaimsAccess().getAudienceAssignment_6_4(), "rule__RegisteredClaims__AudienceAssignment_6_4");
+			builder.put(grammarAccess.getOAuth2Access().getProvidersAssignment_3(), "rule__OAuth2__ProvidersAssignment_3");
+			builder.put(grammarAccess.getOAuth2Access().getProvidersAssignment_4_1(), "rule__OAuth2__ProvidersAssignment_4_1");
+			builder.put(grammarAccess.getProviderAccess().getNameAssignment_2(), "rule__Provider__NameAssignment_2");
+			builder.put(grammarAccess.getProviderAccess().getClientIdAssignment_5(), "rule__Provider__ClientIdAssignment_5");
+			builder.put(grammarAccess.getProviderAccess().getClientSecretAssignment_8(), "rule__Provider__ClientSecretAssignment_8");
+			builder.put(grammarAccess.getProviderAccess().getRedirectUriAssignment_10_1(), "rule__Provider__RedirectUriAssignment_10_1");
 		}
 	}
 	

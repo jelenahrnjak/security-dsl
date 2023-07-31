@@ -178,76 +178,13 @@ public interface Security_dslPackage extends EPackage {
 	int APPLICATION_FEATURE_COUNT = 11;
 
 	/**
-	 * The operation id for the '<em>Controller Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
 	 * The operation id for the '<em>Unique Table Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 1;
-
-	/**
-	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
-	 * The operation id for the '<em>Has Username Attribute</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
-	 * The operation id for the '<em>Unique Controller Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 4;
-
-	/**
-	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 5;
-
-	/**
-	 * The operation id for the '<em>Has Database For Model</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 6;
-
-	/**
-	 * The operation id for the '<em>Unique Controller Name</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 7;
+	int APPLICATION___UNIQUE_TABLE_NAME__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Basic Auth No Role Attributes</em>' operation.
@@ -256,25 +193,34 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 8;
+	int APPLICATION___BASIC_AUTH_NO_ROLE_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
+	 * The operation id for the '<em>Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 9;
+	int APPLICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
-	 * The operation id for the '<em>Valid Port</em>' operation.
+	 * The operation id for the '<em>Unique Controller Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 10;
+	int APPLICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
+	 * The operation id for the '<em>Has Username Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 4;
 
 	/**
 	 * The operation id for the '<em>Role Can Have Id And String Attribute</em>' operation.
@@ -283,7 +229,34 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 11;
+	int APPLICATION___ROLE_CAN_HAVE_ID_AND_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 5;
+
+	/**
+	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 6;
+
+	/**
+	 * The operation id for the '<em>Has Database For Model</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_DATABASE_FOR_MODEL__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
+	 * The operation id for the '<em>Unique Controller Path</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 8;
 
 	/**
 	 * The operation id for the '<em>Role Cant Have Additional Attributes</em>' operation.
@@ -292,7 +265,43 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 12;
+	int APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = 9;
+
+	/**
+	 * The operation id for the '<em>Doesnt Have Model And Controller For Oauth</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___DOESNT_HAVE_MODEL_AND_CONTROLLER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP = 10;
+
+	/**
+	 * The operation id for the '<em>Valid Port</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___VALID_PORT__DIAGNOSTICCHAIN_MAP = 11;
+
+	/**
+	 * The operation id for the '<em>Has User And Role Models For Controller</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___HAS_USER_AND_ROLE_MODELS_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = 12;
+
+	/**
+	 * The operation id for the '<em>Role Must Have String Attribute</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int APPLICATION___ROLE_MUST_HAVE_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 13;
 
 	/**
 	 * The number of operations of the '<em>Application</em>' class.
@@ -301,7 +310,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int APPLICATION_OPERATION_COUNT = 13;
+	int APPLICATION_OPERATION_COUNT = 14;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ModelImpl <em>Model</em>}' class.
@@ -1326,13 +1335,31 @@ public interface Security_dslPackage extends EPackage {
 	int OAUTH2 = 14;
 
 	/**
+	 * The feature id for the '<em><b>Providers</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH2__PROVIDERS = SECURITY_FEATURE_COUNT + 0;
+
+	/**
 	 * The number of structural features of the '<em>OAuth2</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH2_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 0;
+	int OAUTH2_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Unique Providers</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int OAUTH2___UNIQUE_PROVIDERS__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 0;
 
 	/**
 	 * The number of operations of the '<em>OAuth2</em>' class.
@@ -1341,7 +1368,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OAUTH2_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 0;
+	int OAUTH2_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.BasicAuthenticationImpl <em>Basic Authentication</em>}' class.
@@ -1372,6 +1399,70 @@ public interface Security_dslPackage extends EPackage {
 	int BASIC_AUTHENTICATION_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link security_dsl.impl.ProviderImpl <em>Provider</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see security_dsl.impl.ProviderImpl
+	 * @see security_dsl.impl.Security_dslPackageImpl#getProvider()
+	 * @generated
+	 */
+	int PROVIDER = 16;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Client Id</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER__CLIENT_ID = 1;
+
+	/**
+	 * The feature id for the '<em><b>Client Secret</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER__CLIENT_SECRET = 2;
+
+	/**
+	 * The feature id for the '<em><b>Redirect Uri</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER__REDIRECT_URI = 3;
+
+	/**
+	 * The number of structural features of the '<em>Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER_FEATURE_COUNT = 4;
+
+	/**
+	 * The number of operations of the '<em>Provider</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROVIDER_OPERATION_COUNT = 0;
+
+	/**
 	 * The meta object id for the '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1379,7 +1470,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEDatabaseType()
 	 * @generated
 	 */
-	int EDATABASE_TYPE = 16;
+	int EDATABASE_TYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EType <em>EType</em>}' enum.
@@ -1389,7 +1480,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEType()
 	 * @generated
 	 */
-	int ETYPE = 17;
+	int ETYPE = 18;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointMethod <em>EEndpoint Method</em>}' enum.
@@ -1399,7 +1490,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointMethod()
 	 * @generated
 	 */
-	int EENDPOINT_METHOD = 18;
+	int EENDPOINT_METHOD = 19;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointType <em>EEndpoint Type</em>}' enum.
@@ -1409,7 +1500,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointType()
 	 * @generated
 	 */
-	int EENDPOINT_TYPE = 19;
+	int EENDPOINT_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EClaimType <em>EClaim Type</em>}' enum.
@@ -1419,7 +1510,17 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEClaimType()
 	 * @generated
 	 */
-	int ECLAIM_TYPE = 20;
+	int ECLAIM_TYPE = 21;
+
+	/**
+	 * The meta object id for the '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}' enum.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see security_dsl.EOAuthProvider
+	 * @see security_dsl.impl.Security_dslPackageImpl#getEOAuthProvider()
+	 * @generated
+	 */
+	int EO_AUTH_PROVIDER = 22;
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Application <em>Application</em>}'.
@@ -1581,6 +1682,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#doesntHaveModelAndControllerForOauth(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Doesnt Have Model And Controller For Oauth</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Doesnt Have Model And Controller For Oauth</em>' operation.
+	 * @see security_dsl.Application#doesntHaveModelAndControllerForOauth(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__DoesntHaveModelAndControllerForOauth__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Application#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Not Named User Role</em>}' operation.
@@ -2345,6 +2456,27 @@ public interface Security_dslPackage extends EPackage {
 	EClass getOAuth2();
 
 	/**
+	 * Returns the meta object for the containment reference list '{@link security_dsl.OAuth2#getProviders <em>Providers</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Providers</em>'.
+	 * @see security_dsl.OAuth2#getProviders()
+	 * @see #getOAuth2()
+	 * @generated
+	 */
+	EReference getOAuth2_Providers();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.OAuth2#uniqueProviders(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Providers</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Providers</em>' operation.
+	 * @see security_dsl.OAuth2#uniqueProviders(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getOAuth2__UniqueProviders__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for class '{@link security_dsl.BasicAuthentication <em>Basic Authentication</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2353,6 +2485,60 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBasicAuthentication();
+
+	/**
+	 * Returns the meta object for class '{@link security_dsl.Provider <em>Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Provider</em>'.
+	 * @see security_dsl.Provider
+	 * @generated
+	 */
+	EClass getProvider();
+
+	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Provider#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see security_dsl.Provider#getName()
+	 * @see #getProvider()
+	 * @generated
+	 */
+	EAttribute getProvider_Name();
+
+	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Provider#getClientId <em>Client Id</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Id</em>'.
+	 * @see security_dsl.Provider#getClientId()
+	 * @see #getProvider()
+	 * @generated
+	 */
+	EAttribute getProvider_ClientId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Provider#getClientSecret <em>Client Secret</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Client Secret</em>'.
+	 * @see security_dsl.Provider#getClientSecret()
+	 * @see #getProvider()
+	 * @generated
+	 */
+	EAttribute getProvider_ClientSecret();
+
+	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Provider#getRedirectUri <em>Redirect Uri</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Redirect Uri</em>'.
+	 * @see security_dsl.Provider#getRedirectUri()
+	 * @see #getProvider()
+	 * @generated
+	 */
+	EAttribute getProvider_RedirectUri();
 
 	/**
 	 * Returns the meta object for enum '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}'.
@@ -2403,6 +2589,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EEnum getEClaimType();
+
+	/**
+	 * Returns the meta object for enum '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for enum '<em>EO Auth Provider</em>'.
+	 * @see security_dsl.EOAuthProvider
+	 * @generated
+	 */
+	EEnum getEOAuthProvider();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -2551,6 +2747,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation APPLICATION___ROLE_CANT_HAVE_ADDITIONAL_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getApplication__RoleCantHaveAdditionalAttributes__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Doesnt Have Model And Controller For Oauth</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___DOESNT_HAVE_MODEL_AND_CONTROLLER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__DoesntHaveModelAndControllerForOauth__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Controller Not Named User Role</b></em>' operation.
@@ -3191,6 +3396,23 @@ public interface Security_dslPackage extends EPackage {
 		EClass OAUTH2 = eINSTANCE.getOAuth2();
 
 		/**
+		 * The meta object literal for the '<em><b>Providers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference OAUTH2__PROVIDERS = eINSTANCE.getOAuth2_Providers();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Providers</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation OAUTH2___UNIQUE_PROVIDERS__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getOAuth2__UniqueProviders__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '{@link security_dsl.impl.BasicAuthenticationImpl <em>Basic Authentication</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3199,6 +3421,48 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EClass BASIC_AUTHENTICATION = eINSTANCE.getBasicAuthentication();
+
+		/**
+		 * The meta object literal for the '{@link security_dsl.impl.ProviderImpl <em>Provider</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see security_dsl.impl.ProviderImpl
+		 * @see security_dsl.impl.Security_dslPackageImpl#getProvider()
+		 * @generated
+		 */
+		EClass PROVIDER = eINSTANCE.getProvider();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROVIDER__NAME = eINSTANCE.getProvider_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Id</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROVIDER__CLIENT_ID = eINSTANCE.getProvider_ClientId();
+
+		/**
+		 * The meta object literal for the '<em><b>Client Secret</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROVIDER__CLIENT_SECRET = eINSTANCE.getProvider_ClientSecret();
+
+		/**
+		 * The meta object literal for the '<em><b>Redirect Uri</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PROVIDER__REDIRECT_URI = eINSTANCE.getProvider_RedirectUri();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.EDatabaseType <em>EDatabase Type</em>}' enum.
@@ -3249,6 +3513,16 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ECLAIM_TYPE = eINSTANCE.getEClaimType();
+
+		/**
+		 * The meta object literal for the '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}' enum.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see security_dsl.EOAuthProvider
+		 * @see security_dsl.impl.Security_dslPackageImpl#getEOAuthProvider()
+		 * @generated
+		 */
+		EEnum EO_AUTH_PROVIDER = eINSTANCE.getEOAuthProvider();
 
 	}
 

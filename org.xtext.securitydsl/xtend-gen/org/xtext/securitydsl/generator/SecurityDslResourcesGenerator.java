@@ -1,12 +1,15 @@
 package org.xtext.securitydsl.generator;
 
 import com.google.common.base.Objects;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import security_dsl.Application;
 import security_dsl.Database;
 import security_dsl.EDatabaseType;
 import security_dsl.JWT;
+import security_dsl.OAuth2;
+import security_dsl.Provider;
 import security_dsl.Security;
 
 @SuppressWarnings("all")
@@ -472,6 +475,47 @@ public class SecurityDslResourcesGenerator {
     _builder_4.newLine();
     _builder_4.append(databaseProperties);
     _builder_4.newLineIfNotEmpty();
+    _builder_4.newLine();
+    {
+      Security _app_security = app.getApp_security();
+      if ((_app_security instanceof OAuth2)) {
+        Security _app_security_1 = app.getApp_security();
+        OAuth2 oauth = ((OAuth2) _app_security_1);
+        _builder_4.newLineIfNotEmpty();
+        {
+          EList<Provider> _providers = oauth.getProviders();
+          for(final Provider p : _providers) {
+            _builder_4.append("spring.security.oauth2.client.registration.");
+            String _lowerCase = p.getName().toString().toLowerCase();
+            _builder_4.append(_lowerCase);
+            _builder_4.append(".client-id=");
+            String _clientId = p.getClientId();
+            _builder_4.append(_clientId);
+            _builder_4.newLineIfNotEmpty();
+            _builder_4.append("spring.security.oauth2.client.registration.");
+            String _lowerCase_1 = p.getName().toString().toLowerCase();
+            _builder_4.append(_lowerCase_1);
+            _builder_4.append(".secret=");
+            String _clientSecret = p.getClientSecret();
+            _builder_4.append(_clientSecret);
+            _builder_4.newLineIfNotEmpty();
+            {
+              String _redirectUri = p.getRedirectUri();
+              boolean _tripleNotEquals_1 = (_redirectUri != null);
+              if (_tripleNotEquals_1) {
+                _builder_4.append("spring.security.oauth2.client.registration.");
+                String _lowerCase_2 = p.getName().toString().toLowerCase();
+                _builder_4.append(_lowerCase_2);
+                _builder_4.append(".client-id=");
+                String _redirectUri_1 = p.getRedirectUri();
+                _builder_4.append(_redirectUri_1);
+                _builder_4.newLineIfNotEmpty();
+              }
+            }
+          }
+        }
+      }
+    }
     String propertiesContent = _builder_4.toString();
     return propertiesContent;
   }

@@ -24,6 +24,7 @@ import security_dsl.Database;
 import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.OAuth2;
+import security_dsl.Provider;
 import security_dsl.RegisteredClaims;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
@@ -70,6 +71,9 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 				return; 
 			case Security_dslPackage.OAUTH2:
 				sequence_OAuth2(context, (OAuth2) semanticObject); 
+				return; 
+			case Security_dslPackage.PROVIDER:
+				sequence_Provider(context, (Provider) semanticObject); 
 				return; 
 			case Security_dslPackage.REGISTERED_CLAIMS:
 				sequence_RegisteredClaims(context, (RegisteredClaims) semanticObject); 
@@ -244,10 +248,24 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     OAuth2 returns OAuth2
 	 *
 	 * Constraint:
-	 *     {OAuth2}
+	 *     (providers+=Provider providers+=Provider*)
 	 * </pre>
 	 */
 	protected void sequence_OAuth2(ISerializationContext context, OAuth2 semanticObject) {
+		genericSequencer.createSequence(context, semanticObject);
+	}
+	
+	
+	/**
+	 * <pre>
+	 * Contexts:
+	 *     Provider returns Provider
+	 *
+	 * Constraint:
+	 *     (name=EOAuthProvider clientId=EString clientSecret=EString redirectUri=EString?)
+	 * </pre>
+	 */
+	protected void sequence_Provider(ISerializationContext context, Provider semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

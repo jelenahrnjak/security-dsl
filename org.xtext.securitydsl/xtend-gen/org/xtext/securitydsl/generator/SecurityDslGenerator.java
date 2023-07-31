@@ -15,6 +15,7 @@ import security_dsl.BasicAuthentication;
 import security_dsl.Claim;
 import security_dsl.EClaimType;
 import security_dsl.JWT;
+import security_dsl.OAuth2;
 import security_dsl.RegisteredClaims;
 import security_dsl.Security;
 import security_dsl.User;
@@ -48,31 +49,38 @@ public class SecurityDslGenerator extends AbstractGenerator {
     new SecurityDslControllerGenerator(resource, fsa, app, srcDestination);
     new SecurityDslModelRepoGenerator(resource, fsa, app, srcDestination);
     new SecurityDslServiceGenerator(resource, fsa, app, srcDestination);
+    User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
     Security _app_security = app.getApp_security();
     if ((_app_security instanceof BasicAuthentication)) {
       new SecurityDslBasicAuthenticationGenerator(resource, fsa, app, srcDestination);
-    }
-    User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
-    Security _app_security_1 = app.getApp_security();
-    if ((_app_security_1 instanceof JWT)) {
-      Security _app_security_2 = app.getApp_security();
-      JWT jwt = ((JWT) _app_security_2);
-      String _issuer = jwt.getRegisteredclaims().getIssuer();
-      boolean _tripleEquals = (_issuer == null);
-      if (_tripleEquals) {
-        RegisteredClaims _registeredclaims = jwt.getRegisteredclaims();
-        _registeredclaims.setIssuer(app.getName());
+    } else {
+      Security _app_security_1 = app.getApp_security();
+      if ((_app_security_1 instanceof JWT)) {
+        Security _app_security_2 = app.getApp_security();
+        JWT jwt = ((JWT) _app_security_2);
+        String _issuer = jwt.getRegisteredclaims().getIssuer();
+        boolean _tripleEquals = (_issuer == null);
+        if (_tripleEquals) {
+          RegisteredClaims _registeredclaims = jwt.getRegisteredclaims();
+          _registeredclaims.setIssuer(app.getName());
+        }
+        Claim _findSubjectClaim = this.findSubjectClaim(jwt.getJwt_claims());
+        boolean _tripleEquals_1 = (_findSubjectClaim == null);
+        if (_tripleEquals_1) {
+          Claim subjectClaim = null;
+          subjectClaim.setName("subject");
+          subjectClaim.setType(EClaimType.REGISTERED);
+          subjectClaim.setClaim_attribute(this.getCredential(user.getModel_attributes()));
+          jwt.getJwt_claims().add(subjectClaim);
+        }
+        new SecurityDslJWTGenerator(resource, fsa, app, srcDestination);
+      } else {
+        Security _app_security_3 = app.getApp_security();
+        if ((_app_security_3 instanceof OAuth2)) {
+          String _packageName = app.getPackageName();
+          new SecurityDslOAuth2Generator(fsa, _packageName, srcDestination);
+        }
       }
-      Claim _findSubjectClaim = this.findSubjectClaim(jwt.getJwt_claims());
-      boolean _tripleEquals_1 = (_findSubjectClaim == null);
-      if (_tripleEquals_1) {
-        Claim subjectClaim = null;
-        subjectClaim.setName("subject");
-        subjectClaim.setType(EClaimType.REGISTERED);
-        subjectClaim.setClaim_attribute(this.getCredential(user.getModel_attributes()));
-        jwt.getJwt_claims().add(subjectClaim);
-      }
-      new SecurityDslJWTGenerator(resource, fsa, app, srcDestination);
     }
   }
 

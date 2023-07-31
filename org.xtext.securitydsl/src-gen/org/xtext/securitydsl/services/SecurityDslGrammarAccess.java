@@ -1303,21 +1303,149 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	public class OAuth2Elements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.OAuth2");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Action cOAuth2Action_0 = (Action)cGroup.eContents().get(0);
-		private final Keyword cOAuth20Keyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cOAuth20Keyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cProvidersKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Keyword cLeftSquareBracketKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cProvidersAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cProvidersProviderParserRuleCall_3_0 = (RuleCall)cProvidersAssignment_3.eContents().get(0);
+		private final Group cGroup_4 = (Group)cGroup.eContents().get(4);
+		private final Keyword cCommaKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
+		private final Assignment cProvidersAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cProvidersProviderParserRuleCall_4_1_0 = (RuleCall)cProvidersAssignment_4_1.eContents().get(0);
+		private final Keyword cRightSquareBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		
 		//OAuth2 returns OAuth2:
-		//    {OAuth2} 'OAuth2.0';
+		//    'OAuth2.0:'
+		//    'providers:' '[' providers+=Provider ( "," providers+=Provider)* ']';
 		@Override public ParserRule getRule() { return rule; }
 		
-		//{OAuth2} 'OAuth2.0'
+		//'OAuth2.0:'
+		//'providers:' '[' providers+=Provider ( "," providers+=Provider)* ']'
 		public Group getGroup() { return cGroup; }
 		
-		//{OAuth2}
-		public Action getOAuth2Action_0() { return cOAuth2Action_0; }
+		//'OAuth2.0:'
+		public Keyword getOAuth20Keyword_0() { return cOAuth20Keyword_0; }
 		
-		//'OAuth2.0'
-		public Keyword getOAuth20Keyword_1() { return cOAuth20Keyword_1; }
+		//'providers:'
+		public Keyword getProvidersKeyword_1() { return cProvidersKeyword_1; }
+		
+		//'['
+		public Keyword getLeftSquareBracketKeyword_2() { return cLeftSquareBracketKeyword_2; }
+		
+		//providers+=Provider
+		public Assignment getProvidersAssignment_3() { return cProvidersAssignment_3; }
+		
+		//Provider
+		public RuleCall getProvidersProviderParserRuleCall_3_0() { return cProvidersProviderParserRuleCall_3_0; }
+		
+		//( "," providers+=Provider)*
+		public Group getGroup_4() { return cGroup_4; }
+		
+		//","
+		public Keyword getCommaKeyword_4_0() { return cCommaKeyword_4_0; }
+		
+		//providers+=Provider
+		public Assignment getProvidersAssignment_4_1() { return cProvidersAssignment_4_1; }
+		
+		//Provider
+		public RuleCall getProvidersProviderParserRuleCall_4_1_0() { return cProvidersProviderParserRuleCall_4_1_0; }
+		
+		//']'
+		public Keyword getRightSquareBracketKeyword_5() { return cRightSquareBracketKeyword_5; }
+	}
+	public class ProviderElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Provider");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Keyword cNameKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cNameEOAuthProviderEnumRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Keyword cClientIdKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cClientIdAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cClientIdEStringParserRuleCall_5_0 = (RuleCall)cClientIdAssignment_5.eContents().get(0);
+		private final Keyword cCommaKeyword_6 = (Keyword)cGroup.eContents().get(6);
+		private final Keyword cClientSecretKeyword_7 = (Keyword)cGroup.eContents().get(7);
+		private final Assignment cClientSecretAssignment_8 = (Assignment)cGroup.eContents().get(8);
+		private final RuleCall cClientSecretEStringParserRuleCall_8_0 = (RuleCall)cClientSecretAssignment_8.eContents().get(0);
+		private final Keyword cCommaKeyword_9 = (Keyword)cGroup.eContents().get(9);
+		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
+		private final Keyword cRedirectUriKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
+		private final Assignment cRedirectUriAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
+		private final RuleCall cRedirectUriEStringParserRuleCall_10_1_0 = (RuleCall)cRedirectUriAssignment_10_1.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		
+		//Provider returns Provider:
+		//    '{'
+		//        'name:' name=EOAuthProvider ','
+		//        'clientId:' clientId=EString ','
+		//        'clientSecret:' clientSecret=EString ','
+		//        ('redirectUri:' redirectUri=EString)?
+		//    '}'
+		//;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'{'
+		//    'name:' name=EOAuthProvider ','
+		//    'clientId:' clientId=EString ','
+		//    'clientSecret:' clientSecret=EString ','
+		//    ('redirectUri:' redirectUri=EString)?
+		//'}'
+		public Group getGroup() { return cGroup; }
+		
+		//'{'
+		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
+		
+		//'name:'
+		public Keyword getNameKeyword_1() { return cNameKeyword_1; }
+		
+		//name=EOAuthProvider
+		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		
+		//EOAuthProvider
+		public RuleCall getNameEOAuthProviderEnumRuleCall_2_0() { return cNameEOAuthProviderEnumRuleCall_2_0; }
+		
+		//','
+		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
+		
+		//'clientId:'
+		public Keyword getClientIdKeyword_4() { return cClientIdKeyword_4; }
+		
+		//clientId=EString
+		public Assignment getClientIdAssignment_5() { return cClientIdAssignment_5; }
+		
+		//EString
+		public RuleCall getClientIdEStringParserRuleCall_5_0() { return cClientIdEStringParserRuleCall_5_0; }
+		
+		//','
+		public Keyword getCommaKeyword_6() { return cCommaKeyword_6; }
+		
+		//'clientSecret:'
+		public Keyword getClientSecretKeyword_7() { return cClientSecretKeyword_7; }
+		
+		//clientSecret=EString
+		public Assignment getClientSecretAssignment_8() { return cClientSecretAssignment_8; }
+		
+		//EString
+		public RuleCall getClientSecretEStringParserRuleCall_8_0() { return cClientSecretEStringParserRuleCall_8_0; }
+		
+		//','
+		public Keyword getCommaKeyword_9() { return cCommaKeyword_9; }
+		
+		//('redirectUri:' redirectUri=EString)?
+		public Group getGroup_10() { return cGroup_10; }
+		
+		//'redirectUri:'
+		public Keyword getRedirectUriKeyword_10_0() { return cRedirectUriKeyword_10_0; }
+		
+		//redirectUri=EString
+		public Assignment getRedirectUriAssignment_10_1() { return cRedirectUriAssignment_10_1; }
+		
+		//EString
+		public RuleCall getRedirectUriEStringParserRuleCall_10_1_0() { return cRedirectUriEStringParserRuleCall_10_1_0; }
+		
+		//'}'
+		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
 	}
 	public class BasicAuthenticationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.BasicAuthentication");
@@ -1597,6 +1725,73 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'REGISTERED'
 		public Keyword getREGISTEREDREGISTEREDKeyword_2_0() { return cREGISTEREDREGISTEREDKeyword_2_0; }
 	}
+	public class EOAuthProviderElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
+		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.EOAuthProvider");
+		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
+		private final EnumLiteralDeclaration cGoogleEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
+		private final Keyword cGoogleGOOGLEKeyword_0_0 = (Keyword)cGoogleEnumLiteralDeclaration_0.eContents().get(0);
+		private final EnumLiteralDeclaration cGithubEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
+		private final Keyword cGithubGITHUBKeyword_1_0 = (Keyword)cGithubEnumLiteralDeclaration_1.eContents().get(0);
+		private final EnumLiteralDeclaration cFacebookEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
+		private final Keyword cFacebookFACEBOOKKeyword_2_0 = (Keyword)cFacebookEnumLiteralDeclaration_2.eContents().get(0);
+		private final EnumLiteralDeclaration cAzureEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
+		private final Keyword cAzureMICROSOFT_AZUREKeyword_3_0 = (Keyword)cAzureEnumLiteralDeclaration_3.eContents().get(0);
+		private final EnumLiteralDeclaration cLinkedinEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
+		private final Keyword cLinkedinLINKEDINKeyword_4_0 = (Keyword)cLinkedinEnumLiteralDeclaration_4.eContents().get(0);
+		private final EnumLiteralDeclaration cTwitterEnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
+		private final Keyword cTwitterTWITTERKeyword_5_0 = (Keyword)cTwitterEnumLiteralDeclaration_5.eContents().get(0);
+		private final EnumLiteralDeclaration cInstagramEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
+		private final Keyword cInstagramINSTAGRAMKeyword_6_0 = (Keyword)cInstagramEnumLiteralDeclaration_6.eContents().get(0);
+		
+		//enum EOAuthProvider returns EOAuthProvider:
+		//                google = 'GOOGLE' | github = 'GITHUB' | facebook = 'FACEBOOK' | azure = 'MICROSOFT_AZURE' | linkedin = 'LINKEDIN' | twitter = 'TWITTER' | instagram = 'INSTAGRAM';
+		public EnumRule getRule() { return rule; }
+		
+		//google = 'GOOGLE' | github = 'GITHUB' | facebook = 'FACEBOOK' | azure = 'MICROSOFT_AZURE' | linkedin = 'LINKEDIN' | twitter = 'TWITTER' | instagram = 'INSTAGRAM'
+		public Alternatives getAlternatives() { return cAlternatives; }
+		
+		//google = 'GOOGLE'
+		public EnumLiteralDeclaration getGoogleEnumLiteralDeclaration_0() { return cGoogleEnumLiteralDeclaration_0; }
+		
+		//'GOOGLE'
+		public Keyword getGoogleGOOGLEKeyword_0_0() { return cGoogleGOOGLEKeyword_0_0; }
+		
+		//github = 'GITHUB'
+		public EnumLiteralDeclaration getGithubEnumLiteralDeclaration_1() { return cGithubEnumLiteralDeclaration_1; }
+		
+		//'GITHUB'
+		public Keyword getGithubGITHUBKeyword_1_0() { return cGithubGITHUBKeyword_1_0; }
+		
+		//facebook = 'FACEBOOK'
+		public EnumLiteralDeclaration getFacebookEnumLiteralDeclaration_2() { return cFacebookEnumLiteralDeclaration_2; }
+		
+		//'FACEBOOK'
+		public Keyword getFacebookFACEBOOKKeyword_2_0() { return cFacebookFACEBOOKKeyword_2_0; }
+		
+		//azure = 'MICROSOFT_AZURE'
+		public EnumLiteralDeclaration getAzureEnumLiteralDeclaration_3() { return cAzureEnumLiteralDeclaration_3; }
+		
+		//'MICROSOFT_AZURE'
+		public Keyword getAzureMICROSOFT_AZUREKeyword_3_0() { return cAzureMICROSOFT_AZUREKeyword_3_0; }
+		
+		//linkedin = 'LINKEDIN'
+		public EnumLiteralDeclaration getLinkedinEnumLiteralDeclaration_4() { return cLinkedinEnumLiteralDeclaration_4; }
+		
+		//'LINKEDIN'
+		public Keyword getLinkedinLINKEDINKeyword_4_0() { return cLinkedinLINKEDINKeyword_4_0; }
+		
+		//twitter = 'TWITTER'
+		public EnumLiteralDeclaration getTwitterEnumLiteralDeclaration_5() { return cTwitterEnumLiteralDeclaration_5; }
+		
+		//'TWITTER'
+		public Keyword getTwitterTWITTERKeyword_5_0() { return cTwitterTWITTERKeyword_5_0; }
+		
+		//instagram = 'INSTAGRAM'
+		public EnumLiteralDeclaration getInstagramEnumLiteralDeclaration_6() { return cInstagramEnumLiteralDeclaration_6; }
+		
+		//'INSTAGRAM'
+		public Keyword getInstagramINSTAGRAMKeyword_6_0() { return cInstagramINSTAGRAMKeyword_6_0; }
+	}
 	
 	private final ApplicationElements pApplication;
 	private final ModelElements pModel;
@@ -1620,7 +1815,9 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	private final ClaimElements pClaim;
 	private final RegisteredClaimsElements pRegisteredClaims;
 	private final EClaimTypeElements eEClaimType;
+	private final EOAuthProviderElements eEOAuthProvider;
 	private final OAuth2Elements pOAuth2;
+	private final ProviderElements pProvider;
 	private final BasicAuthenticationElements pBasicAuthentication;
 	private final EIntElements pEInt;
 	
@@ -1655,7 +1852,9 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		this.pClaim = new ClaimElements();
 		this.pRegisteredClaims = new RegisteredClaimsElements();
 		this.eEClaimType = new EClaimTypeElements();
+		this.eEOAuthProvider = new EOAuthProviderElements();
 		this.pOAuth2 = new OAuth2Elements();
+		this.pProvider = new ProviderElements();
 		this.pBasicAuthentication = new BasicAuthenticationElements();
 		this.pEInt = new EIntElements();
 	}
@@ -1970,14 +2169,41 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		return getEClaimTypeAccess().getRule();
 	}
 	
+	//enum EOAuthProvider returns EOAuthProvider:
+	//                google = 'GOOGLE' | github = 'GITHUB' | facebook = 'FACEBOOK' | azure = 'MICROSOFT_AZURE' | linkedin = 'LINKEDIN' | twitter = 'TWITTER' | instagram = 'INSTAGRAM';
+	public EOAuthProviderElements getEOAuthProviderAccess() {
+		return eEOAuthProvider;
+	}
+	
+	public EnumRule getEOAuthProviderRule() {
+		return getEOAuthProviderAccess().getRule();
+	}
+	
 	//OAuth2 returns OAuth2:
-	//    {OAuth2} 'OAuth2.0';
+	//    'OAuth2.0:'
+	//    'providers:' '[' providers+=Provider ( "," providers+=Provider)* ']';
 	public OAuth2Elements getOAuth2Access() {
 		return pOAuth2;
 	}
 	
 	public ParserRule getOAuth2Rule() {
 		return getOAuth2Access().getRule();
+	}
+	
+	//Provider returns Provider:
+	//    '{'
+	//        'name:' name=EOAuthProvider ','
+	//        'clientId:' clientId=EString ','
+	//        'clientSecret:' clientSecret=EString ','
+	//        ('redirectUri:' redirectUri=EString)?
+	//    '}'
+	//;
+	public ProviderElements getProviderAccess() {
+		return pProvider;
+	}
+	
+	public ParserRule getProviderRule() {
+		return getProviderAccess().getRule();
 	}
 	
 	//BasicAuthentication returns BasicAuthentication:

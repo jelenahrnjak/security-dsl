@@ -139,9 +139,22 @@ RegisteredClaims returns RegisteredClaims:
 
 enum EClaimType returns EClaimType:
 				PRIVATE = 'PRIVATE' | PUBLIC = 'PUBLIC' | REGISTERED = 'REGISTERED';
+				
+enum EOAuthProvider returns EOAuthProvider:
+				google = 'GOOGLE' | github = 'GITHUB' | facebook = 'FACEBOOK' | azure = 'MICROSOFT_AZURE' | linkedin = 'LINKEDIN' | twitter = 'TWITTER' | instagram = 'INSTAGRAM';
 
 OAuth2 returns OAuth2:
-	{OAuth2} 'OAuth2.0';
+	'OAuth2.0:'
+	'providers:' '[' providers+=Provider ( "," providers+=Provider)* ']';
+	
+Provider returns Provider:
+	'{' 
+		'name:' name=EOAuthProvider ','
+		'clientId:' clientId=EString ','
+		'clientSecret:' clientSecret=EString ','
+		('redirectUri:' redirectUri=EString)?
+	'}'
+;
 
 BasicAuthentication returns BasicAuthentication:
 	{BasicAuthentication} 'basicAuthentication';

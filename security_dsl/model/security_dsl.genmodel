@@ -42,6 +42,15 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PUBLIC"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/REGISTERED"/>
     </genEnums>
+    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EOAuthProvider">
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/google"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/github"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/facebook"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/azure"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/linkedin"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/twitter"/>
+      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/instagram"/>
+    </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_database"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_models"/>
@@ -110,7 +119,15 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/issuer"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaims/audience"/>
     </genClasses>
-    <genClasses ecoreClass="security_dsl.ecore#//OAuth2"/>
+    <genClasses ecoreClass="security_dsl.ecore#//OAuth2">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//OAuth2/providers"/>
+    </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//BasicAuthentication"/>
+    <genClasses ecoreClass="security_dsl.ecore#//Provider">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Provider/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Provider/clientId"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Provider/clientSecret"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Provider/redirectUri"/>
+    </genClasses>
   </genPackages>
 </genmodel:GenModel>
