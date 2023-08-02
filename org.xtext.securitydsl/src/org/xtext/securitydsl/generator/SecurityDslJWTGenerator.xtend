@@ -1,46 +1,36 @@
 package org.xtext.securitydsl.generator
 
-import org.eclipse.xtext.generator.IFileSystemAccess2
-import security_dsl.Application
-import security_dsl.JWT
-import security_dsl.RegisteredClaims
-import security_dsl.Attribute
-import org.eclipse.emf.ecore.resource.Resource
 import java.util.List
-import java.util.ArrayList
-import security_dsl.EType
-import security_dsl.User
+import org.eclipse.xtext.generator.IFileSystemAccess2
+import security_dsl.Authentication
 import security_dsl.Claim
 import security_dsl.EClaimType
-import security_dsl.Authentication
-import security_dsl.Controller
-import security_dsl.EEndpointType
+import security_dsl.JWT
+import security_dsl.RegisteredClaims
 
 class SecurityDslJWTGenerator {
 	
-	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
+	var String packageName;
+	
+	new(IFileSystemAccess2 fsa, String packageName, String srcDestination, Authentication authController, JWT jwt, String credentialUser){
 		
-    	var user = resource.allContents.filter(User).next() 
+		this.packageName = packageName
     	
-		var credentialNameUser = getCredential(user.model_attributes).name
+		fsa.generateFile(srcDestination + '/config/WebConfig.java', generateWebConfig())
+		fsa.generateFile(srcDestination + '/config/WebSecurityConfig.java', generateWebSecurityConfig(authController))
+		fsa.generateFile(srcDestination + '/util/TokenUtils.java', generateTokenUtils(jwt, credentialUser))
+		fsa.generateFile(srcDestination + '/dto/UserTokenStateDTO.java', generateUserTokenStateDTO())
     	
-		fsa.generateFile(srcDestination + '/config/WebConfig.java', generateWebConfig(app.packageName))
-		fsa.generateFile(srcDestination + '/config/WebSecurityConfig.java', generateWebSecurityConfig(app.packageName, getAuthController(app.app_controllers)))
-		fsa.generateFile(srcDestination + '/util/TokenUtils.java', generateTokenUtils(app.packageName, app.app_security as JWT, credentialNameUser))
-		fsa.generateFile(srcDestination + '/dto/UserTokenStateDTO.java', generateUserTokenStateDTO(app.packageName))
-    	
-    	fsa.generateFile(srcDestination + '/security/auth/RestAuthenticationEntryPoint.java', generateRestAuthenticationEntryPoint(app.packageName))
-		fsa.generateFile(srcDestination + '/security/auth/TokenBasedAuthentication.java', generateTokenBasedAuthentication(app.packageName))
-		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter(app.packageName))
+    	fsa.generateFile(srcDestination + '/security/auth/RestAuthenticationEntryPoint.java', generateRestAuthenticationEntryPoint())
+		fsa.generateFile(srcDestination + '/security/auth/TokenBasedAuthentication.java', generateTokenBasedAuthentication())
+		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter())
 		    	
-		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter(app.packageName))
-		
+		fsa.generateFile(srcDestination + '/security/auth/TokenAuthenticationFilter.java', generateTokenAuthenticationFilter())
 		
 	}
 	
 	
-	def String generateTokenAuthenticationFilter(String packageName){
-		var content = '''
+	def String generateTokenAuthenticationFilter()'''
 		package «packageName».security.auth;
 		
 		import java.io.IOException;
@@ -108,13 +98,9 @@ class SecurityDslJWTGenerator {
 		    }
 		
 		}
-		
 		'''
-		return content;
-	}
 	
-	def String generateTokenBasedAuthentication(String packageName){
-		var content = '''
+	def String generateTokenBasedAuthentication()'''
 		package «packageName».security.auth;
 		
 		import org.springframework.security.authentication.AbstractAuthenticationToken;
@@ -157,11 +143,8 @@ class SecurityDslJWTGenerator {
 		
 		}
 		'''
-		return content;
-	}
 	
-	def String generateRestAuthenticationEntryPoint(String packageName){
-		var content = '''
+	def String generateRestAuthenticationEntryPoint()'''
 		package «packageName».security.auth;
 		import org.springframework.security.core.AuthenticationException;
 		import org.springframework.security.web.AuthenticationEntryPoint;
@@ -182,11 +165,8 @@ class SecurityDslJWTGenerator {
 		    }
 		}
 		'''
-		return content;
-	}
 	
-	def String generateException(String packageName){
-		var content = '''
+	def String generateException()'''
 		package «packageName».exception;
 		
 		public class ResourceConflictException extends RuntimeException {
@@ -209,53 +189,31 @@ class SecurityDslJWTGenerator {
 		
 		}
 		'''
-		return content;
-	}
 	
-	def getAuthController(List<Controller> controllers){
-		 
-		 for (c : controllers) {
-    		if(c instanceof Authentication){
-    			return c;
-    		}
-    	}
-	}
 	
-	def String generateWebConfig(String packageName){
-		var webConfig = '''
-			package «packageName».config;
-			
-			import org.springframework.context.annotation.Configuration;
-			import org.springframework.web.servlet.config.annotation.CorsRegistry;
-			import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-			import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
-			
-			@Configuration
-			@EnableWebMvc
-			public class WebConfig implements WebMvcConfigurer {
-			
-			    @Override
-			    public void addCorsMappings(CorsRegistry registry) {
-			        registry.addMapping("/**")
-			                .allowedHeaders("*")
-			                .allowedMethods("GET", "POST", "DELETE", "PUT")
-			                .allowedOrigins("http://localhost:4200");
-			    }
-			}
-			'''
-		return webConfig;
+	def String generateWebConfig()'''
+		package «packageName».config;
 		
-	}
-	
-	def generateWebSecurityConfig(String packageName, Authentication authController){
+		import org.springframework.context.annotation.Configuration;
+		import org.springframework.web.servlet.config.annotation.CorsRegistry;
+		import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+		import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 		
-		var loginEndpoint = ''
+		@Configuration
+		@EnableWebMvc
+		public class WebConfig implements WebMvcConfigurer {
 		
-		for (e : authController.controller_endpoints) {
-			if(e.type == EEndpointType::LOGIN) loginEndpoint = authController.path + e.url
+		    @Override
+		    public void addCorsMappings(CorsRegistry registry) {
+		        registry.addMapping("/**")
+		                .allowedHeaders("*")
+		                .allowedMethods("GET", "POST", "DELETE", "PUT")
+		                .allowedOrigins("http://localhost:4200");
+		    }
 		}
-		
-		var config = '''
+		'''
+	
+	def generateWebSecurityConfig(Authentication authController)'''
 		package «packageName».config;
 		
 		import «packageName».security.auth.RestAuthenticationEntryPoint;
@@ -330,22 +288,15 @@ class SecurityDslJWTGenerator {
 		    @Override
 		    public void configure(WebSecurity web) throws Exception {
 		
-		        web.ignoring().antMatchers(HttpMethod.POST, "«loginEndpoint»");
+		        web.ignoring().antMatchers(HttpMethod.POST, "«authController.path»«SecurityDslGenerator.getLoginEndpoint(authController)»");
 		        web.ignoring().antMatchers(HttpMethod.GET, "/", "/webjars/**", "/*.html", "favicon.ico", "/**/*.html",
 		                "/**/*.css", "/**/*.js");
 		    }
 		
 		}
-		'''	
-	
-		return config;
-	}
+		'''
 
-	def String generateTokenUtils(String packageName, JWT jwt, String credentialNameUser){
-
-		var RegisteredClaims regClaim = jwt.registeredclaims;
-		
-		var utils = '''
+	def String generateTokenUtils(JWT jwt, String credentialUser)'''
 		package «packageName».util;
 		
 		import java.util.Date;
@@ -364,6 +315,7 @@ class SecurityDslJWTGenerator {
 		
 		@Component
 		public class TokenUtils {
+		«var RegisteredClaims regClaim = jwt.registeredclaims»
 		
 			private String ISSUER = "«regClaim.issuer»";
 
@@ -379,7 +331,7 @@ class SecurityDslJWTGenerator {
 			private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.«jwt.signatureAlgorithm»;
 			
 		
-			public String generateToken(String «credentialNameUser») {
+			public String generateToken(String «credentialUser») {
 				return Jwts.builder()
 						.setIssuer(ISSUER)
 						.setSubject(«findSubjectClaim(jwt.jwt_claims).claim_attribute.name»)
@@ -493,7 +445,7 @@ class SecurityDslJWTGenerator {
 				final Date created = getIssuedAtDateFromToken(token);
 			
 				return (credential != null 
-					&& credential.equals(userDetails.get«credentialNameUser.toFirstUpper»()) 
+					&& credential.equals(userDetails.get«credentialUser.toFirstUpper»()) 
 					&& !isCreatedBeforeLastPasswordReset(created, user.getLastPasswordResetDate()));  
 			}
 			
@@ -513,61 +465,15 @@ class SecurityDslJWTGenerator {
 			
 		}
 		'''
-		return utils;
-	}
 
-
-	def findSubjectClaim(List<Claim> claims){
-		
-		for (c : claims) {
-			if(c.type == EClaimType::REGISTERED && c.name.toLowerCase == 'subject') return c;
-		}
-		
-		return null;
-	}
-	
-	def getIdentifier(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isIdentifier) {
-		        return a
-		    } 
-		}
-		
-	}
-	
-	def getCredential(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isCredential) {
-		        return a
-		    } 
-		}
-		
-	}
-	
-	def getStringAttributeForRole(List<Attribute> unsortedAttributes){
-		
-		val ArrayList<Attribute> attributes = newArrayList	
-		
-		for (a : unsortedAttributes) {
-		    if (a.isIdentifier) {
-		        attributes.add(0, a)
-		    } else {
-		        attributes.add(a)
-		    }
-		}
-		
-		for(a : attributes){
-			if(a.type == EType::STRING)
-			return a;
-		}
-	}
-	
-	def String generateUserTokenStateDTO(String packageName){
-		var content = '''
+	def String generateUserTokenStateDTO()'''
 		package «packageName».dto;
 		
+		import lombok.*;
+		
+		@Getter
+		@Setter
+		@ToString
 		public class UserTokenStateDTO {
 			
 		    private String accessToken;
@@ -582,26 +488,16 @@ class SecurityDslJWTGenerator {
 		        this.accessToken = accessToken;
 		        this.expiresIn = expiresIn;
 		    }
-		
-		    public String getAccessToken() {
-		        return accessToken;
-		    }
-		
-		    public void setAccessToken(String accessToken) {
-		        this.accessToken = accessToken;
-		    }
-		
-		    public Long getExpiresIn() {
-		        return expiresIn;
-		    }
-		
-		    public void setExpiresIn(Long expiresIn) {
-		        this.expiresIn = expiresIn;
-		    }
-		    
 		}
 		'''
-		return content;
+	
+	def findSubjectClaim(List<Claim> claims){
+		
+		for (c : claims) {
+			if(c.type == EClaimType::REGISTERED && c.name.toLowerCase == 'subject') return c;
+		}
+		
+		return null;
 	}
 
 }

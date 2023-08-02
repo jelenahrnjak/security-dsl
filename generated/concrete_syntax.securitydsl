@@ -11,34 +11,34 @@ application:
       username: "securityDsl" 
       password: "securityDsl" 
       
-   model:
-      user: 
-      	tableName: "users"
-        attributes: [ 
-          {
-              identifier
-              name: "id"
-              type: Long
-          },
-          {
-              credential
-              name: "username"
-              type: String 
-              collumnName: "username"
-          },
-          {
-              name: "firstName"
-              type: String 
-              collumnName: "first_name"
-          },
-          {
-              name: "lastName"
-              type: String 
-              collumnName: "last_name"
-          }
-        ]
-
-      role:
+//   model:
+//      user: 
+//      	tableName: "users"
+//        attributes: [ 
+//          {
+//              identifier
+//              name: "id"
+//              type: Long
+//          },
+//          {
+//              credential
+//              name: "username"
+//              type: String 
+//              collumnName: "username"
+//          },
+//          {
+//              name: "firstName"
+//              type: String 
+//              collumnName: "first_name"
+//          },
+//          {
+//              name: "lastName"
+//              type: String 
+//              collumnName: "last_name"
+//          }
+//        ]
+//
+//      role:
 //        attributes: [ 
 //          {
 //              identifier
@@ -50,10 +50,23 @@ application:
 //              type: String 
 //          }
 //        ]
-        roles: ["admin", client "user"]
+//        roles: ["admin", "admin2", client "user"]
 
     security: 
-      basicAuthentication
+    	OAuth2.0:
+    		providers:[
+    			{ 
+    				name: GOOGLE,
+    				clientId: "x",
+    				clientSecret: "x"
+    			},
+    			{
+    				name: GITHUB,
+    				clientId: "x",
+    				clientSecret: "x"
+    			}
+    		]
+//      basicAuthentication
 //      jwt:
 //        header: 
 //            signatureAlgorithm: "HS512" 
@@ -64,24 +77,23 @@ application:
 //            	{REGISTERED , subject : username}
 //            ]
  
-    controller:
-      auth: 
-        name: "AuthController" 
-        path: "/auth"
-        endpoints: [
-        	{
-        		url: "/registration"
-        		functionName: "registration"
-        		type: REGISTRATION
-        	},
-        	{
-        		url: "/login"
-        		type: LOGIN
-        	},
-        	{
-        		url: "/logout"
-        		type: LOGOUT
-        		roleAuthorities: ["admin", "user"]
-        	}
-        ]
-     
+//    controller:
+//      auth: 
+//        name: "AuthController" 
+//        path: "/auth"
+//        endpoints: [
+//        	{
+//        		url: "/registration"
+//        		functionName: "registration"
+//        		type: REGISTRATION
+//        	},
+//        	{
+//        		url: "/login"
+//        		type: LOGIN
+//        	},
+//        	{
+//        		url: "/logout"
+//        		type: LOGOUT
+//        		roleAuthorities: ["admin", "user"]
+//        	}
+//        ] 

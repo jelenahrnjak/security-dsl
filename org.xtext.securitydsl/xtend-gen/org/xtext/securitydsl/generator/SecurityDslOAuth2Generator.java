@@ -5,7 +5,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2;
 
 @SuppressWarnings("all")
 public class SecurityDslOAuth2Generator {
-  private String packageName = "";
+  private Object packageName = null;
 
   public SecurityDslOAuth2Generator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination) {
     this.packageName = packageName;

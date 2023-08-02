@@ -151,8 +151,8 @@ Provider returns Provider:
 	'{' 
 		'name:' name=EOAuthProvider ','
 		'clientId:' clientId=EString ','
-		'clientSecret:' clientSecret=EString ','
-		('redirectUri:' redirectUri=EString)?
+		'clientSecret:' clientSecret=EString 
+		(',' 'redirectUri:' redirectUri=EString)?
 	'}'
 ;
 

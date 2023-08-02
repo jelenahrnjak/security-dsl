@@ -1,48 +1,27 @@
 package org.xtext.securitydsl.generator;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterators;
-import java.util.List;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import security_dsl.Application;
-import security_dsl.Attribute;
 import security_dsl.Authentication;
 import security_dsl.BasicAuthentication;
-import security_dsl.Controller;
 import security_dsl.EEndpointType;
 import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.Security;
-import security_dsl.User;
 
 @SuppressWarnings("all")
 public class SecurityDslControllerGenerator {
-  public SecurityDslControllerGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
-    User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
-    String userCredentialName = this.getCredential(user.getModel_attributes()).getName();
-    EList<Controller> _app_controllers = app.getApp_controllers();
-    for (final Controller c : _app_controllers) {
-      if ((c instanceof Authentication)) {
-        fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(app.getPackageName(), ((Authentication)c), app.getApp_security(), userCredentialName));
-      }
-    }
+  private String packageName;
+
+  public SecurityDslControllerGenerator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination, final Authentication authC, final Security security, final String userCredential) {
+    this.packageName = packageName;
+    fsa.generateFile((srcDestination + "/controller/AuthController.java"), this.generateAuthController(authC, security, userCredential));
   }
 
-  public Attribute getCredential(final List<Attribute> attributes) {
-    for (final Attribute a : attributes) {
-      boolean _isCredential = a.isCredential();
-      if (_isCredential) {
-        return a;
-      }
-    }
-    return null;
-  }
-
-  public String generateAuthController(final String packageName, final Authentication authController, final Security security, final String credentialNameUser) {
+  public String generateAuthController(final Authentication authController, final Security security, final String credentialNameUser) {
     String regEndpoint = "";
     String loginEndpoint = "";
     String logoutEndpoint = "";
@@ -68,39 +47,37 @@ public class SecurityDslControllerGenerator {
     }
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".controller;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".model.User;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".dto.UserRequestDTO;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".dto.AuthenticationRequestDTO;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".service.IUserService;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     {
       if ((security instanceof JWT)) {
         _builder.append("import ");
-        _builder.append(packageName);
+        _builder.append(this.packageName);
         _builder.append(".dto.UserTokenStateDTO;");
         _builder.newLineIfNotEmpty();
         _builder.append("import ");
-        _builder.append(packageName);
+        _builder.append(this.packageName);
         _builder.append(".util.TokenUtils;");
         _builder.newLineIfNotEmpty();
-        _builder.newLine();
-        _builder.append("import org.springframework.web.util.UriComponentsBuilder;");
         _builder.newLine();
       }
     }
@@ -254,7 +231,6 @@ public class SecurityDslControllerGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
   }
 }

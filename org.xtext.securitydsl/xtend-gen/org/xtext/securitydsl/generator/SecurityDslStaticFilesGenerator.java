@@ -334,8 +334,6 @@ public class SecurityDslStaticFilesGenerator {
     _builder.newLine();
     _builder.append("import org.springframework.boot.autoconfigure.SpringBootApplication;");
     _builder.newLine();
-    _builder.append("import org.springframework.scheduling.annotation.EnableScheduling;");
-    _builder.newLine();
     _builder.newLine();
     _builder.append("@SpringBootApplication");
     _builder.newLine();

@@ -5,7 +5,6 @@ import security_dsl.Application
 import security_dsl.User
 import security_dsl.Role
 import security_dsl.Attribute
-import org.eclipse.emf.ecore.resource.Resource
 import java.util.ArrayList
 import java.util.List
 import security_dsl.EType
@@ -16,77 +15,50 @@ import security_dsl.RoleInstance
 
 class SecurityDslModelRepoGenerator  {
 	
-	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
+	var String packageName;
+	var String credentialUser
+	
+	new(IFileSystemAccess2 fsa, Application app, String srcDestination, User user, Role role){
 		
-	    var users = resource.allContents.filter(User) 
-	    var roles = resource.allContents.filter(Role) 
-	    
-       	if (users.hasNext()) {
-       		var user = users.next()
-			var credentialNameUser = getCredential(user.model_attributes).name
-       		if(user.tableName === null) user.tableName = "users"
-       		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(app.packageName, user, app.app_security, credentialNameUser));
-       		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(app.packageName, user, credentialNameUser));
-       	    fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(app.packageName, user));
-       	    fsa.generateFile(srcDestination + '/dto/AuthenticationRequestDTO.java', generateAuthenticationRequestDTO(app.packageName, credentialNameUser))
-       	    
-		}
-        
-        
-       	if (roles.hasNext() && app.app_security instanceof JWT) {
-       		var role = roles.next()
-       		if(role.tableName === null) role.tableName = "roles"
+		this.packageName = app.packageName
+		this.credentialUser = SecurityDslGenerator.getCredential(user.model_attributes).name
+		
+   		if(user.tableName === null) user.tableName = "users"
+   		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(user, app.app_security));
+   		fsa.generateFile(srcDestination + '/repository/UserRepository.java', generateUserRepository(user));
+   	    fsa.generateFile(srcDestination + '/dto/UserRequestDTO.java', generateUserRequestDto(user));
+   	    fsa.generateFile(srcDestination + '/dto/AuthenticationRequestDTO.java', generateAuthenticationRequestDTO())
+       	  
+       	if (app.app_security instanceof JWT) {
 			var stringAttribute = getStringAttributeForRole(role.model_attributes).name
 			var roleId = getIdentifier(role.model_attributes).name
-       		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(app.packageName , role));
-       		fsa.generateFile(srcDestination + "/repository/RoleRepository.java" ,  generateRoleRepository(app.getPackageName(), role, stringAttribute));
+       		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(role, stringAttribute));
+       		fsa.generateFile(srcDestination + "/repository/RoleRepository.java" ,  generateRoleRepository(role, stringAttribute));
        		fsa.generateFile(app.artifact + '/src/main/resources/data.sql', generateSQLScript(role.tableName, stringAttribute, role.role_instances, roleId));
        		
 		}
 	}
 	
-	
-	def String generateAuthenticationRequestDTO(String packageName, String credentialNameUser){
-		var content = '''
+	def String generateAuthenticationRequestDTO()'''
 		package «packageName».dto;
+		
+		import lombok.*;
+		
+		@Getter
+		@Setter
+		@ToString
+		@AllArgsConstructor
+		@NoArgsConstructor
 		
 		public class AuthenticationRequestDTO {
 			
-		    private String «credentialNameUser»;
+		    private String «credentialUser»;
 		    private String password;
-		
-		    public AuthenticationRequestDTO() {
-		        super();
-		    }
-		
-		    public AuthenticationRequestDTO(String «credentialNameUser», String password) {
-		        this.set«credentialNameUser.toFirstUpper»(«credentialNameUser»);
-		        this.setPassword(password);
-		    }
-		
-		    public String get«credentialNameUser.toFirstUpper»() {
-		        return this.«credentialNameUser»;
-		    }
-		
-		    public void set«credentialNameUser.toFirstUpper»(String «credentialNameUser») {
-		        this.«credentialNameUser»= «credentialNameUser»;
-		    }
-		
-		    public String getPassword() {
-		        return this.password;
-		    }
-		
-		    public void setPassword(String password) {
-		        this.password = password;
-		    }
+		    
 		}
 		'''
-		return content;
-	}
 	
-	def generateUserRepository(String packageName, User user, String credentialName) {
-		
-		var content = '''
+	def generateUserRepository(User user)'''
 		package «packageName».repository;
 		
 		import java.util.Optional;
@@ -96,17 +68,12 @@ class SecurityDslModelRepoGenerator  {
 		
 		public interface UserRepository extends JpaRepository<User, «getIdentifier(user.model_attributes).type»> {
 			
-		    Optional<User> findBy«credentialName.toFirstUpper»(String «credentialName»);
+		    Optional<User> findBy«credentialUser.toFirstUpper»(String «credentialUser»);
 
 		}
-				'''
-				return content;
-	}
+		'''
 	
-	def String generateRoleRepository(String packageName, Role role, String stringAttribute){
-		
-		
-		var content = '''
+	def String generateRoleRepository( Role role, String stringAttribute)'''
 		package «packageName».repository;
 		
 		import java.util.List;
@@ -119,12 +86,8 @@ class SecurityDslModelRepoGenerator  {
 			List<Role> findBy«stringAttribute.toFirstUpper»(String «stringAttribute»);
 		}
 		'''
-		return content;
-	}
 	
-	def generateUserRequestDto(String packageName, User user){
-		
-		var content = '''
+	def generateUserRequestDto(User user)'''
 		package «packageName».dto;
 		
 		import lombok.*;
@@ -143,63 +106,53 @@ class SecurityDslModelRepoGenerator  {
 
 		}
 		'''	
-		
-		return content;
-	}
 	
-	def generateAttributesForDto(List<Attribute> attributes){
-		var content = ''
-		
-		for(a : attributes){
-			if(!a.isIdentifier){
-			content += '''private «a.type» «a.name»;
-
-			'''}
-		}
-		
-		return content
-	}
+	def generateAttributesForDto(List<Attribute> attributes)'''
+		«FOR a : attributes»
+			«IF !a.isIdentifier»
+					private «a.type» «a.name»;
+					
+			«ENDIF»
+		«ENDFOR»
+		'''
 	
-	def generateUserModel(String packageName, User user, Security security, String credentialName) {
-		
-		
-		var userContent =  '''
+	def generateUserModel(User user, Security security)'''
 		package «packageName».model;
 		
-		'''
+		«IF security instanceof BasicAuthentication»
+		import «packageName».model.enumeration.Role;
+		«ENDIF»
 		
-		if(security instanceof BasicAuthentication){
-			userContent +=  '''
-			import «packageName».model.enumeration.Role;
-
-			'''
-		}
-			
-		
-		userContent += '''
+		«IF security instanceof JWT»
 		import java.sql.Timestamp;
-		import java.util.ArrayList;
-		import java.util.Collection;
 		import java.util.Date;
 		import java.util.List;
+		«ELSEIF security instanceof BasicAuthentication»
+		import java.util.ArrayList;
+		«ENDIF»
+		import java.util.Collection;
 		
-		import javax.persistence.Column;
-		import javax.persistence.Entity;
-		import javax.persistence.EnumType;
-		import javax.persistence.Enumerated;
+		«IF security instanceof JWT»
 		import javax.persistence.FetchType;
-		import javax.persistence.GeneratedValue;
-		import javax.persistence.GenerationType;
-		import javax.persistence.Id;
 		import javax.persistence.JoinColumn;
 		import javax.persistence.JoinTable;
 		import javax.persistence.ManyToMany;
+		«ELSEIF security instanceof BasicAuthentication»
+		import javax.persistence.EnumType;
+		import javax.persistence.Enumerated;
+		«ENDIF»
+		import javax.persistence.Column;
+		import javax.persistence.Entity;
+		import javax.persistence.GeneratedValue;
+		import javax.persistence.Id;
 		import javax.persistence.Table;
 		import lombok.Getter;
 		import lombok.Setter;
 		
 		import org.springframework.security.core.GrantedAuthority;
+		«IF security instanceof BasicAuthentication»
 		import org.springframework.security.core.authority.SimpleGrantedAuthority;
+		«ENDIF»
 		import org.springframework.security.core.userdetails.UserDetails;
 		
 		import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -211,123 +164,115 @@ class SecurityDslModelRepoGenerator  {
 		public class User implements UserDetails {
 		
 		    private static final long serialVersionUID = 1L;
-		
-			'''
-		
-		userContent += generateAttributes(user.model_attributes)
-		
-		if(security instanceof JWT) {
-		userContent += '''    @JsonIgnore
-    @Column(name = "password")
-    private String password;
-
-    @Column(name = "enabled")
-    private boolean enabled;
-
-    @Column(name = "last_password_reset_date")
-    private Timestamp lastPasswordResetDate;
-    
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_role",
-            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    private List<Role> roles;
-    
-    public void setPassword(String password) {
-        Timestamp now = new Timestamp(new Date().getTime());
-        this.setLastPasswordResetDate(now);
-        this.password = password;
-    }
-
-    @JsonIgnore
-    @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
-        return this.roles;
-    }
-
-    @Override
-    public boolean isEnabled() {
-        return enabled;
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-
-    @JsonIgnore
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-
-'''
-}
-		if (security instanceof BasicAuthentication){
-			userContent += '''    private String password;
 			
-    @Enumerated(EnumType.STRING)
-    private Role role;
-    
-	@JsonIgnore
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
+			«generateAttributes(user.model_attributes)»
 
-	@JsonIgnore
-	@Override
-	public boolean isCredentialsNonExpired() {
-		return true;
-	}
-
-	@JsonIgnore
-	@Override
-	public boolean isAccountNonLocked() {
-		return true;
-	}
-
-	@JsonIgnore
-	@Override
-	public boolean isAccountNonExpired() {
-		return true;
-	}
-
-	@JsonIgnore
-	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		Collection<GrantedAuthority> authorities = new ArrayList<>();
-		authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
-		return authorities;
-	}
-	
-	
-	@Override
-	public String getPassword() {
-		// TODO Auto-generated method stub
-		return password;
-	}
-
-	@Override
-	public String getUsername() {
-		// TODO Auto-generated method stub
-		return «credentialName»;
-	}
-			'''
+			«IF security instanceof JWT»
+			@JsonIgnore
+			@Column(name = "password")
+			private String password;
+			
+			@Column(name = "enabled")
+			private boolean enabled;
+			
+			@Column(name = "last_password_reset_date")
+			private Timestamp lastPasswordResetDate;
+			
+			@ManyToMany(fetch = FetchType.EAGER)
+			@JoinTable(name = "user_role",
+			        joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+			        inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+			private List<Role> roles;
+			
+			public void setPassword(String password) {
+			    Timestamp now = new Timestamp(new Date().getTime());
+			    this.setLastPasswordResetDate(now);
+			    this.password = password;
+			}
+			
+			@JsonIgnore
+			@Override
+			public Collection<? extends GrantedAuthority> getAuthorities() {
+			    return this.roles;
+			}
+			
+			@Override
+			public boolean isEnabled() {
+			    return enabled;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isAccountNonExpired() {
+			    return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isAccountNonLocked() {
+			    return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isCredentialsNonExpired() {
+			    return true;
+			}
+			«ELSEIF security instanceof BasicAuthentication»
+			private String password;
+					
+			@Enumerated(EnumType.STRING)
+			private Role role;
+			
+			@JsonIgnore
+			@Override
+			public boolean isEnabled() {
+				return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isCredentialsNonExpired() {
+				return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isAccountNonLocked() {
+				return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public boolean isAccountNonExpired() {
+				return true;
+			}
+			
+			@JsonIgnore
+			@Override
+			public Collection<? extends GrantedAuthority> getAuthorities() {
+				Collection<GrantedAuthority> authorities = new ArrayList<>();
+				authorities.add(new SimpleGrantedAuthority(role.getAuthority()));
+				return authorities;
+			}
+			
+			
+			@Override
+			public String getPassword() {
+				// TODO Auto-generated method stub
+				return password;
+			}
+			
+			@Override
+			public String getUsername() {
+				// TODO Auto-generated method stub
+				return «credentialUser»;
+			}
+		«ENDIF»
 		}
-		userContent += '}'		
-		return userContent;
-	}
+		'''
 	
-	def generateRoleModel(String packageName, Role role) {
-		var content = '''
+	def generateRoleModel(Role role, String stringAttribute)'''
 		package «packageName».model;
 		
 		import lombok.Getter;
@@ -345,37 +290,52 @@ class SecurityDslModelRepoGenerator  {
 		public class Role implements GrantedAuthority {
 		
 		    private static final long serialVersionUID = 1L;
-		
-		    '''
-		content += generateAttributes(role.model_attributes)
-		    		
-		var stringAttribute = getStringAttributeForRole(role.model_attributes)
-		
-		content += '''    @JsonIgnore
-    @Override
-    public String getAuthority() {
-    	return «stringAttribute.name»;
-    }
+		    
+		    «generateAttributes(role.model_attributes)»
+		    @JsonIgnore
+		    @Override
+		    public String getAuthority() {
+		    	return «stringAttribute»;
+		    }
 
-}'''
+		}
+		'''
 		
-		return content;
+	def generateAttributes(List<Attribute> unsortedAttributes){
+		
+		val ArrayList<Attribute> attributes = newArrayList	
+		
+		for (a : unsortedAttributes) {
+		    if (a.isIdentifier) {
+		        attributes.add(0, a)
+		    } else {
+		        attributes.add(a)
+		    }
+		}
+		
+		return '''    
+			@Id
+			@GeneratedValue
+    		«FOR a : attributes»
+				«IF a.collumnName !== null»@Column(name = "«a.collumnName»")
+    			«ENDIF»
+				private «a.type» «a.name»;
+				
+    		«ENDFOR»
+			'''
 	}
+	
+	
+	def generateSQLScript(String tableName, String stringAttribute, List<RoleInstance> rInstances, String id)'''
+		«FOR role : rInstances»
+		INSERT INTO «tableName.toUpperCase» («id», «stringAttribute») VALUES («rInstances.indexOf(role) + 1», '«role.name»');
+		«ENDFOR»
+	'''
 	
 	def getIdentifier(List<Attribute> attributes){
 		
 		for (a : attributes) {
 		    if (a.isIdentifier) {
-		        return a
-		    } 
-		}
-		
-	}
-	
-	def getCredential(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isCredential) {
 		        return a
 		    } 
 		}
@@ -399,38 +359,4 @@ class SecurityDslModelRepoGenerator  {
 			return a;
 		}
 	}
-	
-	def generateAttributes(List<Attribute> unsortedAttributes){
-		
-		val ArrayList<Attribute> attributes = newArrayList	
-		
-		for (a : unsortedAttributes) {
-		    if (a.isIdentifier) {
-		        attributes.add(0, a)
-		    } else {
-		        attributes.add(a)
-		    }
-		}
-		
-		var content = '''    @Id
-    @GeneratedValue
-		'''
-		
-		for (attribute : attributes) {
-			if(attribute.collumnName !== null) content += '''    @Column(name = "«attribute.collumnName»")
-			'''
-			content += '''    private «attribute.type»  «attribute.name»;
-
-			'''
-		}
-		
-		return content;
-	}
-	
-	
-	def generateSQLScript(String tableName, String stringAttribute, List<RoleInstance> rInstances, String id)'''
-		«FOR role : rInstances»
-		INSERT INTO «tableName.toUpperCase» («id», «stringAttribute») VALUES («rInstances.indexOf(role) + 1», '«role.name»');
-		«ENDFOR»
-	'''
 }

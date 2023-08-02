@@ -1,42 +1,24 @@
 package org.xtext.securitydsl.generator
 
 import org.eclipse.xtext.generator.IFileSystemAccess2
-import security_dsl.Application
 import security_dsl.Authentication
-import security_dsl.EEndpointType
-import security_dsl.Security
 import security_dsl.BasicAuthentication
-import security_dsl.Attribute
-import java.util.List
-import security_dsl.User
-import org.eclipse.emf.ecore.resource.Resource
+import security_dsl.EEndpointType
 import security_dsl.JWT
+import security_dsl.Security
 
 class SecurityDslControllerGenerator {
 	
-		new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
-			
-	    	var user = resource.allContents.filter(User).next()
-	    	
-	    	var userCredentialName = getCredential(user.model_attributes).name
-			for (c : app.app_controllers) {
-    			if(c instanceof Authentication){
-    			fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(app.packageName, c, app.app_security, userCredentialName));
-    			}
-    		}
-		}
+	var String packageName;
 	
-	def getCredential(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isCredential) {
-		        return a
-		    } 
-		}
-		
+	new(IFileSystemAccess2 fsa, String packageName, String srcDestination, Authentication authC, Security security, String userCredential){
+			
+		this.packageName = packageName
+    	fsa.generateFile(srcDestination + '/controller/AuthController.java', generateAuthController(authC, security, userCredential));
+    		
 	}
 	
-	def generateAuthController(String packageName, Authentication authController, Security security, String credentialNameUser){
+	def generateAuthController(Authentication authController, Security security, String credentialNameUser){
 			
 		var regEndpoint = ''
 		var loginEndpoint = ''
@@ -47,9 +29,8 @@ class SecurityDslControllerGenerator {
 			if(e.type == EEndpointType::LOGIN) loginEndpoint = e.url
 			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = e.url
 		}
-		
 	
-		var content = '''
+		return '''
 		package «packageName».controller;
 		
 		import «packageName».model.User;
@@ -61,7 +42,6 @@ class SecurityDslControllerGenerator {
 		import «packageName».dto.UserTokenStateDTO;
 		import «packageName».util.TokenUtils;
 		
-		import org.springframework.web.util.UriComponentsBuilder;
 		«ENDIF»
 		import lombok.RequiredArgsConstructor;
 		import org.springframework.beans.factory.annotation.Autowired;
@@ -119,7 +99,5 @@ class SecurityDslControllerGenerator {
 
 		}
 		'''
-	
-		return content;
 		}
 }

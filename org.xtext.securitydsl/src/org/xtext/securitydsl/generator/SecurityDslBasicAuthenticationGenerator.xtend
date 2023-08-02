@@ -1,69 +1,29 @@
 package org.xtext.securitydsl.generator
 
 import java.util.List
-import org.eclipse.emf.ecore.resource.Resource
 import org.eclipse.xtext.generator.IFileSystemAccess2
-import security_dsl.Application
 import security_dsl.Authentication
-import security_dsl.Role
 import security_dsl.RoleInstance
 
 class SecurityDslBasicAuthenticationGenerator {
 
-	new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
+	var String packageName;
+	
+	new(IFileSystemAccess2 fsa, String packageName, String srcDestination, Authentication authController, List<RoleInstance> roleInstances){
 		
-    	var roles = resource.allContents.filter(Role)
+		this.packageName = packageName
     	
-    	for (c : app.app_controllers) {
-    		if(c instanceof Authentication){
-    		fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(app.packageName, c))    	
-    		}
-    	}
-    	
-		//fsa.generateFile(srcDestination + '/config/PasswordEncoder.java', generatePassEncoder(app.packageName));
-		fsa.generateFile(srcDestination + '/exception/ResourceConflictException.java', generateException(app.packageName))
-		
-		if(roles.hasNext()){
-			var role = roles.next()
-			fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(app.packageName, role.role_instances));
-		}
+    	fsa.generateFile(srcDestination + '/config/ApplicationSecurityConfig.java', generateApplicationSecurityConfig(authController))    
+		fsa.generateFile(srcDestination + '/model/enumeration/Role.java', generateRoleEnumeration(roleInstances));
 		
 		
 	}
 	
-	def String generateException(String packageName){
-		var content = '''
-		package «packageName».exception;
-		
-		public class ResourceConflictException extends RuntimeException {
-			private static final long serialVersionUID = 1791564636123821405L;
-		
-			private Long resourceId;
-		
-			public ResourceConflictException(Long resourceId, String message) {
-				super(message);
-				this.setResourceId(resourceId);
-			}
-		
-			public Long getResourceId() {
-				return resourceId;
-			}
-		
-			public void setResourceId(Long resourceId) {
-				this.resourceId = resourceId;
-			}
-		
-		}
-		'''
-		return content;
-	}
-	
-	def generateApplicationSecurityConfig(String packageName, Authentication authController)'''
+	def generateApplicationSecurityConfig(Authentication authController)'''
 		package «packageName».config;
 		
 		import «packageName».service.impl.UserServiceImpl;
 		
-		import uns.ftn.securityDsl.service.impl.UserServiceImpl;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.context.annotation.Bean;
 		import org.springframework.context.annotation.Configuration;
@@ -124,19 +84,17 @@ class SecurityDslBasicAuthenticationGenerator {
 		}
 		'''
 		
-	def generateRoleEnumeration(String packageName, List<RoleInstance> roleInstances)'''
+	def generateRoleEnumeration(List<RoleInstance> roleInstances)'''
 		package «packageName».model.enumeration;
 
 		public enum Role {
 
-			«FOR i : 0 .. (roleInstances.size - 1)»
+		«FOR i : 0 .. (roleInstances.size - 1)»
 			«roleInstances.get(i).name»
-		«IF i != roleInstances.size - 1»
-		,
-		«ELSEIF i == roleInstances.size - 1 && roleInstances.size != 0»
-		;
+		«IF i != roleInstances.size - 1»,
+		«ELSEIF i == roleInstances.size - 1 && roleInstances.size != 0»;
 		«ENDIF»
-			«ENDFOR»
+		«ENDFOR»
 
 		    public String getAuthority() {
 				return this.name();

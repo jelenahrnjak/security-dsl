@@ -1,106 +1,33 @@
 package org.xtext.securitydsl.generator;
 
-import com.google.common.collect.Iterators;
-import java.util.Iterator;
 import java.util.List;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
-import security_dsl.Application;
 import security_dsl.Authentication;
-import security_dsl.Controller;
-import security_dsl.Role;
 import security_dsl.RoleInstance;
 
 @SuppressWarnings("all")
 public class SecurityDslBasicAuthenticationGenerator {
-  public SecurityDslBasicAuthenticationGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
-    Iterator<Role> roles = Iterators.<Role>filter(resource.getAllContents(), Role.class);
-    EList<Controller> _app_controllers = app.getApp_controllers();
-    for (final Controller c : _app_controllers) {
-      if ((c instanceof Authentication)) {
-        fsa.generateFile((srcDestination + "/config/ApplicationSecurityConfig.java"), this.generateApplicationSecurityConfig(app.getPackageName(), ((Authentication)c)));
-      }
-    }
-    fsa.generateFile((srcDestination + "/exception/ResourceConflictException.java"), this.generateException(app.getPackageName()));
-    boolean _hasNext = roles.hasNext();
-    if (_hasNext) {
-      Role role = roles.next();
-      fsa.generateFile((srcDestination + "/model/enumeration/Role.java"), this.generateRoleEnumeration(app.getPackageName(), role.getRole_instances()));
-    }
+  private String packageName;
+
+  public SecurityDslBasicAuthenticationGenerator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination, final Authentication authController, final List<RoleInstance> roleInstances) {
+    this.packageName = packageName;
+    fsa.generateFile((srcDestination + "/config/ApplicationSecurityConfig.java"), this.generateApplicationSecurityConfig(authController));
+    fsa.generateFile((srcDestination + "/model/enumeration/Role.java"), this.generateRoleEnumeration(roleInstances));
   }
 
-  public String generateException(final String packageName) {
+  public CharSequence generateApplicationSecurityConfig(final Authentication authController) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
-    _builder.append(".exception;");
-    _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("public class ResourceConflictException extends RuntimeException {");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private static final long serialVersionUID = 1791564636123821405L;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("private Long resourceId;");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public ResourceConflictException(Long resourceId, String message) {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("super(message);");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.setResourceId(resourceId);");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public Long getResourceId() {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("return resourceId;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("public void setResourceId(Long resourceId) {");
-    _builder.newLine();
-    _builder.append("\t\t");
-    _builder.append("this.resourceId = resourceId;");
-    _builder.newLine();
-    _builder.append("\t");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    String content = _builder.toString();
-    return content;
-  }
-
-  public CharSequence generateApplicationSecurityConfig(final String packageName, final Authentication authController) {
-    StringConcatenation _builder = new StringConcatenation();
-    _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".config;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".service.impl.UserServiceImpl;");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
-    _builder.append("import uns.ftn.securityDsl.service.impl.UserServiceImpl;");
     _builder.newLine();
     _builder.append("import org.springframework.beans.factory.annotation.Autowired;");
     _builder.newLine();
@@ -251,10 +178,10 @@ public class SecurityDslBasicAuthenticationGenerator {
     return _builder;
   }
 
-  public CharSequence generateRoleEnumeration(final String packageName, final List<RoleInstance> roleInstances) {
+  public CharSequence generateRoleEnumeration(final List<RoleInstance> roleInstances) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".model.enumeration;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -276,11 +203,11 @@ public class SecurityDslBasicAuthenticationGenerator {
           boolean _notEquals = ((i).intValue() != _minus_1);
           if (_notEquals) {
             _builder.append(",");
-            _builder.newLine();
+            _builder.newLineIfNotEmpty();
           } else {
             if ((((i).intValue() == (roleInstances.size() - 1)) && (roleInstances.size() != 0))) {
               _builder.append(";");
-              _builder.newLine();
+              _builder.newLineIfNotEmpty();
             }
           }
         }

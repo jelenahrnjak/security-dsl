@@ -1,49 +1,36 @@
 package org.xtext.securitydsl.generator;
 
 import com.google.common.base.Objects;
-import com.google.common.collect.Iterators;
-import java.util.ArrayList;
 import java.util.List;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess2;
-import org.eclipse.xtext.xbase.lib.CollectionLiterals;
 import org.eclipse.xtext.xbase.lib.StringExtensions;
-import security_dsl.Application;
-import security_dsl.Attribute;
 import security_dsl.Authentication;
 import security_dsl.Claim;
-import security_dsl.Controller;
 import security_dsl.EClaimType;
-import security_dsl.EEndpointType;
-import security_dsl.EType;
-import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.RegisteredClaims;
-import security_dsl.Security;
-import security_dsl.User;
 
 @SuppressWarnings("all")
 public class SecurityDslJWTGenerator {
-  public SecurityDslJWTGenerator(final Resource resource, final IFileSystemAccess2 fsa, final Application app, final String srcDestination) {
-    User user = Iterators.<User>filter(resource.getAllContents(), User.class).next();
-    String credentialNameUser = this.getCredential(user.getModel_attributes()).getName();
-    fsa.generateFile((srcDestination + "/config/WebConfig.java"), this.generateWebConfig(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/config/WebSecurityConfig.java"), this.generateWebSecurityConfig(app.getPackageName(), this.getAuthController(app.getApp_controllers())));
-    Security _app_security = app.getApp_security();
-    fsa.generateFile((srcDestination + "/util/TokenUtils.java"), this.generateTokenUtils(app.getPackageName(), ((JWT) _app_security), credentialNameUser));
-    fsa.generateFile((srcDestination + "/dto/UserTokenStateDTO.java"), this.generateUserTokenStateDTO(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/security/auth/RestAuthenticationEntryPoint.java"), this.generateRestAuthenticationEntryPoint(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/security/auth/TokenBasedAuthentication.java"), this.generateTokenBasedAuthentication(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/security/auth/TokenAuthenticationFilter.java"), this.generateTokenAuthenticationFilter(app.getPackageName()));
-    fsa.generateFile((srcDestination + "/security/auth/TokenAuthenticationFilter.java"), this.generateTokenAuthenticationFilter(app.getPackageName()));
+  private String packageName;
+
+  public SecurityDslJWTGenerator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination, final Authentication authController, final JWT jwt, final String credentialUser) {
+    this.packageName = packageName;
+    fsa.generateFile((srcDestination + "/config/WebConfig.java"), this.generateWebConfig());
+    fsa.generateFile((srcDestination + "/config/WebSecurityConfig.java"), this.generateWebSecurityConfig(authController));
+    fsa.generateFile((srcDestination + "/util/TokenUtils.java"), this.generateTokenUtils(jwt, credentialUser));
+    fsa.generateFile((srcDestination + "/dto/UserTokenStateDTO.java"), this.generateUserTokenStateDTO());
+    fsa.generateFile((srcDestination + "/security/auth/RestAuthenticationEntryPoint.java"), this.generateRestAuthenticationEntryPoint());
+    fsa.generateFile((srcDestination + "/security/auth/TokenBasedAuthentication.java"), this.generateTokenBasedAuthentication());
+    fsa.generateFile((srcDestination + "/security/auth/TokenAuthenticationFilter.java"), this.generateTokenAuthenticationFilter());
+    fsa.generateFile((srcDestination + "/security/auth/TokenAuthenticationFilter.java"), this.generateTokenAuthenticationFilter());
   }
 
-  public String generateTokenAuthenticationFilter(final String packageName) {
+  public String generateTokenAuthenticationFilter() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".security.auth;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -60,7 +47,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".util.TokenUtils;");
     _builder.newLineIfNotEmpty();
     _builder.append("import org.apache.commons.logging.Log;");
@@ -187,15 +174,13 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
   }
 
-  public String generateTokenBasedAuthentication(final String packageName) {
+  public String generateTokenBasedAuthentication() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".security.auth;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -292,14 +277,13 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
   }
 
-  public String generateRestAuthenticationEntryPoint(final String packageName) {
+  public String generateRestAuthenticationEntryPoint() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".security.auth;");
     _builder.newLineIfNotEmpty();
     _builder.append("import org.springframework.security.core.AuthenticationException;");
@@ -341,14 +325,13 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
   }
 
-  public String generateException(final String packageName) {
+  public String generateException() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".exception;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -397,23 +380,13 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
   }
 
-  public Authentication getAuthController(final List<Controller> controllers) {
-    for (final Controller c : controllers) {
-      if ((c instanceof Authentication)) {
-        return ((Authentication)c);
-      }
-    }
-    return null;
-  }
-
-  public String generateWebConfig(final String packageName) {
+  public String generateWebConfig() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".config;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -456,43 +429,30 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String webConfig = _builder.toString();
-    return webConfig;
+    return _builder.toString();
   }
 
-  public String generateWebSecurityConfig(final String packageName, final Authentication authController) {
-    String loginEndpoint = "";
-    EList<Endpoint> _controller_endpoints = authController.getController_endpoints();
-    for (final Endpoint e : _controller_endpoints) {
-      EEndpointType _type = e.getType();
-      boolean _equals = Objects.equal(_type, EEndpointType.LOGIN);
-      if (_equals) {
-        String _path = authController.getPath();
-        String _url = e.getUrl();
-        String _plus = (_path + _url);
-        loginEndpoint = _plus;
-      }
-    }
+  public CharSequence generateWebSecurityConfig(final Authentication authController) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".config;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".security.auth.RestAuthenticationEntryPoint;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".security.auth.TokenAuthenticationFilter;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".service.impl.UserServiceImpl;");
     _builder.newLineIfNotEmpty();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".util.TokenUtils;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -624,8 +584,8 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("                ");
     _builder.append(".authorizeRequests().antMatchers(\"");
-    String _path_1 = authController.getPath();
-    _builder.append(_path_1, "                ");
+    String _path = authController.getPath();
+    _builder.append(_path, "                ");
     _builder.append("/**\").permitAll()");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -655,7 +615,10 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("        ");
     _builder.append("web.ignoring().antMatchers(HttpMethod.POST, \"");
-    _builder.append(loginEndpoint, "        ");
+    String _path_1 = authController.getPath();
+    _builder.append(_path_1, "        ");
+    String _loginEndpoint = SecurityDslGenerator.getLoginEndpoint(authController);
+    _builder.append(_loginEndpoint, "        ");
     _builder.append("\");");
     _builder.newLineIfNotEmpty();
     _builder.append("        ");
@@ -670,15 +633,13 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String config = _builder.toString();
-    return config;
+    return _builder;
   }
 
-  public String generateTokenUtils(final String packageName, final JWT jwt, final String credentialNameUser) {
-    RegisteredClaims regClaim = jwt.getRegisteredclaims();
+  public String generateTokenUtils(final JWT jwt, final String credentialUser) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".util;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -704,7 +665,7 @@ public class SecurityDslJWTGenerator {
     _builder.append("import io.jsonwebtoken.SignatureAlgorithm;");
     _builder.newLine();
     _builder.append("import ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".model.User;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -712,6 +673,8 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("public class TokenUtils {");
     _builder.newLine();
+    RegisteredClaims regClaim = jwt.getRegisteredclaims();
+    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private String ISSUER = \"");
@@ -763,7 +726,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("public String generateToken(String ");
-    _builder.append(credentialNameUser, "\t");
+    _builder.append(credentialUser, "\t");
     _builder.append(") {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
@@ -1078,7 +1041,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("\t\t\t");
     _builder.append("&& credential.equals(userDetails.get");
-    String _firstUpper = StringExtensions.toFirstUpper(credentialNameUser);
+    String _firstUpper = StringExtensions.toFirstUpper(credentialUser);
     _builder.append(_firstUpper, "\t\t\t");
     _builder.append("()) ");
     _builder.newLineIfNotEmpty();
@@ -1127,65 +1090,24 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("}");
     _builder.newLine();
-    String utils = _builder.toString();
-    return utils;
+    return _builder.toString();
   }
 
-  public Claim findSubjectClaim(final List<Claim> claims) {
-    for (final Claim c : claims) {
-      if ((Objects.equal(c.getType(), EClaimType.REGISTERED) && Objects.equal(c.getName().toLowerCase(), "subject"))) {
-        return c;
-      }
-    }
-    return null;
-  }
-
-  public Attribute getIdentifier(final List<Attribute> attributes) {
-    for (final Attribute a : attributes) {
-      boolean _isIdentifier = a.isIdentifier();
-      if (_isIdentifier) {
-        return a;
-      }
-    }
-    return null;
-  }
-
-  public Attribute getCredential(final List<Attribute> attributes) {
-    for (final Attribute a : attributes) {
-      boolean _isCredential = a.isCredential();
-      if (_isCredential) {
-        return a;
-      }
-    }
-    return null;
-  }
-
-  public Attribute getStringAttributeForRole(final List<Attribute> unsortedAttributes) {
-    final ArrayList<Attribute> attributes = CollectionLiterals.<Attribute>newArrayList();
-    for (final Attribute a : unsortedAttributes) {
-      boolean _isIdentifier = a.isIdentifier();
-      if (_isIdentifier) {
-        attributes.add(0, a);
-      } else {
-        attributes.add(a);
-      }
-    }
-    for (final Attribute a_1 : attributes) {
-      EType _type = a_1.getType();
-      boolean _equals = Objects.equal(_type, EType.STRING);
-      if (_equals) {
-        return a_1;
-      }
-    }
-    return null;
-  }
-
-  public String generateUserTokenStateDTO(final String packageName) {
+  public String generateUserTokenStateDTO() {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
-    _builder.append(packageName);
+    _builder.append(this.packageName);
     _builder.append(".dto;");
     _builder.newLineIfNotEmpty();
+    _builder.newLine();
+    _builder.append("import lombok.*;");
+    _builder.newLine();
+    _builder.newLine();
+    _builder.append("@Getter");
+    _builder.newLine();
+    _builder.append("@Setter");
+    _builder.newLine();
+    _builder.append("@ToString");
     _builder.newLine();
     _builder.append("public class UserTokenStateDTO {");
     _builder.newLine();
@@ -1223,51 +1145,17 @@ public class SecurityDslJWTGenerator {
     _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public String getAccessToken() {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return accessToken;");
-    _builder.newLine();
-    _builder.append("    ");
     _builder.append("}");
     _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public void setAccessToken(String accessToken) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("this.accessToken = accessToken;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public Long getExpiresIn() {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("return expiresIn;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("public void setExpiresIn(Long expiresIn) {");
-    _builder.newLine();
-    _builder.append("        ");
-    _builder.append("this.expiresIn = expiresIn;");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.append("}");
-    _builder.newLine();
-    _builder.append("    ");
-    _builder.newLine();
-    _builder.append("}");
-    _builder.newLine();
-    String content = _builder.toString();
-    return content;
+    return _builder.toString();
+  }
+
+  public Claim findSubjectClaim(final List<Claim> claims) {
+    for (final Claim c : claims) {
+      if ((Objects.equal(c.getType(), EClaimType.REGISTERED) && Objects.equal(c.getName().toLowerCase(), "subject"))) {
+        return c;
+      }
+    }
+    return null;
   }
 }

@@ -1,94 +1,66 @@
 package org.xtext.securitydsl.generator
 
-import org.eclipse.xtext.generator.IFileSystemAccess2
-import security_dsl.Application
-import security_dsl.BasicAuthentication
-import security_dsl.Attribute
-import java.util.List
-import security_dsl.User
-import org.eclipse.emf.ecore.resource.Resource
-import security_dsl.JWT
-import security_dsl.RoleInstance
 import java.util.ArrayList
-import security_dsl.Role
+import java.util.List
+import org.eclipse.xtext.generator.IFileSystemAccess2
+import security_dsl.Attribute
+import security_dsl.BasicAuthentication
 import security_dsl.EType
+import security_dsl.JWT
+import security_dsl.Role
+import security_dsl.RoleInstance
 import security_dsl.Security
+import security_dsl.User
 
 class SecurityDslServiceGenerator {
+
+	var String packageName;	
+	var String userCredential;
+	var String roleStringAttribute;
 	
-		new(Resource resource, IFileSystemAccess2 fsa, Application app, String srcDestination){
-			
-	    	var users = resource.allContents.filter(User)
-    		var roles = resource.allContents.filter(Role)
+	new(IFileSystemAccess2 fsa, String packageName, String srcDestination, User user, Role role, Security security){
+	    	 
+	   	this.packageName = packageName
+    	this.userCredential = SecurityDslGenerator.getCredential(user.model_attributes).name
 	    	
-	    	if(users.hasNext() && roles.hasNext()){
-	    		var user = users.next()
-	    		var role = roles.next()
-		    	var userCredentialName = getCredential(user.model_attributes).name
-		    	
-		    	fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService(app.packageName, userCredentialName));
-	    		fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImplBasic(app.packageName, app.app_security, userCredentialName, getNotClienRoles(role.role_instances)));
-	    		
-	    		if(app.app_security instanceof JWT){
-		    		var stringAttributeRole = getStringAttributeForRole(role.model_attributes).name
-		    		fsa.generateFile(srcDestination + '/service/impl/RoleServiceImpl.java', generateRoleServiceImpl(app.packageName, stringAttributeRole));
-		    		fsa.generateFile(srcDestination + '/service/IRoleService.java', generateIRoleService(app.packageName, stringAttributeRole));
-		    	}
-		    }
-	    
-	    	
-	    	
-		}
+	    fsa.generateFile(srcDestination + '/service/IUserService.java', generateIUserService());
+    	fsa.generateFile(srcDestination + '/service/impl/UserServiceImpl.java', generateUserServiceImplBasic(security, getNotClienRoles(role.role_instances)));
+    		
+    	if(security instanceof JWT){
+    		this.roleStringAttribute = getStringAttributeForRole(role.model_attributes).name
+    		fsa.generateFile(srcDestination + '/service/impl/RoleServiceImpl.java', generateRoleServiceImpl());
+    		fsa.generateFile(srcDestination + '/service/IRoleService.java', generateIRoleService());
+	    }
+
+	}
 	
-	
-	def generateUserServiceImplBasic(String packageName, Security sec, String credentialName, List<RoleInstance> notClientRoles){
-		
-		var content = '''
+	def generateUserServiceImplBasic(Security sec, List<RoleInstance> notClientRoles)'''
 		package «packageName».service.impl;
 		
 		import  «packageName».model.User;
 		import «packageName».repository.UserRepository;
 		import «packageName».service.IUserService;
-		import «packageName».dto.UserRequestDTO;'''
-		
-		var endOfSave = ''
-		
-		if(sec instanceof JWT){
-			content += '''
-			import «packageName».model.Role;
-			import «packageName».service.IRoleService;
-			
-			'''
-			
-			endOfSave = '''
-		newUser.setEnabled(true);
-
-		List<Role> roles = roleService.findByName(request.getRole());
-		newUser.setRoles(roles);
-		'''
-		}else if(sec instanceof BasicAuthentication){
-		
-			content += '''
-			import «packageName».model.enumeration.Role;
-			'''
-			endOfSave = '''newUser.setRole(Role.valueOf(request.getRole()));
-			'''
-		}
-		
-		content += '''
+		import «packageName».dto.UserRequestDTO;
+		«IF sec instanceof JWT»
+		import «packageName».model.Role;
+		import «packageName».service.IRoleService;
+		«ELSEIF sec instanceof BasicAuthentication»
+		import «packageName».model.enumeration.Role;
+		«ENDIF»
 		
 		import org.springframework.beans.BeanUtils;
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.security.core.userdetails.UserDetails;
 		import org.springframework.security.core.userdetails.UserDetailsService;
 		import org.springframework.security.core.userdetails.UsernameNotFoundException;
-		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;		
-		import org.springframework.security.access.AccessDeniedException;
+		import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 		
 		import org.springframework.stereotype.Service;
 		
+		«IF sec instanceof JWT»
 		import java.util.List;
 		
+		«ENDIF»
 		@Service
 		public class UserServiceImpl implements UserDetailsService, IUserService {
 		
@@ -97,98 +69,62 @@ class SecurityDslServiceGenerator {
 		    
 		    @Autowired
 		    private BCryptPasswordEncoder bCryptPasswordEncoder;
-		''' 
-		
-		if(sec instanceof JWT){
-			content += '''	@Autowired
-	private IRoleService roleService;
-
-			'''
-		}
 		    
-		content +=   '''    @Override
-    public User save(UserRequestDTO request) {
-    	User newUser = new User();
-    	BeanUtils.copyProperties(request, newUser);
-    	«endOfSave»
-    	if (userRepository.findBy«credentialName.toFirstUpper»(newUser.get«credentialName.toFirstUpper»()).isPresent()) {
-    		throw new RuntimeException("User already exists");
+		    «IF sec instanceof JWT»
+		    @Autowired
+		    private IRoleService roleService;
+		    
+		    «ENDIF»
+		    
+		    @Override
+			public User save(UserRequestDTO request) {
+				User newUser = new User();
+				BeanUtils.copyProperties(request, newUser);
+				«IF sec instanceof JWT»
+				newUser.setEnabled(true);
 
-    		}
-    		
-		if(!checkRoleForRegistration(request.getRole())) { 
-			throw new RuntimeException("Role not valid");
-		}
-    	
-        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
-        newUser.setPassword(encoderPassword);
-    	return userRepository.saveAndFlush(newUser);
-    }
-
-	private boolean checkRoleForRegistration(String role) {
+				List<Role> roles = roleService.findByName(request.getRole());
+				newUser.setRoles(roles);
+				«ELSEIF sec instanceof BasicAuthentication»
+				newUser.setRole(Role.valueOf(request.getRole()));
+				«ENDIF»
 		
-			'''
-			if(notClientRoles.size > 0){
-			content += '''        if('''
-			
-			for(var i = 0; i < notClientRoles.size ; i++){
-				content += '''role.equals("«notClientRoles.get(i).name»")'''
-				
-				if(i == notClientRoles.size - 1){
-					content+= ''') {
-						'''
-				}else{
-					content += ' or '
+				if (userRepository.findBy«userCredential.toFirstUpper»(newUser.get«userCredential.toFirstUpper»()).isPresent()) {
+					throw new RuntimeException("User already exists");
 				}
-			}
+
+				if(!checkRoleForRegistration(request.getRole())) { 
+					throw new RuntimeException("Role not valid");
+				}
+		    	
+		        String encoderPassword = bCryptPasswordEncoder.encode(newUser.getPassword());
+		        newUser.setPassword(encoderPassword);
+		    	return userRepository.saveAndFlush(newUser);
+		    }
+		
+			private boolean checkRoleForRegistration(String role) {
+		
+				«IF notClientRoles.size > 0»
+				if(«FOR r : notClientRoles»role.equals("«r.name»")«IF notClientRoles.indexOf(r) == notClientRoles.size - 1») {«ELSE» || «ENDIF»«ENDFOR»
+				«ENDIF»       
+			 
+			 		return false;
 			
-    	content += '''        return false;
-
-    	}
-
-		'''}
-				
-		content += '''
+			    }
+			    	
 		    	return true;
 		    }
 		
 			@Override
-			public UserDetails loadUserByUsername(String «credentialName») throws UsernameNotFoundException {
-		 		return userRepository.findBy«credentialName.toFirstUpper»(«credentialName»)
+			public UserDetails loadUserByUsername(String «userCredential») throws UsernameNotFoundException {
+		 		return userRepository.findBy«userCredential.toFirstUpper»(«userCredential»)
 		 			.orElseThrow(() ->
 		 				new UsernameNotFoundException("User Not Found"));
 		 	}
 		 }
 		'''
 
-		return content
-	}
-
-	def getNotClienRoles(List<RoleInstance> instances){
-		
-		var ArrayList<RoleInstance> notClients = newArrayList
-		
-		for (ri : instances) {
-			if(!ri.client) notClients.add(ri)
-		}
-		
-		return notClients;
-	}
-	
-	def getCredential(List<Attribute> attributes){
-		
-		for (a : attributes) {
-		    if (a.isCredential) {
-		        return a
-		    } 
-		}
-		
-	}
-	
-	
-	def generateIUserService(String packageName, String credentialName) {
-		
-		var content = '''
+	def generateIUserService()'''
 		package «packageName».service;
 		
 		import «packageName».model.User;
@@ -200,12 +136,8 @@ class SecurityDslServiceGenerator {
 
 		}
 		'''
-		return content
-	}
-	
-	def generateIRoleService(String packageName, String roleStringAttribute) {
 		
-		var content = '''
+	def generateIRoleService()'''
 		package «packageName».service;
 		
 		import «packageName».model.Role;
@@ -218,17 +150,15 @@ class SecurityDslServiceGenerator {
 
 		}
 		'''
-		return content
-	}
 	
-	def generateRoleServiceImpl(String packageName, String roleStringAttribute) {
-		
-		var content = '''
+	def generateRoleServiceImpl()'''
 		package «packageName».service.impl;
 		
 		import «packageName».model.Role;
 		import «packageName».repository.RoleRepository;
 		import «packageName».service.IRoleService;
+		
+		import java.util.List;
 		
 		import org.springframework.beans.factory.annotation.Autowired;
 		import org.springframework.stereotype.Service;
@@ -248,8 +178,6 @@ class SecurityDslServiceGenerator {
 
 		}
 		'''
-		return content
-	}
 	
 	def getStringAttributeForRole(List<Attribute> unsortedAttributes){
 		
@@ -267,6 +195,17 @@ class SecurityDslServiceGenerator {
 			if(a.type == EType::STRING)
 			return a;
 		}
+	}
+	
+		def getNotClienRoles(List<RoleInstance> instances){
+		
+		var ArrayList<RoleInstance> notClients = newArrayList
+		
+		for (ri : instances) {
+			if(!ri.client) notClients.add(ri)
+		}
+		
+		return notClients;
 	}
 	
 }

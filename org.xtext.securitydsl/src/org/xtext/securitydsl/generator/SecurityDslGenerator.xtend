@@ -13,6 +13,9 @@ import security_dsl.EClaimType
 import security_dsl.Attribute
 import security_dsl.User
 import security_dsl.OAuth2
+import security_dsl.Role
+import security_dsl.Authentication
+import security_dsl.EEndpointType
 
 class SecurityDslGenerator extends AbstractGenerator {
 
@@ -31,42 +34,62 @@ class SecurityDslGenerator extends AbstractGenerator {
 		
         new SecurityDslStaticFilesGenerator(fsa, app, capitalizedName, srcDestination)
         new SecurityDslResourcesGenerator(fsa, app)
-        new SecurityDslControllerGenerator(resource, fsa, app, srcDestination)
-        new SecurityDslModelRepoGenerator(resource,fsa, app, srcDestination)
-       	new SecurityDslServiceGenerator(resource,fsa, app, srcDestination)
         
-        
-    	var user = resource.allContents.filter(User).next() 
-        
-        if(app.app_security instanceof BasicAuthentication){
-       		new SecurityDslBasicAuthenticationGenerator(resource,fsa, app, srcDestination)
-        }else if(app.app_security instanceof JWT){
-        	
-        	var JWT jwt = app.app_security as JWT
-        	
-        	if(jwt.registeredclaims.issuer === null){
-        		jwt.registeredclaims.issuer = app.name
-        	}
-        	
-        	if(findSubjectClaim(jwt.jwt_claims) === null){
-        		
-        		var Claim subjectClaim
-        		subjectClaim.name = 'subject'
-        		subjectClaim.type = EClaimType::REGISTERED
-        		subjectClaim.claim_attribute = getCredential(user.model_attributes)
-        		jwt.jwt_claims.add(subjectClaim)
-        	}
-        	
-       		new SecurityDslJWTGenerator(resource,fsa, app, srcDestination)
-        	
-        }else if(app.app_security instanceof OAuth2){
+        if(app.app_security instanceof OAuth2){
         	
        		new SecurityDslOAuth2Generator(fsa, app.packageName, srcDestination)
+        
+        }else{
+        	
+        	var Authentication authController = null
+        	
+        	var users = resource.allContents.filter(User)
+        	var User user = null
+        	if(users.hasNext()) user = users.next()
+        	var credentialUser = getCredential(user.model_attributes).name
+        	
+        	var roles = resource.allContents.filter(Role)
+        	var Role role = null
+        	if(roles.hasNext()) role = roles.next()
+       		if(role.tableName === null) role.tableName = "roles"
+        	
+        	for (c : app.app_controllers) {
+    			if(c instanceof Authentication) authController = c;
+			}
+	        new SecurityDslModelRepoGenerator(fsa, app, srcDestination, user, role)
+	       	new SecurityDslServiceGenerator(fsa, app.packageName, srcDestination, user, role, app.app_security)
+	       	
+	        new SecurityDslControllerGenerator(fsa, app.packageName, srcDestination, authController, app.app_security, credentialUser)
+        
+	        if(app.app_security instanceof BasicAuthentication){
+	        	
+	       		new SecurityDslBasicAuthenticationGenerator(fsa, app.packageName, srcDestination, authController, role.role_instances)
+	       		
+	        }else if(app.app_security instanceof JWT){
+	        	
+	        	var JWT jwt = app.app_security as JWT
+	        	
+	        	if(jwt.registeredclaims.issuer === null){
+	        		jwt.registeredclaims.issuer = app.name
+	        	}
+	        	
+	        	if(findSubjectClaim(jwt.jwt_claims) === null){
+	        		
+	        		var Claim subjectClaim
+	        		subjectClaim.name = 'subject'
+	        		subjectClaim.type = EClaimType::REGISTERED
+	        		subjectClaim.claim_attribute = getCredential(user.model_attributes)
+	        		jwt.jwt_claims.add(subjectClaim)
+	        	}
+	        	
+	       		new SecurityDslJWTGenerator(fsa, app.packageName, srcDestination, authController, app.app_security as JWT, credentialUser)
+	        	
+	        } 
         }
         
 	}
 	
-	def getCredential(List<Attribute> attributes){
+	def static getCredential(List<Attribute> attributes){
 		
 		for (a : attributes) {
 		    if (a.isCredential) {
@@ -84,4 +107,11 @@ class SecurityDslGenerator extends AbstractGenerator {
 		
 		return null;
 	}
+	
+	def static getLoginEndpoint(Authentication authController){
+		 for (e : authController.controller_endpoints) {
+			if(e.type == EEndpointType::LOGIN) return e.url
+		}
+	}
+
 }

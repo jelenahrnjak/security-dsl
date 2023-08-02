@@ -4,23 +4,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class HomeController {
+public class TestController{
 
 
 	@GetMapping("/")
 	public String home(){
-		return "Hello, caoo!";
+		return "Hello, guest!";
 	
 	}	
 	
 	@GetMapping("/secured")
 	public String secured(){
-		return "Hello, ulogovani!";
-	
-	}
-	@GetMapping("/secured2")
-	public String secured2(){
-		return "Hello, ulogovani 2!";
+		return "Hello, user!";
 	
 	}
 	

@@ -4,7 +4,7 @@ import org.eclipse.xtext.generator.IFileSystemAccess2
 
 class SecurityDslOAuth2Generator {
 	
-	var packageName = ''
+	var packageName = null
 	
 	new(IFileSystemAccess2 fsa, String packageName, String srcDestination){
 		
