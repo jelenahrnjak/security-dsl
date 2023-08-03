@@ -9,7 +9,7 @@ import security_dsl.Authentication;
 import security_dsl.Claim;
 import security_dsl.EClaimType;
 import security_dsl.JWT;
-import security_dsl.RegisteredClaims;
+import security_dsl.RegisteredClaim;
 
 @SuppressWarnings("all")
 public class SecurityDslJWTGenerator {
@@ -673,7 +673,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("public class TokenUtils {");
     _builder.newLine();
-    RegisteredClaims regClaim = jwt.getRegisteredclaims();
+    RegisteredClaim regClaim = jwt.getRegistered_claims();
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
@@ -737,7 +737,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("\t\t\t\t");
     _builder.append(".setSubject(");
-    String _name = this.findSubjectClaim(jwt.getJwt_claims()).getClaim_attribute().getName();
+    String _name = this.findSubjectClaim(jwt.getClaims()).getClaim_attribute().getName();
     _builder.append(_name, "\t\t\t\t");
     _builder.append(")");
     _builder.newLineIfNotEmpty();

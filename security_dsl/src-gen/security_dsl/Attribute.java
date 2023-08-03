@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link security_dsl.Attribute#getName <em>Name</em>}</li>
  *   <li>{@link security_dsl.Attribute#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.Attribute#isIdentifier <em>Identifier</em>}</li>
- *   <li>{@link security_dsl.Attribute#getCollumnName <em>Collumn Name</em>}</li>
  *   <li>{@link security_dsl.Attribute#isCredential <em>Credential</em>}</li>
+ *   <li>{@link security_dsl.Attribute#getCollumnName <em>Collumn Name</em>}</li>
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getAttribute()
@@ -95,6 +95,28 @@ public interface Attribute extends EObject {
 	void setIdentifier(boolean value);
 
 	/**
+	 * Returns the value of the '<em><b>Credential</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Credential</em>' attribute.
+	 * @see #setCredential(boolean)
+	 * @see security_dsl.Security_dslPackage#getAttribute_Credential()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isCredential();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Attribute#isCredential <em>Credential</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Credential</em>' attribute.
+	 * @see #isCredential()
+	 * @generated
+	 */
+	void setCredential(boolean value);
+
+	/**
 	 * Returns the value of the '<em><b>Collumn Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -115,28 +137,5 @@ public interface Attribute extends EObject {
 	 * @generated
 	 */
 	void setCollumnName(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Credential</b></em>' attribute.
-	 * The default value is <code>"false"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Credential</em>' attribute.
-	 * @see #setCredential(boolean)
-	 * @see security_dsl.Security_dslPackage#getAttribute_Credential()
-	 * @model default="false" required="true"
-	 * @generated
-	 */
-	boolean isCredential();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.Attribute#isCredential <em>Credential</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Credential</em>' attribute.
-	 * @see #isCredential()
-	 * @generated
-	 */
-	void setCredential(boolean value);
 
 } // Attribute

@@ -3,7 +3,9 @@
 package security_dsl.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
 import security_dsl.Security;
 import security_dsl.Security_dslPackage;
 

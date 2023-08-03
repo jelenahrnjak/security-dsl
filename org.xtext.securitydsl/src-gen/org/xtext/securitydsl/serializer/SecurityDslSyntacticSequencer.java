@@ -20,14 +20,14 @@ import org.xtext.securitydsl.services.SecurityDslGrammarAccess;
 public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 
 	protected SecurityDslGrammarAccess grammarAccess;
-	protected AbstractElementAlias match_Application_ControllerKeyword_12_0_q;
-	protected AbstractElementAlias match_Application_ModelKeyword_10_0_q;
+	protected AbstractElementAlias match_Application_ControllerKeyword_14_0_q;
+	protected AbstractElementAlias match_Application_ModelKeyword_12_0_q;
 	
 	@Inject
 	protected void init(IGrammarAccess access) {
 		grammarAccess = (SecurityDslGrammarAccess) access;
-		match_Application_ControllerKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getApplicationAccess().getControllerKeyword_12_0());
-		match_Application_ModelKeyword_10_0_q = new TokenAlias(false, true, grammarAccess.getApplicationAccess().getModelKeyword_10_0());
+		match_Application_ControllerKeyword_14_0_q = new TokenAlias(false, true, grammarAccess.getApplicationAccess().getControllerKeyword_14_0());
+		match_Application_ModelKeyword_12_0_q = new TokenAlias(false, true, grammarAccess.getApplicationAccess().getModelKeyword_12_0());
 	}
 	
 	@Override
@@ -42,10 +42,10 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 		List<INode> transitionNodes = collectNodes(fromNode, toNode);
 		for (AbstractElementAlias syntax : transition.getAmbiguousSyntaxes()) {
 			List<INode> syntaxNodes = getNodesFor(transitionNodes, syntax);
-			if (match_Application_ControllerKeyword_12_0_q.equals(syntax))
-				emit_Application_ControllerKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
-			else if (match_Application_ModelKeyword_10_0_q.equals(syntax))
-				emit_Application_ModelKeyword_10_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			if (match_Application_ControllerKeyword_14_0_q.equals(syntax))
+				emit_Application_ControllerKeyword_14_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
+			else if (match_Application_ModelKeyword_12_0_q.equals(syntax))
+				emit_Application_ModelKeyword_12_0_q(semanticObject, getLastNavigableState(), syntaxNodes);
 			else acceptNodes(getLastNavigableState(), syntaxNodes);
 		}
 	}
@@ -56,22 +56,19 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'controller:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'application:' 'model:'? (ambiguity) (rule start)
 	 *     app_database=Database 'model:'? (ambiguity) (rule end)
 	 *     app_models+=Role (ambiguity) (rule end)
 	 *     app_models+=User (ambiguity) (rule end)
 	 *     app_security=Security (ambiguity) (rule end)
-	 *     artifact=EString 'model:'? (ambiguity) (rule end)
 	 *     description=EString 'model:'? (ambiguity) (rule end)
 	 *     group=EString 'model:'? (ambiguity) (rule end)
 	 *     hostname=EString 'model:'? (ambiguity) (rule end)
-	 *     name=EString 'model:'? (ambiguity) (rule end)
 	 *     packageName=EString 'model:'? (ambiguity) (rule end)
 	 *     port=ELongObject 'model:'? (ambiguity) (rule end)
 	 
 	 * </pre>
 	 */
-	protected void emit_Application_ControllerKeyword_12_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Application_ControllerKeyword_14_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	
@@ -81,15 +78,9 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     'model:'?
 	 *
 	 * This ambiguous syntax occurs at:
-	 *     (rule start) 'application:' (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
-	 *     (rule start) 'application:' (ambiguity) 'controller:'? (rule start)
-	 *     (rule start) 'application:' (ambiguity) 'security:' app_security=Security
 	 *     app_database=Database (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
 	 *     app_database=Database (ambiguity) 'controller:'? (rule end)
 	 *     app_database=Database (ambiguity) 'security:' app_security=Security
-	 *     artifact=EString (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
-	 *     artifact=EString (ambiguity) 'controller:'? (rule end)
-	 *     artifact=EString (ambiguity) 'security:' app_security=Security
 	 *     description=EString (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
 	 *     description=EString (ambiguity) 'controller:'? (rule end)
 	 *     description=EString (ambiguity) 'security:' app_security=Security
@@ -99,9 +90,6 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *     hostname=EString (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
 	 *     hostname=EString (ambiguity) 'controller:'? (rule end)
 	 *     hostname=EString (ambiguity) 'security:' app_security=Security
-	 *     name=EString (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
-	 *     name=EString (ambiguity) 'controller:'? (rule end)
-	 *     name=EString (ambiguity) 'security:' app_security=Security
 	 *     packageName=EString (ambiguity) 'controller:' 'auth:' app_controllers+=Authentication
 	 *     packageName=EString (ambiguity) 'controller:'? (rule end)
 	 *     packageName=EString (ambiguity) 'security:' app_security=Security
@@ -111,7 +99,7 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 
 	 * </pre>
 	 */
-	protected void emit_Application_ModelKeyword_10_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
+	protected void emit_Application_ModelKeyword_12_0_q(EObject semanticObject, ISynNavigable transition, List<INode> nodes) {
 		acceptNodes(transition, nodes);
 	}
 	

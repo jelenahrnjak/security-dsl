@@ -19,9 +19,9 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link security_dsl.Endpoint#getUrl <em>Url</em>}</li>
+ *   <li>{@link security_dsl.Endpoint#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getFunctionName <em>Function Name</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getMethod <em>Method</em>}</li>
- *   <li>{@link security_dsl.Endpoint#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getRole_authorities <em>Role authorities</em>}</li>
  * </ul>
  *
@@ -51,6 +51,32 @@ public interface Endpoint extends EObject {
 	 * @generated
 	 */
 	void setUrl(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The default value is <code>"OTHER"</code>.
+	 * The literals are from the enumeration {@link security_dsl.EEndpointType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Type</em>' attribute.
+	 * @see security_dsl.EEndpointType
+	 * @see #setType(EEndpointType)
+	 * @see security_dsl.Security_dslPackage#getEndpoint_Type()
+	 * @model default="OTHER" required="true"
+	 * @generated
+	 */
+	EEndpointType getType();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Endpoint#getType <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see security_dsl.EEndpointType
+	 * @see #getType()
+	 * @generated
+	 */
+	void setType(EEndpointType value);
 
 	/**
 	 * Returns the value of the '<em><b>Function Name</b></em>' attribute.
@@ -98,32 +124,6 @@ public interface Endpoint extends EObject {
 	 * @generated
 	 */
 	void setMethod(EEndpointMethod value);
-
-	/**
-	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>"OTHER"</code>.
-	 * The literals are from the enumeration {@link security_dsl.EEndpointType}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see security_dsl.EEndpointType
-	 * @see #setType(EEndpointType)
-	 * @see security_dsl.Security_dslPackage#getEndpoint_Type()
-	 * @model default="OTHER"
-	 * @generated
-	 */
-	EEndpointType getType();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.Endpoint#getType <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Type</em>' attribute.
-	 * @see security_dsl.EEndpointType
-	 * @see #getType()
-	 * @generated
-	 */
-	void setType(EEndpointType value);
 
 	/**
 	 * Returns the value of the '<em><b>Role authorities</b></em>' reference list.

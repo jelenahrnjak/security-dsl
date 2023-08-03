@@ -59,16 +59,6 @@ public enum EType implements Enumerator {
 	INTEGER(4, "Integer", "Integer"),
 
 	/**
-	 * The '<em><b>Char</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHAR_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	CHAR(5, "char", "char"),
-
-	/**
 	 * The '<em><b>Double</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -76,7 +66,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DOUBLE(8, "Double", "Double"),
+	DOUBLE(5, "Double", "Double"),
 
 	/**
 	 * The '<em><b>Date Time</b></em>' literal object.
@@ -86,7 +76,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATE_TIME(9, "DateTime", "DateTime"),
+	DATE_TIME(6, "DateTime", "DateTime"),
 
 	/**
 	 * The '<em><b>Date</b></em>' literal object.
@@ -96,17 +86,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	DATE(10, "Date", "Date"),
-
-	/**
-	 * The '<em><b>Int</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INT_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	INT(0, "int", "int");
+	DATE(7, "Date", "Date");
 
 	/**
 	 * The '<em><b>String</b></em>' literal value.
@@ -153,17 +133,6 @@ public enum EType implements Enumerator {
 	public static final int INTEGER_VALUE = 4;
 
 	/**
-	 * The '<em><b>Char</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #CHAR
-	 * @model name="char"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int CHAR_VALUE = 5;
-
-	/**
 	 * The '<em><b>Double</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,7 +141,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DOUBLE_VALUE = 8;
+	public static final int DOUBLE_VALUE = 5;
 
 	/**
 	 * The '<em><b>Date Time</b></em>' literal value.
@@ -183,7 +152,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DATE_TIME_VALUE = 9;
+	public static final int DATE_TIME_VALUE = 6;
 
 	/**
 	 * The '<em><b>Date</b></em>' literal value.
@@ -194,18 +163,7 @@ public enum EType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	public static final int DATE_VALUE = 10;
-
-	/**
-	 * The '<em><b>Int</b></em>' literal value.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #INT
-	 * @model name="int"
-	 * @generated
-	 * @ordered
-	 */
-	public static final int INT_VALUE = 0;
+	public static final int DATE_VALUE = 7;
 
 	/**
 	 * An array of all the '<em><b>EType</b></em>' enumerators.
@@ -213,8 +171,7 @@ public enum EType implements Enumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final EType[] VALUES_ARRAY = new EType[] { STRING, FLOAT, LONG, INTEGER, CHAR, DOUBLE, DATE_TIME,
-			DATE, INT, };
+	private static final EType[] VALUES_ARRAY = new EType[] { STRING, FLOAT, LONG, INTEGER, DOUBLE, DATE_TIME, DATE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>EType</b></em>' enumerators.
@@ -278,16 +235,12 @@ public enum EType implements Enumerator {
 			return LONG;
 		case INTEGER_VALUE:
 			return INTEGER;
-		case CHAR_VALUE:
-			return CHAR;
 		case DOUBLE_VALUE:
 			return DOUBLE;
 		case DATE_TIME_VALUE:
 			return DATE_TIME;
 		case DATE_VALUE:
 			return DATE;
-		case INT_VALUE:
-			return INT;
 		}
 		return null;
 	}

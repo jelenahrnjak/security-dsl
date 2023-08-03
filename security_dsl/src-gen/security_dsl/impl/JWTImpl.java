@@ -51,7 +51,7 @@ import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 import security_dsl.Claim;
 import security_dsl.EClaimType;
 import security_dsl.JWT;
-import security_dsl.RegisteredClaims;
+import security_dsl.RegisteredClaim;
 import security_dsl.Security_dslPackage;
 import security_dsl.Security_dslTables;
 
@@ -65,8 +65,8 @@ import security_dsl.Security_dslTables;
  * <ul>
  *   <li>{@link security_dsl.impl.JWTImpl#getSignatureAlgorithm <em>Signature Algorithm</em>}</li>
  *   <li>{@link security_dsl.impl.JWTImpl#getSecret <em>Secret</em>}</li>
- *   <li>{@link security_dsl.impl.JWTImpl#getJwt_claims <em>Jwt claims</em>}</li>
- *   <li>{@link security_dsl.impl.JWTImpl#getRegisteredclaims <em>Registeredclaims</em>}</li>
+ *   <li>{@link security_dsl.impl.JWTImpl#getClaims <em>Claims</em>}</li>
+ *   <li>{@link security_dsl.impl.JWTImpl#getRegistered_claims <em>Registered claims</em>}</li>
  * </ul>
  *
  * @generated
@@ -113,24 +113,24 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	protected String secret = SECRET_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getJwt_claims() <em>Jwt claims</em>}' containment reference list.
+	 * The cached value of the '{@link #getClaims() <em>Claims</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getJwt_claims()
+	 * @see #getClaims()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Claim> jwt_claims;
+	protected EList<Claim> claims;
 
 	/**
-	 * The cached value of the '{@link #getRegisteredclaims() <em>Registeredclaims</em>}' containment reference.
+	 * The cached value of the '{@link #getRegistered_claims() <em>Registered claims</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getRegisteredclaims()
+	 * @see #getRegistered_claims()
 	 * @generated
 	 * @ordered
 	 */
-	protected RegisteredClaims registeredclaims;
+	protected RegisteredClaim registered_claims;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -199,11 +199,11 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Claim> getJwt_claims() {
-		if (jwt_claims == null) {
-			jwt_claims = new EObjectContainmentEList<Claim>(Claim.class, this, Security_dslPackage.JWT__JWT_CLAIMS);
+	public EList<Claim> getClaims() {
+		if (claims == null) {
+			claims = new EObjectContainmentEList<Claim>(Claim.class, this, Security_dslPackage.JWT__CLAIMS);
 		}
-		return jwt_claims;
+		return claims;
 	}
 
 	/**
@@ -211,8 +211,8 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegisteredClaims getRegisteredclaims() {
-		return registeredclaims;
+	public RegisteredClaim getRegistered_claims() {
+		return registered_claims;
 	}
 
 	/**
@@ -220,12 +220,12 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetRegisteredclaims(RegisteredClaims newRegisteredclaims, NotificationChain msgs) {
-		RegisteredClaims oldRegisteredclaims = registeredclaims;
-		registeredclaims = newRegisteredclaims;
+	public NotificationChain basicSetRegistered_claims(RegisteredClaim newRegistered_claims, NotificationChain msgs) {
+		RegisteredClaim oldRegistered_claims = registered_claims;
+		registered_claims = newRegistered_claims;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-					Security_dslPackage.JWT__REGISTEREDCLAIMS, oldRegisteredclaims, newRegisteredclaims);
+					Security_dslPackage.JWT__REGISTERED_CLAIMS, oldRegistered_claims, newRegistered_claims);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -239,21 +239,21 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRegisteredclaims(RegisteredClaims newRegisteredclaims) {
-		if (newRegisteredclaims != registeredclaims) {
+	public void setRegistered_claims(RegisteredClaim newRegistered_claims) {
+		if (newRegistered_claims != registered_claims) {
 			NotificationChain msgs = null;
-			if (registeredclaims != null)
-				msgs = ((InternalEObject) registeredclaims).eInverseRemove(this,
-						EOPPOSITE_FEATURE_BASE - Security_dslPackage.JWT__REGISTEREDCLAIMS, null, msgs);
-			if (newRegisteredclaims != null)
-				msgs = ((InternalEObject) newRegisteredclaims).eInverseAdd(this,
-						EOPPOSITE_FEATURE_BASE - Security_dslPackage.JWT__REGISTEREDCLAIMS, null, msgs);
-			msgs = basicSetRegisteredclaims(newRegisteredclaims, msgs);
+			if (registered_claims != null)
+				msgs = ((InternalEObject) registered_claims).eInverseRemove(this,
+						EOPPOSITE_FEATURE_BASE - Security_dslPackage.JWT__REGISTERED_CLAIMS, null, msgs);
+			if (newRegistered_claims != null)
+				msgs = ((InternalEObject) newRegistered_claims).eInverseAdd(this,
+						EOPPOSITE_FEATURE_BASE - Security_dslPackage.JWT__REGISTERED_CLAIMS, null, msgs);
+			msgs = basicSetRegistered_claims(newRegistered_claims, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.JWT__REGISTEREDCLAIMS,
-					newRegisteredclaims, newRegisteredclaims));
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.JWT__REGISTERED_CLAIMS,
+					newRegistered_claims, newRegistered_claims));
 	}
 
 	/**
@@ -272,7 +272,7 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			 *     if severity <= 0
 			 *     then true
 			 *     else
-			 *       let result : Boolean[1] = self.jwt_claims->isUnique(c | c.name)
+			 *       let result : Boolean[1] = self.claims->isUnique(c | c.name)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -287,12 +287,12 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			if (le) {
 				local_0 = true;
 			} else {
-				final /*@NonInvalid*/ List<Claim> jwt_claims = this.getJwt_claims();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_jwt_claims = idResolver
-						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, jwt_claims);
+				final /*@NonInvalid*/ List<Claim> claims = this.getClaims();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_claims = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, claims);
 				/*@Thrown*/ Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Claim);
-				Iterator<Object> ITERATOR_c = BOXED_jwt_claims.iterator();
+				Iterator<Object> ITERATOR_c = BOXED_claims.iterator();
 				/*@NonInvalid*/ boolean result;
 				while (true) {
 					if (!ITERATOR_c.hasNext()) {
@@ -341,7 +341,7 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.jwt_claims->forAll(c | c.name = 'subject' implies c.type = EClaimType::REGISTERED)
+			 *         result : Boolean[?] = self.claims->forAll(c | c.name = 'subject' implies c.type = EClaimType::REGISTERED)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -358,11 +358,11 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ List<Claim> jwt_claims = this.getJwt_claims();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_jwt_claims = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, jwt_claims);
+					final /*@NonInvalid*/ List<Claim> claims = this.getClaims();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_claims = idResolver
+							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, claims);
 					/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-					Iterator<Object> ITERATOR_c = BOXED_jwt_claims.iterator();
+					Iterator<Object> ITERATOR_c = BOXED_claims.iterator();
 					/*@Thrown*/ Boolean result;
 					while (true) {
 						if (!ITERATOR_c.hasNext()) {
@@ -386,9 +386,8 @@ public class JWTImpl extends SecurityImpl implements JWT {
 							implies = ValueUtil.TRUE_VALUE;
 						} else {
 							final /*@NonInvalid*/ EClaimType type = c.getType();
-							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = type == null ? null
-									: Security_dslTables.ENUMid_EClaimType
-											.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = Security_dslTables.ENUMid_EClaimType
+									.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
 							final /*@NonInvalid*/ boolean eq_0 = BOXED_type == Security_dslTables.ELITid_REGISTERED;
 							if (eq_0) {
 								implies = ValueUtil.TRUE_VALUE;
@@ -443,11 +442,11 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.jwt_claims->select(c |
+			 *         result : Boolean[?] = self.claims->select(c |
 			 *           (c.type = EClaimType::REGISTERED and c.name = 'subject'
 			 *           ))
 			 *         ->size() <= 1 and
-			 *         self.jwt_claims->select(c | (c.type = EClaimType::REGISTERED))
+			 *         self.claims->select(c | (c.type = EClaimType::REGISTERED))
 			 *         ->size() <= 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -465,14 +464,14 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ List<Claim> jwt_claims_0 = this.getJwt_claims();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_jwt_claims_0 = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, jwt_claims_0);
+					final /*@NonInvalid*/ List<Claim> claims_0 = this.getClaims();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_claims_0 = idResolver
+							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Claim, claims_0);
 					/*@Caught*/ Object CAUGHT_le_0;
 					try {
 						/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator = ValueUtil
 								.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Claim);
-						Iterator<Object> ITERATOR_c = BOXED_jwt_claims_0.iterator();
+						Iterator<Object> ITERATOR_c = BOXED_claims_0.iterator();
 						/*@Thrown*/ OrderedSetValue select;
 						while (true) {
 							if (!ITERATOR_c.hasNext()) {
@@ -484,9 +483,8 @@ public class JWTImpl extends SecurityImpl implements JWT {
 							 * c.type = EClaimType::REGISTERED and c.name = 'subject'
 							 */
 							final /*@NonInvalid*/ EClaimType type = c.getType();
-							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = type == null ? null
-									: Security_dslTables.ENUMid_EClaimType
-											.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
+							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type = Security_dslTables.ENUMid_EClaimType
+									.getEnumerationLiteralId(ClassUtil.nonNullState(type.getName()));
 							final /*@NonInvalid*/ boolean eq = BOXED_type == Security_dslTables.ELITid_REGISTERED;
 							final /*@NonInvalid*/ Boolean and;
 							if (!eq) {
@@ -522,7 +520,7 @@ public class JWTImpl extends SecurityImpl implements JWT {
 					} else {
 						/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator_0 = ValueUtil
 								.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Claim);
-						Iterator<Object> ITERATOR_c_0 = BOXED_jwt_claims_0.iterator();
+						Iterator<Object> ITERATOR_c_0 = BOXED_claims_0.iterator();
 						/*@NonInvalid*/ OrderedSetValue select_0;
 						while (true) {
 							if (!ITERATOR_c_0.hasNext()) {
@@ -534,9 +532,8 @@ public class JWTImpl extends SecurityImpl implements JWT {
 							 * c.type = EClaimType::REGISTERED
 							 */
 							final /*@NonInvalid*/ EClaimType type_0 = c_0.getType();
-							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = type_0 == null ? null
-									: Security_dslTables.ENUMid_EClaimType
-											.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
+							final /*@NonInvalid*/ EnumerationLiteralId BOXED_type_0 = Security_dslTables.ENUMid_EClaimType
+									.getEnumerationLiteralId(ClassUtil.nonNullState(type_0.getName()));
 							final /*@NonInvalid*/ boolean eq_1 = BOXED_type_0 == Security_dslTables.ELITid_REGISTERED;
 							//
 							if (eq_1) {
@@ -579,10 +576,10 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Security_dslPackage.JWT__JWT_CLAIMS:
-			return ((InternalEList<?>) getJwt_claims()).basicRemove(otherEnd, msgs);
-		case Security_dslPackage.JWT__REGISTEREDCLAIMS:
-			return basicSetRegisteredclaims(null, msgs);
+		case Security_dslPackage.JWT__CLAIMS:
+			return ((InternalEList<?>) getClaims()).basicRemove(otherEnd, msgs);
+		case Security_dslPackage.JWT__REGISTERED_CLAIMS:
+			return basicSetRegistered_claims(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -599,10 +596,10 @@ public class JWTImpl extends SecurityImpl implements JWT {
 			return getSignatureAlgorithm();
 		case Security_dslPackage.JWT__SECRET:
 			return getSecret();
-		case Security_dslPackage.JWT__JWT_CLAIMS:
-			return getJwt_claims();
-		case Security_dslPackage.JWT__REGISTEREDCLAIMS:
-			return getRegisteredclaims();
+		case Security_dslPackage.JWT__CLAIMS:
+			return getClaims();
+		case Security_dslPackage.JWT__REGISTERED_CLAIMS:
+			return getRegistered_claims();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -622,12 +619,12 @@ public class JWTImpl extends SecurityImpl implements JWT {
 		case Security_dslPackage.JWT__SECRET:
 			setSecret((String) newValue);
 			return;
-		case Security_dslPackage.JWT__JWT_CLAIMS:
-			getJwt_claims().clear();
-			getJwt_claims().addAll((Collection<? extends Claim>) newValue);
+		case Security_dslPackage.JWT__CLAIMS:
+			getClaims().clear();
+			getClaims().addAll((Collection<? extends Claim>) newValue);
 			return;
-		case Security_dslPackage.JWT__REGISTEREDCLAIMS:
-			setRegisteredclaims((RegisteredClaims) newValue);
+		case Security_dslPackage.JWT__REGISTERED_CLAIMS:
+			setRegistered_claims((RegisteredClaim) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -647,11 +644,11 @@ public class JWTImpl extends SecurityImpl implements JWT {
 		case Security_dslPackage.JWT__SECRET:
 			setSecret(SECRET_EDEFAULT);
 			return;
-		case Security_dslPackage.JWT__JWT_CLAIMS:
-			getJwt_claims().clear();
+		case Security_dslPackage.JWT__CLAIMS:
+			getClaims().clear();
 			return;
-		case Security_dslPackage.JWT__REGISTEREDCLAIMS:
-			setRegisteredclaims((RegisteredClaims) null);
+		case Security_dslPackage.JWT__REGISTERED_CLAIMS:
+			setRegistered_claims((RegisteredClaim) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -670,10 +667,10 @@ public class JWTImpl extends SecurityImpl implements JWT {
 					: !SIGNATURE_ALGORITHM_EDEFAULT.equals(signatureAlgorithm);
 		case Security_dslPackage.JWT__SECRET:
 			return SECRET_EDEFAULT == null ? secret != null : !SECRET_EDEFAULT.equals(secret);
-		case Security_dslPackage.JWT__JWT_CLAIMS:
-			return jwt_claims != null && !jwt_claims.isEmpty();
-		case Security_dslPackage.JWT__REGISTEREDCLAIMS:
-			return registeredclaims != null;
+		case Security_dslPackage.JWT__CLAIMS:
+			return claims != null && !claims.isEmpty();
+		case Security_dslPackage.JWT__REGISTERED_CLAIMS:
+			return registered_claims != null;
 		}
 		return super.eIsSet(featureID);
 	}

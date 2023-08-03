@@ -77,8 +77,8 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 			return createJWT();
 		case Security_dslPackage.CLAIM:
 			return createClaim();
-		case Security_dslPackage.REGISTERED_CLAIMS:
-			return createRegisteredClaims();
+		case Security_dslPackage.REGISTERED_CLAIM:
+			return createRegisteredClaim();
 		case Security_dslPackage.OAUTH2:
 			return createOAuth2();
 		case Security_dslPackage.BASIC_AUTHENTICATION:
@@ -245,9 +245,9 @@ public class Security_dslFactoryImpl extends EFactoryImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RegisteredClaims createRegisteredClaims() {
-		RegisteredClaimsImpl registeredClaims = new RegisteredClaimsImpl();
-		return registeredClaims;
+	public RegisteredClaim createRegisteredClaim() {
+		RegisteredClaimImpl registeredClaim = new RegisteredClaimImpl();
+		return registeredClaim;
 	}
 
 	/**

@@ -3,6 +3,7 @@
 package security_dsl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
@@ -23,7 +24,6 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface OAuth2 extends Security {
-
 	/**
 	 * Returns the value of the '<em><b>Providers</b></em>' containment reference list.
 	 * The list contents are of type {@link security_dsl.Provider}.
@@ -43,4 +43,5 @@ public interface OAuth2 extends Security {
 	 * @generated
 	 */
 	boolean uniqueProviders(DiagnosticChain diagnostics, Map<Object, Object> context);
+
 } // OAuth2

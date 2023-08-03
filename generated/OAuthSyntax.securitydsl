@@ -1,0 +1,27 @@
+application: 
+	artifact: "securityDsl"
+    group: "uns.ftn"
+    description: "This is an app that is generated with security DSL"
+	port: 8080
+	hostname: "localhost"
+	
+    database: 
+      vendor: PostgreSQL
+      url: "localhost:5432/securityDsl" 
+      username: "securityDsl" 
+      password: "securityDsl" 
+      
+    security: 
+    	OAuth2.0:
+    		providers:[
+    			{ 
+    				name: GOOGLE,
+    				clientId: "x",
+    				clientSecret: "x"
+    			},
+    			{
+    				name: GITHUB,
+    				clientId: "x",
+    				clientSecret: "x"
+    			}
+    		]

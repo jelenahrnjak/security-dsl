@@ -1,0 +1,85 @@
+application: 
+	artifact: "securityDsl"
+    group: "uns.ftn"
+    description: "This is an app that is generated with security DSL"
+	port: 8080
+	hostname: "localhost"
+	
+    database: 
+      vendor: PostgreSQL
+      url: "localhost:5432/securityDsl" 
+      username: "securityDsl" 
+      password: "securityDsl" 
+      
+   model:
+      user: 
+      	tableName: "users"
+        attributes: [ 
+          {
+              identifier
+              name: "id"
+              type: Long
+          },
+          {
+              credential
+              name: "username"
+              type: String 
+              collumnName: "username"
+          },
+          {
+              name: "firstName"
+              type: String 
+              collumnName: "first_name"
+          },
+          {
+              name: "lastName"
+              type: String 
+              collumnName: "last_name"
+          }
+        ]
+
+      role:
+        attributes: [ 
+          {
+              identifier
+              name: "id"
+              type: Long 
+          },
+          {
+              name: "name"
+              type: String 
+          }
+        ]
+        roles: ["admin", client "user"]
+
+    security: 
+      jwt:
+        header: 
+            signatureAlgorithm: "HS512" 
+        payload:
+            claims: [
+            	{REGISTERED, expirationTime: 1800000},
+            	{REGISTERED, audience: "AUDIENCE_WEB"},
+            	{REGISTERED , subject : username}
+            ]
+ 
+    controller:
+      auth: 
+        name: "AuthController" 
+        path: "/auth"
+        endpoints: [
+        	{
+        		type: REGISTRATION
+        		url: "/registration"
+        		functionName: "registration"
+        	},
+        	{
+        		type: LOGIN
+        		url: "/login"
+        	},
+        	{
+        		type: LOGOUT
+        		url: "/logout"
+        		roleAuthorities: ["admin", "user"]
+        	}
+        ] 

@@ -112,13 +112,13 @@ public interface Security_dslFactory extends EFactory {
 	Claim createClaim();
 
 	/**
-	 * Returns a new object of class '<em>Registered Claims</em>'.
+	 * Returns a new object of class '<em>Registered Claim</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Registered Claims</em>'.
+	 * @return a new object of class '<em>Registered Claim</em>'.
 	 * @generated
 	 */
-	RegisteredClaims createRegisteredClaims();
+	RegisteredClaim createRegisteredClaim();
 
 	/**
 	 * Returns a new object of class '<em>OAuth2</em>'.

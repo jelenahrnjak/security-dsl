@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link security_dsl.Application#getApp_models <em>App models</em>}</li>
  *   <li>{@link security_dsl.Application#getApp_controllers <em>App controllers</em>}</li>
  *   <li>{@link security_dsl.Application#getApp_security <em>App security</em>}</li>
- *   <li>{@link security_dsl.Application#getName <em>Name</em>}</li>
- *   <li>{@link security_dsl.Application#getDescription <em>Description</em>}</li>
- *   <li>{@link security_dsl.Application#getGroup <em>Group</em>}</li>
  *   <li>{@link security_dsl.Application#getArtifact <em>Artifact</em>}</li>
+ *   <li>{@link security_dsl.Application#getGroup <em>Group</em>}</li>
+ *   <li>{@link security_dsl.Application#getName <em>Name</em>}</li>
  *   <li>{@link security_dsl.Application#getPackageName <em>Package Name</em>}</li>
+ *   <li>{@link security_dsl.Application#getDescription <em>Description</em>}</li>
  *   <li>{@link security_dsl.Application#getPort <em>Port</em>}</li>
  *   <li>{@link security_dsl.Application#getHostname <em>Hostname</em>}</li>
  * </ul>
@@ -105,6 +105,50 @@ public interface Application extends EObject {
 	void setApp_security(Security value);
 
 	/**
+	 * Returns the value of the '<em><b>Artifact</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Artifact</em>' attribute.
+	 * @see #setArtifact(String)
+	 * @see security_dsl.Security_dslPackage#getApplication_Artifact()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getArtifact();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Application#getArtifact <em>Artifact</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Artifact</em>' attribute.
+	 * @see #getArtifact()
+	 * @generated
+	 */
+	void setArtifact(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Group</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Group</em>' attribute.
+	 * @see #setGroup(String)
+	 * @see security_dsl.Security_dslPackage#getApplication_Group()
+	 * @model required="true"
+	 * @generated
+	 */
+	String getGroup();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Application#getGroup <em>Group</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Group</em>' attribute.
+	 * @see #getGroup()
+	 * @generated
+	 */
+	void setGroup(String value);
+
+	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -128,75 +172,6 @@ public interface Application extends EObject {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * The default value is <code>"Security dsl generated application"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Description</em>' attribute.
-	 * @see #setDescription(String)
-	 * @see security_dsl.Security_dslPackage#getApplication_Description()
-	 * @model default="Security dsl generated application"
-	 * @generated
-	 */
-	String getDescription();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.Application#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Description</em>' attribute.
-	 * @see #getDescription()
-	 * @generated
-	 */
-	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Group</b></em>' attribute.
-	 * The default value is <code>"rs.ac.uns.ftn"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Group</em>' attribute.
-	 * @see #setGroup(String)
-	 * @see security_dsl.Security_dslPackage#getApplication_Group()
-	 * @model default="rs.ac.uns.ftn"
-	 * @generated
-	 */
-	String getGroup();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.Application#getGroup <em>Group</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Group</em>' attribute.
-	 * @see #getGroup()
-	 * @generated
-	 */
-	void setGroup(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Artifact</b></em>' attribute.
-	 * The default value is <code>"demo"</code>.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Artifact</em>' attribute.
-	 * @see #setArtifact(String)
-	 * @see security_dsl.Security_dslPackage#getApplication_Artifact()
-	 * @model default="demo"
-	 * @generated
-	 */
-	String getArtifact();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.Application#getArtifact <em>Artifact</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Artifact</em>' attribute.
-	 * @see #getArtifact()
-	 * @generated
-	 */
-	void setArtifact(String value);
-
-	/**
 	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
 	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
@@ -218,6 +193,29 @@ public interface Application extends EObject {
 	 * @generated
 	 */
 	void setPackageName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Description</b></em>' attribute.
+	 * The default value is <code>"Security dsl generated application"</code>.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Description</em>' attribute.
+	 * @see #setDescription(String)
+	 * @see security_dsl.Security_dslPackage#getApplication_Description()
+	 * @model default="Security dsl generated application"
+	 * @generated
+	 */
+	String getDescription();
+
+	/**
+	 * Sets the value of the '{@link security_dsl.Application#getDescription <em>Description</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Description</em>' attribute.
+	 * @see #getDescription()
+	 * @generated
+	 */
+	void setDescription(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Port</b></em>' attribute.
@@ -268,6 +266,22 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt; select(m | m.tableName &lt;&gt; null) -&gt; isUnique(m | m.tableName.toLower())'"
+	 * @generated
+	 */
+	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.model_attributes -&gt; size() = 0)'"
+	 * @generated
+	 */
+	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; forAll(c | c.path.at(1) = \'/\')'"
 	 * @generated
 	 */
@@ -276,26 +290,26 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isUnique(c | c.name)'"
+	 * @generated
+	 */
+	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User))\n\t            -&gt; forAll(user | user.model_attributes -&gt; exists(a |  a.name = \'username\' and a.credential = true))'"
+	 * @generated
+	 */
+	boolean hasUsernameAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        (\n            self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n                -&gt; forAll(role | \n                    role.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n            or\n            self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n                -&gt; forAll(role |\n                    role.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n                    and\n                    role.model_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n                )\n        )'"
 	 * @generated
 	 */
 	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; forAll(role | role.model_attributes -&gt; size() &lt;= 2)'"
-	 * @generated
-	 */
-	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
-	 * @generated
-	 */
-	boolean doesntHaveModelAndControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -316,10 +330,34 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt; select(m | m.tableName &lt;&gt; null) -&gt; isUnique(m | m.tableName.toLower())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body=' self.app_controllers -&gt; isUnique(c | c.path) and self.app_controllers -&gt; forAll(c | c.name.toLower() &lt;&gt; c.path.toLower())'"
 	 * @generated
 	 */
-	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueControllerPath(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; forAll(role | role.model_attributes -&gt; size() &lt;= 2)'"
+	 * @generated
+	 */
+	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
+	 * @generated
+	 */
+	boolean doesntHaveModelAndControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.port &gt;= 1024 and self.port &lt;= 49151'"
+	 * @generated
+	 */
+	boolean validPort(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -336,45 +374,5 @@ public interface Application extends EObject {
 	 * @generated
 	 */
 	boolean roleMustHaveStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User))\n\t            -&gt; forAll(user | user.model_attributes -&gt; exists(a |  a.name = \'username\' and a.credential = true))'"
-	 * @generated
-	 */
-	boolean hasUsernameAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body=' self.app_controllers -&gt; isUnique(c | c.path) and self.app_controllers -&gt; forAll(c | c.name.toLower() &lt;&gt; c.path.toLower())'"
-	 * @generated
-	 */
-	boolean uniqueControllerPath(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isUnique(c | c.name)'"
-	 * @generated
-	 */
-	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.model_attributes -&gt; size() = 0)'"
-	 * @generated
-	 */
-	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.port &gt;= 1024 and self.port &lt;= 49151'"
-	 * @generated
-	 */
-	boolean validPort(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Application

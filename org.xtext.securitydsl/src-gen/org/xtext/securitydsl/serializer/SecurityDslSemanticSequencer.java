@@ -25,7 +25,7 @@ import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.OAuth2;
 import security_dsl.Provider;
-import security_dsl.RegisteredClaims;
+import security_dsl.RegisteredClaim;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
 import security_dsl.Security_dslPackage;
@@ -75,8 +75,8 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 			case Security_dslPackage.PROVIDER:
 				sequence_Provider(context, (Provider) semanticObject); 
 				return; 
-			case Security_dslPackage.REGISTERED_CLAIMS:
-				sequence_RegisteredClaims(context, (RegisteredClaims) semanticObject); 
+			case Security_dslPackage.REGISTERED_CLAIM:
+				sequence_RegisteredClaim(context, (RegisteredClaim) semanticObject); 
 				return; 
 			case Security_dslPackage.ROLE:
 				sequence_Role(context, (Role) semanticObject); 
@@ -99,9 +99,9 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *
 	 * Constraint:
 	 *     (
-	 *         artifact=EString? 
+	 *         artifact=EString 
 	 *         name=EString? 
-	 *         group=EString? 
+	 *         group=EString 
 	 *         packageName=EString? 
 	 *         description=EString? 
 	 *         port=ELongObject? 
@@ -213,10 +213,10 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *
 	 * Constraint:
 	 *     (
+	 *         type=EEndpointType 
 	 *         url=EString 
 	 *         functionName=EString? 
 	 *         method=EEndpointMethod? 
-	 *         type=EEndpointType? 
 	 *         (role_authorities+=[RoleInstance|EString] role_authorities+=[RoleInstance|EString]*)?
 	 *     )
 	 * </pre>
@@ -233,7 +233,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     JWT returns JWT
 	 *
 	 * Constraint:
-	 *     (signatureAlgorithm=EString registeredclaims=RegisteredClaims jwt_claims+=Claim* secret=EString?)
+	 *     (signatureAlgorithm=EString registered_claims=RegisteredClaim claims+=Claim* secret=EString?)
 	 * </pre>
 	 */
 	protected void sequence_JWT(ISerializationContext context, JWT semanticObject) {
@@ -273,13 +273,13 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     RegisteredClaims returns RegisteredClaims
+	 *     RegisteredClaim returns RegisteredClaim
 	 *
 	 * Constraint:
 	 *     (expirationTime=EInt issuer=EString? audience=EString?)
 	 * </pre>
 	 */
-	protected void sequence_RegisteredClaims(ISerializationContext context, RegisteredClaims semanticObject) {
+	protected void sequence_RegisteredClaim(ISerializationContext context, RegisteredClaim semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

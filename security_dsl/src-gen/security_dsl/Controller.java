@@ -36,7 +36,7 @@ public interface Controller extends EObject {
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see security_dsl.Security_dslPackage#getController_Name()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getName();
@@ -58,7 +58,7 @@ public interface Controller extends EObject {
 	 * @return the value of the '<em>Path</em>' attribute.
 	 * @see #setPath(String)
 	 * @see security_dsl.Security_dslPackage#getController_Path()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getPath();
@@ -96,6 +96,14 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; size() &lt;= 1\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; size() &lt;= 1\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; size() &lt;= 1\n\t\t    ) '"
+	 * @generated
+	 */
+	boolean authenticationLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tnot self.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; isEmpty()\n\t\t    )'"
 	 * @generated
 	 */
@@ -112,10 +120,10 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(Authentication) implies\n\t\t    (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; size() &lt;= 1\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; size() &lt;= 1\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; size() &lt;= 1\n\t\t    ) '"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.controller_endpoints -&gt; forAll(e1, e2 |  e1 &lt;&gt; e2 implies  (e1.functionName &lt;&gt; null and e2.functionName &lt;&gt; null implies e1.functionName &lt;&gt; e2.functionName) \n        and \n        (e1.url &lt;&gt; null and e2.url &lt;&gt; null implies e1.url &lt;&gt; e2.url))'"
 	 * @generated
 	 */
-	boolean authenticationLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueEndpoints(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -124,13 +132,5 @@ public interface Controller extends EObject {
 	 * @generated
 	 */
 	boolean urlStartsWithForwardSlash(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.controller_endpoints -&gt; forAll(e1, e2 |  e1 &lt;&gt; e2 implies  (e1.functionName &lt;&gt; null and e2.functionName &lt;&gt; null implies e1.functionName &lt;&gt; e2.functionName) \n        and \n        (e1.url &lt;&gt; null and e2.url &lt;&gt; null implies e1.url &lt;&gt; e2.url))'"
-	 * @generated
-	 */
-	boolean uniqueEndpoints(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Controller

@@ -29,7 +29,6 @@ import org.eclipse.emf.ecore.EObject;
 public interface Claim extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
-	 * The default value is <code>"PRIVATE"</code>.
 	 * The literals are from the enumeration {@link security_dsl.EClaimType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -37,7 +36,7 @@ public interface Claim extends EObject {
 	 * @see security_dsl.EClaimType
 	 * @see #setType(EClaimType)
 	 * @see security_dsl.Security_dslPackage#getClaim_Type()
-	 * @model default="PRIVATE"
+	 * @model required="true"
 	 * @generated
 	 */
 	EClaimType getType();

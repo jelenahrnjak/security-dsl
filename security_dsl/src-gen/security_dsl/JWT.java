@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * <ul>
  *   <li>{@link security_dsl.JWT#getSignatureAlgorithm <em>Signature Algorithm</em>}</li>
  *   <li>{@link security_dsl.JWT#getSecret <em>Secret</em>}</li>
- *   <li>{@link security_dsl.JWT#getJwt_claims <em>Jwt claims</em>}</li>
- *   <li>{@link security_dsl.JWT#getRegisteredclaims <em>Registeredclaims</em>}</li>
+ *   <li>{@link security_dsl.JWT#getClaims <em>Claims</em>}</li>
+ *   <li>{@link security_dsl.JWT#getRegistered_claims <em>Registered claims</em>}</li>
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getJWT()
@@ -73,43 +73,43 @@ public interface JWT extends Security {
 	void setSecret(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Jwt claims</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Claims</b></em>' containment reference list.
 	 * The list contents are of type {@link security_dsl.Claim}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Jwt claims</em>' containment reference list.
-	 * @see security_dsl.Security_dslPackage#getJWT_Jwt_claims()
+	 * @return the value of the '<em>Claims</em>' containment reference list.
+	 * @see security_dsl.Security_dslPackage#getJWT_Claims()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Claim> getJwt_claims();
+	EList<Claim> getClaims();
 
 	/**
-	 * Returns the value of the '<em><b>Registeredclaims</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Registered claims</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Registeredclaims</em>' containment reference.
-	 * @see #setRegisteredclaims(RegisteredClaims)
-	 * @see security_dsl.Security_dslPackage#getJWT_Registeredclaims()
+	 * @return the value of the '<em>Registered claims</em>' containment reference.
+	 * @see #setRegistered_claims(RegisteredClaim)
+	 * @see security_dsl.Security_dslPackage#getJWT_Registered_claims()
 	 * @model containment="true" required="true"
 	 * @generated
 	 */
-	RegisteredClaims getRegisteredclaims();
+	RegisteredClaim getRegistered_claims();
 
 	/**
-	 * Sets the value of the '{@link security_dsl.JWT#getRegisteredclaims <em>Registeredclaims</em>}' containment reference.
+	 * Sets the value of the '{@link security_dsl.JWT#getRegistered_claims <em>Registered claims</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Registeredclaims</em>' containment reference.
-	 * @see #getRegisteredclaims()
+	 * @param value the new value of the '<em>Registered claims</em>' containment reference.
+	 * @see #getRegistered_claims()
 	 * @generated
 	 */
-	void setRegisteredclaims(RegisteredClaims value);
+	void setRegistered_claims(RegisteredClaim value);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.jwt_claims -&gt; isUnique(c | c.name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.claims -&gt; isUnique(c | c.name)'"
 	 * @generated
 	 */
 	boolean uniqueClaims(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -117,7 +117,7 @@ public interface JWT extends Security {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.jwt_claims -&gt; forAll(c | c.name = \'subject\' implies c.type = EClaimType::REGISTERED)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.claims -&gt; forAll(c | c.name = \'subject\' implies c.type = EClaimType::REGISTERED)'"
 	 * @generated
 	 */
 	boolean registeredClaimSubject(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -125,7 +125,7 @@ public interface JWT extends Security {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t        self.jwt_claims -&gt; select(c | c.type = EClaimType::REGISTERED and c.name = \'subject\') -&gt; size() &lt;= 1\n\t        and\n\t        self.jwt_claims -&gt; select(c | c.type = EClaimType::REGISTERED) -&gt; size() &lt;= 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t        self.claims -&gt; select(c | c.type = EClaimType::REGISTERED and c.name = \'subject\') -&gt; size() &lt;= 1\n\t        and\n\t        self.claims -&gt; select(c | c.type = EClaimType::REGISTERED) -&gt; size() &lt;= 1'"
 	 * @generated
 	 */
 	boolean singleRegisteredClaim(DiagnosticChain diagnostics, Map<Object, Object> context);

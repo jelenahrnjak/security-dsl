@@ -7,9 +7,9 @@ import "http://www.eclipse.org/emf/2002/Ecore" as ecore
 Application returns Application:
 	{Application}
 	'application:' 
-	('artifact:' artifact=EString)?
+	'artifact:' artifact=EString
 	('name:' name=EString)?
-	('group:' group=EString)?
+	'group:' group=EString
 	('packageName:' packageName=EString)?
 	('description:' description=EString)?
 	('port:' port=ELongObject)?
@@ -77,7 +77,7 @@ User returns User:
 	;
 
 enum EType returns EType:
-				String = 'String' | Float = 'Float' | Long = 'Long' | Integer = 'Integer' | char = 'char' | Double = 'Double' | DateTime = 'DateTime' | Date = 'Date' | int = 'int';
+				String = 'String' | Float = 'Float' | Long = 'Long' | Integer = 'Integer' | Double = 'Double' | DateTime = 'DateTime' | Date = 'Date';
 
 EBoolean returns ecore::EBoolean:
 	'true' | 'false';
@@ -88,10 +88,10 @@ RoleInstance returns RoleInstance:
 
 Endpoint returns Endpoint:
 	'{'
+		'type:' type=EEndpointType
 		'url:' url=EString
 		('functionName:' functionName=EString)?
 		('method:' method=EEndpointMethod)?
-		('type:' type=EEndpointType)?
 		('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 	'}';
 
@@ -112,7 +112,7 @@ JWT returns JWT:
 	'header:'
 	'signatureAlgorithm:' signatureAlgorithm=EString
 	'payload:'
-	'claims:' '['registeredclaims=RegisteredClaims (( "," jwt_claims+=Claim)*)?']'
+	'claims:' '['registered_claims=RegisteredClaim ( "," claims+=Claim)*']'
 	('signature:'
 	'secret:' secret=EString)?;
 
@@ -122,7 +122,7 @@ Claim returns Claim:
 		name=EString ':' claim_attribute=[Attribute|EString]
 	'}';
 
-RegisteredClaims returns RegisteredClaims:
+RegisteredClaim returns RegisteredClaim:
 	'{'
 		'REGISTERED,'
 		'expirationTime:' expirationTime=EInt
@@ -141,7 +141,7 @@ enum EClaimType returns EClaimType:
 				PRIVATE = 'PRIVATE' | PUBLIC = 'PUBLIC' | REGISTERED = 'REGISTERED';
 				
 enum EOAuthProvider returns EOAuthProvider:
-				google = 'GOOGLE' | github = 'GITHUB' | facebook = 'FACEBOOK' | azure = 'MICROSOFT_AZURE' | linkedin = 'LINKEDIN' | twitter = 'TWITTER' | instagram = 'INSTAGRAM';
+				GOOGLE = 'GOOGLE' | GITHUB = 'GITHUB' | FACEBOOK = 'FACEBOOK' | AZURE = 'MICROSOFT_AZURE' | LINKEDIN = 'LINKEDIN' | TWITTER = 'TWITTER' | INSTAGRAM = 'INSTAGRAM';
 
 OAuth2 returns OAuth2:
 	'OAuth2.0:'

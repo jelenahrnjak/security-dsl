@@ -83,7 +83,7 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_Model = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Model", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_OAuth2 = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("OAuth2", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Provider = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Provider", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_RegisteredClaims = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("RegisteredClaims", 0);
+	public static final /*@NonInvalid*/ ClassId CLSSid_RegisteredClaim = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("RegisteredClaim", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Role = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Role", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_RoleInstance = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("RoleInstance", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Security = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Security", 0);
@@ -172,7 +172,7 @@ public class Security_dslTables extends AbstractTables
 		public static final EcoreExecutorType _Model = new EcoreExecutorType(Security_dslPackage.Literals.MODEL, PACKAGE, 0 | ExecutorType.ABSTRACT);
 		public static final EcoreExecutorType _OAuth2 = new EcoreExecutorType(Security_dslPackage.Literals.OAUTH2, PACKAGE, 0);
 		public static final EcoreExecutorType _Provider = new EcoreExecutorType(Security_dslPackage.Literals.PROVIDER, PACKAGE, 0);
-		public static final EcoreExecutorType _RegisteredClaims = new EcoreExecutorType(Security_dslPackage.Literals.REGISTERED_CLAIMS, PACKAGE, 0);
+		public static final EcoreExecutorType _RegisteredClaim = new EcoreExecutorType(Security_dslPackage.Literals.REGISTERED_CLAIM, PACKAGE, 0);
 		public static final EcoreExecutorType _Role = new EcoreExecutorType(Security_dslPackage.Literals.ROLE, PACKAGE, 0);
 		public static final EcoreExecutorType _RoleInstance = new EcoreExecutorType(Security_dslPackage.Literals.ROLE_INSTANCE, PACKAGE, 0);
 		public static final EcoreExecutorType _Security = new EcoreExecutorType(Security_dslPackage.Literals.SECURITY, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -197,7 +197,7 @@ public class Security_dslTables extends AbstractTables
 			_Model,
 			_OAuth2,
 			_Provider,
-			_RegisteredClaims,
+			_RegisteredClaim,
 			_Role,
 			_RoleInstance,
 			_Security,
@@ -315,9 +315,9 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _Provider__OclElement = new ExecutorFragment(Types._Provider, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _Provider__Provider = new ExecutorFragment(Types._Provider, Security_dslTables.Types._Provider);
 
-		private static final ExecutorFragment _RegisteredClaims__OclAny = new ExecutorFragment(Types._RegisteredClaims, OCLstdlibTables.Types._OclAny);
-		private static final ExecutorFragment _RegisteredClaims__OclElement = new ExecutorFragment(Types._RegisteredClaims, OCLstdlibTables.Types._OclElement);
-		private static final ExecutorFragment _RegisteredClaims__RegisteredClaims = new ExecutorFragment(Types._RegisteredClaims, Security_dslTables.Types._RegisteredClaims);
+		private static final ExecutorFragment _RegisteredClaim__OclAny = new ExecutorFragment(Types._RegisteredClaim, OCLstdlibTables.Types._OclAny);
+		private static final ExecutorFragment _RegisteredClaim__OclElement = new ExecutorFragment(Types._RegisteredClaim, OCLstdlibTables.Types._OclElement);
+		private static final ExecutorFragment _RegisteredClaim__RegisteredClaim = new ExecutorFragment(Types._RegisteredClaim, Security_dslTables.Types._RegisteredClaim);
 
 		private static final ExecutorFragment _Role__Model = new ExecutorFragment(Types._Role, Security_dslTables.Types._Model);
 		private static final ExecutorFragment _Role__OclAny = new ExecutorFragment(Types._Role, OCLstdlibTables.Types._OclAny);
@@ -430,7 +430,7 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Claim__claim_attribute = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__CLAIM_ATTRIBUTE, Types._Claim, 0);
 		public static final ExecutorProperty _Claim__name = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__NAME, Types._Claim, 1);
 		public static final ExecutorProperty _Claim__type = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__TYPE, Types._Claim, 2);
-		public static final ExecutorProperty _Claim__JWT__jwt_claims = new ExecutorPropertyWithImplementation("JWT", Types._Claim, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__JWT_CLAIMS));
+		public static final ExecutorProperty _Claim__JWT__claims = new ExecutorPropertyWithImplementation("JWT", Types._Claim, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__CLAIMS));
 
 		public static final ExecutorProperty _Controller__controller_endpoints = new EcoreExecutorProperty(Security_dslPackage.Literals.CONTROLLER__CONTROLLER_ENDPOINTS, Types._Controller, 0);
 		public static final ExecutorProperty _Controller__name = new EcoreExecutorProperty(Security_dslPackage.Literals.CONTROLLER__NAME, Types._Controller, 1);
@@ -450,8 +450,8 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Endpoint__url = new EcoreExecutorProperty(Security_dslPackage.Literals.ENDPOINT__URL, Types._Endpoint, 4);
 		public static final ExecutorProperty _Endpoint__Controller__controller_endpoints = new ExecutorPropertyWithImplementation("Controller", Types._Endpoint, 5, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.CONTROLLER__CONTROLLER_ENDPOINTS));
 
-		public static final ExecutorProperty _JWT__jwt_claims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__JWT_CLAIMS, Types._JWT, 0);
-		public static final ExecutorProperty _JWT__registeredclaims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__REGISTEREDCLAIMS, Types._JWT, 1);
+		public static final ExecutorProperty _JWT__claims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__CLAIMS, Types._JWT, 0);
+		public static final ExecutorProperty _JWT__registered_claims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__REGISTERED_CLAIMS, Types._JWT, 1);
 		public static final ExecutorProperty _JWT__secret = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SECRET, Types._JWT, 2);
 		public static final ExecutorProperty _JWT__signatureAlgorithm = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SIGNATURE_ALGORITHM, Types._JWT, 3);
 
@@ -467,10 +467,10 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Provider__redirectUri = new EcoreExecutorProperty(Security_dslPackage.Literals.PROVIDER__REDIRECT_URI, Types._Provider, 3);
 		public static final ExecutorProperty _Provider__OAuth2__providers = new ExecutorPropertyWithImplementation("OAuth2", Types._Provider, 4, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.OAUTH2__PROVIDERS));
 
-		public static final ExecutorProperty _RegisteredClaims__audience = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIMS__AUDIENCE, Types._RegisteredClaims, 0);
-		public static final ExecutorProperty _RegisteredClaims__expirationTime = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIMS__EXPIRATION_TIME, Types._RegisteredClaims, 1);
-		public static final ExecutorProperty _RegisteredClaims__issuer = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIMS__ISSUER, Types._RegisteredClaims, 2);
-		public static final ExecutorProperty _RegisteredClaims__JWT__registeredclaims = new ExecutorPropertyWithImplementation("JWT", Types._RegisteredClaims, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__REGISTEREDCLAIMS));
+		public static final ExecutorProperty _RegisteredClaim__audience = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__AUDIENCE, Types._RegisteredClaim, 0);
+		public static final ExecutorProperty _RegisteredClaim__expirationTime = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__EXPIRATION_TIME, Types._RegisteredClaim, 1);
+		public static final ExecutorProperty _RegisteredClaim__issuer = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__ISSUER, Types._RegisteredClaim, 2);
+		public static final ExecutorProperty _RegisteredClaim__JWT__registered_claims = new ExecutorPropertyWithImplementation("JWT", Types._RegisteredClaim, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__REGISTERED_CLAIMS));
 
 		public static final ExecutorProperty _Role__role_instances = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE__ROLE_INSTANCES, Types._Role, 0);
 
@@ -659,13 +659,13 @@ public class Security_dslTables extends AbstractTables
 			};
 		private static final int /*@NonNull*/ [] __Provider = { 1,1,1 };
 
-		private static final ExecutorFragment /*@NonNull*/ [] _RegisteredClaims =
+		private static final ExecutorFragment /*@NonNull*/ [] _RegisteredClaim =
 			{
-				Fragments._RegisteredClaims__OclAny /* 0 */,
-				Fragments._RegisteredClaims__OclElement /* 1 */,
-				Fragments._RegisteredClaims__RegisteredClaims /* 2 */
+				Fragments._RegisteredClaim__OclAny /* 0 */,
+				Fragments._RegisteredClaim__OclElement /* 1 */,
+				Fragments._RegisteredClaim__RegisteredClaim /* 2 */
 			};
-		private static final int /*@NonNull*/ [] __RegisteredClaims = { 1,1,1 };
+		private static final int /*@NonNull*/ [] __RegisteredClaim = { 1,1,1 };
 
 		private static final ExecutorFragment /*@NonNull*/ [] _Role =
 			{
@@ -723,7 +723,7 @@ public class Security_dslTables extends AbstractTables
 			Types._Model.initFragments(_Model, __Model);
 			Types._OAuth2.initFragments(_OAuth2, __OAuth2);
 			Types._Provider.initFragments(_Provider, __Provider);
-			Types._RegisteredClaims.initFragments(_RegisteredClaims, __RegisteredClaims);
+			Types._RegisteredClaim.initFragments(_RegisteredClaim, __RegisteredClaim);
 			Types._Role.initFragments(_Role, __Role);
 			Types._RoleInstance.initFragments(_RoleInstance, __RoleInstance);
 			Types._Security.initFragments(_Security, __Security);
@@ -1291,8 +1291,8 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaims__RegisteredClaims = {};
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaims__OclAny = {
+		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__RegisteredClaim = {};
+		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
 			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
@@ -1309,7 +1309,7 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
 			OCLstdlibTables.Operations._OclAny__toString /* toString() */
 		};
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaims__OclElement = {
+		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__OclElement = {
 			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
 			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
 			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
@@ -1525,9 +1525,9 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Provider__OclElement.initOperations(_Provider__OclElement);
 			Fragments._Provider__Provider.initOperations(_Provider__Provider);
 
-			Fragments._RegisteredClaims__OclAny.initOperations(_RegisteredClaims__OclAny);
-			Fragments._RegisteredClaims__OclElement.initOperations(_RegisteredClaims__OclElement);
-			Fragments._RegisteredClaims__RegisteredClaims.initOperations(_RegisteredClaims__RegisteredClaims);
+			Fragments._RegisteredClaim__OclAny.initOperations(_RegisteredClaim__OclAny);
+			Fragments._RegisteredClaim__OclElement.initOperations(_RegisteredClaim__OclElement);
+			Fragments._RegisteredClaim__RegisteredClaim.initOperations(_RegisteredClaim__RegisteredClaim);
 
 			Fragments._Role__Model.initOperations(_Role__Model);
 			Fragments._Role__OclAny.initOperations(_Role__OclAny);
@@ -1670,10 +1670,10 @@ public class Security_dslTables extends AbstractTables
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _JWT = {
-			Security_dslTables.Properties._JWT__jwt_claims,
+			Security_dslTables.Properties._JWT__claims,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			Security_dslTables.Properties._JWT__registeredclaims,
+			Security_dslTables.Properties._JWT__registered_claims,
 			Security_dslTables.Properties._JWT__secret,
 			Security_dslTables.Properties._JWT__signatureAlgorithm
 		};
@@ -1700,10 +1700,10 @@ public class Security_dslTables extends AbstractTables
 			Security_dslTables.Properties._Provider__redirectUri
 		};
 
-		private static final ExecutorProperty /*@NonNull*/ [] _RegisteredClaims = {
-			Security_dslTables.Properties._RegisteredClaims__audience,
-			Security_dslTables.Properties._RegisteredClaims__expirationTime,
-			Security_dslTables.Properties._RegisteredClaims__issuer,
+		private static final ExecutorProperty /*@NonNull*/ [] _RegisteredClaim = {
+			Security_dslTables.Properties._RegisteredClaim__audience,
+			Security_dslTables.Properties._RegisteredClaim__expirationTime,
+			Security_dslTables.Properties._RegisteredClaim__issuer,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents
 		};
@@ -1757,7 +1757,7 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Model__Model.initProperties(_Model);
 			Fragments._OAuth2__OAuth2.initProperties(_OAuth2);
 			Fragments._Provider__Provider.initProperties(_Provider);
-			Fragments._RegisteredClaims__RegisteredClaims.initProperties(_RegisteredClaims);
+			Fragments._RegisteredClaim__RegisteredClaim.initProperties(_RegisteredClaim);
 			Fragments._Role__Role.initProperties(_Role);
 			Fragments._RoleInstance__RoleInstance.initProperties(_RoleInstance);
 			Fragments._Security__Security.initProperties(_Security);
@@ -1821,42 +1821,38 @@ public class Security_dslTables extends AbstractTables
 			_EEndpointType__OTHER
 		};
 
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__google = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("google"), Types._EOAuthProvider, 0);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__github = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("github"), Types._EOAuthProvider, 1);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__facebook = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("facebook"), Types._EOAuthProvider, 2);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__azure = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("azure"), Types._EOAuthProvider, 3);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__linkedin = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("linkedin"), Types._EOAuthProvider, 4);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__twitter = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("twitter"), Types._EOAuthProvider, 5);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__instagram = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("instagram"), Types._EOAuthProvider, 6);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__GOOGLE = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("GOOGLE"), Types._EOAuthProvider, 0);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__GITHUB = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("GITHUB"), Types._EOAuthProvider, 1);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__FACEBOOK = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("FACEBOOK"), Types._EOAuthProvider, 2);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__AZURE = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("AZURE"), Types._EOAuthProvider, 3);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__LINKEDIN = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("LINKEDIN"), Types._EOAuthProvider, 4);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__TWITTER = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("TWITTER"), Types._EOAuthProvider, 5);
+		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__INSTAGRAM = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("INSTAGRAM"), Types._EOAuthProvider, 6);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _EOAuthProvider = {
-			_EOAuthProvider__google,
-			_EOAuthProvider__github,
-			_EOAuthProvider__facebook,
-			_EOAuthProvider__azure,
-			_EOAuthProvider__linkedin,
-			_EOAuthProvider__twitter,
-			_EOAuthProvider__instagram
+			_EOAuthProvider__GOOGLE,
+			_EOAuthProvider__GITHUB,
+			_EOAuthProvider__FACEBOOK,
+			_EOAuthProvider__AZURE,
+			_EOAuthProvider__LINKEDIN,
+			_EOAuthProvider__TWITTER,
+			_EOAuthProvider__INSTAGRAM
 		};
 
 		public static final EcoreExecutorEnumerationLiteral _EType__String = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("String"), Types._EType, 0);
 		public static final EcoreExecutorEnumerationLiteral _EType__Float = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Float"), Types._EType, 1);
 		public static final EcoreExecutorEnumerationLiteral _EType__Long = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Long"), Types._EType, 2);
 		public static final EcoreExecutorEnumerationLiteral _EType__Integer = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Integer"), Types._EType, 3);
-		public static final EcoreExecutorEnumerationLiteral _EType__char = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("char"), Types._EType, 4);
-		public static final EcoreExecutorEnumerationLiteral _EType__Double = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Double"), Types._EType, 5);
-		public static final EcoreExecutorEnumerationLiteral _EType__DateTime = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("DateTime"), Types._EType, 6);
-		public static final EcoreExecutorEnumerationLiteral _EType__Date = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Date"), Types._EType, 7);
-		public static final EcoreExecutorEnumerationLiteral _EType__int = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("int"), Types._EType, 8);
+		public static final EcoreExecutorEnumerationLiteral _EType__Double = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Double"), Types._EType, 4);
+		public static final EcoreExecutorEnumerationLiteral _EType__DateTime = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("DateTime"), Types._EType, 5);
+		public static final EcoreExecutorEnumerationLiteral _EType__Date = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Date"), Types._EType, 6);
 		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _EType = {
 			_EType__String,
 			_EType__Float,
 			_EType__Long,
 			_EType__Integer,
-			_EType__char,
 			_EType__Double,
 			_EType__DateTime,
-			_EType__Date,
-			_EType__int
+			_EType__Date
 		};
 
 		/**

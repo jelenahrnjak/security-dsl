@@ -132,8 +132,8 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseRegisteredClaims(RegisteredClaims object) {
-			return createRegisteredClaimsAdapter();
+		public Adapter caseRegisteredClaim(RegisteredClaim object) {
+			return createRegisteredClaimAdapter();
 		}
 
 		@Override
@@ -353,16 +353,16 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link security_dsl.RegisteredClaims <em>Registered Claims</em>}'.
+	 * Creates a new adapter for an object of class '{@link security_dsl.RegisteredClaim <em>Registered Claim</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see security_dsl.RegisteredClaims
+	 * @see security_dsl.RegisteredClaim
 	 * @generated
 	 */
-	public Adapter createRegisteredClaimsAdapter() {
+	public Adapter createRegisteredClaimAdapter() {
 		return null;
 	}
 

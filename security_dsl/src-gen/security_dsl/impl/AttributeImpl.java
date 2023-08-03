@@ -24,8 +24,8 @@ import security_dsl.Security_dslPackage;
  *   <li>{@link security_dsl.impl.AttributeImpl#getName <em>Name</em>}</li>
  *   <li>{@link security_dsl.impl.AttributeImpl#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.impl.AttributeImpl#isIdentifier <em>Identifier</em>}</li>
- *   <li>{@link security_dsl.impl.AttributeImpl#getCollumnName <em>Collumn Name</em>}</li>
  *   <li>{@link security_dsl.impl.AttributeImpl#isCredential <em>Credential</em>}</li>
+ *   <li>{@link security_dsl.impl.AttributeImpl#getCollumnName <em>Collumn Name</em>}</li>
  * </ul>
  *
  * @generated
@@ -92,26 +92,6 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	protected boolean identifier = IDENTIFIER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCollumnName() <em>Collumn Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCollumnName()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String COLLUMN_NAME_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getCollumnName() <em>Collumn Name</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getCollumnName()
-	 * @generated
-	 * @ordered
-	 */
-	protected String collumnName = COLLUMN_NAME_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isCredential() <em>Credential</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,6 +110,26 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * @ordered
 	 */
 	protected boolean credential = CREDENTIAL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getCollumnName() <em>Collumn Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCollumnName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String COLLUMN_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCollumnName() <em>Collumn Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getCollumnName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String collumnName = COLLUMN_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -219,28 +219,6 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCollumnName() {
-		return collumnName;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setCollumnName(String newCollumnName) {
-		String oldCollumnName = collumnName;
-		collumnName = newCollumnName;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ATTRIBUTE__COLLUMN_NAME,
-					oldCollumnName, collumnName));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean isCredential() {
 		return credential;
 	}
@@ -263,6 +241,28 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getCollumnName() {
+		return collumnName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCollumnName(String newCollumnName) {
+		String oldCollumnName = collumnName;
+		collumnName = newCollumnName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ATTRIBUTE__COLLUMN_NAME,
+					oldCollumnName, collumnName));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -272,10 +272,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 			return getType();
 		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
 			return isIdentifier();
-		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
-			return getCollumnName();
 		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
 			return isCredential();
+		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
+			return getCollumnName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -297,11 +297,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
 			setIdentifier((Boolean) newValue);
 			return;
-		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
-			setCollumnName((String) newValue);
-			return;
 		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
 			setCredential((Boolean) newValue);
+			return;
+		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
+			setCollumnName((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -324,11 +324,11 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
 			setIdentifier(IDENTIFIER_EDEFAULT);
 			return;
-		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
-			setCollumnName(COLLUMN_NAME_EDEFAULT);
-			return;
 		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
 			setCredential(CREDENTIAL_EDEFAULT);
+			return;
+		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
+			setCollumnName(COLLUMN_NAME_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -348,10 +348,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 			return type != TYPE_EDEFAULT;
 		case Security_dslPackage.ATTRIBUTE__IDENTIFIER:
 			return identifier != IDENTIFIER_EDEFAULT;
-		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
-			return COLLUMN_NAME_EDEFAULT == null ? collumnName != null : !COLLUMN_NAME_EDEFAULT.equals(collumnName);
 		case Security_dslPackage.ATTRIBUTE__CREDENTIAL:
 			return credential != CREDENTIAL_EDEFAULT;
+		case Security_dslPackage.ATTRIBUTE__COLLUMN_NAME:
+			return COLLUMN_NAME_EDEFAULT == null ? collumnName != null : !COLLUMN_NAME_EDEFAULT.equals(collumnName);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -373,10 +373,10 @@ public class AttributeImpl extends MinimalEObjectImpl.Container implements Attri
 		result.append(type);
 		result.append(", identifier: ");
 		result.append(identifier);
-		result.append(", collumnName: ");
-		result.append(collumnName);
 		result.append(", credential: ");
 		result.append(credential);
+		result.append(", collumnName: ");
+		result.append(collumnName);
 		result.append(')');
 		return result.toString();
 	}

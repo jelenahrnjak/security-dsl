@@ -69,17 +69,17 @@ class SecurityDslGenerator extends AbstractGenerator {
 	        	
 	        	var JWT jwt = app.app_security as JWT
 	        	
-	        	if(jwt.registeredclaims.issuer === null){
-	        		jwt.registeredclaims.issuer = app.name
+	        	if(jwt.registered_claims.issuer === null){
+	        		jwt.registered_claims.issuer = app.name
 	        	}
 	        	
-	        	if(findSubjectClaim(jwt.jwt_claims) === null){
+	        	if(findSubjectClaim(jwt.claims) === null){
 	        		
 	        		var Claim subjectClaim
 	        		subjectClaim.name = 'subject'
 	        		subjectClaim.type = EClaimType::REGISTERED
 	        		subjectClaim.claim_attribute = getCredential(user.model_attributes)
-	        		jwt.jwt_claims.add(subjectClaim)
+	        		jwt.claims.add(subjectClaim)
 	        	}
 	        	
 	       		new SecurityDslJWTGenerator(fsa, app.packageName, srcDestination, authController, app.app_security as JWT, credentialUser)

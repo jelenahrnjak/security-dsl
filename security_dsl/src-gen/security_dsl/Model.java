@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getModel()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyOneIdentifier'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueCollumnName'"
  * @generated
  */
 public interface Model extends EObject {
@@ -73,14 +73,6 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t self.model_attributes -&gt; exists(a | a.collumnName &lt;&gt; null) implies self.model_attributes -&gt; isUnique(a | a.collumnName)'"
-	 * @generated
-	 */
-	boolean uniqueCollumnName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.model_attributes -&gt; size() &gt; 0 implies self.model_attributes -&gt; select(a | a.identifier) -&gt; size() = 1'"
 	 * @generated
 	 */
@@ -97,9 +89,9 @@ public interface Model extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(User) implies\n        \tself.model_attributes -&gt; exists(a | a.name = \'username\' and a.credential = true)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t self.model_attributes -&gt; exists(a | a.collumnName &lt;&gt; null) implies self.model_attributes -&gt; isUnique(a | a.collumnName)'"
 	 * @generated
 	 */
-	boolean hasUsernameAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueCollumnName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Model

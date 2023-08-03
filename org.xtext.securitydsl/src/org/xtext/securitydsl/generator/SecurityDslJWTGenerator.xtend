@@ -6,7 +6,7 @@ import security_dsl.Authentication
 import security_dsl.Claim
 import security_dsl.EClaimType
 import security_dsl.JWT
-import security_dsl.RegisteredClaims
+import security_dsl.RegisteredClaim
 
 class SecurityDslJWTGenerator {
 	
@@ -315,7 +315,7 @@ class SecurityDslJWTGenerator {
 		
 		@Component
 		public class TokenUtils {
-		«var RegisteredClaims regClaim = jwt.registeredclaims»
+		«var RegisteredClaim regClaim = jwt.registered_claims»
 		
 			private String ISSUER = "«regClaim.issuer»";
 
@@ -334,7 +334,7 @@ class SecurityDslJWTGenerator {
 			public String generateToken(String «credentialUser») {
 				return Jwts.builder()
 						.setIssuer(ISSUER)
-						.setSubject(«findSubjectClaim(jwt.jwt_claims).claim_attribute.name»)
+						.setSubject(«findSubjectClaim(jwt.claims).claim_attribute.name»)
 						.setAudience(generateAudience())
 						.setIssuedAt(new Date())
 						.setExpiration(generateExpirationDate())

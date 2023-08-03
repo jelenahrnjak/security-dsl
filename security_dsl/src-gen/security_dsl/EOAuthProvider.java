@@ -19,147 +19,147 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EOAuthProvider implements Enumerator {
 	/**
-	 * The '<em><b>Google</b></em>' literal object.
+	 * The '<em><b>GOOGLE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #GOOGLE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GOOGLE(0, "google", "google"),
+	GOOGLE(0, "GOOGLE", "GOOGLE"),
 
 	/**
-	 * The '<em><b>Github</b></em>' literal object.
+	 * The '<em><b>GITHUB</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #GITHUB_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	GITHUB(1, "github", "github"),
+	GITHUB(1, "GITHUB", "GITHUB"),
 
 	/**
-	 * The '<em><b>Facebook</b></em>' literal object.
+	 * The '<em><b>FACEBOOK</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #FACEBOOK_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	FACEBOOK(2, "facebook", "facebook"),
+	FACEBOOK(2, "FACEBOOK", "FACEBOOK"),
 
 	/**
-	 * The '<em><b>Azure</b></em>' literal object.
+	 * The '<em><b>AZURE</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #AZURE_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	AZURE(3, "azure", "azure"),
+	AZURE(3, "AZURE", "AZURE"),
 
 	/**
-	 * The '<em><b>Linkedin</b></em>' literal object.
+	 * The '<em><b>LINKEDIN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #LINKEDIN_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	LINKEDIN(4, "linkedin", "linkedin"),
+	LINKEDIN(4, "LINKEDIN", "LINKEDIN"),
 
 	/**
-	 * The '<em><b>Twitter</b></em>' literal object.
+	 * The '<em><b>TWITTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #TWITTER_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	TWITTER(5, "twitter", "twitter"),
+	TWITTER(5, "TWITTER", "TWITTER"),
 
 	/**
-	 * The '<em><b>Instagram</b></em>' literal object.
+	 * The '<em><b>INSTAGRAM</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #INSTAGRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	INSTAGRAM(6, "instagram", "instagram");
+	INSTAGRAM(6, "INSTAGRAM", "INSTAGRAM");
 
 	/**
-	 * The '<em><b>Google</b></em>' literal value.
+	 * The '<em><b>GOOGLE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #GOOGLE
-	 * @model name="google"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int GOOGLE_VALUE = 0;
 
 	/**
-	 * The '<em><b>Github</b></em>' literal value.
+	 * The '<em><b>GITHUB</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #GITHUB
-	 * @model name="github"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int GITHUB_VALUE = 1;
 
 	/**
-	 * The '<em><b>Facebook</b></em>' literal value.
+	 * The '<em><b>FACEBOOK</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #FACEBOOK
-	 * @model name="facebook"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int FACEBOOK_VALUE = 2;
 
 	/**
-	 * The '<em><b>Azure</b></em>' literal value.
+	 * The '<em><b>AZURE</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #AZURE
-	 * @model name="azure"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int AZURE_VALUE = 3;
 
 	/**
-	 * The '<em><b>Linkedin</b></em>' literal value.
+	 * The '<em><b>LINKEDIN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #LINKEDIN
-	 * @model name="linkedin"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int LINKEDIN_VALUE = 4;
 
 	/**
-	 * The '<em><b>Twitter</b></em>' literal value.
+	 * The '<em><b>TWITTER</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #TWITTER
-	 * @model name="twitter"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */
 	public static final int TWITTER_VALUE = 5;
 
 	/**
-	 * The '<em><b>Instagram</b></em>' literal value.
+	 * The '<em><b>INSTAGRAM</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #INSTAGRAM
-	 * @model name="instagram"
+	 * @model
 	 * @generated
 	 * @ordered
 	 */

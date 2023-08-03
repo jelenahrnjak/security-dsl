@@ -55,9 +55,9 @@ import security_dsl.Security_dslTables;
  * </p>
  * <ul>
  *   <li>{@link security_dsl.impl.EndpointImpl#getUrl <em>Url</em>}</li>
+ *   <li>{@link security_dsl.impl.EndpointImpl#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getFunctionName <em>Function Name</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getMethod <em>Method</em>}</li>
- *   <li>{@link security_dsl.impl.EndpointImpl#getType <em>Type</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getRole_authorities <em>Role authorities</em>}</li>
  * </ul>
  *
@@ -83,6 +83,26 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	 * @ordered
 	 */
 	protected String url = URL_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EEndpointType TYPE_EDEFAULT = EEndpointType.OTHER;
+
+	/**
+	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getType()
+	 * @generated
+	 * @ordered
+	 */
+	protected EEndpointType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getFunctionName() <em>Function Name</em>}' attribute.
@@ -123,26 +143,6 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	 * @ordered
 	 */
 	protected EEndpointMethod method = METHOD_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EEndpointType TYPE_EDEFAULT = EEndpointType.OTHER;
-
-	/**
-	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getType()
-	 * @generated
-	 * @ordered
-	 */
-	protected EEndpointType type = TYPE_EDEFAULT;
 
 	/**
 	 * The cached value of the '{@link #getRole_authorities() <em>Role authorities</em>}' reference list.
@@ -199,6 +199,27 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EEndpointType getType() {
+		return type;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setType(EEndpointType newType) {
+		EEndpointType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENDPOINT__TYPE, oldType, type));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public String getFunctionName() {
 		return functionName;
 	}
@@ -236,27 +257,6 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENDPOINT__METHOD, oldMethod,
 					method));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EEndpointType getType() {
-		return type;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setType(EEndpointType newType) {
-		EEndpointType oldType = type;
-		type = newType == null ? TYPE_EDEFAULT : newType;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENDPOINT__TYPE, oldType, type));
 	}
 
 	/**
@@ -350,12 +350,12 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		switch (featureID) {
 		case Security_dslPackage.ENDPOINT__URL:
 			return getUrl();
+		case Security_dslPackage.ENDPOINT__TYPE:
+			return getType();
 		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
 			return getFunctionName();
 		case Security_dslPackage.ENDPOINT__METHOD:
 			return getMethod();
-		case Security_dslPackage.ENDPOINT__TYPE:
-			return getType();
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
 			return getRole_authorities();
 		}
@@ -374,14 +374,14 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		case Security_dslPackage.ENDPOINT__URL:
 			setUrl((String) newValue);
 			return;
+		case Security_dslPackage.ENDPOINT__TYPE:
+			setType((EEndpointType) newValue);
+			return;
 		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
 			setFunctionName((String) newValue);
 			return;
 		case Security_dslPackage.ENDPOINT__METHOD:
 			setMethod((EEndpointMethod) newValue);
-			return;
-		case Security_dslPackage.ENDPOINT__TYPE:
-			setType((EEndpointType) newValue);
 			return;
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
 			getRole_authorities().clear();
@@ -402,14 +402,14 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		case Security_dslPackage.ENDPOINT__URL:
 			setUrl(URL_EDEFAULT);
 			return;
+		case Security_dslPackage.ENDPOINT__TYPE:
+			setType(TYPE_EDEFAULT);
+			return;
 		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
 			setFunctionName(FUNCTION_NAME_EDEFAULT);
 			return;
 		case Security_dslPackage.ENDPOINT__METHOD:
 			setMethod(METHOD_EDEFAULT);
-			return;
-		case Security_dslPackage.ENDPOINT__TYPE:
-			setType(TYPE_EDEFAULT);
 			return;
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
 			getRole_authorities().clear();
@@ -428,12 +428,12 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		switch (featureID) {
 		case Security_dslPackage.ENDPOINT__URL:
 			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
+		case Security_dslPackage.ENDPOINT__TYPE:
+			return type != TYPE_EDEFAULT;
 		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
 			return FUNCTION_NAME_EDEFAULT == null ? functionName != null : !FUNCTION_NAME_EDEFAULT.equals(functionName);
 		case Security_dslPackage.ENDPOINT__METHOD:
 			return method != METHOD_EDEFAULT;
-		case Security_dslPackage.ENDPOINT__TYPE:
-			return type != TYPE_EDEFAULT;
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
 			return role_authorities != null && !role_authorities.isEmpty();
 		}
@@ -468,12 +468,12 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		StringBuilder result = new StringBuilder(super.toString());
 		result.append(" (url: ");
 		result.append(url);
+		result.append(", type: ");
+		result.append(type);
 		result.append(", functionName: ");
 		result.append(functionName);
 		result.append(", method: ");
 		result.append(method);
-		result.append(", type: ");
-		result.append(type);
 		result.append(')');
 		return result.toString();
 	}

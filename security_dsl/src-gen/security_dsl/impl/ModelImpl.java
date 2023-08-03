@@ -25,10 +25,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
+
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
@@ -37,6 +39,7 @@ import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
 import org.eclipse.ocl.pivot.messages.PivotMessages;
+
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -239,133 +242,6 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean uniqueCollumnName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::uniqueCollumnName";
-		try {
-			/**
-			 *
-			 * inv uniqueCollumnName:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : Boolean[?] = self.model_attributes->exists(a | a.collumnName <> null) implies
-			 *         self.model_attributes->isUnique(a | a.collumnName)
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
-			if (le) {
-				local_0 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_result;
-				try {
-					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-					/*@NonInvalid*/ Boolean exists;
-					while (true) {
-						if (!ITERATOR_a.hasNext()) {
-							if (accumulator == ValueUtil.FALSE_VALUE) {
-								exists = ValueUtil.FALSE_VALUE;
-							} else {
-								throw (InvalidValueException) accumulator;
-							}
-							break;
-						}
-						/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-						/**
-						 * a.collumnName <> null
-						 */
-						final /*@NonInvalid*/ String collumnName = a.getCollumnName();
-						final /*@NonInvalid*/ boolean ne = collumnName != null;
-						//
-						if (ne) { // Normal successful body evaluation result
-							exists = ValueUtil.TRUE_VALUE;
-							break; // Stop immediately
-						} else if (!ne) { // Normal unsuccessful body evaluation result
-							; // Carry on
-						} else { // Impossible badly typed result
-							accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
-						}
-					}
-					final /*@Thrown*/ Boolean result;
-					if (exists == ValueUtil.FALSE_VALUE) {
-						result = ValueUtil.TRUE_VALUE;
-					} else {
-						/*@Caught*/ Object CAUGHT_isUnique;
-						try {
-							/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
-									.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-							Iterator<Object> ITERATOR_a_0 = BOXED_model_attributes.iterator();
-							/*@Thrown*/ boolean isUnique;
-							while (true) {
-								if (!ITERATOR_a_0.hasNext()) {
-									isUnique = true;
-									break;
-								}
-								/*@NonInvalid*/ Attribute a_0 = (Attribute) ITERATOR_a_0.next();
-								/**
-								 * a.collumnName
-								 */
-								final /*@NonInvalid*/ String collumnName_0 = a_0.getCollumnName();
-								//
-								if (accumulator_0.includes(collumnName_0) == ValueUtil.TRUE_VALUE) {
-									isUnique = false;
-									break; // Abort after second find
-								} else {
-									accumulator_0.add(collumnName_0);
-								}
-							}
-							CAUGHT_isUnique = isUnique;
-						} catch (Exception e) {
-							CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
-						}
-						if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
-							result = ValueUtil.TRUE_VALUE;
-						} else {
-							if (CAUGHT_isUnique instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_isUnique;
-							}
-							if (exists == null) {
-								result = null;
-							} else {
-								result = ValueUtil.FALSE_VALUE;
-							}
-						}
-					}
-					CAUGHT_result = result;
-				} catch (Exception e) {
-					CAUGHT_result = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
-						.booleanValue();
-				local_0 = logDiagnostic;
-			}
-			return local_0;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public boolean onlyOneIdentifier(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "Model::onlyOneIdentifier";
 		try {
@@ -518,20 +394,20 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean hasUsernameAttribute(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::hasUsernameAttribute";
+	public boolean uniqueCollumnName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Model::uniqueCollumnName";
 		try {
 			/**
 			 *
-			 * inv hasUsernameAttribute:
+			 * inv uniqueCollumnName:
 			 *   let severity : Integer[1] = constraintName.getSeverity()
 			 *   in
 			 *     if severity <= 0
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.oclIsTypeOf(User) implies
-			 *         self.model_attributes->exists(a | a.name = 'username' and a.credential = true)
+			 *         result : Boolean[?] = self.model_attributes->exists(a | a.collumnName <> null) implies
+			 *         self.model_attributes->isUnique(a | a.collumnName)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -539,7 +415,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
@@ -548,75 +424,76 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_User_0 = idResolver
-							.getClass(Security_dslTables.CLSSid_User, null);
-					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-							.evaluate(executor, this, TYP_security_dsl_c_c_User_0).booleanValue();
+					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
+							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
+					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					/*@NonInvalid*/ Boolean exists;
+					while (true) {
+						if (!ITERATOR_a.hasNext()) {
+							if (accumulator == ValueUtil.FALSE_VALUE) {
+								exists = ValueUtil.FALSE_VALUE;
+							} else {
+								throw (InvalidValueException) accumulator;
+							}
+							break;
+						}
+						/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+						/**
+						 * a.collumnName <> null
+						 */
+						final /*@NonInvalid*/ String collumnName = a.getCollumnName();
+						final /*@NonInvalid*/ boolean ne = collumnName != null;
+						//
+						if (ne) { // Normal successful body evaluation result
+							exists = ValueUtil.TRUE_VALUE;
+							break; // Stop immediately
+						} else if (!ne) { // Normal unsuccessful body evaluation result
+							; // Carry on
+						} else { // Impossible badly typed result
+							accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+						}
+					}
 					final /*@Thrown*/ Boolean result;
-					if (!oclIsTypeOf) {
+					if (exists == ValueUtil.FALSE_VALUE) {
 						result = ValueUtil.TRUE_VALUE;
 					} else {
-						/*@Caught*/ Object CAUGHT_exists;
+						/*@Caught*/ Object CAUGHT_isUnique;
 						try {
-							final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-							final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-									.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
-							/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-							Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
-							/*@Thrown*/ Boolean exists;
+							/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
+									.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
+							Iterator<Object> ITERATOR_a_0 = BOXED_model_attributes.iterator();
+							/*@Thrown*/ boolean isUnique;
 							while (true) {
-								if (!ITERATOR_a.hasNext()) {
-									if (accumulator == null) {
-										exists = null;
-									} else if (accumulator == ValueUtil.FALSE_VALUE) {
-										exists = ValueUtil.FALSE_VALUE;
-									} else {
-										throw (InvalidValueException) accumulator;
-									}
+								if (!ITERATOR_a_0.hasNext()) {
+									isUnique = true;
 									break;
 								}
-								/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+								/*@NonInvalid*/ Attribute a_0 = (Attribute) ITERATOR_a_0.next();
 								/**
-								 * a.name = 'username' and a.credential = true
+								 * a.collumnName
 								 */
-								final /*@NonInvalid*/ String name = a.getName();
-								final /*@NonInvalid*/ boolean eq = name.equals(Security_dslTables.STR_username);
-								final /*@NonInvalid*/ Boolean and;
-								if (!eq) {
-									and = ValueUtil.FALSE_VALUE;
-								} else {
-									final /*@NonInvalid*/ boolean credential = a.isCredential();
-									if (!credential) {
-										and = ValueUtil.FALSE_VALUE;
-									} else {
-										and = ValueUtil.TRUE_VALUE;
-									}
-								}
+								final /*@NonInvalid*/ String collumnName_0 = a_0.getCollumnName();
 								//
-								if (and == ValueUtil.TRUE_VALUE) { // Normal successful body evaluation result
-									exists = ValueUtil.TRUE_VALUE;
-									break; // Stop immediately
-								} else if (and == ValueUtil.FALSE_VALUE) { // Normal unsuccessful body evaluation result
-									; // Carry on
-								} else if (and == null) { // Abnormal null body evaluation result
-									if (accumulator == ValueUtil.FALSE_VALUE) {
-										accumulator = null; // Cache a null failure
-									}
-								} else { // Impossible badly typed result
-									accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "exists");
+								if (accumulator_0.includes(collumnName_0) == ValueUtil.TRUE_VALUE) {
+									isUnique = false;
+									break; // Abort after second find
+								} else {
+									accumulator_0.add(collumnName_0);
 								}
 							}
-							CAUGHT_exists = exists;
+							CAUGHT_isUnique = isUnique;
 						} catch (Exception e) {
-							CAUGHT_exists = ValueUtil.createInvalidValue(e);
+							CAUGHT_isUnique = ValueUtil.createInvalidValue(e);
 						}
-						if (CAUGHT_exists == ValueUtil.TRUE_VALUE) {
+						if (CAUGHT_isUnique == ValueUtil.TRUE_VALUE) {
 							result = ValueUtil.TRUE_VALUE;
 						} else {
-							if (CAUGHT_exists instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_exists;
+							if (CAUGHT_isUnique instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_isUnique;
 							}
-							if (CAUGHT_exists == null) {
+							if (exists == null) {
 								result = null;
 							} else {
 								result = ValueUtil.FALSE_VALUE;
@@ -734,14 +611,12 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 		switch (operationID) {
 		case Security_dslPackage.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
 			return oneCredential((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
-			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___HAS_USERNAME_ATTRIBUTE__DIAGNOSTICCHAIN_MAP:
-			return hasUsernameAttribute((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
-			return uniqueAttributeName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
 			return onlyOneIdentifier((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
+			return uniqueAttributeName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
+			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
