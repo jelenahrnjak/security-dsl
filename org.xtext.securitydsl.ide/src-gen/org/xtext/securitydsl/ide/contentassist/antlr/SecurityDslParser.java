@@ -91,7 +91,7 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getOAuth2Access().getGroup(), "rule__OAuth2__Group__0");
 			builder.put(grammarAccess.getOAuth2Access().getGroup_4(), "rule__OAuth2__Group_4__0");
 			builder.put(grammarAccess.getProviderAccess().getGroup(), "rule__Provider__Group__0");
-			builder.put(grammarAccess.getProviderAccess().getGroup_10(), "rule__Provider__Group_10__0");
+			builder.put(grammarAccess.getProviderAccess().getGroup_9(), "rule__Provider__Group_9__0");
 			builder.put(grammarAccess.getBasicAuthenticationAccess().getGroup(), "rule__BasicAuthentication__Group__0");
 			builder.put(grammarAccess.getEIntAccess().getGroup(), "rule__EInt__Group__0");
 			builder.put(grammarAccess.getApplicationAccess().getArtifactAssignment_2_1(), "rule__Application__ArtifactAssignment_2_1");
@@ -150,7 +150,7 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getProviderAccess().getNameAssignment_2(), "rule__Provider__NameAssignment_2");
 			builder.put(grammarAccess.getProviderAccess().getClientIdAssignment_5(), "rule__Provider__ClientIdAssignment_5");
 			builder.put(grammarAccess.getProviderAccess().getClientSecretAssignment_8(), "rule__Provider__ClientSecretAssignment_8");
-			builder.put(grammarAccess.getProviderAccess().getRedirectUriAssignment_10_1(), "rule__Provider__RedirectUriAssignment_10_1");
+			builder.put(grammarAccess.getProviderAccess().getRedirectUriAssignment_9_2(), "rule__Provider__RedirectUriAssignment_9_2");
 		}
 	}
 	

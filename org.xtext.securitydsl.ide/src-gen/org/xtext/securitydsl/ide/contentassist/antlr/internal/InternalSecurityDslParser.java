@@ -18505,7 +18505,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6041:1: ( rule__Provider__Group__8__Impl rule__Provider__Group__9 )
             // InternalSecurityDsl.g:6042:2: rule__Provider__Group__8__Impl rule__Provider__Group__9
             {
-            pushFollow(FOLLOW_41);
+            pushFollow(FOLLOW_50);
             rule__Provider__Group__8__Impl();
 
             state._fsp--;
@@ -18619,21 +18619,42 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Provider__Group__9__Impl"
-    // InternalSecurityDsl.g:6076:1: rule__Provider__Group__9__Impl : ( ',' ) ;
+    // InternalSecurityDsl.g:6076:1: rule__Provider__Group__9__Impl : ( ( rule__Provider__Group_9__0 )? ) ;
     public final void rule__Provider__Group__9__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6080:1: ( ( ',' ) )
-            // InternalSecurityDsl.g:6081:1: ( ',' )
+            // InternalSecurityDsl.g:6080:1: ( ( ( rule__Provider__Group_9__0 )? ) )
+            // InternalSecurityDsl.g:6081:1: ( ( rule__Provider__Group_9__0 )? )
             {
-            // InternalSecurityDsl.g:6081:1: ( ',' )
-            // InternalSecurityDsl.g:6082:2: ','
+            // InternalSecurityDsl.g:6081:1: ( ( rule__Provider__Group_9__0 )? )
+            // InternalSecurityDsl.g:6082:2: ( rule__Provider__Group_9__0 )?
             {
-             before(grammarAccess.getProviderAccess().getCommaKeyword_9()); 
-            match(input,69,FOLLOW_2); 
-             after(grammarAccess.getProviderAccess().getCommaKeyword_9()); 
+             before(grammarAccess.getProviderAccess().getGroup_9()); 
+            // InternalSecurityDsl.g:6083:2: ( rule__Provider__Group_9__0 )?
+            int alt49=2;
+            int LA49_0 = input.LA(1);
+
+            if ( (LA49_0==69) ) {
+                alt49=1;
+            }
+            switch (alt49) {
+                case 1 :
+                    // InternalSecurityDsl.g:6083:3: rule__Provider__Group_9__0
+                    {
+                    pushFollow(FOLLOW_2);
+                    rule__Provider__Group_9__0();
+
+                    state._fsp--;
+
+
+                    }
+                    break;
+
+            }
+
+             after(grammarAccess.getProviderAccess().getGroup_9()); 
 
             }
 
@@ -18656,22 +18677,17 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Provider__Group__10"
-    // InternalSecurityDsl.g:6091:1: rule__Provider__Group__10 : rule__Provider__Group__10__Impl rule__Provider__Group__11 ;
+    // InternalSecurityDsl.g:6091:1: rule__Provider__Group__10 : rule__Provider__Group__10__Impl ;
     public final void rule__Provider__Group__10() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6095:1: ( rule__Provider__Group__10__Impl rule__Provider__Group__11 )
-            // InternalSecurityDsl.g:6096:2: rule__Provider__Group__10__Impl rule__Provider__Group__11
+            // InternalSecurityDsl.g:6095:1: ( rule__Provider__Group__10__Impl )
+            // InternalSecurityDsl.g:6096:2: rule__Provider__Group__10__Impl
             {
-            pushFollow(FOLLOW_50);
-            rule__Provider__Group__10__Impl();
-
-            state._fsp--;
-
             pushFollow(FOLLOW_2);
-            rule__Provider__Group__11();
+            rule__Provider__Group__10__Impl();
 
             state._fsp--;
 
@@ -18694,42 +18710,21 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Provider__Group__10__Impl"
-    // InternalSecurityDsl.g:6103:1: rule__Provider__Group__10__Impl : ( ( rule__Provider__Group_10__0 )? ) ;
+    // InternalSecurityDsl.g:6102:1: rule__Provider__Group__10__Impl : ( '}' ) ;
     public final void rule__Provider__Group__10__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6107:1: ( ( ( rule__Provider__Group_10__0 )? ) )
-            // InternalSecurityDsl.g:6108:1: ( ( rule__Provider__Group_10__0 )? )
+            // InternalSecurityDsl.g:6106:1: ( ( '}' ) )
+            // InternalSecurityDsl.g:6107:1: ( '}' )
             {
-            // InternalSecurityDsl.g:6108:1: ( ( rule__Provider__Group_10__0 )? )
-            // InternalSecurityDsl.g:6109:2: ( rule__Provider__Group_10__0 )?
+            // InternalSecurityDsl.g:6107:1: ( '}' )
+            // InternalSecurityDsl.g:6108:2: '}'
             {
-             before(grammarAccess.getProviderAccess().getGroup_10()); 
-            // InternalSecurityDsl.g:6110:2: ( rule__Provider__Group_10__0 )?
-            int alt49=2;
-            int LA49_0 = input.LA(1);
-
-            if ( (LA49_0==92) ) {
-                alt49=1;
-            }
-            switch (alt49) {
-                case 1 :
-                    // InternalSecurityDsl.g:6110:3: rule__Provider__Group_10__0
-                    {
-                    pushFollow(FOLLOW_2);
-                    rule__Provider__Group_10__0();
-
-                    state._fsp--;
-
-
-                    }
-                    break;
-
-            }
-
-             after(grammarAccess.getProviderAccess().getGroup_10()); 
+             before(grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_10()); 
+            match(input,63,FOLLOW_2); 
+             after(grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_10()); 
 
             }
 
@@ -18751,18 +18746,23 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__Provider__Group__10__Impl"
 
 
-    // $ANTLR start "rule__Provider__Group__11"
-    // InternalSecurityDsl.g:6118:1: rule__Provider__Group__11 : rule__Provider__Group__11__Impl ;
-    public final void rule__Provider__Group__11() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__0"
+    // InternalSecurityDsl.g:6118:1: rule__Provider__Group_9__0 : rule__Provider__Group_9__0__Impl rule__Provider__Group_9__1 ;
+    public final void rule__Provider__Group_9__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6122:1: ( rule__Provider__Group__11__Impl )
-            // InternalSecurityDsl.g:6123:2: rule__Provider__Group__11__Impl
+            // InternalSecurityDsl.g:6122:1: ( rule__Provider__Group_9__0__Impl rule__Provider__Group_9__1 )
+            // InternalSecurityDsl.g:6123:2: rule__Provider__Group_9__0__Impl rule__Provider__Group_9__1
             {
+            pushFollow(FOLLOW_51);
+            rule__Provider__Group_9__0__Impl();
+
+            state._fsp--;
+
             pushFollow(FOLLOW_2);
-            rule__Provider__Group__11__Impl();
+            rule__Provider__Group_9__1();
 
             state._fsp--;
 
@@ -18781,25 +18781,25 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group__11"
+    // $ANTLR end "rule__Provider__Group_9__0"
 
 
-    // $ANTLR start "rule__Provider__Group__11__Impl"
-    // InternalSecurityDsl.g:6129:1: rule__Provider__Group__11__Impl : ( '}' ) ;
-    public final void rule__Provider__Group__11__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__0__Impl"
+    // InternalSecurityDsl.g:6130:1: rule__Provider__Group_9__0__Impl : ( ',' ) ;
+    public final void rule__Provider__Group_9__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6133:1: ( ( '}' ) )
-            // InternalSecurityDsl.g:6134:1: ( '}' )
+            // InternalSecurityDsl.g:6134:1: ( ( ',' ) )
+            // InternalSecurityDsl.g:6135:1: ( ',' )
             {
-            // InternalSecurityDsl.g:6134:1: ( '}' )
-            // InternalSecurityDsl.g:6135:2: '}'
+            // InternalSecurityDsl.g:6135:1: ( ',' )
+            // InternalSecurityDsl.g:6136:2: ','
             {
-             before(grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_11()); 
-            match(input,63,FOLLOW_2); 
-             after(grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_11()); 
+             before(grammarAccess.getProviderAccess().getCommaKeyword_9_0()); 
+            match(input,69,FOLLOW_2); 
+             after(grammarAccess.getProviderAccess().getCommaKeyword_9_0()); 
 
             }
 
@@ -18818,26 +18818,26 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group__11__Impl"
+    // $ANTLR end "rule__Provider__Group_9__0__Impl"
 
 
-    // $ANTLR start "rule__Provider__Group_10__0"
-    // InternalSecurityDsl.g:6145:1: rule__Provider__Group_10__0 : rule__Provider__Group_10__0__Impl rule__Provider__Group_10__1 ;
-    public final void rule__Provider__Group_10__0() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__1"
+    // InternalSecurityDsl.g:6145:1: rule__Provider__Group_9__1 : rule__Provider__Group_9__1__Impl rule__Provider__Group_9__2 ;
+    public final void rule__Provider__Group_9__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6149:1: ( rule__Provider__Group_10__0__Impl rule__Provider__Group_10__1 )
-            // InternalSecurityDsl.g:6150:2: rule__Provider__Group_10__0__Impl rule__Provider__Group_10__1
+            // InternalSecurityDsl.g:6149:1: ( rule__Provider__Group_9__1__Impl rule__Provider__Group_9__2 )
+            // InternalSecurityDsl.g:6150:2: rule__Provider__Group_9__1__Impl rule__Provider__Group_9__2
             {
             pushFollow(FOLLOW_5);
-            rule__Provider__Group_10__0__Impl();
+            rule__Provider__Group_9__1__Impl();
 
             state._fsp--;
 
             pushFollow(FOLLOW_2);
-            rule__Provider__Group_10__1();
+            rule__Provider__Group_9__2();
 
             state._fsp--;
 
@@ -18856,12 +18856,12 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group_10__0"
+    // $ANTLR end "rule__Provider__Group_9__1"
 
 
-    // $ANTLR start "rule__Provider__Group_10__0__Impl"
-    // InternalSecurityDsl.g:6157:1: rule__Provider__Group_10__0__Impl : ( 'redirectUri:' ) ;
-    public final void rule__Provider__Group_10__0__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__1__Impl"
+    // InternalSecurityDsl.g:6157:1: rule__Provider__Group_9__1__Impl : ( 'redirectUri:' ) ;
+    public final void rule__Provider__Group_9__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -18872,9 +18872,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6162:1: ( 'redirectUri:' )
             // InternalSecurityDsl.g:6163:2: 'redirectUri:'
             {
-             before(grammarAccess.getProviderAccess().getRedirectUriKeyword_10_0()); 
+             before(grammarAccess.getProviderAccess().getRedirectUriKeyword_9_1()); 
             match(input,92,FOLLOW_2); 
-             after(grammarAccess.getProviderAccess().getRedirectUriKeyword_10_0()); 
+             after(grammarAccess.getProviderAccess().getRedirectUriKeyword_9_1()); 
 
             }
 
@@ -18893,21 +18893,21 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group_10__0__Impl"
+    // $ANTLR end "rule__Provider__Group_9__1__Impl"
 
 
-    // $ANTLR start "rule__Provider__Group_10__1"
-    // InternalSecurityDsl.g:6172:1: rule__Provider__Group_10__1 : rule__Provider__Group_10__1__Impl ;
-    public final void rule__Provider__Group_10__1() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__2"
+    // InternalSecurityDsl.g:6172:1: rule__Provider__Group_9__2 : rule__Provider__Group_9__2__Impl ;
+    public final void rule__Provider__Group_9__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6176:1: ( rule__Provider__Group_10__1__Impl )
-            // InternalSecurityDsl.g:6177:2: rule__Provider__Group_10__1__Impl
+            // InternalSecurityDsl.g:6176:1: ( rule__Provider__Group_9__2__Impl )
+            // InternalSecurityDsl.g:6177:2: rule__Provider__Group_9__2__Impl
             {
             pushFollow(FOLLOW_2);
-            rule__Provider__Group_10__1__Impl();
+            rule__Provider__Group_9__2__Impl();
 
             state._fsp--;
 
@@ -18926,35 +18926,35 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group_10__1"
+    // $ANTLR end "rule__Provider__Group_9__2"
 
 
-    // $ANTLR start "rule__Provider__Group_10__1__Impl"
-    // InternalSecurityDsl.g:6183:1: rule__Provider__Group_10__1__Impl : ( ( rule__Provider__RedirectUriAssignment_10_1 ) ) ;
-    public final void rule__Provider__Group_10__1__Impl() throws RecognitionException {
+    // $ANTLR start "rule__Provider__Group_9__2__Impl"
+    // InternalSecurityDsl.g:6183:1: rule__Provider__Group_9__2__Impl : ( ( rule__Provider__RedirectUriAssignment_9_2 ) ) ;
+    public final void rule__Provider__Group_9__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:6187:1: ( ( ( rule__Provider__RedirectUriAssignment_10_1 ) ) )
-            // InternalSecurityDsl.g:6188:1: ( ( rule__Provider__RedirectUriAssignment_10_1 ) )
+            // InternalSecurityDsl.g:6187:1: ( ( ( rule__Provider__RedirectUriAssignment_9_2 ) ) )
+            // InternalSecurityDsl.g:6188:1: ( ( rule__Provider__RedirectUriAssignment_9_2 ) )
             {
-            // InternalSecurityDsl.g:6188:1: ( ( rule__Provider__RedirectUriAssignment_10_1 ) )
-            // InternalSecurityDsl.g:6189:2: ( rule__Provider__RedirectUriAssignment_10_1 )
+            // InternalSecurityDsl.g:6188:1: ( ( rule__Provider__RedirectUriAssignment_9_2 ) )
+            // InternalSecurityDsl.g:6189:2: ( rule__Provider__RedirectUriAssignment_9_2 )
             {
-             before(grammarAccess.getProviderAccess().getRedirectUriAssignment_10_1()); 
-            // InternalSecurityDsl.g:6190:2: ( rule__Provider__RedirectUriAssignment_10_1 )
-            // InternalSecurityDsl.g:6190:3: rule__Provider__RedirectUriAssignment_10_1
+             before(grammarAccess.getProviderAccess().getRedirectUriAssignment_9_2()); 
+            // InternalSecurityDsl.g:6190:2: ( rule__Provider__RedirectUriAssignment_9_2 )
+            // InternalSecurityDsl.g:6190:3: rule__Provider__RedirectUriAssignment_9_2
             {
             pushFollow(FOLLOW_2);
-            rule__Provider__RedirectUriAssignment_10_1();
+            rule__Provider__RedirectUriAssignment_9_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getProviderAccess().getRedirectUriAssignment_10_1()); 
+             after(grammarAccess.getProviderAccess().getRedirectUriAssignment_9_2()); 
 
             }
 
@@ -18973,7 +18973,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__Group_10__1__Impl"
+    // $ANTLR end "rule__Provider__Group_9__2__Impl"
 
 
     // $ANTLR start "rule__BasicAuthentication__Group__0"
@@ -21615,9 +21615,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__Provider__ClientSecretAssignment_8"
 
 
-    // $ANTLR start "rule__Provider__RedirectUriAssignment_10_1"
-    // InternalSecurityDsl.g:7171:1: rule__Provider__RedirectUriAssignment_10_1 : ( ruleEString ) ;
-    public final void rule__Provider__RedirectUriAssignment_10_1() throws RecognitionException {
+    // $ANTLR start "rule__Provider__RedirectUriAssignment_9_2"
+    // InternalSecurityDsl.g:7171:1: rule__Provider__RedirectUriAssignment_9_2 : ( ruleEString ) ;
+    public final void rule__Provider__RedirectUriAssignment_9_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -21628,13 +21628,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:7176:2: ( ruleEString )
             // InternalSecurityDsl.g:7177:3: ruleEString
             {
-             before(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_10_1_0()); 
+             before(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_9_2_0()); 
             pushFollow(FOLLOW_2);
             ruleEString();
 
             state._fsp--;
 
-             after(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_10_1_0()); 
+             after(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_9_2_0()); 
 
             }
 
@@ -21653,7 +21653,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Provider__RedirectUriAssignment_10_1"
+    // $ANTLR end "rule__Provider__RedirectUriAssignment_9_2"
 
     // Delegated rules
 
@@ -21709,6 +21709,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     public static final BitSet FOLLOW_47 = new BitSet(new long[]{0x000001FC00000000L});
     public static final BitSet FOLLOW_48 = new BitSet(new long[]{0x0000000000000000L,0x0000000004000000L});
     public static final BitSet FOLLOW_49 = new BitSet(new long[]{0x0000000000000000L,0x0000000008000000L});
-    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x8000000000000000L,0x0000000010000000L});
+    public static final BitSet FOLLOW_50 = new BitSet(new long[]{0x8000000000000000L,0x0000000000000020L});
+    public static final BitSet FOLLOW_51 = new BitSet(new long[]{0x0000000000000000L,0x0000000010000000L});
 
 }

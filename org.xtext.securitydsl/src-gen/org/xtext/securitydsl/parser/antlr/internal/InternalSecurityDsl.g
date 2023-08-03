@@ -1936,19 +1936,19 @@ ruleProvider returns [EObject current=null]
 				}
 			)
 		)
-		otherlv_9=','
-		{
-			newLeafNode(otherlv_9, grammarAccess.getProviderAccess().getCommaKeyword_9());
-		}
 		(
+			otherlv_9=','
+			{
+				newLeafNode(otherlv_9, grammarAccess.getProviderAccess().getCommaKeyword_9_0());
+			}
 			otherlv_10='redirectUri:'
 			{
-				newLeafNode(otherlv_10, grammarAccess.getProviderAccess().getRedirectUriKeyword_10_0());
+				newLeafNode(otherlv_10, grammarAccess.getProviderAccess().getRedirectUriKeyword_9_1());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_10_1_0());
+						newCompositeNode(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_9_2_0());
 					}
 					lv_redirectUri_11_0=ruleEString
 					{
@@ -1967,7 +1967,7 @@ ruleProvider returns [EObject current=null]
 		)?
 		otherlv_12='}'
 		{
-			newLeafNode(otherlv_12, grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_11());
+			newLeafNode(otherlv_12, grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_10());
 		}
 	)
 ;

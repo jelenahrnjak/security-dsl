@@ -50,7 +50,7 @@ application:
 //              type: String 
 //          }
 //        ]
-//        roles: ["admin", "admin2", client "user"]
+//        roles: ["admin", client "user"]
 
     security: 
     	OAuth2.0:

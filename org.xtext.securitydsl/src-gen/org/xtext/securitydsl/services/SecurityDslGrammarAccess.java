@@ -1368,19 +1368,19 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Keyword cClientSecretKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		private final Assignment cClientSecretAssignment_8 = (Assignment)cGroup.eContents().get(8);
 		private final RuleCall cClientSecretEStringParserRuleCall_8_0 = (RuleCall)cClientSecretAssignment_8.eContents().get(0);
-		private final Keyword cCommaKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
-		private final Keyword cRedirectUriKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
-		private final Assignment cRedirectUriAssignment_10_1 = (Assignment)cGroup_10.eContents().get(1);
-		private final RuleCall cRedirectUriEStringParserRuleCall_10_1_0 = (RuleCall)cRedirectUriAssignment_10_1.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_11 = (Keyword)cGroup.eContents().get(11);
+		private final Group cGroup_9 = (Group)cGroup.eContents().get(9);
+		private final Keyword cCommaKeyword_9_0 = (Keyword)cGroup_9.eContents().get(0);
+		private final Keyword cRedirectUriKeyword_9_1 = (Keyword)cGroup_9.eContents().get(1);
+		private final Assignment cRedirectUriAssignment_9_2 = (Assignment)cGroup_9.eContents().get(2);
+		private final RuleCall cRedirectUriEStringParserRuleCall_9_2_0 = (RuleCall)cRedirectUriAssignment_9_2.eContents().get(0);
+		private final Keyword cRightCurlyBracketKeyword_10 = (Keyword)cGroup.eContents().get(10);
 		
 		//Provider returns Provider:
 		//    '{'
 		//        'name:' name=EOAuthProvider ','
 		//        'clientId:' clientId=EString ','
-		//        'clientSecret:' clientSecret=EString ','
-		//        ('redirectUri:' redirectUri=EString)?
+		//        'clientSecret:' clientSecret=EString
+		//        (',' 'redirectUri:' redirectUri=EString)?
 		//    '}'
 		//;
 		@Override public ParserRule getRule() { return rule; }
@@ -1388,8 +1388,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'{'
 		//    'name:' name=EOAuthProvider ','
 		//    'clientId:' clientId=EString ','
-		//    'clientSecret:' clientSecret=EString ','
-		//    ('redirectUri:' redirectUri=EString)?
+		//    'clientSecret:' clientSecret=EString
+		//    (',' 'redirectUri:' redirectUri=EString)?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
@@ -1429,23 +1429,23 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//EString
 		public RuleCall getClientSecretEStringParserRuleCall_8_0() { return cClientSecretEStringParserRuleCall_8_0; }
 		
-		//','
-		public Keyword getCommaKeyword_9() { return cCommaKeyword_9; }
+		//(',' 'redirectUri:' redirectUri=EString)?
+		public Group getGroup_9() { return cGroup_9; }
 		
-		//('redirectUri:' redirectUri=EString)?
-		public Group getGroup_10() { return cGroup_10; }
+		//','
+		public Keyword getCommaKeyword_9_0() { return cCommaKeyword_9_0; }
 		
 		//'redirectUri:'
-		public Keyword getRedirectUriKeyword_10_0() { return cRedirectUriKeyword_10_0; }
+		public Keyword getRedirectUriKeyword_9_1() { return cRedirectUriKeyword_9_1; }
 		
 		//redirectUri=EString
-		public Assignment getRedirectUriAssignment_10_1() { return cRedirectUriAssignment_10_1; }
+		public Assignment getRedirectUriAssignment_9_2() { return cRedirectUriAssignment_9_2; }
 		
 		//EString
-		public RuleCall getRedirectUriEStringParserRuleCall_10_1_0() { return cRedirectUriEStringParserRuleCall_10_1_0; }
+		public RuleCall getRedirectUriEStringParserRuleCall_9_2_0() { return cRedirectUriEStringParserRuleCall_9_2_0; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_11() { return cRightCurlyBracketKeyword_11; }
+		public Keyword getRightCurlyBracketKeyword_10() { return cRightCurlyBracketKeyword_10; }
 	}
 	public class BasicAuthenticationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.BasicAuthentication");
@@ -2194,8 +2194,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    '{'
 	//        'name:' name=EOAuthProvider ','
 	//        'clientId:' clientId=EString ','
-	//        'clientSecret:' clientSecret=EString ','
-	//        ('redirectUri:' redirectUri=EString)?
+	//        'clientSecret:' clientSecret=EString
+	//        (',' 'redirectUri:' redirectUri=EString)?
 	//    '}'
 	//;
 	public ProviderElements getProviderAccess() {

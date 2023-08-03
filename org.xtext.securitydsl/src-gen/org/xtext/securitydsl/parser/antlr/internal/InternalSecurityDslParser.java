@@ -4369,7 +4369,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleProvider"
-    // InternalSecurityDsl.g:1850:1: ruleProvider returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) otherlv_9= ',' (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' ) ;
+    // InternalSecurityDsl.g:1850:1: ruleProvider returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' ) ;
     public final EObject ruleProvider() throws RecognitionException {
         EObject current = null;
 
@@ -4395,11 +4395,11 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSecurityDsl.g:1856:2: ( (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) otherlv_9= ',' (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' ) )
-            // InternalSecurityDsl.g:1857:2: (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) otherlv_9= ',' (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' )
+            // InternalSecurityDsl.g:1856:2: ( (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' ) )
+            // InternalSecurityDsl.g:1857:2: (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' )
             {
-            // InternalSecurityDsl.g:1857:2: (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) otherlv_9= ',' (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' )
-            // InternalSecurityDsl.g:1858:3: otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) otherlv_9= ',' (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}'
+            // InternalSecurityDsl.g:1857:2: (otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}' )
+            // InternalSecurityDsl.g:1858:3: otherlv_0= '{' otherlv_1= 'name:' ( (lv_name_2_0= ruleEOAuthProvider ) ) otherlv_3= ',' otherlv_4= 'clientId:' ( (lv_clientId_5_0= ruleEString ) ) otherlv_6= ',' otherlv_7= 'clientSecret:' ( (lv_clientSecret_8_0= ruleEString ) ) (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )? otherlv_12= '}'
             {
             otherlv_0=(Token)match(input,31,FOLLOW_23); 
 
@@ -4496,7 +4496,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             					newCompositeNode(grammarAccess.getProviderAccess().getClientSecretEStringParserRuleCall_8_0());
             				
-            pushFollow(FOLLOW_57);
+            pushFollow(FOLLOW_68);
             lv_clientSecret_8_0=ruleEString();
 
             state._fsp--;
@@ -4518,24 +4518,24 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            otherlv_9=(Token)match(input,40,FOLLOW_68); 
-
-            			newLeafNode(otherlv_9, grammarAccess.getProviderAccess().getCommaKeyword_9());
-            		
-            // InternalSecurityDsl.g:1943:3: (otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )?
+            // InternalSecurityDsl.g:1939:3: (otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) ) )?
             int alt43=2;
             int LA43_0 = input.LA(1);
 
-            if ( (LA43_0==65) ) {
+            if ( (LA43_0==40) ) {
                 alt43=1;
             }
             switch (alt43) {
                 case 1 :
-                    // InternalSecurityDsl.g:1944:4: otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) )
+                    // InternalSecurityDsl.g:1940:4: otherlv_9= ',' otherlv_10= 'redirectUri:' ( (lv_redirectUri_11_0= ruleEString ) )
                     {
+                    otherlv_9=(Token)match(input,40,FOLLOW_69); 
+
+                    				newLeafNode(otherlv_9, grammarAccess.getProviderAccess().getCommaKeyword_9_0());
+                    			
                     otherlv_10=(Token)match(input,65,FOLLOW_4); 
 
-                    				newLeafNode(otherlv_10, grammarAccess.getProviderAccess().getRedirectUriKeyword_10_0());
+                    				newLeafNode(otherlv_10, grammarAccess.getProviderAccess().getRedirectUriKeyword_9_1());
                     			
                     // InternalSecurityDsl.g:1948:4: ( (lv_redirectUri_11_0= ruleEString ) )
                     // InternalSecurityDsl.g:1949:5: (lv_redirectUri_11_0= ruleEString )
@@ -4544,7 +4544,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     // InternalSecurityDsl.g:1950:6: lv_redirectUri_11_0= ruleEString
                     {
 
-                    						newCompositeNode(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_10_1_0());
+                    						newCompositeNode(grammarAccess.getProviderAccess().getRedirectUriEStringParserRuleCall_9_2_0());
                     					
                     pushFollow(FOLLOW_34);
                     lv_redirectUri_11_0=ruleEString();
@@ -4576,7 +4576,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             otherlv_12=(Token)match(input,36,FOLLOW_2); 
 
-            			newLeafNode(otherlv_12, grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_11());
+            			newLeafNode(otherlv_12, grammarAccess.getProviderAccess().getRightCurlyBracketKeyword_10());
             		
 
             }
@@ -5832,6 +5832,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_65 = new BitSet(new long[]{0x0000000000000000L,0x00000001FC000000L});
     public static final BitSet FOLLOW_66 = new BitSet(new long[]{0x8000000000000000L});
     public static final BitSet FOLLOW_67 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000001L});
-    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000001000000000L,0x0000000000000002L});
+    public static final BitSet FOLLOW_68 = new BitSet(new long[]{0x0000011000000000L});
+    public static final BitSet FOLLOW_69 = new BitSet(new long[]{0x0000000000000000L,0x0000000000000002L});
 
 }
