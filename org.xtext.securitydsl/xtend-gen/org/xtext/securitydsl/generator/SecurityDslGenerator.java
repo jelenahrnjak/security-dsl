@@ -34,15 +34,15 @@ public class SecurityDslGenerator extends AbstractGenerator {
   public void doGenerate(final Resource resource, final IFileSystemAccess2 fsa, final IGeneratorContext context) {
     EObject _head = IterableExtensions.<EObject>head(resource.getContents());
     final Application app = ((Application) _head);
-    int _length = app.getName().length();
-    boolean _lessEqualsThan = (_length <= 0);
-    if (_lessEqualsThan) {
+    String _name = app.getName();
+    boolean _tripleEquals = (_name == null);
+    if (_tripleEquals) {
       app.setName(app.getArtifact());
     }
     String _group = app.getGroup();
     String _plus = (_group + ".");
-    String _name = app.getName();
-    String _plus_1 = (_plus + _name);
+    String _name_1 = app.getName();
+    String _plus_1 = (_plus + _name_1);
     app.setPackageName(_plus_1);
     String _upperCase = app.getName().substring(0, 1).toUpperCase();
     String _substring = app.getName().substring(1);
@@ -66,7 +66,7 @@ public class SecurityDslGenerator extends AbstractGenerator {
       if (_hasNext) {
         user = users.next();
       }
-      String credentialUser = SecurityDslGenerator.getCredential(user.getModel_attributes()).getName();
+      String credentialUser = SecurityDslGenerator.getCredential(user.getEntity_attributes()).getName();
       Iterator<Role> roles = Iterators.<Role>filter(resource.getAllContents(), Role.class);
       Role role = null;
       boolean _hasNext_1 = roles.hasNext();
@@ -74,8 +74,8 @@ public class SecurityDslGenerator extends AbstractGenerator {
         role = roles.next();
       }
       String _tableName = role.getTableName();
-      boolean _tripleEquals = (_tableName == null);
-      if (_tripleEquals) {
+      boolean _tripleEquals_1 = (_tableName == null);
+      if (_tripleEquals_1) {
         role.setTableName("roles");
       }
       EList<Controller> _app_controllers = app.getApp_controllers();
@@ -84,7 +84,7 @@ public class SecurityDslGenerator extends AbstractGenerator {
           authController = ((Authentication)c);
         }
       }
-      new SecurityDslModelRepoGenerator(fsa, app, srcDestination, user, role);
+      new SecurityDslEntityRepoGenerator(fsa, app, srcDestination, user, role);
       String _packageName_1 = app.getPackageName();
       Security _app_security_1 = app.getApp_security();
       new SecurityDslServiceGenerator(fsa, _packageName_1, srcDestination, user, role, _app_security_1);
@@ -102,18 +102,18 @@ public class SecurityDslGenerator extends AbstractGenerator {
           Security _app_security_5 = app.getApp_security();
           JWT jwt = ((JWT) _app_security_5);
           String _issuer = jwt.getRegistered_claims().getIssuer();
-          boolean _tripleEquals_1 = (_issuer == null);
-          if (_tripleEquals_1) {
+          boolean _tripleEquals_2 = (_issuer == null);
+          if (_tripleEquals_2) {
             RegisteredClaim _registered_claims = jwt.getRegistered_claims();
             _registered_claims.setIssuer(app.getName());
           }
           Claim _findSubjectClaim = this.findSubjectClaim(jwt.getClaims());
-          boolean _tripleEquals_2 = (_findSubjectClaim == null);
-          if (_tripleEquals_2) {
+          boolean _tripleEquals_3 = (_findSubjectClaim == null);
+          if (_tripleEquals_3) {
             Claim subjectClaim = null;
             subjectClaim.setName("subject");
             subjectClaim.setType(EClaimType.REGISTERED);
-            subjectClaim.setClaim_attribute(SecurityDslGenerator.getCredential(user.getModel_attributes()));
+            subjectClaim.setClaim_attribute(SecurityDslGenerator.getCredential(user.getEntity_attributes()));
             jwt.getClaims().add(subjectClaim);
           }
           String _packageName_4 = app.getPackageName();

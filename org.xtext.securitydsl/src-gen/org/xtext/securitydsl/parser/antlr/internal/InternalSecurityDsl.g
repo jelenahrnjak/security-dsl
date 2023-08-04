@@ -297,17 +297,17 @@ ruleApplication returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0());
+							newCompositeNode(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0());
 						}
-						lv_app_models_20_0=ruleUser
+						lv_app_entities_20_0=ruleUser
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getApplicationRule());
 							}
 							add(
 								$current,
-								"app_models",
-								lv_app_models_20_0,
+								"app_entities",
+								lv_app_entities_20_0,
 								"org.xtext.securitydsl.SecurityDsl.User");
 							afterParserOrEnumRuleCall();
 						}
@@ -322,17 +322,17 @@ ruleApplication returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0());
+							newCompositeNode(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0());
 						}
-						lv_app_models_22_0=ruleRole
+						lv_app_entities_22_0=ruleRole
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getApplicationRule());
 							}
 							add(
 								$current,
-								"app_models",
-								lv_app_models_22_0,
+								"app_entities",
+								lv_app_entities_22_0,
 								"org.xtext.securitydsl.SecurityDsl.Role");
 							afterParserOrEnumRuleCall();
 						}
@@ -808,17 +808,17 @@ ruleRole returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0());
 					}
-					lv_model_attributes_5_0=ruleAttribute
+					lv_entity_attributes_5_0=ruleAttribute
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getRoleRule());
 						}
 						add(
 							$current,
-							"model_attributes",
-							lv_model_attributes_5_0,
+							"entity_attributes",
+							lv_entity_attributes_5_0,
 							"org.xtext.securitydsl.SecurityDsl.Attribute");
 						afterParserOrEnumRuleCall();
 					}
@@ -832,17 +832,17 @@ ruleRole returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0());
+							newCompositeNode(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0());
 						}
-						lv_model_attributes_7_0=ruleAttribute
+						lv_entity_attributes_7_0=ruleAttribute
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getRoleRule());
 							}
 							add(
 								$current,
-								"model_attributes",
-								lv_model_attributes_7_0,
+								"entity_attributes",
+								lv_entity_attributes_7_0,
 								"org.xtext.securitydsl.SecurityDsl.Attribute");
 							afterParserOrEnumRuleCall();
 						}
@@ -975,17 +975,17 @@ ruleUser returns [EObject current=null]
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0());
+						newCompositeNode(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0());
 					}
-					lv_model_attributes_5_0=ruleAttribute
+					lv_entity_attributes_5_0=ruleAttribute
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getUserRule());
 						}
 						add(
 							$current,
-							"model_attributes",
-							lv_model_attributes_5_0,
+							"entity_attributes",
+							lv_entity_attributes_5_0,
 							"org.xtext.securitydsl.SecurityDsl.Attribute");
 						afterParserOrEnumRuleCall();
 					}
@@ -999,17 +999,17 @@ ruleUser returns [EObject current=null]
 				(
 					(
 						{
-							newCompositeNode(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0());
+							newCompositeNode(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0());
 						}
-						lv_model_attributes_7_0=ruleAttribute
+						lv_entity_attributes_7_0=ruleAttribute
 						{
 							if ($current==null) {
 								$current = createModelElementForParent(grammarAccess.getUserRule());
 							}
 							add(
 								$current,
-								"model_attributes",
-								lv_model_attributes_7_0,
+								"entity_attributes",
+								lv_entity_attributes_7_0,
 								"org.xtext.securitydsl.SecurityDsl.Attribute");
 							afterParserOrEnumRuleCall();
 						}

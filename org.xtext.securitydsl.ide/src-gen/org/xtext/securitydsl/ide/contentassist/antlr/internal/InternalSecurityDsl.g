@@ -1719,9 +1719,9 @@ rule__Application__Group_12_1__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_1_1()); }
-	(rule__Application__App_modelsAssignment_12_1_1)
-	{ after(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_1_1()); }
+	{ before(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_1_1()); }
+	(rule__Application__App_entitiesAssignment_12_1_1)
+	{ after(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_1_1()); }
 )
 ;
 finally {
@@ -1773,9 +1773,9 @@ rule__Application__Group_12_2__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_2_1()); }
-	(rule__Application__App_modelsAssignment_12_2_1)
-	{ after(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_2_1()); }
+	{ before(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_2_1()); }
+	(rule__Application__App_entitiesAssignment_12_2_1)
+	{ after(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_2_1()); }
 )
 ;
 finally {
@@ -2746,9 +2746,9 @@ rule__Role__Group_2__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_2()); }
-	(rule__Role__Model_attributesAssignment_2_2)
-	{ after(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_2()); }
+	{ before(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_2()); }
+	(rule__Role__Entity_attributesAssignment_2_2)
+	{ after(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_2()); }
 )
 ;
 finally {
@@ -2853,9 +2853,9 @@ rule__Role__Group_2_3__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_3_1()); }
-	(rule__Role__Model_attributesAssignment_2_3_1)
-	{ after(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_3_1()); }
+	{ before(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_3_1()); }
+	(rule__Role__Entity_attributesAssignment_2_3_1)
+	{ after(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_3_1()); }
 )
 ;
 finally {
@@ -3259,9 +3259,9 @@ rule__User__Group_2__2__Impl
 	}
 :
 (
-	{ before(grammarAccess.getUserAccess().getModel_attributesAssignment_2_2()); }
-	(rule__User__Model_attributesAssignment_2_2)
-	{ after(grammarAccess.getUserAccess().getModel_attributesAssignment_2_2()); }
+	{ before(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_2()); }
+	(rule__User__Entity_attributesAssignment_2_2)
+	{ after(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_2()); }
 )
 ;
 finally {
@@ -3366,9 +3366,9 @@ rule__User__Group_2_3__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getUserAccess().getModel_attributesAssignment_2_3_1()); }
-	(rule__User__Model_attributesAssignment_2_3_1)
-	{ after(grammarAccess.getUserAccess().getModel_attributesAssignment_2_3_1()); }
+	{ before(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_3_1()); }
+	(rule__User__Entity_attributesAssignment_2_3_1)
+	{ after(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_3_1()); }
 )
 ;
 finally {
@@ -6331,30 +6331,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Application__App_modelsAssignment_12_1_1
+rule__Application__App_entitiesAssignment_12_1_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0()); }
+		{ before(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0()); }
 		ruleUser
-		{ after(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0()); }
+		{ after(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Application__App_modelsAssignment_12_2_1
+rule__Application__App_entitiesAssignment_12_2_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0()); }
+		{ before(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0()); }
 		ruleRole
-		{ after(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0()); }
+		{ after(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0()); }
 	)
 ;
 finally {
@@ -6549,30 +6549,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Role__Model_attributesAssignment_2_2
+rule__Role__Entity_attributesAssignment_2_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); }
+		{ before(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); }
 		ruleAttribute
-		{ after(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); }
+		{ after(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Role__Model_attributesAssignment_2_3_1
+rule__Role__Entity_attributesAssignment_2_3_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); }
+		{ before(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); }
 		ruleAttribute
-		{ after(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); }
+		{ after(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); }
 	)
 ;
 finally {
@@ -6624,30 +6624,30 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__User__Model_attributesAssignment_2_2
+rule__User__Entity_attributesAssignment_2_2
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); }
+		{ before(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); }
 		ruleAttribute
-		{ after(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); }
+		{ after(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); }
 	)
 ;
 finally {
 	restoreStackSize(stackSize);
 }
 
-rule__User__Model_attributesAssignment_2_3_1
+rule__User__Entity_attributesAssignment_2_3_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); }
+		{ before(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); }
 		ruleAttribute
-		{ after(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); }
+		{ after(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); }
 	)
 ;
 finally {

@@ -107,8 +107,8 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *         port=ELongObject? 
 	 *         hostname=EString? 
 	 *         app_database=Database? 
-	 *         app_models+=User? 
-	 *         app_models+=Role? 
+	 *         app_entities+=User? 
+	 *         app_entities+=Role? 
 	 *         app_security=Security? 
 	 *         app_controllers+=Authentication?
 	 *     )
@@ -305,7 +305,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Role returns Role
 	 *
 	 * Constraint:
-	 *     (tableName=EString? (model_attributes+=Attribute model_attributes+=Attribute*)? (role_instances+=RoleInstance role_instances+=RoleInstance*)?)
+	 *     (tableName=EString? (entity_attributes+=Attribute entity_attributes+=Attribute*)? (role_instances+=RoleInstance role_instances+=RoleInstance*)?)
 	 * </pre>
 	 */
 	protected void sequence_Role(ISerializationContext context, Role semanticObject) {
@@ -320,7 +320,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     User returns User
 	 *
 	 * Constraint:
-	 *     (tableName=EString? (model_attributes+=Attribute model_attributes+=Attribute*)?)
+	 *     (tableName=EString? (entity_attributes+=Attribute entity_attributes+=Attribute*)?)
 	 * </pre>
 	 */
 	protected void sequence_User(ISerializationContext context, User semanticObject) {

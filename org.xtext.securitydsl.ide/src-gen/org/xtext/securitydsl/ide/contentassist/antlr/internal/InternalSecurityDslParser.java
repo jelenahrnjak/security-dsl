@@ -5566,31 +5566,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Application__Group_12_1__1__Impl"
-    // InternalSecurityDsl.g:1716:1: rule__Application__Group_12_1__1__Impl : ( ( rule__Application__App_modelsAssignment_12_1_1 ) ) ;
+    // InternalSecurityDsl.g:1716:1: rule__Application__Group_12_1__1__Impl : ( ( rule__Application__App_entitiesAssignment_12_1_1 ) ) ;
     public final void rule__Application__Group_12_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:1720:1: ( ( ( rule__Application__App_modelsAssignment_12_1_1 ) ) )
-            // InternalSecurityDsl.g:1721:1: ( ( rule__Application__App_modelsAssignment_12_1_1 ) )
+            // InternalSecurityDsl.g:1720:1: ( ( ( rule__Application__App_entitiesAssignment_12_1_1 ) ) )
+            // InternalSecurityDsl.g:1721:1: ( ( rule__Application__App_entitiesAssignment_12_1_1 ) )
             {
-            // InternalSecurityDsl.g:1721:1: ( ( rule__Application__App_modelsAssignment_12_1_1 ) )
-            // InternalSecurityDsl.g:1722:2: ( rule__Application__App_modelsAssignment_12_1_1 )
+            // InternalSecurityDsl.g:1721:1: ( ( rule__Application__App_entitiesAssignment_12_1_1 ) )
+            // InternalSecurityDsl.g:1722:2: ( rule__Application__App_entitiesAssignment_12_1_1 )
             {
-             before(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_1_1()); 
-            // InternalSecurityDsl.g:1723:2: ( rule__Application__App_modelsAssignment_12_1_1 )
-            // InternalSecurityDsl.g:1723:3: rule__Application__App_modelsAssignment_12_1_1
+             before(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_1_1()); 
+            // InternalSecurityDsl.g:1723:2: ( rule__Application__App_entitiesAssignment_12_1_1 )
+            // InternalSecurityDsl.g:1723:3: rule__Application__App_entitiesAssignment_12_1_1
             {
             pushFollow(FOLLOW_2);
-            rule__Application__App_modelsAssignment_12_1_1();
+            rule__Application__App_entitiesAssignment_12_1_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_1_1()); 
+             after(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_1_1()); 
 
             }
 
@@ -5721,31 +5721,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Application__Group_12_2__1__Impl"
-    // InternalSecurityDsl.g:1770:1: rule__Application__Group_12_2__1__Impl : ( ( rule__Application__App_modelsAssignment_12_2_1 ) ) ;
+    // InternalSecurityDsl.g:1770:1: rule__Application__Group_12_2__1__Impl : ( ( rule__Application__App_entitiesAssignment_12_2_1 ) ) ;
     public final void rule__Application__Group_12_2__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:1774:1: ( ( ( rule__Application__App_modelsAssignment_12_2_1 ) ) )
-            // InternalSecurityDsl.g:1775:1: ( ( rule__Application__App_modelsAssignment_12_2_1 ) )
+            // InternalSecurityDsl.g:1774:1: ( ( ( rule__Application__App_entitiesAssignment_12_2_1 ) ) )
+            // InternalSecurityDsl.g:1775:1: ( ( rule__Application__App_entitiesAssignment_12_2_1 ) )
             {
-            // InternalSecurityDsl.g:1775:1: ( ( rule__Application__App_modelsAssignment_12_2_1 ) )
-            // InternalSecurityDsl.g:1776:2: ( rule__Application__App_modelsAssignment_12_2_1 )
+            // InternalSecurityDsl.g:1775:1: ( ( rule__Application__App_entitiesAssignment_12_2_1 ) )
+            // InternalSecurityDsl.g:1776:2: ( rule__Application__App_entitiesAssignment_12_2_1 )
             {
-             before(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_2_1()); 
-            // InternalSecurityDsl.g:1777:2: ( rule__Application__App_modelsAssignment_12_2_1 )
-            // InternalSecurityDsl.g:1777:3: rule__Application__App_modelsAssignment_12_2_1
+             before(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_2_1()); 
+            // InternalSecurityDsl.g:1777:2: ( rule__Application__App_entitiesAssignment_12_2_1 )
+            // InternalSecurityDsl.g:1777:3: rule__Application__App_entitiesAssignment_12_2_1
             {
             pushFollow(FOLLOW_2);
-            rule__Application__App_modelsAssignment_12_2_1();
+            rule__Application__App_entitiesAssignment_12_2_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_2_1()); 
+             after(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_2_1()); 
 
             }
 
@@ -8650,31 +8650,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Role__Group_2__2__Impl"
-    // InternalSecurityDsl.g:2743:1: rule__Role__Group_2__2__Impl : ( ( rule__Role__Model_attributesAssignment_2_2 ) ) ;
+    // InternalSecurityDsl.g:2743:1: rule__Role__Group_2__2__Impl : ( ( rule__Role__Entity_attributesAssignment_2_2 ) ) ;
     public final void rule__Role__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:2747:1: ( ( ( rule__Role__Model_attributesAssignment_2_2 ) ) )
-            // InternalSecurityDsl.g:2748:1: ( ( rule__Role__Model_attributesAssignment_2_2 ) )
+            // InternalSecurityDsl.g:2747:1: ( ( ( rule__Role__Entity_attributesAssignment_2_2 ) ) )
+            // InternalSecurityDsl.g:2748:1: ( ( rule__Role__Entity_attributesAssignment_2_2 ) )
             {
-            // InternalSecurityDsl.g:2748:1: ( ( rule__Role__Model_attributesAssignment_2_2 ) )
-            // InternalSecurityDsl.g:2749:2: ( rule__Role__Model_attributesAssignment_2_2 )
+            // InternalSecurityDsl.g:2748:1: ( ( rule__Role__Entity_attributesAssignment_2_2 ) )
+            // InternalSecurityDsl.g:2749:2: ( rule__Role__Entity_attributesAssignment_2_2 )
             {
-             before(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_2()); 
-            // InternalSecurityDsl.g:2750:2: ( rule__Role__Model_attributesAssignment_2_2 )
-            // InternalSecurityDsl.g:2750:3: rule__Role__Model_attributesAssignment_2_2
+             before(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_2()); 
+            // InternalSecurityDsl.g:2750:2: ( rule__Role__Entity_attributesAssignment_2_2 )
+            // InternalSecurityDsl.g:2750:3: rule__Role__Entity_attributesAssignment_2_2
             {
             pushFollow(FOLLOW_2);
-            rule__Role__Model_attributesAssignment_2_2();
+            rule__Role__Entity_attributesAssignment_2_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_2()); 
+             after(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_2()); 
 
             }
 
@@ -8978,31 +8978,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Role__Group_2_3__1__Impl"
-    // InternalSecurityDsl.g:2850:1: rule__Role__Group_2_3__1__Impl : ( ( rule__Role__Model_attributesAssignment_2_3_1 ) ) ;
+    // InternalSecurityDsl.g:2850:1: rule__Role__Group_2_3__1__Impl : ( ( rule__Role__Entity_attributesAssignment_2_3_1 ) ) ;
     public final void rule__Role__Group_2_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:2854:1: ( ( ( rule__Role__Model_attributesAssignment_2_3_1 ) ) )
-            // InternalSecurityDsl.g:2855:1: ( ( rule__Role__Model_attributesAssignment_2_3_1 ) )
+            // InternalSecurityDsl.g:2854:1: ( ( ( rule__Role__Entity_attributesAssignment_2_3_1 ) ) )
+            // InternalSecurityDsl.g:2855:1: ( ( rule__Role__Entity_attributesAssignment_2_3_1 ) )
             {
-            // InternalSecurityDsl.g:2855:1: ( ( rule__Role__Model_attributesAssignment_2_3_1 ) )
-            // InternalSecurityDsl.g:2856:2: ( rule__Role__Model_attributesAssignment_2_3_1 )
+            // InternalSecurityDsl.g:2855:1: ( ( rule__Role__Entity_attributesAssignment_2_3_1 ) )
+            // InternalSecurityDsl.g:2856:2: ( rule__Role__Entity_attributesAssignment_2_3_1 )
             {
-             before(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_3_1()); 
-            // InternalSecurityDsl.g:2857:2: ( rule__Role__Model_attributesAssignment_2_3_1 )
-            // InternalSecurityDsl.g:2857:3: rule__Role__Model_attributesAssignment_2_3_1
+             before(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_3_1()); 
+            // InternalSecurityDsl.g:2857:2: ( rule__Role__Entity_attributesAssignment_2_3_1 )
+            // InternalSecurityDsl.g:2857:3: rule__Role__Entity_attributesAssignment_2_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__Role__Model_attributesAssignment_2_3_1();
+            rule__Role__Entity_attributesAssignment_2_3_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_3_1()); 
+             after(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_3_1()); 
 
             }
 
@@ -10193,31 +10193,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__User__Group_2__2__Impl"
-    // InternalSecurityDsl.g:3256:1: rule__User__Group_2__2__Impl : ( ( rule__User__Model_attributesAssignment_2_2 ) ) ;
+    // InternalSecurityDsl.g:3256:1: rule__User__Group_2__2__Impl : ( ( rule__User__Entity_attributesAssignment_2_2 ) ) ;
     public final void rule__User__Group_2__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:3260:1: ( ( ( rule__User__Model_attributesAssignment_2_2 ) ) )
-            // InternalSecurityDsl.g:3261:1: ( ( rule__User__Model_attributesAssignment_2_2 ) )
+            // InternalSecurityDsl.g:3260:1: ( ( ( rule__User__Entity_attributesAssignment_2_2 ) ) )
+            // InternalSecurityDsl.g:3261:1: ( ( rule__User__Entity_attributesAssignment_2_2 ) )
             {
-            // InternalSecurityDsl.g:3261:1: ( ( rule__User__Model_attributesAssignment_2_2 ) )
-            // InternalSecurityDsl.g:3262:2: ( rule__User__Model_attributesAssignment_2_2 )
+            // InternalSecurityDsl.g:3261:1: ( ( rule__User__Entity_attributesAssignment_2_2 ) )
+            // InternalSecurityDsl.g:3262:2: ( rule__User__Entity_attributesAssignment_2_2 )
             {
-             before(grammarAccess.getUserAccess().getModel_attributesAssignment_2_2()); 
-            // InternalSecurityDsl.g:3263:2: ( rule__User__Model_attributesAssignment_2_2 )
-            // InternalSecurityDsl.g:3263:3: rule__User__Model_attributesAssignment_2_2
+             before(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_2()); 
+            // InternalSecurityDsl.g:3263:2: ( rule__User__Entity_attributesAssignment_2_2 )
+            // InternalSecurityDsl.g:3263:3: rule__User__Entity_attributesAssignment_2_2
             {
             pushFollow(FOLLOW_2);
-            rule__User__Model_attributesAssignment_2_2();
+            rule__User__Entity_attributesAssignment_2_2();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getUserAccess().getModel_attributesAssignment_2_2()); 
+             after(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_2()); 
 
             }
 
@@ -10521,31 +10521,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__User__Group_2_3__1__Impl"
-    // InternalSecurityDsl.g:3363:1: rule__User__Group_2_3__1__Impl : ( ( rule__User__Model_attributesAssignment_2_3_1 ) ) ;
+    // InternalSecurityDsl.g:3363:1: rule__User__Group_2_3__1__Impl : ( ( rule__User__Entity_attributesAssignment_2_3_1 ) ) ;
     public final void rule__User__Group_2_3__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:3367:1: ( ( ( rule__User__Model_attributesAssignment_2_3_1 ) ) )
-            // InternalSecurityDsl.g:3368:1: ( ( rule__User__Model_attributesAssignment_2_3_1 ) )
+            // InternalSecurityDsl.g:3367:1: ( ( ( rule__User__Entity_attributesAssignment_2_3_1 ) ) )
+            // InternalSecurityDsl.g:3368:1: ( ( rule__User__Entity_attributesAssignment_2_3_1 ) )
             {
-            // InternalSecurityDsl.g:3368:1: ( ( rule__User__Model_attributesAssignment_2_3_1 ) )
-            // InternalSecurityDsl.g:3369:2: ( rule__User__Model_attributesAssignment_2_3_1 )
+            // InternalSecurityDsl.g:3368:1: ( ( rule__User__Entity_attributesAssignment_2_3_1 ) )
+            // InternalSecurityDsl.g:3369:2: ( rule__User__Entity_attributesAssignment_2_3_1 )
             {
-             before(grammarAccess.getUserAccess().getModel_attributesAssignment_2_3_1()); 
-            // InternalSecurityDsl.g:3370:2: ( rule__User__Model_attributesAssignment_2_3_1 )
-            // InternalSecurityDsl.g:3370:3: rule__User__Model_attributesAssignment_2_3_1
+             before(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_3_1()); 
+            // InternalSecurityDsl.g:3370:2: ( rule__User__Entity_attributesAssignment_2_3_1 )
+            // InternalSecurityDsl.g:3370:3: rule__User__Entity_attributesAssignment_2_3_1
             {
             pushFollow(FOLLOW_2);
-            rule__User__Model_attributesAssignment_2_3_1();
+            rule__User__Entity_attributesAssignment_2_3_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getUserAccess().getModel_attributesAssignment_2_3_1()); 
+             after(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_3_1()); 
 
             }
 
@@ -19284,9 +19284,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__Application__App_databaseAssignment_11_1"
 
 
-    // $ANTLR start "rule__Application__App_modelsAssignment_12_1_1"
-    // InternalSecurityDsl.g:6334:1: rule__Application__App_modelsAssignment_12_1_1 : ( ruleUser ) ;
-    public final void rule__Application__App_modelsAssignment_12_1_1() throws RecognitionException {
+    // $ANTLR start "rule__Application__App_entitiesAssignment_12_1_1"
+    // InternalSecurityDsl.g:6334:1: rule__Application__App_entitiesAssignment_12_1_1 : ( ruleUser ) ;
+    public final void rule__Application__App_entitiesAssignment_12_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -19297,13 +19297,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6339:2: ( ruleUser )
             // InternalSecurityDsl.g:6340:3: ruleUser
             {
-             before(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0()); 
+             before(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0()); 
             pushFollow(FOLLOW_2);
             ruleUser();
 
             state._fsp--;
 
-             after(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0()); 
+             after(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0()); 
 
             }
 
@@ -19322,12 +19322,12 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Application__App_modelsAssignment_12_1_1"
+    // $ANTLR end "rule__Application__App_entitiesAssignment_12_1_1"
 
 
-    // $ANTLR start "rule__Application__App_modelsAssignment_12_2_1"
-    // InternalSecurityDsl.g:6349:1: rule__Application__App_modelsAssignment_12_2_1 : ( ruleRole ) ;
-    public final void rule__Application__App_modelsAssignment_12_2_1() throws RecognitionException {
+    // $ANTLR start "rule__Application__App_entitiesAssignment_12_2_1"
+    // InternalSecurityDsl.g:6349:1: rule__Application__App_entitiesAssignment_12_2_1 : ( ruleRole ) ;
+    public final void rule__Application__App_entitiesAssignment_12_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -19338,13 +19338,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6354:2: ( ruleRole )
             // InternalSecurityDsl.g:6355:3: ruleRole
             {
-             before(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0()); 
+             before(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0()); 
             pushFollow(FOLLOW_2);
             ruleRole();
 
             state._fsp--;
 
-             after(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0()); 
+             after(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0()); 
 
             }
 
@@ -19363,7 +19363,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Application__App_modelsAssignment_12_2_1"
+    // $ANTLR end "rule__Application__App_entitiesAssignment_12_2_1"
 
 
     // $ANTLR start "rule__Application__App_securityAssignment_13_1"
@@ -19866,9 +19866,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__Role__TableNameAssignment_1_1"
 
 
-    // $ANTLR start "rule__Role__Model_attributesAssignment_2_2"
-    // InternalSecurityDsl.g:6552:1: rule__Role__Model_attributesAssignment_2_2 : ( ruleAttribute ) ;
-    public final void rule__Role__Model_attributesAssignment_2_2() throws RecognitionException {
+    // $ANTLR start "rule__Role__Entity_attributesAssignment_2_2"
+    // InternalSecurityDsl.g:6552:1: rule__Role__Entity_attributesAssignment_2_2 : ( ruleAttribute ) ;
+    public final void rule__Role__Entity_attributesAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -19879,13 +19879,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6557:2: ( ruleAttribute )
             // InternalSecurityDsl.g:6558:3: ruleAttribute
             {
-             before(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); 
+             before(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_2);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); 
+             after(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); 
 
             }
 
@@ -19904,12 +19904,12 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Model_attributesAssignment_2_2"
+    // $ANTLR end "rule__Role__Entity_attributesAssignment_2_2"
 
 
-    // $ANTLR start "rule__Role__Model_attributesAssignment_2_3_1"
-    // InternalSecurityDsl.g:6567:1: rule__Role__Model_attributesAssignment_2_3_1 : ( ruleAttribute ) ;
-    public final void rule__Role__Model_attributesAssignment_2_3_1() throws RecognitionException {
+    // $ANTLR start "rule__Role__Entity_attributesAssignment_2_3_1"
+    // InternalSecurityDsl.g:6567:1: rule__Role__Entity_attributesAssignment_2_3_1 : ( ruleAttribute ) ;
+    public final void rule__Role__Entity_attributesAssignment_2_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -19920,13 +19920,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6572:2: ( ruleAttribute )
             // InternalSecurityDsl.g:6573:3: ruleAttribute
             {
-             before(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); 
+             before(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); 
             pushFollow(FOLLOW_2);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); 
+             after(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); 
 
             }
 
@@ -19945,7 +19945,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Role__Model_attributesAssignment_2_3_1"
+    // $ANTLR end "rule__Role__Entity_attributesAssignment_2_3_1"
 
 
     // $ANTLR start "rule__Role__Role_instancesAssignment_3_2"
@@ -20071,9 +20071,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__User__TableNameAssignment_1_1"
 
 
-    // $ANTLR start "rule__User__Model_attributesAssignment_2_2"
-    // InternalSecurityDsl.g:6627:1: rule__User__Model_attributesAssignment_2_2 : ( ruleAttribute ) ;
-    public final void rule__User__Model_attributesAssignment_2_2() throws RecognitionException {
+    // $ANTLR start "rule__User__Entity_attributesAssignment_2_2"
+    // InternalSecurityDsl.g:6627:1: rule__User__Entity_attributesAssignment_2_2 : ( ruleAttribute ) ;
+    public final void rule__User__Entity_attributesAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20084,13 +20084,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6632:2: ( ruleAttribute )
             // InternalSecurityDsl.g:6633:3: ruleAttribute
             {
-             before(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); 
+             before(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); 
             pushFollow(FOLLOW_2);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0()); 
+             after(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0()); 
 
             }
 
@@ -20109,12 +20109,12 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__User__Model_attributesAssignment_2_2"
+    // $ANTLR end "rule__User__Entity_attributesAssignment_2_2"
 
 
-    // $ANTLR start "rule__User__Model_attributesAssignment_2_3_1"
-    // InternalSecurityDsl.g:6642:1: rule__User__Model_attributesAssignment_2_3_1 : ( ruleAttribute ) ;
-    public final void rule__User__Model_attributesAssignment_2_3_1() throws RecognitionException {
+    // $ANTLR start "rule__User__Entity_attributesAssignment_2_3_1"
+    // InternalSecurityDsl.g:6642:1: rule__User__Entity_attributesAssignment_2_3_1 : ( ruleAttribute ) ;
+    public final void rule__User__Entity_attributesAssignment_2_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20125,13 +20125,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6647:2: ( ruleAttribute )
             // InternalSecurityDsl.g:6648:3: ruleAttribute
             {
-             before(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); 
+             before(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); 
             pushFollow(FOLLOW_2);
             ruleAttribute();
 
             state._fsp--;
 
-             after(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0()); 
+             after(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0()); 
 
             }
 
@@ -20150,7 +20150,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__User__Model_attributesAssignment_2_3_1"
+    // $ANTLR end "rule__User__Entity_attributesAssignment_2_3_1"
 
 
     // $ANTLR start "rule__RoleInstance__ClientAssignment_1"

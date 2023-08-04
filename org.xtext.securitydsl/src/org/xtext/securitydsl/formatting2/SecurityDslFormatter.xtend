@@ -17,7 +17,7 @@ class SecurityDslFormatter extends AbstractFormatter2 {
 	def dispatch void format(Application application, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
 		application.app_database.format
-		for (model : application.app_models) {
+		for (model : application.app_entities) {
 			model.format
 		}
 		application.app_security.format
@@ -28,7 +28,7 @@ class SecurityDslFormatter extends AbstractFormatter2 {
 
 	def dispatch void format(Role role, extension IFormattableDocument document) {
 		// TODO: format HiddenRegions around keywords, attributes, cross references, etc. 
-		for (attribute : role.model_attributes) {
+		for (attribute : role.entity_attributes) {
 			attribute.format
 		}
 		for (roleInstance : role.role_instances) {

@@ -72,8 +72,8 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseModel(Model object) {
-			return createModelAdapter();
+		public Adapter caseEntity(Entity object) {
+			return createEntityAdapter();
 		}
 
 		@Override
@@ -185,16 +185,16 @@ public class Security_dslAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link security_dsl.Model <em>Model</em>}'.
+	 * Creates a new adapter for an object of class '{@link security_dsl.Entity <em>Entity</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see security_dsl.Model
+	 * @see security_dsl.Entity
 	 * @generated
 	 */
-	public Adapter createModelAdapter() {
+	public Adapter createEntityAdapter() {
 		return null;
 	}
 

@@ -18,8 +18,8 @@ Application returns Application:
 	('database:' app_database=Database)?
 		
 	('model:' 
-		('user:' app_models+=User)? 
-		('role:' app_models+=Role)?
+		('user:' app_entities+=User)? 
+		('role:' app_entities+=Role)?
 	)?
 	
 	('security:' app_security=Security )?
@@ -30,7 +30,7 @@ Application returns Application:
 	;
 
 
-Model returns Model:
+Model returns Entity:
 	Role | User;
 
 Controller returns Controller:
@@ -65,7 +65,7 @@ Attribute returns Attribute:
 Role returns Role:
 	{Role} 
 	('tableName:' tableName=EString)?
-	('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+	('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 	('roles:' '[' role_instances+=RoleInstance ( "," role_instances+=RoleInstance)* ']' )?
 	
 	;
@@ -73,7 +73,7 @@ Role returns Role:
 User returns User:
 	{User} 
 	('tableName:' tableName=EString)?
-	('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+	('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 	;
 
 enum EType returns EType:

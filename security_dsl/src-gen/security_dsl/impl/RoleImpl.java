@@ -31,7 +31,7 @@ import security_dsl.Security_dslPackage;
  *
  * @generated
  */
-public class RoleImpl extends ModelImpl implements Role {
+public class RoleImpl extends EntityImpl implements Role {
 	/**
 	 * The cached value of the '{@link #getRole_instances() <em>Role instances</em>}' containment reference list.
 	 * <!-- begin-user-doc -->

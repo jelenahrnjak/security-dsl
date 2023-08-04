@@ -51,7 +51,7 @@
     </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_database"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_models"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_entities"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_controllers"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_security"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/artifact"/>
@@ -62,9 +62,9 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/port"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Application/hostname"/>
     </genClasses>
-    <genClasses ecoreClass="security_dsl.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Model/model_attributes"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Model/tableName"/>
+    <genClasses image="false" ecoreClass="security_dsl.ecore#//Entity">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Entity/entity_attributes"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Entity/tableName"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Controller">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Controller/name"/>

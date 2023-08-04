@@ -22,7 +22,7 @@ class SecurityDslGenerator extends AbstractGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess2 fsa, IGeneratorContext context) {
 
 	    val app = resource.contents.head as Application
-	    if (app.name.length <= 0) {
+	    if (app.name === null) {
 			app.name = app.artifact
 		}
 		
@@ -46,7 +46,7 @@ class SecurityDslGenerator extends AbstractGenerator {
         	var users = resource.allContents.filter(User)
         	var User user = null
         	if(users.hasNext()) user = users.next()
-        	var credentialUser = getCredential(user.model_attributes).name
+        	var credentialUser = getCredential(user.entity_attributes).name
         	
         	var roles = resource.allContents.filter(Role)
         	var Role role = null
@@ -56,7 +56,7 @@ class SecurityDslGenerator extends AbstractGenerator {
         	for (c : app.app_controllers) {
     			if(c instanceof Authentication) authController = c;
 			}
-	        new SecurityDslModelRepoGenerator(fsa, app, srcDestination, user, role)
+	        new SecurityDslEntityRepoGenerator(fsa, app, srcDestination, user, role)
 	       	new SecurityDslServiceGenerator(fsa, app.packageName, srcDestination, user, role, app.app_security)
 	       	
 	        new SecurityDslControllerGenerator(fsa, app.packageName, srcDestination, authController, app.app_security, credentialUser)
@@ -78,7 +78,7 @@ class SecurityDslGenerator extends AbstractGenerator {
 	        		var Claim subjectClaim
 	        		subjectClaim.name = 'subject'
 	        		subjectClaim.type = EClaimType::REGISTERED
-	        		subjectClaim.claim_attribute = getCredential(user.model_attributes)
+	        		subjectClaim.claim_attribute = getCredential(user.entity_attributes)
 	        		jwt.claims.add(subjectClaim)
 	        	}
 	        	

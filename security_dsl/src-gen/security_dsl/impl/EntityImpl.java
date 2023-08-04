@@ -50,34 +50,34 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator;
 
 import security_dsl.Attribute;
-import security_dsl.Model;
+import security_dsl.Entity;
 import security_dsl.Security_dslPackage;
 import security_dsl.Security_dslTables;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Model</b></em>'.
+ * An implementation of the model object '<em><b>Entity</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link security_dsl.impl.ModelImpl#getModel_attributes <em>Model attributes</em>}</li>
- *   <li>{@link security_dsl.impl.ModelImpl#getTableName <em>Table Name</em>}</li>
+ *   <li>{@link security_dsl.impl.EntityImpl#getEntity_attributes <em>Entity attributes</em>}</li>
+ *   <li>{@link security_dsl.impl.EntityImpl#getTableName <em>Table Name</em>}</li>
  * </ul>
  *
  * @generated
  */
-public abstract class ModelImpl extends MinimalEObjectImpl.Container implements Model {
+public abstract class EntityImpl extends MinimalEObjectImpl.Container implements Entity {
 	/**
-	 * The cached value of the '{@link #getModel_attributes() <em>Model attributes</em>}' containment reference list.
+	 * The cached value of the '{@link #getEntity_attributes() <em>Entity attributes</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getModel_attributes()
+	 * @see #getEntity_attributes()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Attribute> model_attributes;
+	protected EList<Attribute> entity_attributes;
 
 	/**
 	 * The default value of the '{@link #getTableName() <em>Table Name</em>}' attribute.
@@ -104,7 +104,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ModelImpl() {
+	protected EntityImpl() {
 		super();
 	}
 
@@ -115,7 +115,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return Security_dslPackage.Literals.MODEL;
+		return Security_dslPackage.Literals.ENTITY;
 	}
 
 	/**
@@ -123,12 +123,12 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Attribute> getModel_attributes() {
-		if (model_attributes == null) {
-			model_attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this,
-					Security_dslPackage.MODEL__MODEL_ATTRIBUTES);
+	public EList<Attribute> getEntity_attributes() {
+		if (entity_attributes == null) {
+			entity_attributes = new EObjectContainmentEList<Attribute>(Attribute.class, this,
+					Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES);
 		}
-		return model_attributes;
+		return entity_attributes;
 	}
 
 	/**
@@ -149,7 +149,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 		String oldTableName = tableName;
 		tableName = newTableName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.MODEL__TABLE_NAME, oldTableName,
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENTITY__TABLE_NAME, oldTableName,
 					tableName));
 	}
 
@@ -159,7 +159,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public boolean oneCredential(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::oneCredential";
+		final String constraintName = "Entity::oneCredential";
 		try {
 			/**
 			 *
@@ -171,7 +171,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     else
 			 *       let
 			 *         result : Boolean[?] = self.oclIsTypeOf(User) implies
-			 *         self.model_attributes->select(a | a.credential)
+			 *         self.entity_attributes->select(a | a.credential)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -180,7 +180,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.ENTITY___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
@@ -195,12 +195,12 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 				if (!oclIsTypeOf) {
 					result = ValueUtil.TRUE_VALUE;
 				} else {
-					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+					final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
+							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
 					/*@Thrown*/ Accumulator accumulator = ValueUtil
 							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 					/*@NonInvalid*/ OrderedSetValue select;
 					while (true) {
 						if (!ITERATOR_a.hasNext()) {
@@ -243,7 +243,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public boolean onlyOneIdentifier(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::onlyOneIdentifier";
+		final String constraintName = "Entity::onlyOneIdentifier";
 		try {
 			/**
 			 *
@@ -254,8 +254,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.model_attributes->size() > 0 implies
-			 *         self.model_attributes->select(a | a.identifier)
+			 *         result : Boolean[?] = self.entity_attributes->size() > 0 implies
+			 *         self.entity_attributes->select(a | a.identifier)
 			 *         ->size() = 1
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
@@ -264,18 +264,18 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.ENTITY___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
 			if (le) {
 				local_0 = true;
 			} else {
-				final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+				final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
 				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE
-						.evaluate(BOXED_model_attributes);
+						.evaluate(BOXED_entity_attributes);
 				final /*@NonInvalid*/ boolean gt = OclComparableGreaterThanOperation.INSTANCE
 						.evaluate(executor, size, Security_dslTables.INT_0).booleanValue();
 				final /*@NonInvalid*/ Boolean result;
@@ -284,7 +284,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 				} else {
 					/*@Thrown*/ Accumulator accumulator = ValueUtil
 							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 					/*@NonInvalid*/ OrderedSetValue select;
 					while (true) {
 						if (!ITERATOR_a.hasNext()) {
@@ -327,7 +327,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public boolean uniqueAttributeName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::uniqueAttributeName";
+		final String constraintName = "Entity::uniqueAttributeName";
 		try {
 			/**
 			 *
@@ -337,7 +337,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     if severity <= 0
 			 *     then true
 			 *     else
-			 *       let result : Boolean[1] = self.model_attributes->isUnique(a | a.name)
+			 *       let result : Boolean[1] = self.entity_attributes->isUnique(a | a.name)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -345,19 +345,19 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.ENTITY___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
 			if (le) {
 				local_0 = true;
 			} else {
-				final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+				final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
 				/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-				Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+				Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 				/*@NonInvalid*/ boolean result;
 				while (true) {
 					if (!ITERATOR_a.hasNext()) {
@@ -395,7 +395,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	 * @generated
 	 */
 	public boolean uniqueCollumnName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Model::uniqueCollumnName";
+		final String constraintName = "Entity::uniqueCollumnName";
 		try {
 			/**
 			 *
@@ -406,8 +406,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[?] = self.model_attributes->exists(a | a.collumnName <> null) implies
-			 *         self.model_attributes->isUnique(a | a.collumnName)
+			 *         result : Boolean[?] = self.entity_attributes->exists(a | a.collumnName <> null) implies
+			 *         self.entity_attributes->isUnique(a | a.collumnName)
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -415,7 +415,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
 			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
 			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP);
+					Security_dslPackage.Literals.ENTITY___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
 			/*@NonInvalid*/ boolean local_0;
@@ -424,11 +424,11 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
-					final /*@NonInvalid*/ List<Attribute> model_attributes = this.getModel_attributes();
-					final /*@NonInvalid*/ OrderedSetValue BOXED_model_attributes = idResolver
-							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, model_attributes);
+					final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
+					final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
+							.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
 					/*@Thrown*/ Object accumulator = ValueUtil.FALSE_VALUE;
-					Iterator<Object> ITERATOR_a = BOXED_model_attributes.iterator();
+					Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 					/*@NonInvalid*/ Boolean exists;
 					while (true) {
 						if (!ITERATOR_a.hasNext()) {
@@ -463,7 +463,7 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 						try {
 							/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
 									.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
-							Iterator<Object> ITERATOR_a_0 = BOXED_model_attributes.iterator();
+							Iterator<Object> ITERATOR_a_0 = BOXED_entity_attributes.iterator();
 							/*@Thrown*/ boolean isUnique;
 							while (true) {
 								if (!ITERATOR_a_0.hasNext()) {
@@ -524,8 +524,8 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case Security_dslPackage.MODEL__MODEL_ATTRIBUTES:
-			return ((InternalEList<?>) getModel_attributes()).basicRemove(otherEnd, msgs);
+		case Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES:
+			return ((InternalEList<?>) getEntity_attributes()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -538,9 +538,9 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case Security_dslPackage.MODEL__MODEL_ATTRIBUTES:
-			return getModel_attributes();
-		case Security_dslPackage.MODEL__TABLE_NAME:
+		case Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES:
+			return getEntity_attributes();
+		case Security_dslPackage.ENTITY__TABLE_NAME:
 			return getTableName();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -555,11 +555,11 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case Security_dslPackage.MODEL__MODEL_ATTRIBUTES:
-			getModel_attributes().clear();
-			getModel_attributes().addAll((Collection<? extends Attribute>) newValue);
+		case Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES:
+			getEntity_attributes().clear();
+			getEntity_attributes().addAll((Collection<? extends Attribute>) newValue);
 			return;
-		case Security_dslPackage.MODEL__TABLE_NAME:
+		case Security_dslPackage.ENTITY__TABLE_NAME:
 			setTableName((String) newValue);
 			return;
 		}
@@ -574,10 +574,10 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case Security_dslPackage.MODEL__MODEL_ATTRIBUTES:
-			getModel_attributes().clear();
+		case Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES:
+			getEntity_attributes().clear();
 			return;
-		case Security_dslPackage.MODEL__TABLE_NAME:
+		case Security_dslPackage.ENTITY__TABLE_NAME:
 			setTableName(TABLE_NAME_EDEFAULT);
 			return;
 		}
@@ -592,9 +592,9 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case Security_dslPackage.MODEL__MODEL_ATTRIBUTES:
-			return model_attributes != null && !model_attributes.isEmpty();
-		case Security_dslPackage.MODEL__TABLE_NAME:
+		case Security_dslPackage.ENTITY__ENTITY_ATTRIBUTES:
+			return entity_attributes != null && !entity_attributes.isEmpty();
+		case Security_dslPackage.ENTITY__TABLE_NAME:
 			return TABLE_NAME_EDEFAULT == null ? tableName != null : !TABLE_NAME_EDEFAULT.equals(tableName);
 		}
 		return super.eIsSet(featureID);
@@ -609,13 +609,13 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case Security_dslPackage.MODEL___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
+		case Security_dslPackage.ENTITY___ONE_CREDENTIAL__DIAGNOSTICCHAIN_MAP:
 			return oneCredential((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
+		case Security_dslPackage.ENTITY___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP:
 			return onlyOneIdentifier((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
+		case Security_dslPackage.ENTITY___UNIQUE_ATTRIBUTE_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueAttributeName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case Security_dslPackage.MODEL___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
+		case Security_dslPackage.ENTITY___UNIQUE_COLLUMN_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueCollumnName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
@@ -638,4 +638,4 @@ public abstract class ModelImpl extends MinimalEObjectImpl.Container implements 
 		return result.toString();
 	}
 
-} //ModelImpl
+} //EntityImpl

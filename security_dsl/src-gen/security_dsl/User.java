@@ -12,5 +12,5 @@ package security_dsl;
  * @model
  * @generated
  */
-public interface User extends Model {
+public interface User extends Entity {
 } // User

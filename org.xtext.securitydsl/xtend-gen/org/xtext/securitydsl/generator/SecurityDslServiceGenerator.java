@@ -26,11 +26,11 @@ public class SecurityDslServiceGenerator {
 
   public SecurityDslServiceGenerator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination, final User user, final Role role, final Security security) {
     this.packageName = packageName;
-    this.userCredential = SecurityDslGenerator.getCredential(user.getModel_attributes()).getName();
+    this.userCredential = SecurityDslGenerator.getCredential(user.getEntity_attributes()).getName();
     fsa.generateFile((srcDestination + "/service/IUserService.java"), this.generateIUserService());
     fsa.generateFile((srcDestination + "/service/impl/UserServiceImpl.java"), this.generateUserServiceImplBasic(security, this.getNotClienRoles(role.getRole_instances())));
     if ((security instanceof JWT)) {
-      this.roleStringAttribute = this.getStringAttributeForRole(role.getModel_attributes()).getName();
+      this.roleStringAttribute = this.getStringAttributeForRole(role.getEntity_attributes()).getName();
       fsa.generateFile((srcDestination + "/service/impl/RoleServiceImpl.java"), this.generateRoleServiceImpl());
       fsa.generateFile((srcDestination + "/service/IRoleService.java"), this.generateIRoleService());
     }

@@ -11,28 +11,27 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController hasUsernameAttribute roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes doesntHaveModelAndControllerForOauth"/>
+      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes doesntHaveModelAndControllerForOauth"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueTableName" value="self.app_models -> select(m | m.tableName &lt;> null) -> isUnique(m | m.tableName.toLower())"/>
+      <details key="uniqueTableName" value="self.app_entities -> select(e | e.tableName &lt;> null) -> isUnique(e | e.tableName.toLower())"/>
       <details key="uniqueControllerName" value="self.app_controllers -> isUnique(c | c.name)"/>
       <details key="uniqueControllerPath" value=" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() &lt;> c.path.toLower())"/>
       <details key="controllerPath" value="self.app_controllers -> forAll(c | c.path.at(1) = '/')"/>
       <details key="controllerNotNamedUserRole" value="not self.app_controllers -> exists(c | c.name.toLower() = 'user' or c.name.toLower() = 'role' or c.name.toLower() = 'usercontroller' or c.name.toLower() = 'rolecontroller')"/>
       <details key="validPort" value="self.port >= 1024 and self.port &lt;= 49151"/>
-      <details key="hasDatabaseForModel" value="self.app_models -> isEmpty() or not self.app_database->isEmpty()"/>
-      <details key="hasUserAndRoleModelsForController" value="self.app_controllers -> isEmpty() or (&#xA;&#x9;        self.app_models -> exists(m | m.oclIsTypeOf(User))&#xA;&#x9;        and&#xA;&#x9;        self.app_models -> exists(m | m.oclIsTypeOf(Role))&#xA;&#x9;    )"/>
-      <details key="hasUsernameAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(User))&#xA;&#x9;            -> forAll(user | user.model_attributes -> exists(a |  a.name = 'username' and a.credential = true))"/>
-      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        (&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role | &#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;            or&#xA;            self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;                -> forAll(role |&#xA;                    role.model_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;                    and&#xA;                    role.model_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;                )&#xA;        )"/>
-      <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> exists(a | a.type = EType::_'String'))"/>
-      <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_models -> select(m | m.oclIsTypeOf(Role)) -> forAll(role | role.model_attributes -> size() &lt;= 2)"/>
-      <details key="basicAuthNoRoleAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.model_attributes -> size() = 0)"/>
-      <details key="doesntHaveModelAndControllerForOauth" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(OAuth2) implies&#xA;        (&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(User)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_models -> select(m | m.oclIsTypeOf(Role)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_controllers -> select(c | c.oclIsTypeOf(Authentication)) -> size() = 0&#xA;        )"/>
+      <details key="hasDatabaseForModel" value="self.app_entities -> isEmpty() or not self.app_database->isEmpty()"/>
+      <details key="hasUserAndRoleModelsForController" value="self.app_controllers -> isEmpty() or (&#xA;&#x9;        self.app_entities -> exists(e | e.oclIsTypeOf(User))&#xA;&#x9;        and&#xA;&#x9;        self.app_entities -> exists(e | e.oclIsTypeOf(Role))&#xA;&#x9;    )"/>
+      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        (&#xA;            self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;                -> forAll(role | &#xA;                    role.entity_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;            or&#xA;            self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;                -> forAll(role |&#xA;                    role.entity_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;                    and&#xA;                    role.entity_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;                )&#xA;        )"/>
+      <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> exists(a | a.type = EType::_'String'))"/>
+      <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_entities -> select(e | e.oclIsTypeOf(Role)) -> forAll(role | role.entity_attributes -> size() &lt;= 2)"/>
+      <details key="basicAuthNoRoleAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> size() = 0)"/>
+      <details key="doesntHaveModelAndControllerForOauth" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(OAuth2) implies&#xA;        (&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(User)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_controllers -> select(c | c.oclIsTypeOf(Authentication)) -> size() = 0&#xA;        )"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="app_models" upperBound="-1"
-        eType="#//Model" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="app_entities" upperBound="-1"
+        eType="#//Entity" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_controllers" upperBound="-1"
         eType="#//Controller" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_security" eType="#//Security"
@@ -40,10 +39,8 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="artifact" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="group" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="packageName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="Security dsl generated application"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//ELongObject"
@@ -51,17 +48,17 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="hostname" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
         defaultValueLiteral="localhost"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Model" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
       <details key="constraints" value="uniqueAttributeName uniqueCollumnName onlyOneIdentifier oneCredential"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueAttributeName" value="self.model_attributes -> isUnique(a | a.name)"/>
-      <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.model_attributes -> exists(a | a.collumnName &lt;> null) implies self.model_attributes -> isUnique(a | a.collumnName)"/>
-      <details key="onlyOneIdentifier" value="self.model_attributes -> size() > 0 implies self.model_attributes -> select(a | a.identifier) -> size() = 1"/>
-      <details key="oneCredential" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;&#x9;&#x9;&#x9;self.model_attributes -> select(a | a.credential) -> size() = 1"/>
+      <details key="uniqueAttributeName" value="self.entity_attributes -> isUnique(a | a.name)"/>
+      <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.entity_attributes -> exists(a | a.collumnName &lt;> null) implies self.entity_attributes -> isUnique(a | a.collumnName)"/>
+      <details key="onlyOneIdentifier" value="self.entity_attributes -> size() > 0 implies self.entity_attributes -> select(a | a.identifier) -> size() = 1"/>
+      <details key="oneCredential" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;&#x9;&#x9;&#x9;self.entity_attributes -> select(a | a.credential) -> size() = 1"/>
     </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="model_attributes" upperBound="-1"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="entity_attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="tableName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -106,11 +103,11 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="collumnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Model">
+  <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Entity">
     <eStructuralFeatures xsi:type="ecore:EReference" name="role_instances" upperBound="-1"
         eType="#//RoleInstance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Model"/>
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Entity"/>
   <eClassifiers xsi:type="ecore:EEnum" name="EType">
     <eLiterals name="String" value="1"/>
     <eLiterals name="Float" value="2"/>
@@ -136,8 +133,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EEndpointType"
         defaultValueLiteral="OTHER"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="functionName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="method" eType="#//EEndpointMethod"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="role_authorities" upperBound="-1"
         eType="#//RoleInstance"/>

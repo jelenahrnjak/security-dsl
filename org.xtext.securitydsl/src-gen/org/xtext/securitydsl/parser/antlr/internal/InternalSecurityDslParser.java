@@ -193,7 +193,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleApplication"
-    // InternalSecurityDsl.g:72:1: ruleApplication returns [EObject current=null] : ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? ) ;
+    // InternalSecurityDsl.g:72:1: ruleApplication returns [EObject current=null] : ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? ) ;
     public final EObject ruleApplication() throws RecognitionException {
         EObject current = null;
 
@@ -228,9 +228,9 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
         EObject lv_app_database_17_0 = null;
 
-        EObject lv_app_models_20_0 = null;
+        EObject lv_app_entities_20_0 = null;
 
-        EObject lv_app_models_22_0 = null;
+        EObject lv_app_entities_22_0 = null;
 
         EObject lv_app_security_24_0 = null;
 
@@ -241,11 +241,11 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSecurityDsl.g:78:2: ( ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? ) )
-            // InternalSecurityDsl.g:79:2: ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? )
+            // InternalSecurityDsl.g:78:2: ( ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? ) )
+            // InternalSecurityDsl.g:79:2: ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? )
             {
-            // InternalSecurityDsl.g:79:2: ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? )
-            // InternalSecurityDsl.g:80:3: () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )?
+            // InternalSecurityDsl.g:79:2: ( () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )? )
+            // InternalSecurityDsl.g:80:3: () otherlv_1= 'application:' otherlv_2= 'artifact:' ( (lv_artifact_3_0= ruleEString ) ) (otherlv_4= 'name:' ( (lv_name_5_0= ruleEString ) ) )? otherlv_6= 'group:' ( (lv_group_7_0= ruleEString ) ) (otherlv_8= 'packageName:' ( (lv_packageName_9_0= ruleEString ) ) )? (otherlv_10= 'description:' ( (lv_description_11_0= ruleEString ) ) )? (otherlv_12= 'port:' ( (lv_port_13_0= ruleELongObject ) ) )? (otherlv_14= 'hostname:' ( (lv_hostname_15_0= ruleEString ) ) )? (otherlv_16= 'database:' ( (lv_app_database_17_0= ruleDatabase ) ) )? (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )? (otherlv_23= 'security:' ( (lv_app_security_24_0= ruleSecurity ) ) )? (otherlv_25= 'controller:' (otherlv_26= 'auth:' ( (lv_app_controllers_27_0= ruleAuthentication ) ) )? )?
             {
             // InternalSecurityDsl.g:80:3: ()
             // InternalSecurityDsl.g:81:4: 
@@ -644,7 +644,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSecurityDsl.g:287:3: (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )? )?
+            // InternalSecurityDsl.g:287:3: (otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )? )?
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -653,13 +653,13 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt9) {
                 case 1 :
-                    // InternalSecurityDsl.g:288:4: otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )?
+                    // InternalSecurityDsl.g:288:4: otherlv_18= 'model:' (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )? (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )?
                     {
                     otherlv_18=(Token)match(input,20,FOLLOW_15); 
 
                     				newLeafNode(otherlv_18, grammarAccess.getApplicationAccess().getModelKeyword_12_0());
                     			
-                    // InternalSecurityDsl.g:292:4: (otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) ) )?
+                    // InternalSecurityDsl.g:292:4: (otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) ) )?
                     int alt7=2;
                     int LA7_0 = input.LA(1);
 
@@ -668,23 +668,23 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt7) {
                         case 1 :
-                            // InternalSecurityDsl.g:293:5: otherlv_19= 'user:' ( (lv_app_models_20_0= ruleUser ) )
+                            // InternalSecurityDsl.g:293:5: otherlv_19= 'user:' ( (lv_app_entities_20_0= ruleUser ) )
                             {
                             otherlv_19=(Token)match(input,21,FOLLOW_16); 
 
                             					newLeafNode(otherlv_19, grammarAccess.getApplicationAccess().getUserKeyword_12_1_0());
                             				
-                            // InternalSecurityDsl.g:297:5: ( (lv_app_models_20_0= ruleUser ) )
-                            // InternalSecurityDsl.g:298:6: (lv_app_models_20_0= ruleUser )
+                            // InternalSecurityDsl.g:297:5: ( (lv_app_entities_20_0= ruleUser ) )
+                            // InternalSecurityDsl.g:298:6: (lv_app_entities_20_0= ruleUser )
                             {
-                            // InternalSecurityDsl.g:298:6: (lv_app_models_20_0= ruleUser )
-                            // InternalSecurityDsl.g:299:7: lv_app_models_20_0= ruleUser
+                            // InternalSecurityDsl.g:298:6: (lv_app_entities_20_0= ruleUser )
+                            // InternalSecurityDsl.g:299:7: lv_app_entities_20_0= ruleUser
                             {
 
-                            							newCompositeNode(grammarAccess.getApplicationAccess().getApp_modelsUserParserRuleCall_12_1_1_0());
+                            							newCompositeNode(grammarAccess.getApplicationAccess().getApp_entitiesUserParserRuleCall_12_1_1_0());
                             						
                             pushFollow(FOLLOW_17);
-                            lv_app_models_20_0=ruleUser();
+                            lv_app_entities_20_0=ruleUser();
 
                             state._fsp--;
 
@@ -694,8 +694,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                             							}
                             							add(
                             								current,
-                            								"app_models",
-                            								lv_app_models_20_0,
+                            								"app_entities",
+                            								lv_app_entities_20_0,
                             								"org.xtext.securitydsl.SecurityDsl.User");
                             							afterParserOrEnumRuleCall();
                             						
@@ -711,7 +711,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalSecurityDsl.g:317:4: (otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) ) )?
+                    // InternalSecurityDsl.g:317:4: (otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) ) )?
                     int alt8=2;
                     int LA8_0 = input.LA(1);
 
@@ -720,23 +720,23 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     }
                     switch (alt8) {
                         case 1 :
-                            // InternalSecurityDsl.g:318:5: otherlv_21= 'role:' ( (lv_app_models_22_0= ruleRole ) )
+                            // InternalSecurityDsl.g:318:5: otherlv_21= 'role:' ( (lv_app_entities_22_0= ruleRole ) )
                             {
                             otherlv_21=(Token)match(input,22,FOLLOW_18); 
 
                             					newLeafNode(otherlv_21, grammarAccess.getApplicationAccess().getRoleKeyword_12_2_0());
                             				
-                            // InternalSecurityDsl.g:322:5: ( (lv_app_models_22_0= ruleRole ) )
-                            // InternalSecurityDsl.g:323:6: (lv_app_models_22_0= ruleRole )
+                            // InternalSecurityDsl.g:322:5: ( (lv_app_entities_22_0= ruleRole ) )
+                            // InternalSecurityDsl.g:323:6: (lv_app_entities_22_0= ruleRole )
                             {
-                            // InternalSecurityDsl.g:323:6: (lv_app_models_22_0= ruleRole )
-                            // InternalSecurityDsl.g:324:7: lv_app_models_22_0= ruleRole
+                            // InternalSecurityDsl.g:323:6: (lv_app_entities_22_0= ruleRole )
+                            // InternalSecurityDsl.g:324:7: lv_app_entities_22_0= ruleRole
                             {
 
-                            							newCompositeNode(grammarAccess.getApplicationAccess().getApp_modelsRoleParserRuleCall_12_2_1_0());
+                            							newCompositeNode(grammarAccess.getApplicationAccess().getApp_entitiesRoleParserRuleCall_12_2_1_0());
                             						
                             pushFollow(FOLLOW_19);
-                            lv_app_models_22_0=ruleRole();
+                            lv_app_entities_22_0=ruleRole();
 
                             state._fsp--;
 
@@ -746,8 +746,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                             							}
                             							add(
                             								current,
-                            								"app_models",
-                            								lv_app_models_22_0,
+                            								"app_entities",
+                            								lv_app_entities_22_0,
                             								"org.xtext.securitydsl.SecurityDsl.Role");
                             							afterParserOrEnumRuleCall();
                             						
@@ -1840,7 +1840,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleRole"
-    // InternalSecurityDsl.g:759:1: ruleRole returns [EObject current=null] : ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? ) ;
+    // InternalSecurityDsl.g:759:1: ruleRole returns [EObject current=null] : ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? ) ;
     public final EObject ruleRole() throws RecognitionException {
         EObject current = null;
 
@@ -1855,9 +1855,9 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         Token otherlv_14=null;
         AntlrDatatypeRuleToken lv_tableName_2_0 = null;
 
-        EObject lv_model_attributes_5_0 = null;
+        EObject lv_entity_attributes_5_0 = null;
 
-        EObject lv_model_attributes_7_0 = null;
+        EObject lv_entity_attributes_7_0 = null;
 
         EObject lv_role_instances_11_0 = null;
 
@@ -1868,11 +1868,11 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSecurityDsl.g:765:2: ( ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? ) )
-            // InternalSecurityDsl.g:766:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? )
+            // InternalSecurityDsl.g:765:2: ( ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? ) )
+            // InternalSecurityDsl.g:766:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? )
             {
-            // InternalSecurityDsl.g:766:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? )
-            // InternalSecurityDsl.g:767:3: () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )?
+            // InternalSecurityDsl.g:766:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )? )
+            // InternalSecurityDsl.g:767:3: () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? (otherlv_9= 'roles:' otherlv_10= '[' ( (lv_role_instances_11_0= ruleRoleInstance ) ) (otherlv_12= ',' ( (lv_role_instances_13_0= ruleRoleInstance ) ) )* otherlv_14= ']' )?
             {
             // InternalSecurityDsl.g:767:3: ()
             // InternalSecurityDsl.g:768:4: 
@@ -1937,7 +1937,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSecurityDsl.g:799:3: (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
+            // InternalSecurityDsl.g:799:3: (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
             int alt21=2;
             int LA21_0 = input.LA(1);
 
@@ -1946,7 +1946,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt21) {
                 case 1 :
-                    // InternalSecurityDsl.g:800:4: otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']'
+                    // InternalSecurityDsl.g:800:4: otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']'
                     {
                     otherlv_3=(Token)match(input,38,FOLLOW_36); 
 
@@ -1956,17 +1956,17 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_4, grammarAccess.getRoleAccess().getLeftSquareBracketKeyword_2_1());
                     			
-                    // InternalSecurityDsl.g:808:4: ( (lv_model_attributes_5_0= ruleAttribute ) )
-                    // InternalSecurityDsl.g:809:5: (lv_model_attributes_5_0= ruleAttribute )
+                    // InternalSecurityDsl.g:808:4: ( (lv_entity_attributes_5_0= ruleAttribute ) )
+                    // InternalSecurityDsl.g:809:5: (lv_entity_attributes_5_0= ruleAttribute )
                     {
-                    // InternalSecurityDsl.g:809:5: (lv_model_attributes_5_0= ruleAttribute )
-                    // InternalSecurityDsl.g:810:6: lv_model_attributes_5_0= ruleAttribute
+                    // InternalSecurityDsl.g:809:5: (lv_entity_attributes_5_0= ruleAttribute )
+                    // InternalSecurityDsl.g:810:6: lv_entity_attributes_5_0= ruleAttribute
                     {
 
-                    						newCompositeNode(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_2_0());
+                    						newCompositeNode(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_2_0());
                     					
                     pushFollow(FOLLOW_38);
-                    lv_model_attributes_5_0=ruleAttribute();
+                    lv_entity_attributes_5_0=ruleAttribute();
 
                     state._fsp--;
 
@@ -1976,8 +1976,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     						}
                     						add(
                     							current,
-                    							"model_attributes",
-                    							lv_model_attributes_5_0,
+                    							"entity_attributes",
+                    							lv_entity_attributes_5_0,
                     							"org.xtext.securitydsl.SecurityDsl.Attribute");
                     						afterParserOrEnumRuleCall();
                     					
@@ -1987,7 +1987,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalSecurityDsl.g:827:4: (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )*
+                    // InternalSecurityDsl.g:827:4: (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )*
                     loop20:
                     do {
                         int alt20=2;
@@ -2000,23 +2000,23 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                         switch (alt20) {
                     	case 1 :
-                    	    // InternalSecurityDsl.g:828:5: otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) )
+                    	    // InternalSecurityDsl.g:828:5: otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) )
                     	    {
                     	    otherlv_6=(Token)match(input,40,FOLLOW_37); 
 
                     	    					newLeafNode(otherlv_6, grammarAccess.getRoleAccess().getCommaKeyword_2_3_0());
                     	    				
-                    	    // InternalSecurityDsl.g:832:5: ( (lv_model_attributes_7_0= ruleAttribute ) )
-                    	    // InternalSecurityDsl.g:833:6: (lv_model_attributes_7_0= ruleAttribute )
+                    	    // InternalSecurityDsl.g:832:5: ( (lv_entity_attributes_7_0= ruleAttribute ) )
+                    	    // InternalSecurityDsl.g:833:6: (lv_entity_attributes_7_0= ruleAttribute )
                     	    {
-                    	    // InternalSecurityDsl.g:833:6: (lv_model_attributes_7_0= ruleAttribute )
-                    	    // InternalSecurityDsl.g:834:7: lv_model_attributes_7_0= ruleAttribute
+                    	    // InternalSecurityDsl.g:833:6: (lv_entity_attributes_7_0= ruleAttribute )
+                    	    // InternalSecurityDsl.g:834:7: lv_entity_attributes_7_0= ruleAttribute
                     	    {
 
-                    	    							newCompositeNode(grammarAccess.getRoleAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0());
+                    	    							newCompositeNode(grammarAccess.getRoleAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0());
                     	    						
                     	    pushFollow(FOLLOW_38);
-                    	    lv_model_attributes_7_0=ruleAttribute();
+                    	    lv_entity_attributes_7_0=ruleAttribute();
 
                     	    state._fsp--;
 
@@ -2026,8 +2026,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     	    							}
                     	    							add(
                     	    								current,
-                    	    								"model_attributes",
-                    	    								lv_model_attributes_7_0,
+                    	    								"entity_attributes",
+                    	    								lv_entity_attributes_7_0,
                     	    								"org.xtext.securitydsl.SecurityDsl.Attribute");
                     	    							afterParserOrEnumRuleCall();
                     	    						
@@ -2234,7 +2234,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleUser"
-    // InternalSecurityDsl.g:926:1: ruleUser returns [EObject current=null] : ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? ) ;
+    // InternalSecurityDsl.g:926:1: ruleUser returns [EObject current=null] : ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? ) ;
     public final EObject ruleUser() throws RecognitionException {
         EObject current = null;
 
@@ -2245,20 +2245,20 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         Token otherlv_8=null;
         AntlrDatatypeRuleToken lv_tableName_2_0 = null;
 
-        EObject lv_model_attributes_5_0 = null;
+        EObject lv_entity_attributes_5_0 = null;
 
-        EObject lv_model_attributes_7_0 = null;
+        EObject lv_entity_attributes_7_0 = null;
 
 
 
         	enterRule();
 
         try {
-            // InternalSecurityDsl.g:932:2: ( ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? ) )
-            // InternalSecurityDsl.g:933:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? )
+            // InternalSecurityDsl.g:932:2: ( ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? ) )
+            // InternalSecurityDsl.g:933:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? )
             {
-            // InternalSecurityDsl.g:933:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? )
-            // InternalSecurityDsl.g:934:3: () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
+            // InternalSecurityDsl.g:933:2: ( () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )? )
+            // InternalSecurityDsl.g:934:3: () (otherlv_1= 'tableName:' ( (lv_tableName_2_0= ruleEString ) ) )? (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
             {
             // InternalSecurityDsl.g:934:3: ()
             // InternalSecurityDsl.g:935:4: 
@@ -2323,7 +2323,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSecurityDsl.g:966:3: (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
+            // InternalSecurityDsl.g:966:3: (otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']' )?
             int alt26=2;
             int LA26_0 = input.LA(1);
 
@@ -2332,7 +2332,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt26) {
                 case 1 :
-                    // InternalSecurityDsl.g:967:4: otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_model_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']'
+                    // InternalSecurityDsl.g:967:4: otherlv_3= 'attributes:' otherlv_4= '[' ( (lv_entity_attributes_5_0= ruleAttribute ) ) (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )* otherlv_8= ']'
                     {
                     otherlv_3=(Token)match(input,38,FOLLOW_36); 
 
@@ -2342,17 +2342,17 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                     				newLeafNode(otherlv_4, grammarAccess.getUserAccess().getLeftSquareBracketKeyword_2_1());
                     			
-                    // InternalSecurityDsl.g:975:4: ( (lv_model_attributes_5_0= ruleAttribute ) )
-                    // InternalSecurityDsl.g:976:5: (lv_model_attributes_5_0= ruleAttribute )
+                    // InternalSecurityDsl.g:975:4: ( (lv_entity_attributes_5_0= ruleAttribute ) )
+                    // InternalSecurityDsl.g:976:5: (lv_entity_attributes_5_0= ruleAttribute )
                     {
-                    // InternalSecurityDsl.g:976:5: (lv_model_attributes_5_0= ruleAttribute )
-                    // InternalSecurityDsl.g:977:6: lv_model_attributes_5_0= ruleAttribute
+                    // InternalSecurityDsl.g:976:5: (lv_entity_attributes_5_0= ruleAttribute )
+                    // InternalSecurityDsl.g:977:6: lv_entity_attributes_5_0= ruleAttribute
                     {
 
-                    						newCompositeNode(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_2_0());
+                    						newCompositeNode(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_2_0());
                     					
                     pushFollow(FOLLOW_38);
-                    lv_model_attributes_5_0=ruleAttribute();
+                    lv_entity_attributes_5_0=ruleAttribute();
 
                     state._fsp--;
 
@@ -2362,8 +2362,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     						}
                     						add(
                     							current,
-                    							"model_attributes",
-                    							lv_model_attributes_5_0,
+                    							"entity_attributes",
+                    							lv_entity_attributes_5_0,
                     							"org.xtext.securitydsl.SecurityDsl.Attribute");
                     						afterParserOrEnumRuleCall();
                     					
@@ -2373,7 +2373,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                     }
 
-                    // InternalSecurityDsl.g:994:4: (otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) ) )*
+                    // InternalSecurityDsl.g:994:4: (otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) ) )*
                     loop25:
                     do {
                         int alt25=2;
@@ -2386,23 +2386,23 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
                         switch (alt25) {
                     	case 1 :
-                    	    // InternalSecurityDsl.g:995:5: otherlv_6= ',' ( (lv_model_attributes_7_0= ruleAttribute ) )
+                    	    // InternalSecurityDsl.g:995:5: otherlv_6= ',' ( (lv_entity_attributes_7_0= ruleAttribute ) )
                     	    {
                     	    otherlv_6=(Token)match(input,40,FOLLOW_37); 
 
                     	    					newLeafNode(otherlv_6, grammarAccess.getUserAccess().getCommaKeyword_2_3_0());
                     	    				
-                    	    // InternalSecurityDsl.g:999:5: ( (lv_model_attributes_7_0= ruleAttribute ) )
-                    	    // InternalSecurityDsl.g:1000:6: (lv_model_attributes_7_0= ruleAttribute )
+                    	    // InternalSecurityDsl.g:999:5: ( (lv_entity_attributes_7_0= ruleAttribute ) )
+                    	    // InternalSecurityDsl.g:1000:6: (lv_entity_attributes_7_0= ruleAttribute )
                     	    {
-                    	    // InternalSecurityDsl.g:1000:6: (lv_model_attributes_7_0= ruleAttribute )
-                    	    // InternalSecurityDsl.g:1001:7: lv_model_attributes_7_0= ruleAttribute
+                    	    // InternalSecurityDsl.g:1000:6: (lv_entity_attributes_7_0= ruleAttribute )
+                    	    // InternalSecurityDsl.g:1001:7: lv_entity_attributes_7_0= ruleAttribute
                     	    {
 
-                    	    							newCompositeNode(grammarAccess.getUserAccess().getModel_attributesAttributeParserRuleCall_2_3_1_0());
+                    	    							newCompositeNode(grammarAccess.getUserAccess().getEntity_attributesAttributeParserRuleCall_2_3_1_0());
                     	    						
                     	    pushFollow(FOLLOW_38);
-                    	    lv_model_attributes_7_0=ruleAttribute();
+                    	    lv_entity_attributes_7_0=ruleAttribute();
 
                     	    state._fsp--;
 
@@ -2412,8 +2412,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     	    							}
                     	    							add(
                     	    								current,
-                    	    								"model_attributes",
-                    	    								lv_model_attributes_7_0,
+                    	    								"entity_attributes",
+                    	    								lv_entity_attributes_7_0,
                     	    								"org.xtext.securitydsl.SecurityDsl.Attribute");
                     	    							afterParserOrEnumRuleCall();
                     	    						

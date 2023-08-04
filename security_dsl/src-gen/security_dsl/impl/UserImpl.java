@@ -14,7 +14,7 @@ import security_dsl.User;
  *
  * @generated
  */
-public class UserImpl extends ModelImpl implements User {
+public class UserImpl extends EntityImpl implements User {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

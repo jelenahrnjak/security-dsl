@@ -65,12 +65,12 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Keyword cModelKeyword_12_0 = (Keyword)cGroup_12.eContents().get(0);
 		private final Group cGroup_12_1 = (Group)cGroup_12.eContents().get(1);
 		private final Keyword cUserKeyword_12_1_0 = (Keyword)cGroup_12_1.eContents().get(0);
-		private final Assignment cApp_modelsAssignment_12_1_1 = (Assignment)cGroup_12_1.eContents().get(1);
-		private final RuleCall cApp_modelsUserParserRuleCall_12_1_1_0 = (RuleCall)cApp_modelsAssignment_12_1_1.eContents().get(0);
+		private final Assignment cApp_entitiesAssignment_12_1_1 = (Assignment)cGroup_12_1.eContents().get(1);
+		private final RuleCall cApp_entitiesUserParserRuleCall_12_1_1_0 = (RuleCall)cApp_entitiesAssignment_12_1_1.eContents().get(0);
 		private final Group cGroup_12_2 = (Group)cGroup_12.eContents().get(2);
 		private final Keyword cRoleKeyword_12_2_0 = (Keyword)cGroup_12_2.eContents().get(0);
-		private final Assignment cApp_modelsAssignment_12_2_1 = (Assignment)cGroup_12_2.eContents().get(1);
-		private final RuleCall cApp_modelsRoleParserRuleCall_12_2_1_0 = (RuleCall)cApp_modelsAssignment_12_2_1.eContents().get(0);
+		private final Assignment cApp_entitiesAssignment_12_2_1 = (Assignment)cGroup_12_2.eContents().get(1);
+		private final RuleCall cApp_entitiesRoleParserRuleCall_12_2_1_0 = (RuleCall)cApp_entitiesAssignment_12_2_1.eContents().get(0);
 		private final Group cGroup_13 = (Group)cGroup.eContents().get(13);
 		private final Keyword cSecurityKeyword_13_0 = (Keyword)cGroup_13.eContents().get(0);
 		private final Assignment cApp_securityAssignment_13_1 = (Assignment)cGroup_13.eContents().get(1);
@@ -94,8 +94,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//    ('hostname:' hostname=EString)?
 		//    ('database:' app_database=Database)?
 		//    ('model:'
-		//        ('user:' app_models+=User)?
-		//        ('role:' app_models+=Role)?
+		//        ('user:' app_entities+=User)?
+		//        ('role:' app_entities+=Role)?
 		//    )?
 		//    ('security:' app_security=Security )?
 		//    ('controller:'
@@ -115,8 +115,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//('hostname:' hostname=EString)?
 		//('database:' app_database=Database)?
 		//('model:'
-		//    ('user:' app_models+=User)?
-		//    ('role:' app_models+=Role)?
+		//    ('user:' app_entities+=User)?
+		//    ('role:' app_entities+=Role)?
 		//)?
 		//('security:' app_security=Security )?
 		//('controller:'
@@ -221,37 +221,37 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		public RuleCall getApp_databaseDatabaseParserRuleCall_11_1_0() { return cApp_databaseDatabaseParserRuleCall_11_1_0; }
 		
 		//('model:'
-		//    ('user:' app_models+=User)?
-		//    ('role:' app_models+=Role)?
+		//    ('user:' app_entities+=User)?
+		//    ('role:' app_entities+=Role)?
 		//)?
 		public Group getGroup_12() { return cGroup_12; }
 		
 		//'model:'
 		public Keyword getModelKeyword_12_0() { return cModelKeyword_12_0; }
 		
-		//('user:' app_models+=User)?
+		//('user:' app_entities+=User)?
 		public Group getGroup_12_1() { return cGroup_12_1; }
 		
 		//'user:'
 		public Keyword getUserKeyword_12_1_0() { return cUserKeyword_12_1_0; }
 		
-		//app_models+=User
-		public Assignment getApp_modelsAssignment_12_1_1() { return cApp_modelsAssignment_12_1_1; }
+		//app_entities+=User
+		public Assignment getApp_entitiesAssignment_12_1_1() { return cApp_entitiesAssignment_12_1_1; }
 		
 		//User
-		public RuleCall getApp_modelsUserParserRuleCall_12_1_1_0() { return cApp_modelsUserParserRuleCall_12_1_1_0; }
+		public RuleCall getApp_entitiesUserParserRuleCall_12_1_1_0() { return cApp_entitiesUserParserRuleCall_12_1_1_0; }
 		
-		//('role:' app_models+=Role)?
+		//('role:' app_entities+=Role)?
 		public Group getGroup_12_2() { return cGroup_12_2; }
 		
 		//'role:'
 		public Keyword getRoleKeyword_12_2_0() { return cRoleKeyword_12_2_0; }
 		
-		//app_models+=Role
-		public Assignment getApp_modelsAssignment_12_2_1() { return cApp_modelsAssignment_12_2_1; }
+		//app_entities+=Role
+		public Assignment getApp_entitiesAssignment_12_2_1() { return cApp_entitiesAssignment_12_2_1; }
 		
 		//Role
-		public RuleCall getApp_modelsRoleParserRuleCall_12_2_1_0() { return cApp_modelsRoleParserRuleCall_12_2_1_0; }
+		public RuleCall getApp_entitiesRoleParserRuleCall_12_2_1_0() { return cApp_entitiesRoleParserRuleCall_12_2_1_0; }
 		
 		//('security:' app_security=Security )?
 		public Group getGroup_13() { return cGroup_13; }
@@ -291,7 +291,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final RuleCall cRoleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUserParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Model returns Model:
+		//Model returns Entity:
 		//    Role | User;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -537,12 +537,12 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cAttributesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cModel_attributesAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cModel_attributesAttributeParserRuleCall_2_2_0 = (RuleCall)cModel_attributesAssignment_2_2.eContents().get(0);
+		private final Assignment cEntity_attributesAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cEntity_attributesAttributeParserRuleCall_2_2_0 = (RuleCall)cEntity_attributesAssignment_2_2.eContents().get(0);
 		private final Group cGroup_2_3 = (Group)cGroup_2.eContents().get(3);
 		private final Keyword cCommaKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
-		private final Assignment cModel_attributesAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
-		private final RuleCall cModel_attributesAttributeParserRuleCall_2_3_1_0 = (RuleCall)cModel_attributesAssignment_2_3_1.eContents().get(0);
+		private final Assignment cEntity_attributesAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
+		private final RuleCall cEntity_attributesAttributeParserRuleCall_2_3_1_0 = (RuleCall)cEntity_attributesAssignment_2_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
 		private final Group cGroup_3 = (Group)cGroup.eContents().get(3);
 		private final Keyword cRolesKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
@@ -558,14 +558,14 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//Role returns Role:
 		//    {Role}
 		//    ('tableName:' tableName=EString)?
-		//    ('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//    ('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		//    ('roles:' '[' role_instances+=RoleInstance ( "," role_instances+=RoleInstance)* ']' )?
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Role}
 		//('tableName:' tableName=EString)?
-		//('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		//('roles:' '[' role_instances+=RoleInstance ( "," role_instances+=RoleInstance)* ']' )?
 		public Group getGroup() { return cGroup; }
 		
@@ -584,7 +584,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//EString
 		public RuleCall getTableNameEStringParserRuleCall_1_1_0() { return cTableNameEStringParserRuleCall_1_1_0; }
 		
-		//('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'attributes:'
@@ -593,23 +593,23 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'['
 		public Keyword getLeftSquareBracketKeyword_2_1() { return cLeftSquareBracketKeyword_2_1; }
 		
-		//model_attributes+=Attribute
-		public Assignment getModel_attributesAssignment_2_2() { return cModel_attributesAssignment_2_2; }
+		//entity_attributes+=Attribute
+		public Assignment getEntity_attributesAssignment_2_2() { return cEntity_attributesAssignment_2_2; }
 		
 		//Attribute
-		public RuleCall getModel_attributesAttributeParserRuleCall_2_2_0() { return cModel_attributesAttributeParserRuleCall_2_2_0; }
+		public RuleCall getEntity_attributesAttributeParserRuleCall_2_2_0() { return cEntity_attributesAttributeParserRuleCall_2_2_0; }
 		
-		//( "," model_attributes+=Attribute)*
+		//( "," entity_attributes+=Attribute)*
 		public Group getGroup_2_3() { return cGroup_2_3; }
 		
 		//","
 		public Keyword getCommaKeyword_2_3_0() { return cCommaKeyword_2_3_0; }
 		
-		//model_attributes+=Attribute
-		public Assignment getModel_attributesAssignment_2_3_1() { return cModel_attributesAssignment_2_3_1; }
+		//entity_attributes+=Attribute
+		public Assignment getEntity_attributesAssignment_2_3_1() { return cEntity_attributesAssignment_2_3_1; }
 		
 		//Attribute
-		public RuleCall getModel_attributesAttributeParserRuleCall_2_3_1_0() { return cModel_attributesAttributeParserRuleCall_2_3_1_0; }
+		public RuleCall getEntity_attributesAttributeParserRuleCall_2_3_1_0() { return cEntity_attributesAttributeParserRuleCall_2_3_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_2_4() { return cRightSquareBracketKeyword_2_4; }
@@ -655,24 +655,24 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Group cGroup_2 = (Group)cGroup.eContents().get(2);
 		private final Keyword cAttributesKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
 		private final Keyword cLeftSquareBracketKeyword_2_1 = (Keyword)cGroup_2.eContents().get(1);
-		private final Assignment cModel_attributesAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cModel_attributesAttributeParserRuleCall_2_2_0 = (RuleCall)cModel_attributesAssignment_2_2.eContents().get(0);
+		private final Assignment cEntity_attributesAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cEntity_attributesAttributeParserRuleCall_2_2_0 = (RuleCall)cEntity_attributesAssignment_2_2.eContents().get(0);
 		private final Group cGroup_2_3 = (Group)cGroup_2.eContents().get(3);
 		private final Keyword cCommaKeyword_2_3_0 = (Keyword)cGroup_2_3.eContents().get(0);
-		private final Assignment cModel_attributesAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
-		private final RuleCall cModel_attributesAttributeParserRuleCall_2_3_1_0 = (RuleCall)cModel_attributesAssignment_2_3_1.eContents().get(0);
+		private final Assignment cEntity_attributesAssignment_2_3_1 = (Assignment)cGroup_2_3.eContents().get(1);
+		private final RuleCall cEntity_attributesAttributeParserRuleCall_2_3_1_0 = (RuleCall)cEntity_attributesAssignment_2_3_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
 		
 		//User returns User:
 		//    {User}
 		//    ('tableName:' tableName=EString)?
-		//    ('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//    ('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		//    ;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{User}
 		//('tableName:' tableName=EString)?
-		//('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		public Group getGroup() { return cGroup; }
 		
 		//{User}
@@ -690,7 +690,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//EString
 		public RuleCall getTableNameEStringParserRuleCall_1_1_0() { return cTableNameEStringParserRuleCall_1_1_0; }
 		
-		//('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+		//('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 		public Group getGroup_2() { return cGroup_2; }
 		
 		//'attributes:'
@@ -699,23 +699,23 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'['
 		public Keyword getLeftSquareBracketKeyword_2_1() { return cLeftSquareBracketKeyword_2_1; }
 		
-		//model_attributes+=Attribute
-		public Assignment getModel_attributesAssignment_2_2() { return cModel_attributesAssignment_2_2; }
+		//entity_attributes+=Attribute
+		public Assignment getEntity_attributesAssignment_2_2() { return cEntity_attributesAssignment_2_2; }
 		
 		//Attribute
-		public RuleCall getModel_attributesAttributeParserRuleCall_2_2_0() { return cModel_attributesAttributeParserRuleCall_2_2_0; }
+		public RuleCall getEntity_attributesAttributeParserRuleCall_2_2_0() { return cEntity_attributesAttributeParserRuleCall_2_2_0; }
 		
-		//( "," model_attributes+=Attribute)*
+		//( "," entity_attributes+=Attribute)*
 		public Group getGroup_2_3() { return cGroup_2_3; }
 		
 		//","
 		public Keyword getCommaKeyword_2_3_0() { return cCommaKeyword_2_3_0; }
 		
-		//model_attributes+=Attribute
-		public Assignment getModel_attributesAssignment_2_3_1() { return cModel_attributesAssignment_2_3_1; }
+		//entity_attributes+=Attribute
+		public Assignment getEntity_attributesAssignment_2_3_1() { return cEntity_attributesAssignment_2_3_1; }
 		
 		//Attribute
-		public RuleCall getModel_attributesAttributeParserRuleCall_2_3_1_0() { return cModel_attributesAttributeParserRuleCall_2_3_1_0; }
+		public RuleCall getEntity_attributesAttributeParserRuleCall_2_3_1_0() { return cEntity_attributesAttributeParserRuleCall_2_3_1_0; }
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_2_4() { return cRightSquareBracketKeyword_2_4; }
@@ -1870,8 +1870,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    ('hostname:' hostname=EString)?
 	//    ('database:' app_database=Database)?
 	//    ('model:'
-	//        ('user:' app_models+=User)?
-	//        ('role:' app_models+=Role)?
+	//        ('user:' app_entities+=User)?
+	//        ('role:' app_entities+=Role)?
 	//    )?
 	//    ('security:' app_security=Security )?
 	//    ('controller:'
@@ -1886,7 +1886,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		return getApplicationAccess().getRule();
 	}
 	
-	//Model returns Model:
+	//Model returns Entity:
 	//    Role | User;
 	public ModelElements getModelAccess() {
 		return pModel;
@@ -1977,7 +1977,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//Role returns Role:
 	//    {Role}
 	//    ('tableName:' tableName=EString)?
-	//    ('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+	//    ('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 	//    ('roles:' '[' role_instances+=RoleInstance ( "," role_instances+=RoleInstance)* ']' )?
 	//    ;
 	public RoleElements getRoleAccess() {
@@ -1991,7 +1991,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//User returns User:
 	//    {User}
 	//    ('tableName:' tableName=EString)?
-	//    ('attributes:' '[' model_attributes+=Attribute ( "," model_attributes+=Attribute)* ']' )?
+	//    ('attributes:' '[' entity_attributes+=Attribute ( "," entity_attributes+=Attribute)* ']' )?
 	//    ;
 	public UserElements getUserAccess() {
 		return pUser;

@@ -13,7 +13,7 @@ import security_dsl.JWT
 import security_dsl.BasicAuthentication
 import security_dsl.RoleInstance
 
-class SecurityDslModelRepoGenerator  {
+class SecurityDslEntityRepoGenerator  {
 	
 	var String packageName;
 	var String credentialUser
@@ -21,7 +21,7 @@ class SecurityDslModelRepoGenerator  {
 	new(IFileSystemAccess2 fsa, Application app, String srcDestination, User user, Role role){
 		
 		this.packageName = app.packageName
-		this.credentialUser = SecurityDslGenerator.getCredential(user.model_attributes).name
+		this.credentialUser = SecurityDslGenerator.getCredential(user.entity_attributes).name
 		
    		if(user.tableName === null) user.tableName = "users"
    		fsa.generateFile(srcDestination + '/model/User.java', generateUserModel(user, app.app_security));
@@ -30,8 +30,8 @@ class SecurityDslModelRepoGenerator  {
    	    fsa.generateFile(srcDestination + '/dto/AuthenticationRequestDTO.java', generateAuthenticationRequestDTO())
        	  
        	if (app.app_security instanceof JWT) {
-			var stringAttribute = getStringAttributeForRole(role.model_attributes).name
-			var roleId = getIdentifier(role.model_attributes).name
+			var stringAttribute = getStringAttributeForRole(role.entity_attributes).name
+			var roleId = getIdentifier(role.entity_attributes).name
        		fsa.generateFile(srcDestination + '/model/Role.java', generateRoleModel(role, stringAttribute));
        		fsa.generateFile(srcDestination + "/repository/RoleRepository.java" ,  generateRoleRepository(role, stringAttribute));
        		fsa.generateFile(app.artifact + '/src/main/resources/data.sql', generateSQLScript(role.tableName, stringAttribute, role.role_instances, roleId));
@@ -66,7 +66,7 @@ class SecurityDslModelRepoGenerator  {
 		
 		import «packageName».model.User;
 		
-		public interface UserRepository extends JpaRepository<User, «getIdentifier(user.model_attributes).type»> {
+		public interface UserRepository extends JpaRepository<User, «getIdentifier(user.entity_attributes).type»> {
 			
 		    Optional<User> findBy«credentialUser.toFirstUpper»(String «credentialUser»);
 
@@ -81,7 +81,7 @@ class SecurityDslModelRepoGenerator  {
 		
 		import «packageName».model.Role;
 
-		public interface RoleRepository extends JpaRepository<Role, «getIdentifier(role.model_attributes).type»> {
+		public interface RoleRepository extends JpaRepository<Role, «getIdentifier(role.entity_attributes).type»> {
 			
 			List<Role> findBy«stringAttribute.toFirstUpper»(String «stringAttribute»);
 		}
@@ -99,7 +99,7 @@ class SecurityDslModelRepoGenerator  {
 		@NoArgsConstructor
 		public class UserRequestDTO {
 
-			«generateAttributesForDto(user.model_attributes)»
+			«generateAttributesForDto(user.entity_attributes)»
 		    private String password;
 
 			private String role;
@@ -165,7 +165,7 @@ class SecurityDslModelRepoGenerator  {
 		
 		    private static final long serialVersionUID = 1L;
 			
-			«generateAttributes(user.model_attributes)»
+			«generateAttributes(user.entity_attributes)»
 
 			«IF security instanceof JWT»
 			@JsonIgnore
@@ -291,7 +291,7 @@ class SecurityDslModelRepoGenerator  {
 		
 		    private static final long serialVersionUID = 1L;
 		    
-		    «generateAttributes(role.model_attributes)»
+		    «generateAttributes(role.entity_attributes)»
 		    @JsonIgnore
 		    @Override
 		    public String getAuthority() {

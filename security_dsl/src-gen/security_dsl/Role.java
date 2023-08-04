@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * @model
  * @generated
  */
-public interface Role extends Model {
+public interface Role extends Entity {
 	/**
 	 * Returns the value of the '<em><b>Role instances</b></em>' containment reference list.
 	 * The list contents are of type {@link security_dsl.RoleInstance}.

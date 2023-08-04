@@ -18,14 +18,14 @@ import security_dsl.Security;
 import security_dsl.User;
 
 @SuppressWarnings("all")
-public class SecurityDslModelRepoGenerator {
+public class SecurityDslEntityRepoGenerator {
   private String packageName;
 
   private String credentialUser;
 
-  public SecurityDslModelRepoGenerator(final IFileSystemAccess2 fsa, final Application app, final String srcDestination, final User user, final Role role) {
+  public SecurityDslEntityRepoGenerator(final IFileSystemAccess2 fsa, final Application app, final String srcDestination, final User user, final Role role) {
     this.packageName = app.getPackageName();
-    this.credentialUser = SecurityDslGenerator.getCredential(user.getModel_attributes()).getName();
+    this.credentialUser = SecurityDslGenerator.getCredential(user.getEntity_attributes()).getName();
     String _tableName = user.getTableName();
     boolean _tripleEquals = (_tableName == null);
     if (_tripleEquals) {
@@ -37,8 +37,8 @@ public class SecurityDslModelRepoGenerator {
     fsa.generateFile((srcDestination + "/dto/AuthenticationRequestDTO.java"), this.generateAuthenticationRequestDTO());
     Security _app_security = app.getApp_security();
     if ((_app_security instanceof JWT)) {
-      String stringAttribute = this.getStringAttributeForRole(role.getModel_attributes()).getName();
-      String roleId = this.getIdentifier(role.getModel_attributes()).getName();
+      String stringAttribute = this.getStringAttributeForRole(role.getEntity_attributes()).getName();
+      String roleId = this.getIdentifier(role.getEntity_attributes()).getName();
       fsa.generateFile((srcDestination + "/model/Role.java"), this.generateRoleModel(role, stringAttribute));
       fsa.generateFile((srcDestination + "/repository/RoleRepository.java"), this.generateRoleRepository(role, stringAttribute));
       String _artifact = app.getArtifact();
@@ -105,7 +105,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("public interface UserRepository extends JpaRepository<User, ");
-    EType _type = this.getIdentifier(user.getModel_attributes()).getType();
+    EType _type = this.getIdentifier(user.getEntity_attributes()).getType();
     _builder.append(_type);
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
@@ -143,7 +143,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("public interface RoleRepository extends JpaRepository<Role, ");
-    EType _type = this.getIdentifier(role.getModel_attributes()).getType();
+    EType _type = this.getIdentifier(role.getEntity_attributes()).getType();
     _builder.append(_type);
     _builder.append("> {");
     _builder.newLineIfNotEmpty();
@@ -186,7 +186,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.newLine();
     _builder.newLine();
     _builder.append("\t");
-    CharSequence _generateAttributesForDto = this.generateAttributesForDto(user.getModel_attributes());
+    CharSequence _generateAttributesForDto = this.generateAttributesForDto(user.getEntity_attributes());
     _builder.append(_generateAttributesForDto, "\t");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
@@ -328,7 +328,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.append("\t");
     _builder.newLine();
     _builder.append("\t");
-    String _generateAttributes = this.generateAttributes(user.getModel_attributes());
+    String _generateAttributes = this.generateAttributes(user.getEntity_attributes());
     _builder.append(_generateAttributes, "\t");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -687,7 +687,7 @@ public class SecurityDslModelRepoGenerator {
     _builder.append("    ");
     _builder.newLine();
     _builder.append("    ");
-    String _generateAttributes = this.generateAttributes(role.getModel_attributes());
+    String _generateAttributes = this.generateAttributes(role.getEntity_attributes());
     _builder.append(_generateAttributes, "    ");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");

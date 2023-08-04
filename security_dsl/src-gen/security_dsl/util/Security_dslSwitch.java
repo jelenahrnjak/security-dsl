@@ -73,9 +73,9 @@ public class Security_dslSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Security_dslPackage.MODEL: {
-			Model model = (Model) theEObject;
-			T result = caseModel(model);
+		case Security_dslPackage.ENTITY: {
+			Entity entity = (Entity) theEObject;
+			T result = caseEntity(entity);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -112,7 +112,7 @@ public class Security_dslSwitch<T> extends Switch<T> {
 			Role role = (Role) theEObject;
 			T result = caseRole(role);
 			if (result == null)
-				result = caseModel(role);
+				result = caseEntity(role);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -121,7 +121,7 @@ public class Security_dslSwitch<T> extends Switch<T> {
 			User user = (User) theEObject;
 			T result = caseUser(user);
 			if (result == null)
-				result = caseModel(user);
+				result = caseEntity(user);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -218,17 +218,17 @@ public class Security_dslSwitch<T> extends Switch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Entity</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Entity</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModel(Model object) {
+	public T caseEntity(Entity object) {
 		return null;
 	}
 

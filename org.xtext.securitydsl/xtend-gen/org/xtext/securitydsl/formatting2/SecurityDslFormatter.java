@@ -16,7 +16,7 @@ import security_dsl.Application;
 import security_dsl.Attribute;
 import security_dsl.Controller;
 import security_dsl.Database;
-import security_dsl.Model;
+import security_dsl.Entity;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
 import security_dsl.Security;
@@ -29,9 +29,9 @@ public class SecurityDslFormatter extends AbstractFormatter2 {
 
   protected void _format(final Application application, @Extension final IFormattableDocument document) {
     document.<Database>format(application.getApp_database());
-    EList<Model> _app_models = application.getApp_models();
-    for (final Model model : _app_models) {
-      document.<Model>format(model);
+    EList<Entity> _app_entities = application.getApp_entities();
+    for (final Entity model : _app_entities) {
+      document.<Entity>format(model);
     }
     document.<Security>format(application.getApp_security());
     EList<Controller> _app_controllers = application.getApp_controllers();
@@ -41,8 +41,8 @@ public class SecurityDslFormatter extends AbstractFormatter2 {
   }
 
   protected void _format(final Role role, @Extension final IFormattableDocument document) {
-    EList<Attribute> _model_attributes = role.getModel_attributes();
-    for (final Attribute attribute : _model_attributes) {
+    EList<Attribute> _entity_attributes = role.getEntity_attributes();
+    for (final Attribute attribute : _entity_attributes) {
       document.<Attribute>format(attribute);
     }
     EList<RoleInstance> _role_instances = role.getRole_instances();

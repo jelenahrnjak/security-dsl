@@ -99,8 +99,8 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getApplicationAccess().getPortAssignment_9_1(), "rule__Application__PortAssignment_9_1");
 			builder.put(grammarAccess.getApplicationAccess().getHostnameAssignment_10_1(), "rule__Application__HostnameAssignment_10_1");
 			builder.put(grammarAccess.getApplicationAccess().getApp_databaseAssignment_11_1(), "rule__Application__App_databaseAssignment_11_1");
-			builder.put(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_1_1(), "rule__Application__App_modelsAssignment_12_1_1");
-			builder.put(grammarAccess.getApplicationAccess().getApp_modelsAssignment_12_2_1(), "rule__Application__App_modelsAssignment_12_2_1");
+			builder.put(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_1_1(), "rule__Application__App_entitiesAssignment_12_1_1");
+			builder.put(grammarAccess.getApplicationAccess().getApp_entitiesAssignment_12_2_1(), "rule__Application__App_entitiesAssignment_12_2_1");
 			builder.put(grammarAccess.getApplicationAccess().getApp_securityAssignment_13_1(), "rule__Application__App_securityAssignment_13_1");
 			builder.put(grammarAccess.getApplicationAccess().getApp_controllersAssignment_14_1_1(), "rule__Application__App_controllersAssignment_14_1_1");
 			builder.put(grammarAccess.getDatabaseAccess().getVendorNameAssignment_1(), "rule__Database__VendorNameAssignment_1");
@@ -113,13 +113,13 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getAttributeAccess().getTypeAssignment_6(), "rule__Attribute__TypeAssignment_6");
 			builder.put(grammarAccess.getAttributeAccess().getCollumnNameAssignment_7_1(), "rule__Attribute__CollumnNameAssignment_7_1");
 			builder.put(grammarAccess.getRoleAccess().getTableNameAssignment_1_1(), "rule__Role__TableNameAssignment_1_1");
-			builder.put(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_2(), "rule__Role__Model_attributesAssignment_2_2");
-			builder.put(grammarAccess.getRoleAccess().getModel_attributesAssignment_2_3_1(), "rule__Role__Model_attributesAssignment_2_3_1");
+			builder.put(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_2(), "rule__Role__Entity_attributesAssignment_2_2");
+			builder.put(grammarAccess.getRoleAccess().getEntity_attributesAssignment_2_3_1(), "rule__Role__Entity_attributesAssignment_2_3_1");
 			builder.put(grammarAccess.getRoleAccess().getRole_instancesAssignment_3_2(), "rule__Role__Role_instancesAssignment_3_2");
 			builder.put(grammarAccess.getRoleAccess().getRole_instancesAssignment_3_3_1(), "rule__Role__Role_instancesAssignment_3_3_1");
 			builder.put(grammarAccess.getUserAccess().getTableNameAssignment_1_1(), "rule__User__TableNameAssignment_1_1");
-			builder.put(grammarAccess.getUserAccess().getModel_attributesAssignment_2_2(), "rule__User__Model_attributesAssignment_2_2");
-			builder.put(grammarAccess.getUserAccess().getModel_attributesAssignment_2_3_1(), "rule__User__Model_attributesAssignment_2_3_1");
+			builder.put(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_2(), "rule__User__Entity_attributesAssignment_2_2");
+			builder.put(grammarAccess.getUserAccess().getEntity_attributesAssignment_2_3_1(), "rule__User__Entity_attributesAssignment_2_3_1");
 			builder.put(grammarAccess.getRoleInstanceAccess().getClientAssignment_1(), "rule__RoleInstance__ClientAssignment_1");
 			builder.put(grammarAccess.getRoleInstanceAccess().getNameAssignment_2(), "rule__RoleInstance__NameAssignment_2");
 			builder.put(grammarAccess.getEndpointAccess().getTypeAssignment_2(), "rule__Endpoint__TypeAssignment_2");

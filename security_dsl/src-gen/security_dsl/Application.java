@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  * </p>
  * <ul>
  *   <li>{@link security_dsl.Application#getApp_database <em>App database</em>}</li>
- *   <li>{@link security_dsl.Application#getApp_models <em>App models</em>}</li>
+ *   <li>{@link security_dsl.Application#getApp_entities <em>App entities</em>}</li>
  *   <li>{@link security_dsl.Application#getApp_controllers <em>App controllers</em>}</li>
  *   <li>{@link security_dsl.Application#getApp_security <em>App security</em>}</li>
  *   <li>{@link security_dsl.Application#getArtifact <em>Artifact</em>}</li>
@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getApplication()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleMustHaveStringAttribute'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleCantHaveAdditionalAttributes'"
  * @generated
  */
 public interface Application extends EObject {
@@ -59,16 +59,16 @@ public interface Application extends EObject {
 	void setApp_database(Database value);
 
 	/**
-	 * Returns the value of the '<em><b>App models</b></em>' containment reference list.
-	 * The list contents are of type {@link security_dsl.Model}.
+	 * Returns the value of the '<em><b>App entities</b></em>' containment reference list.
+	 * The list contents are of type {@link security_dsl.Entity}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>App models</em>' containment reference list.
-	 * @see security_dsl.Security_dslPackage#getApplication_App_models()
+	 * @return the value of the '<em>App entities</em>' containment reference list.
+	 * @see security_dsl.Security_dslPackage#getApplication_App_entities()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EList<Model> getApp_models();
+	EList<Entity> getApp_entities();
 
 	/**
 	 * Returns the value of the '<em><b>App controllers</b></em>' containment reference list.
@@ -150,13 +150,12 @@ public interface Application extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see security_dsl.Security_dslPackage#getApplication_Name()
-	 * @model default=""
+	 * @model
 	 * @generated
 	 */
 	String getName();
@@ -173,13 +172,12 @@ public interface Application extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Package Name</b></em>' attribute.
-	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Package Name</em>' attribute.
 	 * @see #setPackageName(String)
 	 * @see security_dsl.Security_dslPackage#getApplication_PackageName()
-	 * @model default=""
+	 * @model
 	 * @generated
 	 */
 	String getPackageName();
@@ -266,22 +264,6 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt; select(m | m.tableName &lt;&gt; null) -&gt; isUnique(m | m.tableName.toLower())'"
-	 * @generated
-	 */
-	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.model_attributes -&gt; size() = 0)'"
-	 * @generated
-	 */
-	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; forAll(c | c.path.at(1) = \'/\')'"
 	 * @generated
 	 */
@@ -290,26 +272,10 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isUnique(c | c.name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_entities -&gt; select(e | e.tableName &lt;&gt; null) -&gt; isUnique(e | e.tableName.toLower())'"
 	 * @generated
 	 */
-	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User))\n\t            -&gt; forAll(user | user.model_attributes -&gt; exists(a |  a.name = \'username\' and a.credential = true))'"
-	 * @generated
-	 */
-	boolean hasUsernameAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        (\n            self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n                -&gt; forAll(role | \n                    role.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n            or\n            self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n                -&gt; forAll(role |\n                    role.model_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n                    and\n                    role.model_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n                )\n        )'"
-	 * @generated
-	 */
-	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -322,14 +288,6 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_models -&gt; isEmpty() or not self.app_database-&gt;isEmpty()'"
-	 * @generated
-	 */
-	boolean hasDatabaseForModel(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body=' self.app_controllers -&gt; isUnique(c | c.path) and self.app_controllers -&gt; forAll(c | c.name.toLower() &lt;&gt; c.path.toLower())'"
 	 * @generated
 	 */
@@ -338,18 +296,50 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; forAll(role | role.model_attributes -&gt; size() &lt;= 2)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isEmpty() or (\n\t        self.app_entities -&gt; exists(e | e.oclIsTypeOf(User))\n\t        and\n\t        self.app_entities -&gt; exists(e | e.oclIsTypeOf(Role))\n\t    )'"
 	 * @generated
 	 */
-	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean hasUserAndRoleModelsForController(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_entities -&gt; isEmpty() or not self.app_database-&gt;isEmpty()'"
+	 * @generated
+	 */
+	boolean hasDatabaseForModel(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
 	 * @generated
 	 */
 	boolean doesntHaveModelAndControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isUnique(c | c.name)'"
+	 * @generated
+	 */
+	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.entity_attributes -&gt; size() = 0)'"
+	 * @generated
+	 */
+	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.entity_attributes -&gt; exists(a | a.type = EType::_\'String\'))'"
+	 * @generated
+	 */
+	boolean roleMustHaveStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -362,17 +352,17 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isEmpty() or (\n\t        self.app_models -&gt; exists(m | m.oclIsTypeOf(User))\n\t        and\n\t        self.app_models -&gt; exists(m | m.oclIsTypeOf(Role))\n\t    )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        (\n            self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n                -&gt; forAll(role | \n                    role.entity_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n            or\n            self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n                -&gt; forAll(role |\n                    role.entity_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n                    and\n                    role.entity_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n                )\n        )'"
 	 * @generated
 	 */
-	boolean hasUserAndRoleModelsForController(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n\t        self.app_models -&gt; select(m | m.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.model_attributes -&gt; exists(a | a.type = EType::_\'String\'))'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_entities -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role | role.entity_attributes -&gt; size() &lt;= 2)'"
 	 * @generated
 	 */
-	boolean roleMustHaveStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Application

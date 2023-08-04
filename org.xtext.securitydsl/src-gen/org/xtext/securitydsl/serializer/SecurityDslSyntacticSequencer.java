@@ -57,8 +57,8 @@ public class SecurityDslSyntacticSequencer extends AbstractSyntacticSequencer {
 	 *
 	 * This ambiguous syntax occurs at:
 	 *     app_database=Database 'model:'? (ambiguity) (rule end)
-	 *     app_models+=Role (ambiguity) (rule end)
-	 *     app_models+=User (ambiguity) (rule end)
+	 *     app_entities+=Role (ambiguity) (rule end)
+	 *     app_entities+=User (ambiguity) (rule end)
 	 *     app_security=Security (ambiguity) (rule end)
 	 *     description=EString 'model:'? (ambiguity) (rule end)
 	 *     group=EString 'model:'? (ambiguity) (rule end)
