@@ -6,6 +6,7 @@ import security_dsl.BasicAuthentication
 import security_dsl.EEndpointType
 import security_dsl.JWT
 import security_dsl.Security
+import security_dsl.Endpoint
 
 class SecurityDslControllerGenerator {
 	
@@ -20,14 +21,14 @@ class SecurityDslControllerGenerator {
 	
 	def generateAuthController(Authentication authController, Security security, String credentialNameUser){
 			
-		var regEndpoint = ''
-		var loginEndpoint = ''
-		var logoutEndpoint = ''
+		var Endpoint regEndpoint;
+		var Endpoint loginEndpoint;
+		var Endpoint logoutEndpoint;
 		
 		for (e : authController.controller_endpoints) {
-			if(e.type == EEndpointType::REGISTRATION) regEndpoint =  e.url
-			if(e.type == EEndpointType::LOGIN) loginEndpoint = e.url
-			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = e.url
+			if(e.type == EEndpointType::REGISTRATION) regEndpoint =  e
+			if(e.type == EEndpointType::LOGIN) loginEndpoint = e
+			if(e.type == EEndpointType::LOGOUT) logoutEndpoint = e
 		}
 	
 		return '''
@@ -70,13 +71,13 @@ class SecurityDslControllerGenerator {
 			«IF security instanceof JWT»
 			private final TokenUtils tokenUtils;
 			«ENDIF»
-		   @PostMapping("«regEndpoint»")
-		    public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {
+		   @PostMapping("«regEndpoint.url»")
+		    public ResponseEntity<User> «regEndpoint.functionName»(@RequestBody UserRequestDTO request) {
 		        return new ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
 		    }
 		    
-			@PostMapping("«loginEndpoint»")
-			public ResponseEntity<«IF security instanceof JWT»UserTokenStateDTO«ELSEIF security instanceof BasicAuthentication»User«ENDIF»> login(@RequestBody AuthenticationRequestDTO request) {
+			@PostMapping("«loginEndpoint.url»")
+			public ResponseEntity<«IF security instanceof JWT»UserTokenStateDTO«ELSEIF security instanceof BasicAuthentication»User«ENDIF»> «loginEndpoint.functionName»(@RequestBody AuthenticationRequestDTO request) {
 
 				Authentication authentication = new UsernamePasswordAuthenticationToken(request.get«credentialNameUser.toFirstUpper»(), request.getPassword());
 				authentication = authenticationManager.authenticate(authentication);
@@ -91,8 +92,8 @@ class SecurityDslControllerGenerator {
 				«ENDIF»
 			}
 
-			@GetMapping("«logoutEndpoint»")
-			public ResponseEntity<Void> logout() {
+			@GetMapping("«logoutEndpoint.url»")
+			public ResponseEntity<Void> «logoutEndpoint.functionName»() {
 				SecurityContextHolder.clearContext();
 				return ResponseEntity.ok().build();
 			}

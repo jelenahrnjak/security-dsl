@@ -22,26 +22,26 @@ public class SecurityDslControllerGenerator {
   }
 
   public String generateAuthController(final Authentication authController, final Security security, final String credentialNameUser) {
-    String regEndpoint = "";
-    String loginEndpoint = "";
-    String logoutEndpoint = "";
+    Endpoint regEndpoint = null;
+    Endpoint loginEndpoint = null;
+    Endpoint logoutEndpoint = null;
     EList<Endpoint> _controller_endpoints = authController.getController_endpoints();
     for (final Endpoint e : _controller_endpoints) {
       {
         EEndpointType _type = e.getType();
         boolean _equals = Objects.equal(_type, EEndpointType.REGISTRATION);
         if (_equals) {
-          regEndpoint = e.getUrl();
+          regEndpoint = e;
         }
         EEndpointType _type_1 = e.getType();
         boolean _equals_1 = Objects.equal(_type_1, EEndpointType.LOGIN);
         if (_equals_1) {
-          loginEndpoint = e.getUrl();
+          loginEndpoint = e;
         }
         EEndpointType _type_2 = e.getType();
         boolean _equals_2 = Objects.equal(_type_2, EEndpointType.LOGOUT);
         if (_equals_2) {
-          logoutEndpoint = e.getUrl();
+          logoutEndpoint = e;
         }
       }
     }
@@ -140,12 +140,16 @@ public class SecurityDslControllerGenerator {
     }
     _builder.append("   ");
     _builder.append("@PostMapping(\"");
-    _builder.append(regEndpoint, "   ");
+    String _url = regEndpoint.getUrl();
+    _builder.append(_url, "   ");
     _builder.append("\")");
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
-    _builder.append("public ResponseEntity<User> registration(@RequestBody UserRequestDTO request) {");
-    _builder.newLine();
+    _builder.append("public ResponseEntity<User> ");
+    String _functionName = regEndpoint.getFunctionName();
+    _builder.append(_functionName, "    ");
+    _builder.append("(@RequestBody UserRequestDTO request) {");
+    _builder.newLineIfNotEmpty();
     _builder.append("        ");
     _builder.append("return new ResponseEntity<>(userService.save(request), HttpStatus.CREATED);");
     _builder.newLine();
@@ -156,7 +160,8 @@ public class SecurityDslControllerGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@PostMapping(\"");
-    _builder.append(loginEndpoint, "\t");
+    String _url_1 = loginEndpoint.getUrl();
+    _builder.append(_url_1, "\t");
     _builder.append("\")");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -170,7 +175,10 @@ public class SecurityDslControllerGenerator {
         }
       }
     }
-    _builder.append("> login(@RequestBody AuthenticationRequestDTO request) {");
+    _builder.append("> ");
+    String _functionName_1 = loginEndpoint.getFunctionName();
+    _builder.append(_functionName_1, "\t");
+    _builder.append("(@RequestBody AuthenticationRequestDTO request) {");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t\t");
@@ -213,12 +221,16 @@ public class SecurityDslControllerGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("@GetMapping(\"");
-    _builder.append(logoutEndpoint, "\t");
+    String _url_2 = logoutEndpoint.getUrl();
+    _builder.append(_url_2, "\t");
     _builder.append("\")");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
-    _builder.append("public ResponseEntity<Void> logout() {");
-    _builder.newLine();
+    _builder.append("public ResponseEntity<Void> ");
+    String _functionName_2 = logoutEndpoint.getFunctionName();
+    _builder.append(_functionName_2, "\t");
+    _builder.append("() {");
+    _builder.newLineIfNotEmpty();
     _builder.append("\t\t");
     _builder.append("SecurityContextHolder.clearContext();");
     _builder.newLine();

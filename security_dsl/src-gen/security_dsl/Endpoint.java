@@ -85,7 +85,7 @@ public interface Endpoint extends EObject {
 	 * @return the value of the '<em>Function Name</em>' attribute.
 	 * @see #setFunctionName(String)
 	 * @see security_dsl.Security_dslPackage#getEndpoint_FunctionName()
-	 * @model
+	 * @model required="true"
 	 * @generated
 	 */
 	String getFunctionName();

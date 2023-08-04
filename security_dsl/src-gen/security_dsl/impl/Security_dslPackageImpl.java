@@ -1727,7 +1727,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEndpoint_Type(), this.getEEndpointType(), "type", "OTHER", 1, 1, Endpoint.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getEndpoint_FunctionName(), ecorePackage.getEString(), "functionName", null, 0, 1,
+		initEAttribute(getEndpoint_FunctionName(), ecorePackage.getEString(), "functionName", null, 1, 1,
 				Endpoint.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getEndpoint_Method(), this.getEEndpointMethod(), "method", null, 0, 1, Endpoint.class,

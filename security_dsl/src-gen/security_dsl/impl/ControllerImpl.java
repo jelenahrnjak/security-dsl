@@ -834,9 +834,9 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 					Security_dslPackage.Literals.CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_8;
+			/*@NonInvalid*/ boolean local_6;
 			if (le) {
-				local_8 = true;
+				local_6 = true;
 			} else {
 				/*@Caught*/ Object CAUGHT_result;
 				try {
@@ -880,8 +880,11 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 									try {
 										/*@Caught*/ Object CAUGHT_implies;
 										try {
-											/*@Caught*/ Object CAUGHT_and;
-											try {
+											final /*@NonInvalid*/ Boolean and = ValueUtil.TRUE_VALUE;
+											final /*@Thrown*/ Boolean implies;
+											if (and == ValueUtil.FALSE_VALUE) {
+												implies = ValueUtil.TRUE_VALUE;
+											} else {
 												/*@Caught*/ Object CAUGHT_ne_0;
 												try {
 													if (local_0 == null) {
@@ -889,77 +892,24 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 																"Null source for \'\'http://www.example.org/security_dsl\'::Endpoint::functionName\'");
 													}
 													final /*@Thrown*/ String functionName = local_0.getFunctionName();
-													final /*@Thrown*/ boolean ne_0 = functionName != null;
-													CAUGHT_ne_0 = ne_0;
-												} catch (Exception e) {
-													CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
-												}
-												final /*@Thrown*/ Boolean and;
-												if (CAUGHT_ne_0 == ValueUtil.FALSE_VALUE) {
-													and = ValueUtil.FALSE_VALUE;
-												} else {
-													/*@Caught*/ Object CAUGHT_ne_1;
-													try {
-														if (local_1 == null) {
-															throw new InvalidValueException(
-																	"Null source for \'\'http://www.example.org/security_dsl\'::Endpoint::functionName\'");
-														}
-														final /*@Thrown*/ String functionName_0 = local_1
-																.getFunctionName();
-														final /*@Thrown*/ boolean ne_1 = functionName_0 != null;
-														CAUGHT_ne_1 = ne_1;
-													} catch (Exception e) {
-														CAUGHT_ne_1 = ValueUtil.createInvalidValue(e);
-													}
-													if (CAUGHT_ne_1 == ValueUtil.FALSE_VALUE) {
-														and = ValueUtil.FALSE_VALUE;
-													} else {
-														if (CAUGHT_ne_0 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_ne_0;
-														}
-														if (CAUGHT_ne_1 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_ne_1;
-														}
-														and = ValueUtil.TRUE_VALUE;
-													}
-												}
-												CAUGHT_and = and;
-											} catch (Exception e) {
-												CAUGHT_and = ValueUtil.createInvalidValue(e);
-											}
-											final /*@Thrown*/ Boolean implies;
-											if (CAUGHT_and == ValueUtil.FALSE_VALUE) {
-												implies = ValueUtil.TRUE_VALUE;
-											} else {
-												/*@Caught*/ Object CAUGHT_ne_2;
-												try {
-													if (local_0 == null) {
-														throw new InvalidValueException(
-																"Null source for \'\'http://www.example.org/security_dsl\'::Endpoint::functionName\'");
-													}
-													final /*@Thrown*/ String functionName_1 = local_0.getFunctionName();
 													if (local_1 == null) {
 														throw new InvalidValueException(
 																"Null source for \'\'http://www.example.org/security_dsl\'::Endpoint::functionName\'");
 													}
-													final /*@Thrown*/ String functionName_2 = local_1.getFunctionName();
-													final /*@Thrown*/ boolean ne_2 = (functionName_1 != null)
-															? !functionName_1.equals(functionName_2)
-															: (functionName_2 != null);
-													CAUGHT_ne_2 = ne_2;
+													final /*@Thrown*/ String functionName_0 = local_1.getFunctionName();
+													final /*@Thrown*/ boolean ne_0 = !functionName
+															.equals(functionName_0);
+													CAUGHT_ne_0 = ne_0;
 												} catch (Exception e) {
-													CAUGHT_ne_2 = ValueUtil.createInvalidValue(e);
+													CAUGHT_ne_0 = ValueUtil.createInvalidValue(e);
 												}
-												if (CAUGHT_ne_2 == ValueUtil.TRUE_VALUE) {
+												if (CAUGHT_ne_0 == ValueUtil.TRUE_VALUE) {
 													implies = ValueUtil.TRUE_VALUE;
 												} else {
-													if (CAUGHT_and instanceof InvalidValueException) {
-														throw (InvalidValueException) CAUGHT_and;
+													if (CAUGHT_ne_0 instanceof InvalidValueException) {
+														throw (InvalidValueException) CAUGHT_ne_0;
 													}
-													if (CAUGHT_ne_2 instanceof InvalidValueException) {
-														throw (InvalidValueException) CAUGHT_ne_2;
-													}
-													if (CAUGHT_and == null) {
+													if (and == null) {
 														implies = null;
 													} else {
 														implies = ValueUtil.FALSE_VALUE;
@@ -981,7 +931,7 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 												if (and_0 == ValueUtil.FALSE_VALUE) {
 													implies_0 = ValueUtil.TRUE_VALUE;
 												} else {
-													/*@Caught*/ Object CAUGHT_ne_3;
+													/*@Caught*/ Object CAUGHT_ne_1;
 													try {
 														if (local_0 == null) {
 															throw new InvalidValueException(
@@ -993,16 +943,16 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 																	"Null source for \'\'http://www.example.org/security_dsl\'::Endpoint::url\'");
 														}
 														final /*@Thrown*/ String url_0 = local_1.getUrl();
-														final /*@Thrown*/ boolean ne_3 = !url.equals(url_0);
-														CAUGHT_ne_3 = ne_3;
+														final /*@Thrown*/ boolean ne_1 = !url.equals(url_0);
+														CAUGHT_ne_1 = ne_1;
 													} catch (Exception e) {
-														CAUGHT_ne_3 = ValueUtil.createInvalidValue(e);
+														CAUGHT_ne_1 = ValueUtil.createInvalidValue(e);
 													}
-													if (CAUGHT_ne_3 == ValueUtil.TRUE_VALUE) {
+													if (CAUGHT_ne_1 == ValueUtil.TRUE_VALUE) {
 														implies_0 = ValueUtil.TRUE_VALUE;
 													} else {
-														if (CAUGHT_ne_3 instanceof InvalidValueException) {
-															throw (InvalidValueException) CAUGHT_ne_3;
+														if (CAUGHT_ne_1 instanceof InvalidValueException) {
+															throw (InvalidValueException) CAUGHT_ne_1;
 														}
 														if (and_0 == null) {
 															implies_0 = null;
@@ -1066,9 +1016,9 @@ public abstract class ControllerImpl extends MinimalEObjectImpl.Container implem
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
 								(Object) null, severity_0, CAUGHT_result, Security_dslTables.INT_0)
 						.booleanValue();
-				local_8 = logDiagnostic;
+				local_6 = logDiagnostic;
 			}
-			return local_8;
+			return local_6;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}

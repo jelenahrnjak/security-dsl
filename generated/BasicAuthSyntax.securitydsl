@@ -57,10 +57,11 @@ application:
         	{
         		type: LOGIN
         		url: "/login"
+        		functionName: "login"
         	},
         	{
         		type: LOGOUT
         		url: "/logout"
-        		roleAuthorities: ["admin", "user"]
+        		functionName: "logout"
         	}
         ] 
