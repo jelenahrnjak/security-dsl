@@ -58,7 +58,7 @@ import security_dsl.Security_dslTables;
  * <ul>
  *   <li>{@link security_dsl.impl.EndpointImpl#getUrl <em>Url</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getType <em>Type</em>}</li>
- *   <li>{@link security_dsl.impl.EndpointImpl#getFunctionName <em>Function Name</em>}</li>
+ *   <li>{@link security_dsl.impl.EndpointImpl#getMethodName <em>Method Name</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getMethod <em>Method</em>}</li>
  *   <li>{@link security_dsl.impl.EndpointImpl#getRole_authorities <em>Role authorities</em>}</li>
  * </ul>
@@ -107,24 +107,24 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	protected EEndpointType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFunctionName() <em>Function Name</em>}' attribute.
+	 * The default value of the '{@link #getMethodName() <em>Method Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFunctionName()
+	 * @see #getMethodName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FUNCTION_NAME_EDEFAULT = null;
+	protected static final String METHOD_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFunctionName() <em>Function Name</em>}' attribute.
+	 * The cached value of the '{@link #getMethodName() <em>Method Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getFunctionName()
+	 * @see #getMethodName()
 	 * @generated
 	 * @ordered
 	 */
-	protected String functionName = FUNCTION_NAME_EDEFAULT;
+	protected String methodName = METHOD_NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getMethod() <em>Method</em>}' attribute.
@@ -222,8 +222,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getFunctionName() {
-		return functionName;
+	public String getMethodName() {
+		return methodName;
 	}
 
 	/**
@@ -231,12 +231,12 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setFunctionName(String newFunctionName) {
-		String oldFunctionName = functionName;
-		functionName = newFunctionName;
+	public void setMethodName(String newMethodName) {
+		String oldMethodName = methodName;
+		methodName = newMethodName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENDPOINT__FUNCTION_NAME,
-					oldFunctionName, functionName));
+			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.ENDPOINT__METHOD_NAME,
+					oldMethodName, methodName));
 	}
 
 	/**
@@ -440,8 +440,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 			return getUrl();
 		case Security_dslPackage.ENDPOINT__TYPE:
 			return getType();
-		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
-			return getFunctionName();
+		case Security_dslPackage.ENDPOINT__METHOD_NAME:
+			return getMethodName();
 		case Security_dslPackage.ENDPOINT__METHOD:
 			return getMethod();
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
@@ -465,8 +465,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		case Security_dslPackage.ENDPOINT__TYPE:
 			setType((EEndpointType) newValue);
 			return;
-		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
-			setFunctionName((String) newValue);
+		case Security_dslPackage.ENDPOINT__METHOD_NAME:
+			setMethodName((String) newValue);
 			return;
 		case Security_dslPackage.ENDPOINT__METHOD:
 			setMethod((EEndpointMethod) newValue);
@@ -493,8 +493,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		case Security_dslPackage.ENDPOINT__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
-		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
-			setFunctionName(FUNCTION_NAME_EDEFAULT);
+		case Security_dslPackage.ENDPOINT__METHOD_NAME:
+			setMethodName(METHOD_NAME_EDEFAULT);
 			return;
 		case Security_dslPackage.ENDPOINT__METHOD:
 			setMethod(METHOD_EDEFAULT);
@@ -518,8 +518,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 			return URL_EDEFAULT == null ? url != null : !URL_EDEFAULT.equals(url);
 		case Security_dslPackage.ENDPOINT__TYPE:
 			return type != TYPE_EDEFAULT;
-		case Security_dslPackage.ENDPOINT__FUNCTION_NAME:
-			return FUNCTION_NAME_EDEFAULT == null ? functionName != null : !FUNCTION_NAME_EDEFAULT.equals(functionName);
+		case Security_dslPackage.ENDPOINT__METHOD_NAME:
+			return METHOD_NAME_EDEFAULT == null ? methodName != null : !METHOD_NAME_EDEFAULT.equals(methodName);
 		case Security_dslPackage.ENDPOINT__METHOD:
 			return method != METHOD_EDEFAULT;
 		case Security_dslPackage.ENDPOINT__ROLE_AUTHORITIES:
@@ -561,8 +561,8 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		result.append(url);
 		result.append(", type: ");
 		result.append(type);
-		result.append(", functionName: ");
-		result.append(functionName);
+		result.append(", methodName: ");
+		result.append(methodName);
 		result.append(", method: ");
 		result.append(method);
 		result.append(')');

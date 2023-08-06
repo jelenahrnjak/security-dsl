@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import org.eclipse.emf.common.notify.NotificationChain;
 
@@ -22,15 +23,19 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
+import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 import org.eclipse.ocl.pivot.values.TupleValue;
+import security_dsl.Entity;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
 import security_dsl.Security_dslPackage;
@@ -97,6 +102,98 @@ public class RoleImpl extends EntityImpl implements Role {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean uniqueRoleEntity(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Role::uniqueRoleEntity";
+		try {
+			/**
+			 *
+			 * inv uniqueRoleEntity:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = Entity.allInstances()
+			 *           ->select(e | e.oclIsTypeOf(Role))
+			 *           ->size() <= 1
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'There can be at most one entity of type "Role" in the model!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.ROLE___UNIQUE_ROLE_ENTITY__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Entity_0 = idResolver
+						.getClass(Security_dslTables.CLSSid_Entity, null);
+				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+						.evaluate(executor, Security_dslTables.SET_CLSSid_Entity, TYP_security_dsl_c_c_Entity_0);
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
+						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Entity);
+				Iterator<Object> ITERATOR_e_0 = allInstances.iterator();
+				/*@NonInvalid*/ SetValue select;
+				while (true) {
+					if (!ITERATOR_e_0.hasNext()) {
+						select = accumulator;
+						break;
+					}
+					/*@NonInvalid*/ Entity e_0 = (Entity) ITERATOR_e_0.next();
+					/**
+					 * e.oclIsTypeOf(Role)
+					 */
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role = idResolver
+							.getClass(Security_dslTables.CLSSid_Role, null);
+					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
+							.evaluate(executor, e_0, TYP_security_dsl_c_c_Role).booleanValue();
+					//
+					if (oclIsTypeOf) {
+						accumulator.add(e_0);
+					}
+				}
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+				final /*@NonInvalid*/ boolean status = OclComparableLessThanEqualOperation.INSTANCE
+						.evaluate(executor, size, Security_dslTables.INT_1).booleanValue();
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_There_32_can_32_be_32_at_32_most_32_one_32_entity_32_of_32_type_32_34_Role_34_32_in_32_the_32_model_33,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean uniqueRoleInstanceName(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "Role::uniqueRoleInstanceName";
 		try {
@@ -110,8 +207,7 @@ public class RoleImpl extends EntityImpl implements Role {
 			 *     else
 			 *       let
 			 *         result : OclAny[1] = let
-			 *           status : Boolean[1] = RoleInstance.allInstances()
-			 *           ->isUnique(name)
+			 *           status : Boolean[1] = self.role_instances->isUnique(r | r.name)
 			 *         in
 			 *           if status = true
 			 *           then true
@@ -133,24 +229,23 @@ public class RoleImpl extends EntityImpl implements Role {
 			if (le) {
 				local_2 = true;
 			} else {
-				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_RoleInstance = idResolver
-						.getClass(Security_dslTables.CLSSid_RoleInstance, null);
-				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
-						executor, Security_dslTables.SET_CLSSid_RoleInstance, TYP_security_dsl_c_c_RoleInstance);
+				final /*@NonInvalid*/ List<RoleInstance> role_instances = this.getRole_instances();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_role_instances = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_RoleInstance, role_instances);
 				/*@Thrown*/ Accumulator accumulator = ValueUtil
-						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_RoleInstance);
-				Iterator<Object> ITERATOR__1 = allInstances.iterator();
+						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_RoleInstance);
+				Iterator<Object> ITERATOR_r = BOXED_role_instances.iterator();
 				/*@NonInvalid*/ boolean status;
 				while (true) {
-					if (!ITERATOR__1.hasNext()) {
+					if (!ITERATOR_r.hasNext()) {
 						status = true;
 						break;
 					}
-					/*@NonInvalid*/ RoleInstance _1 = (RoleInstance) ITERATOR__1.next();
+					/*@NonInvalid*/ RoleInstance r = (RoleInstance) ITERATOR_r.next();
 					/**
-					 * name
+					 * r.name
 					 */
-					final /*@NonInvalid*/ String name = _1.getName();
+					final /*@NonInvalid*/ String name = r.getName();
 					//
 					if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
 						status = false;
@@ -262,6 +357,8 @@ public class RoleImpl extends EntityImpl implements Role {
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+		case Security_dslPackage.ROLE___UNIQUE_ROLE_ENTITY__DIAGNOSTICCHAIN_MAP:
+			return uniqueRoleEntity((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		case Security_dslPackage.ROLE___UNIQUE_ROLE_INSTANCE_NAME__DIAGNOSTICCHAIN_MAP:
 			return uniqueRoleInstanceName((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}

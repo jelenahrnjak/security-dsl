@@ -20,17 +20,25 @@ public interface User extends Entity {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'User entity must have exactly one attribute of type String marked as a credential!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; select(a | a.credential) -&gt; size() = 1\n\t        and\n\t        self.entity_attributes -&gt; select(a | a.credential) -&gt; forAll(a | a.type = EType::String)\n}.status'"
-	 * @generated
-	 */
-	boolean oneCredentialForUser(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'User entity cannot have an attribute named \"password\"!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; forAll(a | a.name.toLower() &lt;&gt; \'password\')\n}.status'"
 	 * @generated
 	 */
 	boolean noAttributeNamedPassword(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'User entity must have exactly one attribute of type String marked as a credential!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; select(a | a.credential) -&gt; size() = 1\n\t        and\n\t        self.entity_attributes -&gt; select(a | a.credential) -&gt; forAll(a | a.type = EType::String)\n}.status'"
+	 * @generated
+	 */
+	boolean oneStringTypeCredentialForUser(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'There can be at most one entity of type \"User\" in the model!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() &lt;= 1\n}.status'"
+	 * @generated
+	 */
+	boolean uniqueUserEntity(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // User

@@ -215,7 +215,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     (
 	 *         type=EEndpointType 
 	 *         url=EString 
-	 *         functionName=EString? 
+	 *         methodName=EString? 
 	 *         method=EEndpointMethod? 
 	 *         (role_authorities+=[RoleInstance|EString] role_authorities+=[RoleInstance|EString]*)?
 	 *     )

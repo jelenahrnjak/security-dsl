@@ -783,9 +783,9 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Assignment cUrlAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cUrlEStringParserRuleCall_4_0 = (RuleCall)cUrlAssignment_4.eContents().get(0);
 		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cFunctionNameKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cFunctionNameAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cFunctionNameEStringParserRuleCall_5_1_0 = (RuleCall)cFunctionNameAssignment_5_1.eContents().get(0);
+		private final Keyword cMethodNameKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
+		private final Assignment cMethodNameAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
+		private final RuleCall cMethodNameEStringParserRuleCall_5_1_0 = (RuleCall)cMethodNameAssignment_5_1.eContents().get(0);
 		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
 		private final Keyword cMethodKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
 		private final Assignment cMethodAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
@@ -808,7 +808,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//    '{'
 		//        'type:' type=EEndpointType
 		//        'url:' url=EString
-		//        ('functionName:' functionName=EString)?
+		//        ('methodName:' methodName=EString)?
 		//        ('method:' method=EEndpointMethod)?
 		//        ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 		//    '}';
@@ -817,7 +817,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'{'
 		//    'type:' type=EEndpointType
 		//    'url:' url=EString
-		//    ('functionName:' functionName=EString)?
+		//    ('methodName:' methodName=EString)?
 		//    ('method:' method=EEndpointMethod)?
 		//    ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 		//'}'
@@ -844,17 +844,17 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//EString
 		public RuleCall getUrlEStringParserRuleCall_4_0() { return cUrlEStringParserRuleCall_4_0; }
 		
-		//('functionName:' functionName=EString)?
+		//('methodName:' methodName=EString)?
 		public Group getGroup_5() { return cGroup_5; }
 		
-		//'functionName:'
-		public Keyword getFunctionNameKeyword_5_0() { return cFunctionNameKeyword_5_0; }
+		//'methodName:'
+		public Keyword getMethodNameKeyword_5_0() { return cMethodNameKeyword_5_0; }
 		
-		//functionName=EString
-		public Assignment getFunctionNameAssignment_5_1() { return cFunctionNameAssignment_5_1; }
+		//methodName=EString
+		public Assignment getMethodNameAssignment_5_1() { return cMethodNameAssignment_5_1; }
 		
 		//EString
-		public RuleCall getFunctionNameEStringParserRuleCall_5_1_0() { return cFunctionNameEStringParserRuleCall_5_1_0; }
+		public RuleCall getMethodNameEStringParserRuleCall_5_1_0() { return cMethodNameEStringParserRuleCall_5_1_0; }
 		
 		//('method:' method=EEndpointMethod)?
 		public Group getGroup_6() { return cGroup_6; }
@@ -2036,7 +2036,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    '{'
 	//        'type:' type=EEndpointType
 	//        'url:' url=EString
-	//        ('functionName:' functionName=EString)?
+	//        ('methodName:' methodName=EString)?
 	//        ('method:' method=EEndpointMethod)?
 	//        ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 	//    '}';

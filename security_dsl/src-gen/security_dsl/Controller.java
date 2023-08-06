@@ -25,7 +25,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getController()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueControllerName'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueEndpointMethodNames'"
  * @generated
  */
 public interface Controller extends EObject {
@@ -112,6 +112,14 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoints within a controller must have unique URLs!\',\n\tstatus : Boolean = \n   \t\t \tself.controller_endpoints -&gt; isUnique(e | e.url)\n}.status'"
+	 * @generated
+	 */
+	boolean uniqueEndpointURLs(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controllers should have unique names!\',\n\tstatus : Boolean = Controller.allInstances() -&gt; isUnique(c | c.name)\n}.status'"
 	 * @generated
 	 */
@@ -120,10 +128,10 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoints within a controller must have unique function names and URLs!\',\n\tstatus : Boolean = \n\t        self.controller_endpoints -&gt; forAll(e1, e2 | e1 &lt;&gt; e2 implies (e1.functionName &lt;&gt; null and e2.functionName &lt;&gt; null implies e1.functionName &lt;&gt; e2.functionName) \n\t        and \n\t        (e1.url &lt;&gt; null and e2.url &lt;&gt; null implies e1.url &lt;&gt; e2.url))\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoints within a controller must have unique method names!\',\n\tstatus : Boolean = \n   \t\t \tself.controller_endpoints -&gt; isUnique(e | e.methodName)\n}.status'"
 	 * @generated
 	 */
-	boolean uniqueEndpoints(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueEndpointMethodNames(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

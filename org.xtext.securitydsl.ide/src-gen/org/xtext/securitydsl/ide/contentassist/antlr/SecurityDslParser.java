@@ -124,7 +124,7 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 			builder.put(grammarAccess.getRoleInstanceAccess().getNameAssignment_2(), "rule__RoleInstance__NameAssignment_2");
 			builder.put(grammarAccess.getEndpointAccess().getTypeAssignment_2(), "rule__Endpoint__TypeAssignment_2");
 			builder.put(grammarAccess.getEndpointAccess().getUrlAssignment_4(), "rule__Endpoint__UrlAssignment_4");
-			builder.put(grammarAccess.getEndpointAccess().getFunctionNameAssignment_5_1(), "rule__Endpoint__FunctionNameAssignment_5_1");
+			builder.put(grammarAccess.getEndpointAccess().getMethodNameAssignment_5_1(), "rule__Endpoint__MethodNameAssignment_5_1");
 			builder.put(grammarAccess.getEndpointAccess().getMethodAssignment_6_1(), "rule__Endpoint__MethodAssignment_6_1");
 			builder.put(grammarAccess.getEndpointAccess().getRole_authoritiesAssignment_7_2(), "rule__Endpoint__Role_authoritiesAssignment_7_2");
 			builder.put(grammarAccess.getEndpointAccess().getRole_authoritiesAssignment_7_3_1(), "rule__Endpoint__Role_authoritiesAssignment_7_3_1");

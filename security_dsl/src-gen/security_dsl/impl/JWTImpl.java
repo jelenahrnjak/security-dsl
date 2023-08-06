@@ -630,10 +630,10 @@ public class JWTImpl extends SecurityImpl implements JWT {
 					/**
 					 * e.oclIsTypeOf(Role)
 					 */
-					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role = idResolver
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
 							.getClass(Security_dslTables.CLSSid_Role, null);
 					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
-							.evaluate(executor, e_0, TYP_security_dsl_c_c_Role).booleanValue();
+							.evaluate(executor, e_0, TYP_security_dsl_c_c_Role_0).booleanValue();
 					//
 					if (oclIsTypeOf) {
 						accumulator.add(e_0);

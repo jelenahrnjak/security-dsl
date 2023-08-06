@@ -1150,24 +1150,24 @@ ruleEndpoint returns [EObject current=null]
 			)
 		)
 		(
-			otherlv_5='functionName:'
+			otherlv_5='methodName:'
 			{
-				newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0());
+				newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0());
+						newCompositeNode(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0());
 					}
-					lv_functionName_6_0=ruleEString
+					lv_methodName_6_0=ruleEString
 					{
 						if ($current==null) {
 							$current = createModelElementForParent(grammarAccess.getEndpointRule());
 						}
 						set(
 							$current,
-							"functionName",
-							lv_functionName_6_0,
+							"methodName",
+							lv_methodName_6_0,
 							"org.xtext.securitydsl.SecurityDsl.EString");
 						afterParserOrEnumRuleCall();
 					}

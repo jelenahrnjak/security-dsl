@@ -101,7 +101,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__METHOD_REQUIRED_FOR_OTHER_TYPE = 8;
+	public static final int CONTROLLER__METHOD_REQUIRED_FOR_OTHER_TYPE = 13;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Path' of 'Controller'.
@@ -109,7 +109,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__CONTROLLER_PATH = 12;
+	public static final int CONTROLLER__CONTROLLER_PATH = 8;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Controller Path' of 'Controller'.
@@ -117,7 +117,15 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__UNIQUE_CONTROLLER_PATH = 13;
+	public static final int CONTROLLER__UNIQUE_CONTROLLER_PATH = 11;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Endpoint UR Ls' of 'Controller'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int CONTROLLER__UNIQUE_ENDPOINT_UR_LS = 12;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Controller Name' of 'Controller'.
@@ -128,12 +136,20 @@ public class Security_dslValidator extends EObjectValidator {
 	public static final int CONTROLLER__UNIQUE_CONTROLLER_NAME = 14;
 
 	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Endpoints' of 'Controller'.
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Endpoint Method Names' of 'Controller'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__UNIQUE_ENDPOINTS = 10;
+	public static final int CONTROLLER__UNIQUE_ENDPOINT_METHOD_NAMES = 15;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Role Entity' of 'Role'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int ROLE__UNIQUE_ROLE_ENTITY = 16;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Endpoint Limits' of 'Controller'.
@@ -141,7 +157,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CONTROLLER__ENDPOINT_LIMITS = 11;
+	public static final int CONTROLLER__ENDPOINT_LIMITS = 10;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Controller Not Named User Role' of 'Controller'.
@@ -157,15 +173,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ROLE__UNIQUE_ROLE_INSTANCE_NAME = 15;
-
-	/**
-	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'One Credential For User' of 'User'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public static final int USER__ONE_CREDENTIAL_FOR_USER = 16;
+	public static final int ROLE__UNIQUE_ROLE_INSTANCE_NAME = 17;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'No Attribute Named Password' of 'User'.
@@ -173,7 +181,31 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int USER__NO_ATTRIBUTE_NAMED_PASSWORD = 17;
+	public static final int USER__NO_ATTRIBUTE_NAMED_PASSWORD = 20;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'One String Type Credential For User' of 'User'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int USER__ONE_STRING_TYPE_CREDENTIAL_FOR_USER = 18;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique User Entity' of 'User'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int USER__UNIQUE_USER_ENTITY = 19;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Has User And Role For Controller' of 'Authentication'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int AUTHENTICATION__HAS_USER_AND_ROLE_FOR_CONTROLLER = 24;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Authentication Limits' of 'Authentication'.
@@ -181,7 +213,15 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int AUTHENTICATION__AUTHENTICATION_LIMITS = 19;
+	public static final int AUTHENTICATION__AUTHENTICATION_LIMITS = 21;
+
+	/**
+	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Authentication Controller' of 'Authentication'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public static final int AUTHENTICATION__UNIQUE_AUTHENTICATION_CONTROLLER = 22;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Login Existance For Logout' of 'Authentication'.
@@ -189,7 +229,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int AUTHENTICATION__LOGIN_EXISTANCE_FOR_LOGOUT = 18;
+	public static final int AUTHENTICATION__LOGIN_EXISTANCE_FOR_LOGOUT = 23;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Role Authorities' of 'Endpoint'.
@@ -197,7 +237,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ENDPOINT__UNIQUE_ROLE_AUTHORITIES = 20;
+	public static final int ENDPOINT__UNIQUE_ROLE_AUTHORITIES = 25;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Url Starts With Forward Slash' of 'Endpoint'.
@@ -205,7 +245,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int ENDPOINT__URL_STARTS_WITH_FORWARD_SLASH = 21;
+	public static final int ENDPOINT__URL_STARTS_WITH_FORWARD_SLASH = 26;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Claims' of 'JWT'.
@@ -213,7 +253,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__UNIQUE_CLAIMS = 26;
+	public static final int JWT__UNIQUE_CLAIMS = 31;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Registered Claim Subject' of 'JWT'.
@@ -221,7 +261,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__REGISTERED_CLAIM_SUBJECT = 22;
+	public static final int JWT__REGISTERED_CLAIM_SUBJECT = 27;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Single Registered Claim' of 'JWT'.
@@ -229,7 +269,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__SINGLE_REGISTERED_CLAIM = 23;
+	public static final int JWT__SINGLE_REGISTERED_CLAIM = 28;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Role Max Two Attributes' of 'JWT'.
@@ -237,7 +277,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__ROLE_MAX_TWO_ATTRIBUTES = 24;
+	public static final int JWT__ROLE_MAX_TWO_ATTRIBUTES = 29;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Role Attribute Type' of 'JWT'.
@@ -245,7 +285,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int JWT__ROLE_ATTRIBUTE_TYPE = 25;
+	public static final int JWT__ROLE_ATTRIBUTE_TYPE = 30;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Claim Attribute' of 'Claim'.
@@ -253,7 +293,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int CLAIM__UNIQUE_CLAIM_ATTRIBUTE = 27;
+	public static final int CLAIM__UNIQUE_CLAIM_ATTRIBUTE = 32;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Expiration Time Greater Than Zero' of 'Registered Claim'.
@@ -261,7 +301,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int REGISTERED_CLAIM__EXPIRATION_TIME_GREATER_THAN_ZERO = 28;
+	public static final int REGISTERED_CLAIM__EXPIRATION_TIME_GREATER_THAN_ZERO = 33;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Unique Providers' of 'OAuth2'.
@@ -269,7 +309,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OAUTH2__UNIQUE_PROVIDERS = 29;
+	public static final int OAUTH2__UNIQUE_PROVIDERS = 34;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Doesnt Have Role For Oauth' of 'OAuth2'.
@@ -277,7 +317,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OAUTH2__DOESNT_HAVE_ROLE_FOR_OAUTH = 30;
+	public static final int OAUTH2__DOESNT_HAVE_ROLE_FOR_OAUTH = 35;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Doesnt Have Auth Controller For Oauth' of 'OAuth2'.
@@ -285,7 +325,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OAUTH2__DOESNT_HAVE_AUTH_CONTROLLER_FOR_OAUTH = 31;
+	public static final int OAUTH2__DOESNT_HAVE_AUTH_CONTROLLER_FOR_OAUTH = 36;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Doesnt Have User For Oauth' of 'OAuth2'.
@@ -293,7 +333,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int OAUTH2__DOESNT_HAVE_USER_FOR_OAUTH = 32;
+	public static final int OAUTH2__DOESNT_HAVE_USER_FOR_OAUTH = 37;
 
 	/**
 	 * The {@link org.eclipse.emf.common.util.Diagnostic#getCode() code} for constraint 'Basic Auth No Role Attributes' of 'Basic Authentication'.
@@ -301,7 +341,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static final int BASIC_AUTHENTICATION__BASIC_AUTH_NO_ROLE_ATTRIBUTES = 33;
+	public static final int BASIC_AUTHENTICATION__BASIC_AUTH_NO_ROLE_ATTRIBUTES = 38;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants.
@@ -309,7 +349,7 @@ public class Security_dslValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 33;
+	private static final int GENERATED_DIAGNOSTIC_CODE_COUNT = 38;
 
 	/**
 	 * A constant with a fixed name that can be used as the base value for additional hand written constants in a derived class.
@@ -569,20 +609,33 @@ public class Security_dslValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(controller, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_uniqueControllerName(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_methodRequiredForOtherType(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_controllerNotNamedUserRole(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_uniqueEndpoints(controller, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_endpointLimits(controller, diagnostics, context);
+			result &= validateController_uniqueEndpointMethodNames(controller, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_controllerPath(controller, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateController_controllerNotNamedUserRole(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_endpointLimits(controller, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateController_uniqueControllerPath(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_uniqueEndpointURLs(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodRequiredForOtherType(controller, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_uniqueControllerName(controller, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the uniqueEndpointMethodNames constraint of '<em>Controller</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateController_uniqueEndpointMethodNames(Controller controller, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return controller.uniqueEndpointMethodNames(diagnostics, context);
 	}
 
 	/**
@@ -594,6 +647,17 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateController_uniqueControllerPath(Controller controller, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return controller.uniqueControllerPath(diagnostics, context);
+	}
+
+	/**
+	 * Validates the uniqueEndpointURLs constraint of '<em>Controller</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateController_uniqueEndpointURLs(Controller controller, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return controller.uniqueEndpointURLs(diagnostics, context);
 	}
 
 	/**
@@ -627,17 +691,6 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateController_uniqueControllerName(Controller controller, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return controller.uniqueControllerName(diagnostics, context);
-	}
-
-	/**
-	 * Validates the uniqueEndpoints constraint of '<em>Controller</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateController_uniqueEndpoints(Controller controller, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return controller.uniqueEndpoints(diagnostics, context);
 	}
 
 	/**
@@ -724,6 +777,8 @@ public class Security_dslValidator extends EObjectValidator {
 			result &= validateEntity_uniqueAttributeName(role, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateRole_uniqueRoleInstanceName(role, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateRole_uniqueRoleEntity(role, diagnostics, context);
 		return result;
 	}
 
@@ -736,6 +791,16 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateRole_uniqueRoleInstanceName(Role role, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return role.uniqueRoleInstanceName(diagnostics, context);
+	}
+
+	/**
+	 * Validates the uniqueRoleEntity constraint of '<em>Role</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateRole_uniqueRoleEntity(Role role, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return role.uniqueRoleEntity(diagnostics, context);
 	}
 
 	/**
@@ -774,8 +839,31 @@ public class Security_dslValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validateUser_noAttributeNamedPassword(user, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateUser_oneCredentialForUser(user, diagnostics, context);
+			result &= validateUser_oneStringTypeCredentialForUser(user, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateUser_uniqueUserEntity(user, diagnostics, context);
 		return result;
+	}
+
+	/**
+	 * Validates the oneStringTypeCredentialForUser constraint of '<em>User</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUser_oneStringTypeCredentialForUser(User user, DiagnosticChain diagnostics,
+			Map<Object, Object> context) {
+		return user.oneStringTypeCredentialForUser(diagnostics, context);
+	}
+
+	/**
+	 * Validates the uniqueUserEntity constraint of '<em>User</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateUser_uniqueUserEntity(User user, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return user.uniqueUserEntity(diagnostics, context);
 	}
 
 	/**
@@ -787,17 +875,6 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateUser_noAttributeNamedPassword(User user, DiagnosticChain diagnostics,
 			Map<Object, Object> context) {
 		return user.noAttributeNamedPassword(diagnostics, context);
-	}
-
-	/**
-	 * Validates the oneCredentialForUser constraint of '<em>User</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateUser_oneCredentialForUser(User user, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
-		return user.oneCredentialForUser(diagnostics, context);
 	}
 
 	/**
@@ -835,21 +912,27 @@ public class Security_dslValidator extends EObjectValidator {
 		if (result || diagnostics != null)
 			result &= validate_EveryMapEntryUnique(authentication, diagnostics, context);
 		if (result || diagnostics != null)
-			result &= validateController_uniqueControllerName(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_methodRequiredForOtherType(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_controllerNotNamedUserRole(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_uniqueEndpoints(authentication, diagnostics, context);
-		if (result || diagnostics != null)
-			result &= validateController_endpointLimits(authentication, diagnostics, context);
+			result &= validateController_uniqueEndpointMethodNames(authentication, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateController_controllerPath(authentication, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateController_controllerNotNamedUserRole(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_endpointLimits(authentication, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateController_uniqueControllerPath(authentication, diagnostics, context);
 		if (result || diagnostics != null)
+			result &= validateController_uniqueEndpointURLs(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_methodRequiredForOtherType(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateController_uniqueControllerName(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAuthentication_hasUserAndRoleForController(authentication, diagnostics, context);
+		if (result || diagnostics != null)
 			result &= validateAuthentication_authenticationLimits(authentication, diagnostics, context);
+		if (result || diagnostics != null)
+			result &= validateAuthentication_uniqueAuthenticationController(authentication, diagnostics, context);
 		if (result || diagnostics != null)
 			result &= validateAuthentication_loginExistanceForLogout(authentication, diagnostics, context);
 		return result;
@@ -867,6 +950,17 @@ public class Security_dslValidator extends EObjectValidator {
 	}
 
 	/**
+	 * Validates the hasUserAndRoleForController constraint of '<em>Authentication</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAuthentication_hasUserAndRoleForController(Authentication authentication,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return authentication.hasUserAndRoleForController(diagnostics, context);
+	}
+
+	/**
 	 * Validates the authenticationLimits constraint of '<em>Authentication</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -875,6 +969,17 @@ public class Security_dslValidator extends EObjectValidator {
 	public boolean validateAuthentication_authenticationLimits(Authentication authentication,
 			DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return authentication.authenticationLimits(diagnostics, context);
+	}
+
+	/**
+	 * Validates the uniqueAuthenticationController constraint of '<em>Authentication</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateAuthentication_uniqueAuthenticationController(Authentication authentication,
+			DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return authentication.uniqueAuthenticationController(diagnostics, context);
 	}
 
 	/**

@@ -12,10 +12,18 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  *
  *
  * @see security_dsl.Security_dslPackage#getAuthentication()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='authenticationLimits'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='hasUserAndRoleForController'"
  * @generated
  */
 public interface Authentication extends Controller {
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Authentication controller requires at least one User entity and one Role entity!\',\n\tstatus : Boolean = \n\t\t\t(\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(User))\n\t\t\tand\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(Role))\n\t\t\t)\n}.status'"
+	 * @generated
+	 */
+	boolean hasUserAndRoleForController(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -24,6 +32,14 @@ public interface Authentication extends Controller {
 	 * @generated
 	 */
 	boolean authenticationLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'There can be at most one controller of type \"Authentication\" in the model!\',\n\tstatus : Boolean = \n\t    \tController.allInstances() -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() &lt;= 1\n}.status'"
+	 * @generated
+	 */
+	boolean uniqueAuthenticationController(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->

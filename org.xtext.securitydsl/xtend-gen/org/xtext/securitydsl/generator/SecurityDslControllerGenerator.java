@@ -146,8 +146,8 @@ public class SecurityDslControllerGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("    ");
     _builder.append("public ResponseEntity<User> ");
-    String _functionName = regEndpoint.getFunctionName();
-    _builder.append(_functionName, "    ");
+    String _methodName = regEndpoint.getMethodName();
+    _builder.append(_methodName, "    ");
     _builder.append("(@RequestBody UserRequestDTO request) {");
     _builder.newLineIfNotEmpty();
     _builder.append("        ");
@@ -176,8 +176,8 @@ public class SecurityDslControllerGenerator {
       }
     }
     _builder.append("> ");
-    String _functionName_1 = loginEndpoint.getFunctionName();
-    _builder.append(_functionName_1, "\t");
+    String _methodName_1 = loginEndpoint.getMethodName();
+    _builder.append(_methodName_1, "\t");
     _builder.append("(@RequestBody AuthenticationRequestDTO request) {");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -227,8 +227,8 @@ public class SecurityDslControllerGenerator {
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
     _builder.append("public ResponseEntity<Void> ");
-    String _functionName_2 = logoutEndpoint.getFunctionName();
-    _builder.append(_functionName_2, "\t");
+    String _methodName_2 = logoutEndpoint.getMethodName();
+    _builder.append(_methodName_2, "\t");
     _builder.append("() {");
     _builder.newLineIfNotEmpty();
     _builder.append("\t\t");

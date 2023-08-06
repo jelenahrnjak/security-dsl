@@ -72,12 +72,12 @@ class SecurityDslControllerGenerator {
 			private final TokenUtils tokenUtils;
 			«ENDIF»
 		   @PostMapping("«regEndpoint.url»")
-		    public ResponseEntity<User> «regEndpoint.functionName»(@RequestBody UserRequestDTO request) {
+		    public ResponseEntity<User> «regEndpoint.methodName»(@RequestBody UserRequestDTO request) {
 		        return new ResponseEntity<>(userService.save(request), HttpStatus.CREATED);
 		    }
 		    
 			@PostMapping("«loginEndpoint.url»")
-			public ResponseEntity<«IF security instanceof JWT»UserTokenStateDTO«ELSEIF security instanceof BasicAuthentication»User«ENDIF»> «loginEndpoint.functionName»(@RequestBody AuthenticationRequestDTO request) {
+			public ResponseEntity<«IF security instanceof JWT»UserTokenStateDTO«ELSEIF security instanceof BasicAuthentication»User«ENDIF»> «loginEndpoint.methodName»(@RequestBody AuthenticationRequestDTO request) {
 
 				Authentication authentication = new UsernamePasswordAuthenticationToken(request.get«credentialNameUser.toFirstUpper»(), request.getPassword());
 				authentication = authenticationManager.authenticate(authentication);
@@ -93,7 +93,7 @@ class SecurityDslControllerGenerator {
 			}
 
 			@GetMapping("«logoutEndpoint.url»")
-			public ResponseEntity<Void> «logoutEndpoint.functionName»() {
+			public ResponseEntity<Void> «logoutEndpoint.methodName»() {
 				SecurityContextHolder.clearContext();
 				return ResponseEntity.ok().build();
 			}

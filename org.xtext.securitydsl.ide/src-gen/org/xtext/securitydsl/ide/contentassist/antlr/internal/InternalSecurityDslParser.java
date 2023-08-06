@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSecurityDslParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'PostgreSQL'", "'Oracle'", "'MySQL'", "'String'", "'Float'", "'Long'", "'Integer'", "'Double'", "'DateTime'", "'Date'", "'GET'", "'POST'", "'PUT'", "'DELETE'", "'REGISTRATION'", "'LOGIN'", "'LOGOUT'", "'OTHER'", "'PRIVATE'", "'PUBLIC'", "'REGISTERED'", "'GOOGLE'", "'GITHUB'", "'FACEBOOK'", "'MICROSOFT_AZURE'", "'LINKEDIN'", "'TWITTER'", "'INSTAGRAM'", "'application:'", "'artifact:'", "'group:'", "'name:'", "'packageName:'", "'description:'", "'port:'", "'hostname:'", "'database:'", "'model:'", "'user:'", "'role:'", "'security:'", "'controller:'", "'auth:'", "'vendor:'", "'url:'", "'username:'", "'password:'", "'-'", "'{'", "'type:'", "'}'", "'collumnName:'", "'tableName:'", "'attributes:'", "'['", "']'", "','", "'roles:'", "'functionName:'", "'method:'", "'roleAuthorities:'", "'path:'", "'endpoints:'", "'jwt:'", "'header:'", "'signatureAlgorithm:'", "'payload:'", "'claims:'", "'signature:'", "'secret:'", "':'", "'REGISTERED,'", "'expirationTime:'", "'issuer:'", "'audience:'", "'OAuth2.0:'", "'providers:'", "'clientId:'", "'clientSecret:'", "'redirectUri:'", "'basicAuthentication'", "'identifier'", "'credential'", "'client'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'PostgreSQL'", "'Oracle'", "'MySQL'", "'String'", "'Float'", "'Long'", "'Integer'", "'Double'", "'DateTime'", "'Date'", "'GET'", "'POST'", "'PUT'", "'DELETE'", "'REGISTRATION'", "'LOGIN'", "'LOGOUT'", "'OTHER'", "'PRIVATE'", "'PUBLIC'", "'REGISTERED'", "'GOOGLE'", "'GITHUB'", "'FACEBOOK'", "'MICROSOFT_AZURE'", "'LINKEDIN'", "'TWITTER'", "'INSTAGRAM'", "'application:'", "'artifact:'", "'group:'", "'name:'", "'packageName:'", "'description:'", "'port:'", "'hostname:'", "'database:'", "'model:'", "'user:'", "'role:'", "'security:'", "'controller:'", "'auth:'", "'vendor:'", "'url:'", "'username:'", "'password:'", "'-'", "'{'", "'type:'", "'}'", "'collumnName:'", "'tableName:'", "'attributes:'", "'['", "']'", "','", "'roles:'", "'methodName:'", "'method:'", "'roleAuthorities:'", "'path:'", "'endpoints:'", "'jwt:'", "'header:'", "'signatureAlgorithm:'", "'payload:'", "'claims:'", "'signature:'", "'secret:'", "':'", "'REGISTERED,'", "'expirationTime:'", "'issuer:'", "'audience:'", "'OAuth2.0:'", "'providers:'", "'clientId:'", "'clientSecret:'", "'redirectUri:'", "'basicAuthentication'", "'identifier'", "'credential'", "'client'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -11610,21 +11610,21 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Endpoint__Group_5__0__Impl"
-    // InternalSecurityDsl.g:3715:1: rule__Endpoint__Group_5__0__Impl : ( 'functionName:' ) ;
+    // InternalSecurityDsl.g:3715:1: rule__Endpoint__Group_5__0__Impl : ( 'methodName:' ) ;
     public final void rule__Endpoint__Group_5__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:3719:1: ( ( 'functionName:' ) )
-            // InternalSecurityDsl.g:3720:1: ( 'functionName:' )
+            // InternalSecurityDsl.g:3719:1: ( ( 'methodName:' ) )
+            // InternalSecurityDsl.g:3720:1: ( 'methodName:' )
             {
-            // InternalSecurityDsl.g:3720:1: ( 'functionName:' )
-            // InternalSecurityDsl.g:3721:2: 'functionName:'
+            // InternalSecurityDsl.g:3720:1: ( 'methodName:' )
+            // InternalSecurityDsl.g:3721:2: 'methodName:'
             {
-             before(grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0()); 
+             before(grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0()); 
             match(input,69,FOLLOW_2); 
-             after(grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0()); 
+             after(grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0()); 
 
             }
 
@@ -11680,31 +11680,31 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
 
 
     // $ANTLR start "rule__Endpoint__Group_5__1__Impl"
-    // InternalSecurityDsl.g:3741:1: rule__Endpoint__Group_5__1__Impl : ( ( rule__Endpoint__FunctionNameAssignment_5_1 ) ) ;
+    // InternalSecurityDsl.g:3741:1: rule__Endpoint__Group_5__1__Impl : ( ( rule__Endpoint__MethodNameAssignment_5_1 ) ) ;
     public final void rule__Endpoint__Group_5__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
         try {
-            // InternalSecurityDsl.g:3745:1: ( ( ( rule__Endpoint__FunctionNameAssignment_5_1 ) ) )
-            // InternalSecurityDsl.g:3746:1: ( ( rule__Endpoint__FunctionNameAssignment_5_1 ) )
+            // InternalSecurityDsl.g:3745:1: ( ( ( rule__Endpoint__MethodNameAssignment_5_1 ) ) )
+            // InternalSecurityDsl.g:3746:1: ( ( rule__Endpoint__MethodNameAssignment_5_1 ) )
             {
-            // InternalSecurityDsl.g:3746:1: ( ( rule__Endpoint__FunctionNameAssignment_5_1 ) )
-            // InternalSecurityDsl.g:3747:2: ( rule__Endpoint__FunctionNameAssignment_5_1 )
+            // InternalSecurityDsl.g:3746:1: ( ( rule__Endpoint__MethodNameAssignment_5_1 ) )
+            // InternalSecurityDsl.g:3747:2: ( rule__Endpoint__MethodNameAssignment_5_1 )
             {
-             before(grammarAccess.getEndpointAccess().getFunctionNameAssignment_5_1()); 
-            // InternalSecurityDsl.g:3748:2: ( rule__Endpoint__FunctionNameAssignment_5_1 )
-            // InternalSecurityDsl.g:3748:3: rule__Endpoint__FunctionNameAssignment_5_1
+             before(grammarAccess.getEndpointAccess().getMethodNameAssignment_5_1()); 
+            // InternalSecurityDsl.g:3748:2: ( rule__Endpoint__MethodNameAssignment_5_1 )
+            // InternalSecurityDsl.g:3748:3: rule__Endpoint__MethodNameAssignment_5_1
             {
             pushFollow(FOLLOW_2);
-            rule__Endpoint__FunctionNameAssignment_5_1();
+            rule__Endpoint__MethodNameAssignment_5_1();
 
             state._fsp--;
 
 
             }
 
-             after(grammarAccess.getEndpointAccess().getFunctionNameAssignment_5_1()); 
+             after(grammarAccess.getEndpointAccess().getMethodNameAssignment_5_1()); 
 
             }
 
@@ -20321,9 +20321,9 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
     // $ANTLR end "rule__Endpoint__UrlAssignment_4"
 
 
-    // $ANTLR start "rule__Endpoint__FunctionNameAssignment_5_1"
-    // InternalSecurityDsl.g:6721:1: rule__Endpoint__FunctionNameAssignment_5_1 : ( ruleEString ) ;
-    public final void rule__Endpoint__FunctionNameAssignment_5_1() throws RecognitionException {
+    // $ANTLR start "rule__Endpoint__MethodNameAssignment_5_1"
+    // InternalSecurityDsl.g:6721:1: rule__Endpoint__MethodNameAssignment_5_1 : ( ruleEString ) ;
+    public final void rule__Endpoint__MethodNameAssignment_5_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
         	
@@ -20334,13 +20334,13 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
             // InternalSecurityDsl.g:6726:2: ( ruleEString )
             // InternalSecurityDsl.g:6727:3: ruleEString
             {
-             before(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0()); 
+             before(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0()); 
             pushFollow(FOLLOW_2);
             ruleEString();
 
             state._fsp--;
 
-             after(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0()); 
+             after(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0()); 
 
             }
 
@@ -20359,7 +20359,7 @@ public class InternalSecurityDslParser extends AbstractInternalContentAssistPars
         }
         return ;
     }
-    // $ANTLR end "rule__Endpoint__FunctionNameAssignment_5_1"
+    // $ANTLR end "rule__Endpoint__MethodNameAssignment_5_1"
 
 
     // $ANTLR start "rule__Endpoint__MethodAssignment_6_1"

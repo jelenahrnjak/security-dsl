@@ -3718,9 +3718,9 @@ rule__Endpoint__Group_5__0__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0()); }
-	'functionName:'
-	{ after(grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0()); }
+	{ before(grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0()); }
+	'methodName:'
+	{ after(grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0()); }
 )
 ;
 finally {
@@ -3744,9 +3744,9 @@ rule__Endpoint__Group_5__1__Impl
 	}
 :
 (
-	{ before(grammarAccess.getEndpointAccess().getFunctionNameAssignment_5_1()); }
-	(rule__Endpoint__FunctionNameAssignment_5_1)
-	{ after(grammarAccess.getEndpointAccess().getFunctionNameAssignment_5_1()); }
+	{ before(grammarAccess.getEndpointAccess().getMethodNameAssignment_5_1()); }
+	(rule__Endpoint__MethodNameAssignment_5_1)
+	{ after(grammarAccess.getEndpointAccess().getMethodNameAssignment_5_1()); }
 )
 ;
 finally {
@@ -6718,15 +6718,15 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Endpoint__FunctionNameAssignment_5_1
+rule__Endpoint__MethodNameAssignment_5_1
 	@init {
 		int stackSize = keepStackSize();
 	}
 :
 	(
-		{ before(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0()); }
+		{ before(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0()); }
 		ruleEString
-		{ after(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0()); }
+		{ after(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0()); }
 	)
 ;
 finally {

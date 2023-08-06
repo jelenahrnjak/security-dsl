@@ -71,16 +71,16 @@ application:
         	{
         		type: REGISTRATION
         		url: "/registration"
-        		functionName: "registration"
+        		methodName: "registration"
         	},
         	{
         		type: LOGIN
         		url: "/login"
-        		functionName: "login"
+        		methodName: "login"
         	},
         	{
         		type: LOGOUT
         		url: "/logout"
-        		functionName: "logout"
+        		methodName: "logout"
         	}
         ] 

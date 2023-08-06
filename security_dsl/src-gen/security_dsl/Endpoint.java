@@ -20,7 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  * <ul>
  *   <li>{@link security_dsl.Endpoint#getUrl <em>Url</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getType <em>Type</em>}</li>
- *   <li>{@link security_dsl.Endpoint#getFunctionName <em>Function Name</em>}</li>
+ *   <li>{@link security_dsl.Endpoint#getMethodName <em>Method Name</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getMethod <em>Method</em>}</li>
  *   <li>{@link security_dsl.Endpoint#getRole_authorities <em>Role authorities</em>}</li>
  * </ul>
@@ -79,26 +79,26 @@ public interface Endpoint extends EObject {
 	void setType(EEndpointType value);
 
 	/**
-	 * Returns the value of the '<em><b>Function Name</b></em>' attribute.
+	 * Returns the value of the '<em><b>Method Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Function Name</em>' attribute.
-	 * @see #setFunctionName(String)
-	 * @see security_dsl.Security_dslPackage#getEndpoint_FunctionName()
+	 * @return the value of the '<em>Method Name</em>' attribute.
+	 * @see #setMethodName(String)
+	 * @see security_dsl.Security_dslPackage#getEndpoint_MethodName()
 	 * @model
 	 * @generated
 	 */
-	String getFunctionName();
+	String getMethodName();
 
 	/**
-	 * Sets the value of the '{@link security_dsl.Endpoint#getFunctionName <em>Function Name</em>}' attribute.
+	 * Sets the value of the '{@link security_dsl.Endpoint#getMethodName <em>Method Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Function Name</em>' attribute.
-	 * @see #getFunctionName()
+	 * @param value the new value of the '<em>Method Name</em>' attribute.
+	 * @see #getMethodName()
 	 * @generated
 	 */
-	void setFunctionName(String value);
+	void setMethodName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Method</b></em>' attribute.

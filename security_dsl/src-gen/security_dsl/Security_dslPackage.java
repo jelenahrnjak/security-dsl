@@ -342,13 +342,13 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER_FEATURE_COUNT = 3;
 
 	/**
-	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * The operation id for the '<em>Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = 0;
+	int CONTROLLER___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 0;
 
 	/**
 	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
@@ -360,31 +360,13 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = 1;
 
 	/**
-	 * The operation id for the '<em>Unique Endpoints</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = 2;
-
-	/**
 	 * The operation id for the '<em>Endpoint Limits</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 3;
-
-	/**
-	 * The operation id for the '<em>Controller Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONTROLLER___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 4;
+	int CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
 	 * The operation id for the '<em>Unique Controller Path</em>' operation.
@@ -393,7 +375,25 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 5;
+	int CONTROLLER___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
+	 * The operation id for the '<em>Unique Endpoint UR Ls</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___UNIQUE_ENDPOINT_UR_LS__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = 5;
 
 	/**
 	 * The operation id for the '<em>Unique Controller Name</em>' operation.
@@ -405,13 +405,22 @@ public interface Security_dslPackage extends EPackage {
 	int CONTROLLER___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = 6;
 
 	/**
+	 * The operation id for the '<em>Unique Endpoint Method Names</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONTROLLER___UNIQUE_ENDPOINT_METHOD_NAMES__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
 	 * The number of operations of the '<em>Controller</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CONTROLLER_OPERATION_COUNT = 7;
+	int CONTROLLER_OPERATION_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.SecurityImpl <em>Security</em>}' class.
@@ -670,13 +679,22 @@ public interface Security_dslPackage extends EPackage {
 	int ROLE___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = ENTITY___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Unique Role Entity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ROLE___UNIQUE_ROLE_ENTITY__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>Unique Role Instance Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE___UNIQUE_ROLE_INSTANCE_NAME__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 0;
+	int ROLE___UNIQUE_ROLE_INSTANCE_NAME__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>Role</em>' class.
@@ -685,7 +703,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ROLE_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 1;
+	int ROLE_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.UserImpl <em>User</em>}' class.
@@ -770,13 +788,22 @@ public interface Security_dslPackage extends EPackage {
 	int USER___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP = ENTITY___ONLY_ONE_IDENTIFIER__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>One Credential For User</em>' operation.
+	 * The operation id for the '<em>One String Type Credential For User</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int USER___ONE_CREDENTIAL_FOR_USER__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 0;
+	int USER___ONE_STRING_TYPE_CREDENTIAL_FOR_USER__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Unique User Entity</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int USER___UNIQUE_USER_ENTITY__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>No Attribute Named Password</em>' operation.
@@ -785,7 +812,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 1;
+	int USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP = ENTITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The number of operations of the '<em>User</em>' class.
@@ -794,7 +821,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 2;
+	int USER_OPERATION_COUNT = ENTITY_OPERATION_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.RoleInstanceImpl <em>Role Instance</em>}' class.
@@ -889,13 +916,13 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION_FEATURE_COUNT = CONTROLLER_FEATURE_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * The operation id for the '<em>Controller Path</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP;
+	int AUTHENTICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = CONTROLLER___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Controller Not Named User Role</em>' operation.
@@ -907,15 +934,6 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = CONTROLLER___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Unique Endpoints</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP;
-
-	/**
 	 * The operation id for the '<em>Endpoint Limits</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -923,15 +941,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @ordered
 	 */
 	int AUTHENTICATION___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP;
-
-	/**
-	 * The operation id for the '<em>Controller Path</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int AUTHENTICATION___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = CONTROLLER___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Unique Controller Path</em>' operation.
@@ -943,6 +952,24 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP;
 
 	/**
+	 * The operation id for the '<em>Unique Endpoint UR Ls</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___UNIQUE_ENDPOINT_UR_LS__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_ENDPOINT_UR_LS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Method Required For Other Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP;
+
+	/**
 	 * The operation id for the '<em>Unique Controller Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -952,13 +979,13 @@ public interface Security_dslPackage extends EPackage {
 	int AUTHENTICATION___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_CONTROLLER_NAME__DIAGNOSTICCHAIN_MAP;
 
 	/**
-	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
+	 * The operation id for the '<em>Unique Endpoint Method Names</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 0;
+	int AUTHENTICATION___UNIQUE_ENDPOINT_METHOD_NAMES__DIAGNOSTICCHAIN_MAP = CONTROLLER___UNIQUE_ENDPOINT_METHOD_NAMES__DIAGNOSTICCHAIN_MAP;
 
 	/**
 	 * The operation id for the '<em>Authentication Limits</em>' operation.
@@ -967,7 +994,34 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 1;
+	int AUTHENTICATION___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Unique Authentication Controller</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___UNIQUE_AUTHENTICATION_CONTROLLER__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Login Existance For Logout</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Has User And Role For Controller</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int AUTHENTICATION___HAS_USER_AND_ROLE_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = CONTROLLER_OPERATION_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Authentication</em>' class.
@@ -976,7 +1030,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int AUTHENTICATION_OPERATION_COUNT = CONTROLLER_OPERATION_COUNT + 2;
+	int AUTHENTICATION_OPERATION_COUNT = CONTROLLER_OPERATION_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.EndpointImpl <em>Endpoint</em>}' class.
@@ -1007,13 +1061,13 @@ public interface Security_dslPackage extends EPackage {
 	int ENDPOINT__TYPE = 1;
 
 	/**
-	 * The feature id for the '<em><b>Function Name</b></em>' attribute.
+	 * The feature id for the '<em><b>Method Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ENDPOINT__FUNCTION_NAME = 2;
+	int ENDPOINT__METHOD_NAME = 2;
 
 	/**
 	 * The feature id for the '<em><b>Method</b></em>' attribute.
@@ -1847,6 +1901,16 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getController__UniqueControllerPath__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueEndpointURLs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Endpoint UR Ls</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Endpoint UR Ls</em>' operation.
+	 * @see security_dsl.Controller#uniqueEndpointURLs(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getController__UniqueEndpointURLs__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueControllerName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Controller Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1857,14 +1921,14 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getController__UniqueControllerName__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueEndpoints(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Endpoints</em>}' operation.
+	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueEndpointMethodNames(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Endpoint Method Names</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Unique Endpoints</em>' operation.
-	 * @see security_dsl.Controller#uniqueEndpoints(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Unique Endpoint Method Names</em>' operation.
+	 * @see security_dsl.Controller#uniqueEndpointMethodNames(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getController__UniqueEndpoints__DiagnosticChain_Map();
+	EOperation getController__UniqueEndpointMethodNames__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Endpoint Limits</em>}' operation.
@@ -2037,6 +2101,16 @@ public interface Security_dslPackage extends EPackage {
 	EReference getRole_Role_instances();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Role#uniqueRoleEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Role Entity</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Role Entity</em>' operation.
+	 * @see security_dsl.Role#uniqueRoleEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getRole__UniqueRoleEntity__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Role#uniqueRoleInstanceName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Role Instance Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2057,16 +2131,6 @@ public interface Security_dslPackage extends EPackage {
 	EClass getUser();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.User#oneCredentialForUser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One Credential For User</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>One Credential For User</em>' operation.
-	 * @see security_dsl.User#oneCredentialForUser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getUser__OneCredentialForUser__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.User#noAttributeNamedPassword(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Attribute Named Password</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2075,6 +2139,26 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.User#oneStringTypeCredentialForUser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One String Type Credential For User</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>One String Type Credential For User</em>' operation.
+	 * @see security_dsl.User#oneStringTypeCredentialForUser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getUser__OneStringTypeCredentialForUser__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.User#uniqueUserEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique User Entity</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique User Entity</em>' operation.
+	 * @see security_dsl.User#uniqueUserEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getUser__UniqueUserEntity__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.RoleInstance <em>Role Instance</em>}'.
@@ -2119,6 +2203,16 @@ public interface Security_dslPackage extends EPackage {
 	EClass getAuthentication();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has User And Role For Controller</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has User And Role For Controller</em>' operation.
+	 * @see security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Authentication#authenticationLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Authentication Limits</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2127,6 +2221,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAuthentication__AuthenticationLimits__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Authentication#uniqueAuthenticationController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Authentication Controller</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Authentication Controller</em>' operation.
+	 * @see security_dsl.Authentication#uniqueAuthenticationController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAuthentication__UniqueAuthenticationController__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Authentication#loginExistanceForLogout(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Login Existance For Logout</em>}' operation.
@@ -2171,15 +2275,15 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getEndpoint_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link security_dsl.Endpoint#getFunctionName <em>Function Name</em>}'.
+	 * Returns the meta object for the attribute '{@link security_dsl.Endpoint#getMethodName <em>Method Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Function Name</em>'.
-	 * @see security_dsl.Endpoint#getFunctionName()
+	 * @return the meta object for the attribute '<em>Method Name</em>'.
+	 * @see security_dsl.Endpoint#getMethodName()
 	 * @see #getEndpoint()
 	 * @generated
 	 */
-	EAttribute getEndpoint_FunctionName();
+	EAttribute getEndpoint_MethodName();
 
 	/**
 	 * Returns the meta object for the attribute '{@link security_dsl.Endpoint#getMethod <em>Method</em>}'.
@@ -2900,6 +3004,15 @@ public interface Security_dslPackage extends EPackage {
 				.getController__UniqueControllerPath__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Unique Endpoint UR Ls</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTROLLER___UNIQUE_ENDPOINT_UR_LS__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__UniqueEndpointURLs__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Unique Controller Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2909,13 +3022,13 @@ public interface Security_dslPackage extends EPackage {
 				.getController__UniqueControllerName__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Unique Endpoints</b></em>' operation.
+		 * The meta object literal for the '<em><b>Unique Endpoint Method Names</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation CONTROLLER___UNIQUE_ENDPOINTS__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__UniqueEndpoints__DiagnosticChain_Map();
+		EOperation CONTROLLER___UNIQUE_ENDPOINT_METHOD_NAMES__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__UniqueEndpointMethodNames__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Endpoint Limits</b></em>' operation.
@@ -3056,6 +3169,15 @@ public interface Security_dslPackage extends EPackage {
 		EReference ROLE__ROLE_INSTANCES = eINSTANCE.getRole_Role_instances();
 
 		/**
+		 * The meta object literal for the '<em><b>Unique Role Entity</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ROLE___UNIQUE_ROLE_ENTITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getRole__UniqueRoleEntity__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Unique Role Instance Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3075,15 +3197,6 @@ public interface Security_dslPackage extends EPackage {
 		EClass USER = eINSTANCE.getUser();
 
 		/**
-		 * The meta object literal for the '<em><b>One Credential For User</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation USER___ONE_CREDENTIAL_FOR_USER__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getUser__OneCredentialForUser__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>No Attribute Named Password</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3091,6 +3204,24 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>One String Type Credential For User</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation USER___ONE_STRING_TYPE_CREDENTIAL_FOR_USER__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getUser__OneStringTypeCredentialForUser__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique User Entity</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation USER___UNIQUE_USER_ENTITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getUser__UniqueUserEntity__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.RoleInstanceImpl <em>Role Instance</em>}' class.
@@ -3129,6 +3260,15 @@ public interface Security_dslPackage extends EPackage {
 		EClass AUTHENTICATION = eINSTANCE.getAuthentication();
 
 		/**
+		 * The meta object literal for the '<em><b>Has User And Role For Controller</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AUTHENTICATION___HAS_USER_AND_ROLE_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Authentication Limits</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3136,6 +3276,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation AUTHENTICATION___AUTHENTICATION_LIMITS__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getAuthentication__AuthenticationLimits__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Authentication Controller</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AUTHENTICATION___UNIQUE_AUTHENTICATION_CONTROLLER__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getAuthentication__UniqueAuthenticationController__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Login Existance For Logout</b></em>' operation.
@@ -3173,12 +3322,12 @@ public interface Security_dslPackage extends EPackage {
 		EAttribute ENDPOINT__TYPE = eINSTANCE.getEndpoint_Type();
 
 		/**
-		 * The meta object literal for the '<em><b>Function Name</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Method Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute ENDPOINT__FUNCTION_NAME = eINSTANCE.getEndpoint_FunctionName();
+		EAttribute ENDPOINT__METHOD_NAME = eINSTANCE.getEndpoint_MethodName();
 
 		/**
 		 * The meta object literal for the '<em><b>Method</b></em>' attribute feature.

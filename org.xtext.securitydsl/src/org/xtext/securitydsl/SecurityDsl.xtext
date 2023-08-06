@@ -90,7 +90,7 @@ Endpoint returns Endpoint:
 	'{'
 		'type:' type=EEndpointType
 		'url:' url=EString
-		('functionName:' functionName=EString)?
+		('methodName:' methodName=EString)?
 		('method:' method=EEndpointMethod)?
 		('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 	'}';

@@ -22,7 +22,7 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'application:'", "'artifact:'", "'name:'", "'group:'", "'packageName:'", "'description:'", "'port:'", "'hostname:'", "'database:'", "'model:'", "'user:'", "'role:'", "'security:'", "'controller:'", "'auth:'", "'vendor:'", "'url:'", "'username:'", "'password:'", "'-'", "'{'", "'identifier'", "'credential'", "'type:'", "'collumnName:'", "'}'", "'tableName:'", "'attributes:'", "'['", "','", "']'", "'roles:'", "'client'", "'functionName:'", "'method:'", "'roleAuthorities:'", "'path:'", "'endpoints:'", "'jwt:'", "'header:'", "'signatureAlgorithm:'", "'payload:'", "'claims:'", "'signature:'", "'secret:'", "':'", "'REGISTERED,'", "'expirationTime:'", "'issuer:'", "'audience:'", "'OAuth2.0:'", "'providers:'", "'clientId:'", "'clientSecret:'", "'redirectUri:'", "'basicAuthentication'", "'PostgreSQL'", "'Oracle'", "'MySQL'", "'String'", "'Float'", "'Long'", "'Integer'", "'Double'", "'DateTime'", "'Date'", "'GET'", "'POST'", "'PUT'", "'DELETE'", "'REGISTRATION'", "'LOGIN'", "'LOGOUT'", "'OTHER'", "'PRIVATE'", "'PUBLIC'", "'REGISTERED'", "'GOOGLE'", "'GITHUB'", "'FACEBOOK'", "'MICROSOFT_AZURE'", "'LINKEDIN'", "'TWITTER'", "'INSTAGRAM'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_ID", "RULE_INT", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'application:'", "'artifact:'", "'name:'", "'group:'", "'packageName:'", "'description:'", "'port:'", "'hostname:'", "'database:'", "'model:'", "'user:'", "'role:'", "'security:'", "'controller:'", "'auth:'", "'vendor:'", "'url:'", "'username:'", "'password:'", "'-'", "'{'", "'identifier'", "'credential'", "'type:'", "'collumnName:'", "'}'", "'tableName:'", "'attributes:'", "'['", "','", "']'", "'roles:'", "'client'", "'methodName:'", "'method:'", "'roleAuthorities:'", "'path:'", "'endpoints:'", "'jwt:'", "'header:'", "'signatureAlgorithm:'", "'payload:'", "'claims:'", "'signature:'", "'secret:'", "':'", "'REGISTERED,'", "'expirationTime:'", "'issuer:'", "'audience:'", "'OAuth2.0:'", "'providers:'", "'clientId:'", "'clientSecret:'", "'redirectUri:'", "'basicAuthentication'", "'PostgreSQL'", "'Oracle'", "'MySQL'", "'String'", "'Float'", "'Long'", "'Integer'", "'Double'", "'DateTime'", "'Date'", "'GET'", "'POST'", "'PUT'", "'DELETE'", "'REGISTRATION'", "'LOGIN'", "'LOGOUT'", "'OTHER'", "'PRIVATE'", "'PUBLIC'", "'REGISTERED'", "'GOOGLE'", "'GITHUB'", "'FACEBOOK'", "'MICROSOFT_AZURE'", "'LINKEDIN'", "'TWITTER'", "'INSTAGRAM'"
     };
     public static final int T__50=50;
     public static final int T__59=59;
@@ -2653,7 +2653,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleEndpoint"
-    // InternalSecurityDsl.g:1094:1: ruleEndpoint returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' ) ;
+    // InternalSecurityDsl.g:1094:1: ruleEndpoint returns [EObject current=null] : (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' ) ;
     public final EObject ruleEndpoint() throws RecognitionException {
         EObject current = null;
 
@@ -2671,7 +2671,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
         AntlrDatatypeRuleToken lv_url_4_0 = null;
 
-        AntlrDatatypeRuleToken lv_functionName_6_0 = null;
+        AntlrDatatypeRuleToken lv_methodName_6_0 = null;
 
         Enumerator lv_method_8_0 = null;
 
@@ -2680,11 +2680,11 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
         	enterRule();
 
         try {
-            // InternalSecurityDsl.g:1100:2: ( (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' ) )
-            // InternalSecurityDsl.g:1101:2: (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' )
+            // InternalSecurityDsl.g:1100:2: ( (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' ) )
+            // InternalSecurityDsl.g:1101:2: (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' )
             {
-            // InternalSecurityDsl.g:1101:2: (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' )
-            // InternalSecurityDsl.g:1102:3: otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}'
+            // InternalSecurityDsl.g:1101:2: (otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}' )
+            // InternalSecurityDsl.g:1102:3: otherlv_0= '{' otherlv_1= 'type:' ( (lv_type_2_0= ruleEEndpointType ) ) otherlv_3= 'url:' ( (lv_url_4_0= ruleEString ) ) (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )? (otherlv_7= 'method:' ( (lv_method_8_0= ruleEEndpointMethod ) ) )? (otherlv_9= 'roleAuthorities:' otherlv_10= '[' ( ( ruleEString ) ) (otherlv_12= ',' ( ( ruleEString ) ) )* otherlv_14= ']' )? otherlv_15= '}'
             {
             otherlv_0=(Token)match(input,31,FOLLOW_31); 
 
@@ -2760,7 +2760,7 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
 
             }
 
-            // InternalSecurityDsl.g:1152:3: (otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) ) )?
+            // InternalSecurityDsl.g:1152:3: (otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) ) )?
             int alt28=2;
             int LA28_0 = input.LA(1);
 
@@ -2769,23 +2769,23 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
             }
             switch (alt28) {
                 case 1 :
-                    // InternalSecurityDsl.g:1153:4: otherlv_5= 'functionName:' ( (lv_functionName_6_0= ruleEString ) )
+                    // InternalSecurityDsl.g:1153:4: otherlv_5= 'methodName:' ( (lv_methodName_6_0= ruleEString ) )
                     {
                     otherlv_5=(Token)match(input,44,FOLLOW_4); 
 
-                    				newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getFunctionNameKeyword_5_0());
+                    				newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0());
                     			
-                    // InternalSecurityDsl.g:1157:4: ( (lv_functionName_6_0= ruleEString ) )
-                    // InternalSecurityDsl.g:1158:5: (lv_functionName_6_0= ruleEString )
+                    // InternalSecurityDsl.g:1157:4: ( (lv_methodName_6_0= ruleEString ) )
+                    // InternalSecurityDsl.g:1158:5: (lv_methodName_6_0= ruleEString )
                     {
-                    // InternalSecurityDsl.g:1158:5: (lv_functionName_6_0= ruleEString )
-                    // InternalSecurityDsl.g:1159:6: lv_functionName_6_0= ruleEString
+                    // InternalSecurityDsl.g:1158:5: (lv_methodName_6_0= ruleEString )
+                    // InternalSecurityDsl.g:1159:6: lv_methodName_6_0= ruleEString
                     {
 
-                    						newCompositeNode(grammarAccess.getEndpointAccess().getFunctionNameEStringParserRuleCall_5_1_0());
+                    						newCompositeNode(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0());
                     					
                     pushFollow(FOLLOW_44);
-                    lv_functionName_6_0=ruleEString();
+                    lv_methodName_6_0=ruleEString();
 
                     state._fsp--;
 
@@ -2795,8 +2795,8 @@ public class InternalSecurityDslParser extends AbstractInternalAntlrParser {
                     						}
                     						set(
                     							current,
-                    							"functionName",
-                    							lv_functionName_6_0,
+                    							"methodName",
+                    							lv_methodName_6_0,
                     							"org.xtext.securitydsl.SecurityDsl.EString");
                     						afterParserOrEnumRuleCall();
                     					

@@ -50,7 +50,6 @@
 'description:'=44
 'endpoints:'=73
 'expirationTime:'=83
-'functionName:'=69
 'group:'=41
 'header:'=75
 'hostname:'=46
@@ -58,6 +57,7 @@
 'issuer:'=84
 'jwt:'=74
 'method:'=70
+'methodName:'=69
 'model:'=48
 'name:'=42
 'packageName:'=43
