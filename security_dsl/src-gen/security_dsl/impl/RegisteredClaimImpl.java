@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
 
+import org.eclipse.ocl.pivot.values.TupleValue;
 import security_dsl.RegisteredClaim;
 import security_dsl.Security_dslPackage;
 import security_dsl.Security_dslTables;
@@ -212,7 +213,15 @@ public class RegisteredClaimImpl extends MinimalEObjectImpl.Container implements
 			 *     if severity <= 0
 			 *     then true
 			 *     else
-			 *       let result : Boolean[1] = self.expirationTime > 0
+			 *       let
+			 *         result : OclAny[1] = let status : Boolean[1] = self.expirationTime > 0
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Expiration time must be greater than zero!', status = status
+			 *             }
+			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -222,21 +231,30 @@ public class RegisteredClaimImpl extends MinimalEObjectImpl.Container implements
 					Security_dslPackage.Literals.REGISTERED_CLAIM___EXPIRATION_TIME_GREATER_THAN_ZERO__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
+			/*@NonInvalid*/ boolean local_2;
 			if (le) {
-				local_0 = true;
+				local_2 = true;
 			} else {
 				final /*@NonInvalid*/ int expirationTime = this.getExpirationTime();
 				final /*@NonInvalid*/ IntegerValue BOXED_expirationTime = ValueUtil.integerValueOf(expirationTime);
-				final /*@NonInvalid*/ boolean result = OclComparableGreaterThanOperation.INSTANCE
+				final /*@NonInvalid*/ boolean status = OclComparableGreaterThanOperation.INSTANCE
 						.evaluate(executor, BOXED_expirationTime, Security_dslTables.INT_0).booleanValue();
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_Expiration_32_time_32_must_32_be_32_greater_32_than_32_zero_33,
+							status);
+					local_1 = local_0;
+				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, result, Security_dslTables.INT_0)
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
 						.booleanValue();
-				local_0 = logDiagnostic;
+				local_2 = logDiagnostic;
 			}
-			return local_0;
+			return local_2;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}

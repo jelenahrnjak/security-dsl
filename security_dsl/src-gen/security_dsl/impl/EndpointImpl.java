@@ -31,6 +31,7 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
+import org.eclipse.ocl.pivot.library.string.StringAtOperation;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -39,6 +40,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 
+import org.eclipse.ocl.pivot.values.TupleValue;
 import security_dsl.EEndpointMethod;
 import security_dsl.EEndpointType;
 import security_dsl.Endpoint;
@@ -288,7 +290,16 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 			 *     if severity <= 0
 			 *     then true
 			 *     else
-			 *       let result : Boolean[1] = self.role_authorities->isUnique(r | r.name)
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = self.role_authorities->isUnique(r | r.name)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Role authorities must be unique for each endpoint!', status = status
+			 *             }
+			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -299,9 +310,9 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 					Security_dslPackage.Literals.ENDPOINT___UNIQUE_ROLE_AUTHORITIES__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
+			/*@NonInvalid*/ boolean local_2;
 			if (le) {
-				local_0 = true;
+				local_2 = true;
 			} else {
 				final /*@NonInvalid*/ List<RoleInstance> role_authorities = this.getRole_authorities();
 				final /*@NonInvalid*/ OrderedSetValue BOXED_role_authorities = idResolver
@@ -309,10 +320,10 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 				/*@Thrown*/ Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_RoleInstance);
 				Iterator<Object> ITERATOR_r = BOXED_role_authorities.iterator();
-				/*@NonInvalid*/ boolean result;
+				/*@NonInvalid*/ boolean status;
 				while (true) {
 					if (!ITERATOR_r.hasNext()) {
-						result = true;
+						status = true;
 						break;
 					}
 					/*@NonInvalid*/ RoleInstance r = (RoleInstance) ITERATOR_r.next();
@@ -322,19 +333,96 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 					final /*@NonInvalid*/ String name = r.getName();
 					//
 					if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
-						result = false;
+						status = false;
 						break; // Abort after second find
 					} else {
 						accumulator.add(name);
 					}
 				}
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_Role_32_authorities_32_must_32_be_32_unique_32_for_32_each_32_endpoint_33,
+							status);
+					local_1 = local_0;
+				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, result, Security_dslTables.INT_0)
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
 						.booleanValue();
-				local_0 = logDiagnostic;
+				local_2 = logDiagnostic;
 			}
-			return local_0;
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean urlStartsWithForwardSlash(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Endpoint::urlStartsWithForwardSlash";
+		try {
+			/**
+			 *
+			 * inv urlStartsWithForwardSlash:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let status : Boolean[1] = self.url.at(1) = '/'
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Endpoint URL should start with a forward slash!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.ENDPOINT___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					final /*@NonInvalid*/ String url = this.getUrl();
+					final /*@Thrown*/ String at = StringAtOperation.INSTANCE.evaluate(url, Security_dslTables.INT_1);
+					final /*@Thrown*/ boolean status = at.equals(Security_dslTables.STR_quot);
+					/*@Thrown*/ Object local_1;
+					if (status) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+								Security_dslTables.STR_Endpoint_32_URL_32_should_32_start_32_with_32_a_32_forward_32_slash_33,
+								status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
@@ -451,6 +539,9 @@ public class EndpointImpl extends MinimalEObjectImpl.Container implements Endpoi
 		switch (operationID) {
 		case Security_dslPackage.ENDPOINT___UNIQUE_ROLE_AUTHORITIES__DIAGNOSTICCHAIN_MAP:
 			return uniqueRoleAuthorities((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.ENDPOINT___URL_STARTS_WITH_FORWARD_SLASH__DIAGNOSTICCHAIN_MAP:
+			return urlStartsWithForwardSlash((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -23,7 +23,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getJWT()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='singleRegisteredClaim'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueClaims'"
  * @generated
  */
 public interface JWT extends Security {
@@ -129,5 +129,21 @@ public interface JWT extends Security {
 	 * @generated
 	 */
 	boolean singleRegisteredClaim(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role entities can have at most two attributes!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role | role.entity_attributes -&gt; size() &lt;= 2)\n}.status'"
+	 * @generated
+	 */
+	boolean roleMaxTwoAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role |\n\t\t        (role.entity_attributes -&gt; select(a | a.identifier and a.type = EType::_\'String\') -&gt; size() = 1 and role.entity_attributes -&gt; select(a | a.type = EType::_\'String\') -&gt; size() = 1)\n\t\t        or\n\t\t        (role.entity_attributes -&gt; select(a | a.identifier and a.type &lt;&gt; EType::_\'String\') -&gt; size() = 1 and role.entity_attributes -&gt; select(a | a.type = EType::_\'String\') -&gt; size() = 1)\n\t\t    )\n}.status'"
+	 * @generated
+	 */
+	boolean roleAttributeType(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // JWT

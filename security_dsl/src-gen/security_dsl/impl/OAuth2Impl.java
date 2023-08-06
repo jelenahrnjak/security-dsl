@@ -25,7 +25,9 @@ import org.eclipse.ocl.pivot.evaluation.Executor;
 import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
-
+import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
@@ -37,10 +39,12 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-
+import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
-
+import org.eclipse.ocl.pivot.values.TupleValue;
+import security_dsl.Controller;
 import security_dsl.EOAuthProvider;
+import security_dsl.Entity;
 import security_dsl.OAuth2;
 import security_dsl.Provider;
 import security_dsl.Security_dslPackage;
@@ -118,7 +122,16 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 			 *     if severity <= 0
 			 *     then true
 			 *     else
-			 *       let result : Boolean[1] = self.providers->isUnique(p | p.name)
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = self.providers->isUnique(p | p.name)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Providers must have unique names!', status = status
+			 *             }
+			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -129,9 +142,9 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 					Security_dslPackage.Literals.OAUTH2___UNIQUE_PROVIDERS__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
+			/*@NonInvalid*/ boolean local_2;
 			if (le) {
-				local_0 = true;
+				local_2 = true;
 			} else {
 				final /*@NonInvalid*/ List<Provider> providers = this.getProviders();
 				final /*@NonInvalid*/ OrderedSetValue BOXED_providers = idResolver
@@ -139,10 +152,10 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 				/*@Thrown*/ Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Provider);
 				Iterator<Object> ITERATOR_p = BOXED_providers.iterator();
-				/*@NonInvalid*/ boolean result;
+				/*@NonInvalid*/ boolean status;
 				while (true) {
 					if (!ITERATOR_p.hasNext()) {
-						result = true;
+						status = true;
 						break;
 					}
 					/*@NonInvalid*/ Provider p = (Provider) ITERATOR_p.next();
@@ -154,19 +167,301 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 							.getEnumerationLiteralId(ClassUtil.nonNullState(name.getName()));
 					//
 					if (accumulator.includes(BOXED_name) == ValueUtil.TRUE_VALUE) {
-						result = false;
+						status = false;
 						break; // Abort after second find
 					} else {
 						accumulator.add(BOXED_name);
 					}
 				}
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_Providers_32_must_32_have_32_unique_32_names_33, status);
+					local_1 = local_0;
+				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, result, Security_dslTables.INT_0)
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
 						.booleanValue();
-				local_0 = logDiagnostic;
+				local_2 = logDiagnostic;
 			}
-			return local_0;
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean doesntHaveRoleForOauth(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "OAuth2::doesntHaveRoleForOauth";
+		try {
+			/**
+			 *
+			 * inv doesntHaveRoleForOauth:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = Entity.allInstances()
+			 *           ->select(e | e.oclIsTypeOf(Role))
+			 *           ->size() = 0
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'OAuth2 authentication requires no Role entities!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.OAUTH2___DOESNT_HAVE_ROLE_FOR_OAUTH__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Entity_0 = idResolver
+						.getClass(Security_dslTables.CLSSid_Entity, null);
+				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+						.evaluate(executor, Security_dslTables.SET_CLSSid_Entity, TYP_security_dsl_c_c_Entity_0);
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
+						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Entity);
+				Iterator<Object> ITERATOR_e_0 = allInstances.iterator();
+				/*@NonInvalid*/ SetValue select;
+				while (true) {
+					if (!ITERATOR_e_0.hasNext()) {
+						select = accumulator;
+						break;
+					}
+					/*@NonInvalid*/ Entity e_0 = (Entity) ITERATOR_e_0.next();
+					/**
+					 * e.oclIsTypeOf(Role)
+					 */
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Role_0 = idResolver
+							.getClass(Security_dslTables.CLSSid_Role, null);
+					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
+							.evaluate(executor, e_0, TYP_security_dsl_c_c_Role_0).booleanValue();
+					//
+					if (oclIsTypeOf) {
+						accumulator.add(e_0);
+					}
+				}
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+				final /*@NonInvalid*/ boolean status = size.equals(Security_dslTables.INT_0);
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean doesntHaveAuthControllerForOauth(final DiagnosticChain diagnostics,
+			final Map<Object, Object> context) {
+		final String constraintName = "OAuth2::doesntHaveAuthControllerForOauth";
+		try {
+			/**
+			 *
+			 * inv doesntHaveAuthControllerForOauth:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = Controller.allInstances()
+			 *           ->select(e | e.oclIsTypeOf(Authentication))
+			 *           ->size() = 0
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'OAuth2 authentication requires no Role entities!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.OAUTH2___DOESNT_HAVE_AUTH_CONTROLLER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Controller_0 = idResolver
+						.getClass(Security_dslTables.CLSSid_Controller, null);
+				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE.evaluate(
+						executor, Security_dslTables.SET_CLSSid_Controller, TYP_security_dsl_c_c_Controller_0);
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
+						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Controller);
+				Iterator<Object> ITERATOR_e_0 = allInstances.iterator();
+				/*@NonInvalid*/ SetValue select;
+				while (true) {
+					if (!ITERATOR_e_0.hasNext()) {
+						select = accumulator;
+						break;
+					}
+					/*@NonInvalid*/ Controller e_0 = (Controller) ITERATOR_e_0.next();
+					/**
+					 * e.oclIsTypeOf(Authentication)
+					 */
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Authentication_0 = idResolver
+							.getClass(Security_dslTables.CLSSid_Authentication, null);
+					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
+							.evaluate(executor, e_0, TYP_security_dsl_c_c_Authentication_0).booleanValue();
+					//
+					if (oclIsTypeOf) {
+						accumulator.add(e_0);
+					}
+				}
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+				final /*@NonInvalid*/ boolean status = size.equals(Security_dslTables.INT_0);
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean doesntHaveUserForOauth(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "OAuth2::doesntHaveUserForOauth";
+		try {
+			/**
+			 *
+			 * inv doesntHaveUserForOauth:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = Entity.allInstances()
+			 *           ->select(e | e.oclIsTypeOf(User))
+			 *           ->size() = 0
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'OAuth2 authentication requires no Role entities!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.OAUTH2___DOESNT_HAVE_USER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Entity_0 = idResolver
+						.getClass(Security_dslTables.CLSSid_Entity, null);
+				final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
+						.evaluate(executor, Security_dslTables.SET_CLSSid_Entity, TYP_security_dsl_c_c_Entity_0);
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
+						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Entity);
+				Iterator<Object> ITERATOR_e_0 = allInstances.iterator();
+				/*@NonInvalid*/ SetValue select;
+				while (true) {
+					if (!ITERATOR_e_0.hasNext()) {
+						select = accumulator;
+						break;
+					}
+					/*@NonInvalid*/ Entity e_0 = (Entity) ITERATOR_e_0.next();
+					/**
+					 * e.oclIsTypeOf(User)
+					 */
+					final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_User_0 = idResolver
+							.getClass(Security_dslTables.CLSSid_User, null);
+					final /*@NonInvalid*/ boolean oclIsTypeOf = OclAnyOclIsTypeOfOperation.INSTANCE
+							.evaluate(executor, e_0, TYP_security_dsl_c_c_User_0).booleanValue();
+					//
+					if (oclIsTypeOf) {
+						accumulator.add(e_0);
+					}
+				}
+				final /*@NonInvalid*/ IntegerValue size = CollectionSizeOperation.INSTANCE.evaluate(select);
+				final /*@NonInvalid*/ boolean status = size.equals(Security_dslTables.INT_0);
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}
@@ -257,6 +552,13 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 		switch (operationID) {
 		case Security_dslPackage.OAUTH2___UNIQUE_PROVIDERS__DIAGNOSTICCHAIN_MAP:
 			return uniqueProviders((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.OAUTH2___DOESNT_HAVE_ROLE_FOR_OAUTH__DIAGNOSTICCHAIN_MAP:
+			return doesntHaveRoleForOauth((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.OAUTH2___DOESNT_HAVE_AUTH_CONTROLLER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP:
+			return doesntHaveAuthControllerForOauth((DiagnosticChain) arguments.get(0),
+					(Map<Object, Object>) arguments.get(1));
+		case Security_dslPackage.OAUTH2___DOESNT_HAVE_USER_FOR_OAUTH__DIAGNOSTICCHAIN_MAP:
+			return doesntHaveUserForOauth((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

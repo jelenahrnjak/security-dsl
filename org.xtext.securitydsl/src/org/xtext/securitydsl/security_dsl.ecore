@@ -11,22 +11,11 @@
   </eAnnotations>
   <eClassifiers xsi:type="ecore:EClass" name="Application">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueTableName uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole validPort hasDatabaseForModel hasUserAndRoleModelsForController roleCanHaveIdAndStringAttribute roleMustHaveStringAttribute roleCantHaveAdditionalAttributes basicAuthNoRoleAttributes doesntHaveModelAndControllerForOauth"/>
+      <details key="constraints" value="validRegisteredPort hasDatabaseForEntity"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueTableName" value="self.app_entities -> select(e | e.tableName &lt;> null) -> isUnique(e | e.tableName.toLower())"/>
-      <details key="uniqueControllerName" value="self.app_controllers -> isUnique(c | c.name)"/>
-      <details key="uniqueControllerPath" value=" self.app_controllers -> isUnique(c | c.path) and self.app_controllers -> forAll(c | c.name.toLower() &lt;> c.path.toLower())"/>
-      <details key="controllerPath" value="self.app_controllers -> forAll(c | c.path.at(1) = '/')"/>
-      <details key="controllerNotNamedUserRole" value="not self.app_controllers -> exists(c | c.name.toLower() = 'user' or c.name.toLower() = 'role' or c.name.toLower() = 'usercontroller' or c.name.toLower() = 'rolecontroller')"/>
-      <details key="validPort" value="self.port >= 1024 and self.port &lt;= 49151"/>
-      <details key="hasDatabaseForModel" value="self.app_entities -> isEmpty() or not self.app_database->isEmpty()"/>
-      <details key="hasUserAndRoleModelsForController" value="self.app_controllers -> isEmpty() or (&#xA;&#x9;        self.app_entities -> exists(e | e.oclIsTypeOf(User))&#xA;&#x9;        and&#xA;&#x9;        self.app_entities -> exists(e | e.oclIsTypeOf(Role))&#xA;&#x9;    )"/>
-      <details key="roleCanHaveIdAndStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        (&#xA;            self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;                -> forAll(role | &#xA;                    role.entity_attributes -> select(a | a.type = EType::_'String' and a.identifier = true) -> size() = 1 )&#xA;            or&#xA;            self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;                -> forAll(role |&#xA;                    role.entity_attributes -> select(a | a.type = EType::_'String' and a.identifier = false) -> size() = 1&#xA;                    and&#xA;                    role.entity_attributes -> select(a | a.identifier = true) -> size() = 1&#xA;                )&#xA;        )"/>
-      <details key="roleMustHaveStringAttribute" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> exists(a | a.type = EType::_'String'))"/>
-      <details key="roleCantHaveAdditionalAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(JWT) implies&#xA;        &#x9;self.app_entities -> select(e | e.oclIsTypeOf(Role)) -> forAll(role | role.entity_attributes -> size() &lt;= 2)"/>
-      <details key="basicAuthNoRoleAttributes" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(BasicAuthentication) implies&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> size() = 0)"/>
-      <details key="doesntHaveModelAndControllerForOauth" value="&#xA;        &#x9;self.app_security.oclIsTypeOf(OAuth2) implies&#xA;        (&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(User)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_entities -> select(e | e.oclIsTypeOf(Role)) -> size() = 0&#xA;&#x9;        and&#xA;&#x9;        self.app_controllers -> select(c | c.oclIsTypeOf(Authentication)) -> size() = 0&#xA;        )"/>
+      <details key="validRegisteredPort" value="Tuple {&#xA;&#x9;message : String = 'Port must be in the valid range of 1024 to 49151!',&#xA;&#x9;status : Boolean = self.port >= 1024 and self.port &lt;= 49151&#xA;}.status"/>
+      <details key="hasDatabaseForEntity" value="Tuple {&#xA;&#x9;message : String = 'An application must have a database defined if it has entities!',&#xA;&#x9;status : Boolean = self.app_entities -> isEmpty() or not self.app_database->isEmpty()&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="app_database" eType="#//Database"
         containment="true"/>
@@ -50,13 +39,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Entity" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueAttributeName uniqueCollumnName onlyOneIdentifier oneCredential"/>
+      <details key="constraints" value="uniqueAttributeName uniqueTableName uniqueCollumnName onlyOneIdentifier otherEntitiesDoesntHaveCredential"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueAttributeName" value="self.entity_attributes -> isUnique(a | a.name)"/>
-      <details key="uniqueCollumnName" value="&#xA;&#x9;&#x9;&#x9; self.entity_attributes -> exists(a | a.collumnName &lt;> null) implies self.entity_attributes -> isUnique(a | a.collumnName)"/>
-      <details key="onlyOneIdentifier" value="self.entity_attributes -> size() > 0 implies self.entity_attributes -> select(a | a.identifier) -> size() = 1"/>
-      <details key="oneCredential" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(User) implies&#xA;&#x9;&#x9;&#x9;self.entity_attributes -> select(a | a.credential) -> size() = 1"/>
+      <details key="uniqueAttributeName" value="Tuple {&#xA;&#x9;message : String = 'Attribute names within an entity must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> isUnique(a | a.name)&#xA;}.status"/>
+      <details key="uniqueTableName" value="Tuple {&#xA;&#x9;message : String = 'Table names must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Entity.allInstances() -> select(e | e.tableName &lt;> null) -> isUnique(e | e.tableName.toLower())&#xA;}.status"/>
+      <details key="uniqueCollumnName" value="Tuple {&#xA;&#x9;message : String = 'Column names must be unique if defined!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> exists(a | a.collumnName &lt;> null) implies self.entity_attributes -> isUnique(a | a.collumnName)&#xA;}.status"/>
+      <details key="onlyOneIdentifier" value="Tuple {&#xA;&#x9;message : String = 'Entity must have exactly one identifier attribute!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> size() > 0 implies self.entity_attributes -> select(a | a.identifier) -> size() = 1&#xA;}.status"/>
+      <details key="otherEntitiesDoesntHaveCredential" value="Tuple {&#xA;&#x9;message : String = 'Entities other than User cannot have a credential attribute!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        not self.oclIsTypeOf(User) implies self.entity_attributes -> select(a | a.credential) -> isEmpty()&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="entity_attributes" upperBound="-1"
         eType="#//Attribute" containment="true"/>
@@ -64,15 +54,16 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Controller" abstract="true">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueEndpoints urlStartsWithForwardSlash authenticationLimits loginExistanceForLogout endpointLimits methodRequiredForOtherType"/>
+      <details key="constraints" value="uniqueControllerName uniqueControllerPath controllerPath controllerNotNamedUserRole uniqueEndpoints methodRequiredForOtherType endpointLimits"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueEndpoints" value="&#xA;&#x9;&#x9;&#x9;self.controller_endpoints -> forAll(e1, e2 |  e1 &lt;> e2 implies  (e1.functionName &lt;> null and e2.functionName &lt;> null implies e1.functionName &lt;> e2.functionName) &#xA;        and &#xA;        (e1.url &lt;> null and e2.url &lt;> null implies e1.url &lt;> e2.url))"/>
-      <details key="urlStartsWithForwardSlash" value="self.controller_endpoints -> forAll(e | e.url.at(1) = '/')"/>
-      <details key="authenticationLimits" value="&#xA;&#x9;&#x9;&#x9;self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() &lt;= 1&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() &lt;= 1&#xA;&#x9;&#x9;    ) "/>
-      <details key="loginExistanceForLogout" value="&#xA;&#x9;&#x9;    self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1"/>
-      <details key="endpointLimits" value="&#xA;&#x9;&#x9;&#x9;not self.oclIsTypeOf(Authentication) implies&#xA;&#x9;&#x9;    (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty()&#xA;&#x9;&#x9;    )"/>
-      <details key="methodRequiredForOtherType" value="&#xA;        &#x9;self.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method &lt;> null)"/>
+      <details key="uniqueControllerName" value="Tuple {&#xA;&#x9;message : String = 'Controllers should have unique names!',&#xA;&#x9;status : Boolean = Controller.allInstances() -> isUnique(c | c.name)&#xA;}.status"/>
+      <details key="uniqueControllerPath" value="Tuple {&#xA;&#x9;message : String = 'Controller paths should be unique and different from names!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Controller.allInstances() -> isUnique(c | c.path) and Controller.allInstances() -> forAll(c | '/' + c.name.toLower() &lt;> c.path.toLower())&#xA;}.status"/>
+      <details key="controllerPath" value="Tuple {&#xA;&#x9;message : String = 'Controller path should start with \'/\'!',&#xA;&#x9;status : Boolean = self.path.at(1) = '/'&#xA;}.status"/>
+      <details key="controllerNotNamedUserRole" value="Tuple {&#xA;&#x9;message : String = 'Controller names cannot be &quot;User&quot; or &quot;Role&quot;!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        not Controller.allInstances() -> exists(c | c.name.toLower() = 'user' or c.name.toLower() = 'role')&#xA;}.status"/>
+      <details key="uniqueEndpoints" value="Tuple {&#xA;&#x9;message : String = 'Endpoints within a controller must have unique function names and URLs!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.controller_endpoints -> forAll(e1, e2 | e1 &lt;> e2 implies (e1.functionName &lt;> null and e2.functionName &lt;> null implies e1.functionName &lt;> e2.functionName) &#xA;&#x9;        and &#xA;&#x9;        (e1.url &lt;> null and e2.url &lt;> null implies e1.url &lt;> e2.url))&#xA;}.status"/>
+      <details key="methodRequiredForOtherType" value="Tuple {&#xA;&#x9;message : String = 'Endpoints of type &quot;OTHER&quot; must have a defined method!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::OTHER) -> forAll(e | e.method &lt;> null)&#xA;}.status"/>
+      <details key="endpointLimits" value="Tuple {&#xA;&#x9;message : String = 'Controllers of type other than &quot;Authentication&quot; should not have registration, login, or logout endpoints!',&#xA;&#x9;status : Boolean = &#xA;&#x9;    &#x9;not self.oclIsTypeOf(Authentication) implies (&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> isEmpty()&#xA;&#x9;&#x9;        and&#xA;&#x9;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> isEmpty())&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="path" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -104,10 +95,24 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="collumnName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Role" eSuperTypes="#//Entity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueRoleInstanceName"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueRoleInstanceName" value="Tuple {&#xA;&#x9;message : String = 'Role instance names must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        RoleInstance.allInstances() -> isUnique(name)&#xA;}.status"/>
+    </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="role_instances" upperBound="-1"
         eType="#//RoleInstance" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Entity"/>
+  <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//Entity">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="noAttributeNamedPassword oneCredentialForUser"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="noAttributeNamedPassword" value="Tuple {&#xA;&#x9;message : String = 'User entity cannot have an attribute named &quot;password&quot;!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> forAll(a | a.name.toLower() &lt;> 'password')&#xA;}.status"/>
+      <details key="oneCredentialForUser" value="Tuple {&#xA;&#x9;message : String = 'User entity must have exactly one attribute of type String marked as a credential!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> select(a | a.credential) -> size() = 1&#xA;&#x9;        and&#xA;&#x9;        self.entity_attributes -> select(a | a.credential) -> forAll(a | a.type = EType::String)&#xA;}.status"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EType">
     <eLiterals name="String" value="1"/>
     <eLiterals name="Float" value="2"/>
@@ -122,13 +127,22 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="client" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" defaultValueLiteral="false"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller"/>
-  <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
+  <eClassifiers xsi:type="ecore:EClass" name="Authentication" eSuperTypes="#//Controller">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueRoleAuthorities"/>
+      <details key="constraints" value="authenticationLimits loginExistanceForLogout"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueRoleAuthorities" value="self.role_authorities -> isUnique(r | r.name)"/>
+      <details key="authenticationLimits" value="Tuple {&#xA;&#x9;message : String = 'Authentication can have at most one registration, login, and logout endpoint!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::REGISTRATION) -> size() &lt;= 1&#xA;&#x9;        and&#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() &lt;= 1&#xA;&#x9;        and&#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() &lt;= 1&#xA;}.status"/>
+      <details key="loginExistanceForLogout" value="Tuple {&#xA;&#x9;message : String = 'Logout endpoint requires a corresponding login endpoint!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGOUT) -> size() = 1 implies&#xA;&#x9;        self.controller_endpoints -> select(e | e.type = EEndpointType::LOGIN) -> size() = 1&#xA;}.status"/>
+    </eAnnotations>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Endpoint">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="uniqueRoleAuthorities urlStartsWithForwardSlash"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="uniqueRoleAuthorities" value="Tuple {&#xA;&#x9;message : String = 'Role authorities must be unique for each endpoint!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.role_authorities -> isUnique(r | r.name)&#xA;}.status"/>
+      <details key="urlStartsWithForwardSlash" value="Tuple {&#xA;&#x9;message : String = 'Endpoint URL should start with a forward slash!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.url.at(1) = '/'&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EEndpointType"
@@ -152,12 +166,14 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JWT" eSuperTypes="#//Security">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueClaims registeredClaimSubject singleRegisteredClaim"/>
+      <details key="constraints" value="uniqueClaims registeredClaimSubject singleRegisteredClaim roleMaxTwoAttributes roleAttributeType"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueClaims" value="self.claims -> isUnique(c | c.name)"/>
       <details key="registeredClaimSubject" value="&#xA;&#x9;&#x9;    self.claims -> forAll(c | c.name = 'subject' implies c.type = EClaimType::REGISTERED)"/>
       <details key="singleRegisteredClaim" value="&#xA;&#x9;        self.claims -> select(c | c.type = EClaimType::REGISTERED and c.name = 'subject') -> size() &lt;= 1&#xA;&#x9;        and&#xA;&#x9;        self.claims -> select(c | c.type = EClaimType::REGISTERED) -> size() &lt;= 1"/>
+      <details key="roleMaxTwoAttributes" value="Tuple {&#xA;&#x9;message : String = 'Role entities can have at most two attributes!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role | role.entity_attributes -> size() &lt;= 2)&#xA;}.status"/>
+      <details key="roleAttributeType" value="Tuple {&#xA;&#x9;message : String = 'Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role |&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type = EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type &lt;> EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;    )&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -173,7 +189,7 @@
       <details key="constraints" value="uniqueClaimAttribute"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueClaimAttribute" value="Claim.allInstances() -> isUnique(c | c.claim_attribute)"/>
+      <details key="uniqueClaimAttribute" value="Tuple {&#xA;&#x9;message : String = 'Claim attributes must be unique!',&#xA;&#x9;status : Boolean = Claim.allInstances() -> isUnique(c | c.claim_attribute)&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EClaimType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" lowerBound="1"
@@ -190,7 +206,7 @@
       <details key="constraints" value="expirationTimeGreaterThanZero"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="expirationTimeGreaterThanZero" value="self.expirationTime > 0"/>
+      <details key="expirationTimeGreaterThanZero" value="Tuple {&#xA;&#x9;message : String = 'Expiration time must be greater than zero!',&#xA;&#x9;status : Boolean = self.expirationTime > 0&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -200,15 +216,25 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OAuth2" eSuperTypes="#//Security">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueProviders"/>
+      <details key="constraints" value="uniqueProviders doesntHaveRoleForOauth doesntHaveUserForOauth doesntHaveAuthControllerForOauth"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueProviders" value=" self.providers -> isUnique(p | p.name)"/>
+      <details key="uniqueProviders" value="Tuple {&#xA;&#x9;message : String = 'Providers must have unique names!',&#xA;&#x9;status : Boolean = self.providers -> isUnique(p | p.name)&#xA;}.status"/>
+      <details key="doesntHaveRoleForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> size() = 0&#xA;}.status"/>
+      <details key="doesntHaveUserForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(User)) -> size() = 0&#xA;}.status"/>
+      <details key="doesntHaveAuthControllerForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Controller.allInstances() -> select(e | e.oclIsTypeOf(Authentication)) -> size() = 0&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providers" lowerBound="1"
         upperBound="-1" eType="#//Provider" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="BasicAuthentication" eSuperTypes="#//Security"/>
+  <eClassifiers xsi:type="ecore:EClass" name="BasicAuthentication" eSuperTypes="#//Security">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
+      <details key="constraints" value="basicAuthNoRoleAttributes"/>
+    </eAnnotations>
+    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
+      <details key="basicAuthNoRoleAttributes" value="Tuple {&#xA;&#x9;message : String = 'Basic authentication cannot have role attributes!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Entity.allInstances() -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> size() = 0)&#xA;}.status"/>
+    </eAnnotations>
+  </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EOAuthProvider">
     <eLiterals name="GOOGLE"/>
     <eLiterals name="GITHUB" value="1"/>

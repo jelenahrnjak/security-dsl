@@ -32,7 +32,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getApplication()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleCantHaveAdditionalAttributes'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='hasDatabaseForEntity'"
  * @generated
  */
 public interface Application extends EObject {
@@ -264,105 +264,17 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; forAll(c | c.path.at(1) = \'/\')'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'An application must have a database defined if it has entities!\',\n\tstatus : Boolean = self.app_entities -&gt; isEmpty() or not self.app_database-&gt;isEmpty()\n}.status'"
 	 * @generated
 	 */
-	boolean controllerPath(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean hasDatabaseForEntity(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_entities -&gt; select(e | e.tableName &lt;&gt; null) -&gt; isUnique(e | e.tableName.toLower())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Port must be in the valid range of 1024 to 49151!\',\n\tstatus : Boolean = self.port &gt;= 1024 and self.port &lt;= 49151\n}.status'"
 	 * @generated
 	 */
-	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='not self.app_controllers -&gt; exists(c | c.name.toLower() = \'user\' or c.name.toLower() = \'role\' or c.name.toLower() = \'usercontroller\' or c.name.toLower() = \'rolecontroller\')'"
-	 * @generated
-	 */
-	boolean controllerNotNamedUserRole(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body=' self.app_controllers -&gt; isUnique(c | c.path) and self.app_controllers -&gt; forAll(c | c.name.toLower() &lt;&gt; c.path.toLower())'"
-	 * @generated
-	 */
-	boolean uniqueControllerPath(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isEmpty() or (\n\t        self.app_entities -&gt; exists(e | e.oclIsTypeOf(User))\n\t        and\n\t        self.app_entities -&gt; exists(e | e.oclIsTypeOf(Role))\n\t    )'"
-	 * @generated
-	 */
-	boolean hasUserAndRoleModelsForController(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_entities -&gt; isEmpty() or not self.app_database-&gt;isEmpty()'"
-	 * @generated
-	 */
-	boolean hasDatabaseForModel(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(OAuth2) implies\n        (\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() = 0\n\t        and\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; size() = 0\n\t        and\n\t        self.app_controllers -&gt; select(c | c.oclIsTypeOf(Authentication)) -&gt; size() = 0\n        )'"
-	 * @generated
-	 */
-	boolean doesntHaveModelAndControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.app_controllers -&gt; isUnique(c | c.name)'"
-	 * @generated
-	 */
-	boolean uniqueControllerName(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(BasicAuthentication) implies\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.entity_attributes -&gt; size() = 0)'"
-	 * @generated
-	 */
-	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n\t        self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n\t            -&gt; forAll(role | role.entity_attributes -&gt; exists(a | a.type = EType::_\'String\'))'"
-	 * @generated
-	 */
-	boolean roleMustHaveStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.port &gt;= 1024 and self.port &lt;= 49151'"
-	 * @generated
-	 */
-	boolean validPort(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        (\n            self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n                -&gt; forAll(role | \n                    role.entity_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = true) -&gt; size() = 1 )\n            or\n            self.app_entities -&gt; select(e | e.oclIsTypeOf(Role))\n                -&gt; forAll(role |\n                    role.entity_attributes -&gt; select(a | a.type = EType::_\'String\' and a.identifier = false) -&gt; size() = 1\n                    and\n                    role.entity_attributes -&gt; select(a | a.identifier = true) -&gt; size() = 1\n                )\n        )'"
-	 * @generated
-	 */
-	boolean roleCanHaveIdAndStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        \tself.app_security.oclIsTypeOf(JWT) implies\n        \tself.app_entities -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role | role.entity_attributes -&gt; size() &lt;= 2)'"
-	 * @generated
-	 */
-	boolean roleCantHaveAdditionalAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean validRegisteredPort(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Application

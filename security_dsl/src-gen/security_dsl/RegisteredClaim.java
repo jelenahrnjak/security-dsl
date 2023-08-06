@@ -96,7 +96,7 @@ public interface RegisteredClaim extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expirationTime &gt; 0'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Expiration time must be greater than zero!\',\n\tstatus : Boolean = self.expirationTime &gt; 0\n}.status'"
 	 * @generated
 	 */
 	boolean expirationTimeGreaterThanZero(DiagnosticChain diagnostics, Map<Object, Object> context);

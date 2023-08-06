@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see security_dsl.Security_dslPackage#getEntity()
  * @model abstract="true"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueCollumnName'"
+ *        annotation="http://www.eclipse.org/emf/2002/Ecore constraints='onlyOneIdentifier'"
  * @generated
  */
 public interface Entity extends EObject {
@@ -65,23 +65,31 @@ public interface Entity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\tself.oclIsTypeOf(User) implies\n\t\t\tself.entity_attributes -&gt; select(a | a.credential) -&gt; size() = 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Table names must be unique!\',\n\tstatus : Boolean = \n\t        Entity.allInstances() -&gt; select(e | e.tableName &lt;&gt; null) -&gt; isUnique(e | e.tableName.toLower())\n}.status'"
 	 * @generated
 	 */
-	boolean oneCredential(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.entity_attributes -&gt; size() &gt; 0 implies self.entity_attributes -&gt; select(a | a.identifier) -&gt; size() = 1'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Column names must be unique if defined!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; exists(a | a.collumnName &lt;&gt; null) implies self.entity_attributes -&gt; isUnique(a | a.collumnName)\n}.status'"
 	 * @generated
 	 */
-	boolean onlyOneIdentifier(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean uniqueCollumnName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.entity_attributes -&gt; isUnique(a | a.name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Entities other than User cannot have a credential attribute!\',\n\tstatus : Boolean = \n\t        not self.oclIsTypeOf(User) implies self.entity_attributes -&gt; select(a | a.credential) -&gt; isEmpty()\n}.status'"
+	 * @generated
+	 */
+	boolean otherEntitiesDoesntHaveCredential(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Attribute names within an entity must be unique!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; isUnique(a | a.name)\n}.status'"
 	 * @generated
 	 */
 	boolean uniqueAttributeName(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -89,9 +97,9 @@ public interface Entity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t self.entity_attributes -&gt; exists(a | a.collumnName &lt;&gt; null) implies self.entity_attributes -&gt; isUnique(a | a.collumnName)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Entity must have exactly one identifier attribute!\',\n\tstatus : Boolean = \n\t        self.entity_attributes -&gt; size() &gt; 0 implies self.entity_attributes -&gt; select(a | a.identifier) -&gt; size() = 1\n}.status'"
 	 * @generated
 	 */
-	boolean uniqueCollumnName(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean onlyOneIdentifier(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Entity

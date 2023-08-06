@@ -19,17 +19,14 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
-
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
-
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -38,6 +35,7 @@ import org.eclipse.ocl.pivot.values.SetValue;
 
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 
+import org.eclipse.ocl.pivot.values.TupleValue;
 import security_dsl.Attribute;
 import security_dsl.Claim;
 import security_dsl.EClaimType;
@@ -228,8 +226,16 @@ public class ClaimImpl extends MinimalEObjectImpl.Container implements Claim {
 			 *     then true
 			 *     else
 			 *       let
-			 *         result : Boolean[1] = Claim.allInstances()
-			 *         ->isUnique(c | c.claim_attribute)
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[1] = Claim.allInstances()
+			 *           ->isUnique(c | c.claim_attribute)
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Claim attributes must be unique!', status = status
+			 *             }
+			 *           endif
 			 *       in
 			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
 			 *     endif
@@ -240,9 +246,9 @@ public class ClaimImpl extends MinimalEObjectImpl.Container implements Claim {
 					Security_dslPackage.Literals.CLAIM___UNIQUE_CLAIM_ATTRIBUTE__DIAGNOSTICCHAIN_MAP);
 			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
 					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_0;
+			/*@NonInvalid*/ boolean local_2;
 			if (le) {
-				local_0 = true;
+				local_2 = true;
 			} else {
 				final /*@NonInvalid*/ org.eclipse.ocl.pivot.Class TYP_security_dsl_c_c_Claim = idResolver
 						.getClass(Security_dslTables.CLSSid_Claim, null);
@@ -251,10 +257,10 @@ public class ClaimImpl extends MinimalEObjectImpl.Container implements Claim {
 				/*@Thrown*/ Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Claim);
 				Iterator<Object> ITERATOR_c = allInstances.iterator();
-				/*@NonInvalid*/ boolean result;
+				/*@NonInvalid*/ boolean status;
 				while (true) {
 					if (!ITERATOR_c.hasNext()) {
-						result = true;
+						status = true;
 						break;
 					}
 					/*@NonInvalid*/ Claim c = (Claim) ITERATOR_c.next();
@@ -264,19 +270,27 @@ public class ClaimImpl extends MinimalEObjectImpl.Container implements Claim {
 					final /*@NonInvalid*/ Attribute claim_attribute = c.getClaim_attribute();
 					//
 					if (accumulator.includes(claim_attribute) == ValueUtil.TRUE_VALUE) {
-						result = false;
+						status = false;
 						break; // Abort after second find
 					} else {
 						accumulator.add(claim_attribute);
 					}
 				}
+				/*@NonInvalid*/ Object local_1;
+				if (status) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_Claim_32_attributes_32_must_32_be_32_unique_33, status);
+					local_1 = local_0;
+				}
 				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
 						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, result, Security_dslTables.INT_0)
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
 						.booleanValue();
-				local_0 = logDiagnostic;
+				local_2 = logDiagnostic;
 			}
-			return local_0;
+			return local_2;
 		} catch (Throwable e) {
 			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
 		}

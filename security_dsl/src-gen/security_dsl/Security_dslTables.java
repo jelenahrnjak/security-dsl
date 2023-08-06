@@ -22,6 +22,8 @@ import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdManager;
 import org.eclipse.ocl.pivot.ids.NsURIPackageId;
 import org.eclipse.ocl.pivot.ids.RootPackageId;
+import org.eclipse.ocl.pivot.ids.TuplePartId;
+import org.eclipse.ocl.pivot.ids.TupleTypeId;
 import org.eclipse.ocl.pivot.ids.TypeId;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumeration;
 import org.eclipse.ocl.pivot.internal.library.ecore.EcoreExecutorEnumerationLiteral;
@@ -101,12 +103,41 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ IntegerValue INT_1024 = ValueUtil.integerValueOf("1024");
 	public static final /*@NonInvalid*/ IntegerValue INT_2 = ValueUtil.integerValueOf("2");
 	public static final /*@NonInvalid*/ IntegerValue INT_49151 = ValueUtil.integerValueOf("49151");
+	public static final /*@NonInvalid*/ TuplePartId PARTid_ = IdManager.getTuplePartId(0, "message", TypeId.STRING);
+	public static final /*@NonInvalid*/ TuplePartId PARTid__0 = IdManager.getTuplePartId(1, "status", TypeId.BOOLEAN);
+	public static final /*@NonInvalid*/ String STR_An_32_application_32_must_32_have_32_a_32_database_32_defined_32_if_32_it_32_has_32_entities_33 = "An application must have a database defined if it has entities!";
+	public static final /*@NonInvalid*/ String STR_Attribute_32_names_32_within_32_an_32_entity_32_must_32_be_32_unique_33 = "Attribute names within an entity must be unique!";
+	public static final /*@NonInvalid*/ String STR_Authentication_32_can_32_have_32_at_32_most_32_one_32_registration_44_32_login_44_32_and_32_log = "Authentication can have at most one registration, login, and logout endpoint!";
+	public static final /*@NonInvalid*/ String STR_Basic_32_authentication_32_cannot_32_have_32_role_32_attributes_33 = "Basic authentication cannot have role attributes!";
+	public static final /*@NonInvalid*/ String STR_Claim_32_attributes_32_must_32_be_32_unique_33 = "Claim attributes must be unique!";
+	public static final /*@NonInvalid*/ String STR_Column_32_names_32_must_32_be_32_unique_32_if_32_defined_33 = "Column names must be unique if defined!";
+	public static final /*@NonInvalid*/ String STR_Controller_32_names_32_cannot_32_be_32_34_User_34_32_or_32_34_Role_34_33 = "Controller names cannot be \"User\" or \"Role\"!";
+	public static final /*@NonInvalid*/ String STR_Controller_32_path_32_should_32_start_32_with_32_39_s_39_33 = "Controller path should start with \'/\'!";
+	public static final /*@NonInvalid*/ String STR_Controller_32_paths_32_should_32_be_32_unique_32_and_32_different_32_from_32_names_33 = "Controller paths should be unique and different from names!";
+	public static final /*@NonInvalid*/ String STR_Controllers_32_of_32_type_32_other_32_than_32_34_Authentication_34_32_should_32_not_32_have_32 = "Controllers of type other than \"Authentication\" should not have registration, login, or logout endpoints!";
+	public static final /*@NonInvalid*/ String STR_Controllers_32_should_32_have_32_unique_32_names_33 = "Controllers should have unique names!";
+	public static final /*@NonInvalid*/ String STR_Endpoint_32_URL_32_should_32_start_32_with_32_a_32_forward_32_slash_33 = "Endpoint URL should start with a forward slash!";
+	public static final /*@NonInvalid*/ String STR_Endpoints_32_of_32_type_32_34_OTHER_34_32_must_32_have_32_a_32_defined_32_method_33 = "Endpoints of type \"OTHER\" must have a defined method!";
+	public static final /*@NonInvalid*/ String STR_Endpoints_32_within_32_a_32_controller_32_must_32_have_32_unique_32_function_32_names_32_an = "Endpoints within a controller must have unique function names and URLs!";
+	public static final /*@NonInvalid*/ String STR_Entities_32_other_32_than_32_User_32_cannot_32_have_32_a_32_credential_32_attribute_33 = "Entities other than User cannot have a credential attribute!";
+	public static final /*@NonInvalid*/ String STR_Entity_32_must_32_have_32_exactly_32_one_32_identifier_32_attribute_33 = "Entity must have exactly one identifier attribute!";
+	public static final /*@NonInvalid*/ String STR_Expiration_32_time_32_must_32_be_32_greater_32_than_32_zero_33 = "Expiration time must be greater than zero!";
+	public static final /*@NonInvalid*/ String STR_Logout_32_endpoint_32_requires_32_a_32_corresponding_32_login_32_endpoint_33 = "Logout endpoint requires a corresponding login endpoint!";
+	public static final /*@NonInvalid*/ String STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33 = "OAuth2 authentication requires no Role entities!";
+	public static final /*@NonInvalid*/ String STR_Port_32_must_32_be_32_in_32_the_32_valid_32_range_32_of_32_1024_32_to_32_49151_33 = "Port must be in the valid range of 1024 to 49151!";
+	public static final /*@NonInvalid*/ String STR_Providers_32_must_32_have_32_unique_32_names_33 = "Providers must have unique names!";
+	public static final /*@NonInvalid*/ String STR_Role_32_authorities_32_must_32_be_32_unique_32_for_32_each_32_endpoint_33 = "Role authorities must be unique for each endpoint!";
+	public static final /*@NonInvalid*/ String STR_Role_32_entities_32_can_32_have_32_at_32_most_32_two_32_attributes_33 = "Role entities can have at most two attributes!";
+	public static final /*@NonInvalid*/ String STR_Role_32_entities_32_must_32_have_32_either_32_one_32_identifier_32_attribute_32_of_32_type_32 = "Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!";
+	public static final /*@NonInvalid*/ String STR_Role_32_instance_32_names_32_must_32_be_32_unique_33 = "Role instance names must be unique!";
+	public static final /*@NonInvalid*/ String STR_Table_32_names_32_must_32_be_32_unique_33 = "Table names must be unique!";
+	public static final /*@NonInvalid*/ String STR_User_32_entity_32_cannot_32_have_32_an_32_attribute_32_named_32_34_password_34_33 = "User entity cannot have an attribute named \"password\"!";
+	public static final /*@NonInvalid*/ String STR_User_32_entity_32_must_32_have_32_exactly_32_one_32_attribute_32_of_32_type_32_String_32_marke = "User entity must have exactly one attribute of type String marked as a credential!";
+	public static final /*@NonInvalid*/ String STR_password = "password";
 	public static final /*@NonInvalid*/ String STR_quot = "/";
 	public static final /*@NonInvalid*/ String STR_role = "role";
-	public static final /*@NonInvalid*/ String STR_rolecontroller = "rolecontroller";
 	public static final /*@NonInvalid*/ String STR_subject = "subject";
 	public static final /*@NonInvalid*/ String STR_user = "user";
-	public static final /*@NonInvalid*/ String STR_usercontroller = "usercontroller";
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Claim = TypeId.BAG.getSpecializedId(Security_dslTables.CLSSid_Claim);
 	public static final /*@NonInvalid*/ CollectionTypeId BAG_CLSSid_Endpoint = TypeId.BAG.getSpecializedId(Security_dslTables.CLSSid_Endpoint);
 	public static final /*@NonInvalid*/ EnumerationLiteralId ELITid_LOGIN = Security_dslTables.ENUMid_EEndpointType.getEnumerationLiteralId("LOGIN");
@@ -123,7 +154,11 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_Provider = TypeId.ORDERED_SET.getSpecializedId(Security_dslTables.CLSSid_Provider);
 	public static final /*@NonInvalid*/ CollectionTypeId ORD_CLSSid_RoleInstance = TypeId.ORDERED_SET.getSpecializedId(Security_dslTables.CLSSid_RoleInstance);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Claim = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Claim);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Controller = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Controller);
 	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Database = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Database);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_Entity = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_Entity);
+	public static final /*@NonInvalid*/ CollectionTypeId SET_CLSSid_RoleInstance = TypeId.SET.getSpecializedId(Security_dslTables.CLSSid_RoleInstance);
+	public static final /*@NonInvalid*/ TupleTypeId TUPLid_ = IdManager.getTupleTypeId("Tuple", Security_dslTables.PARTid_, Security_dslTables.PARTid__0);
 
 	/**
 	 *	The type parameters for templated types and operations.
@@ -1929,7 +1964,10 @@ public class Security_dslTables extends AbstractTables
 	 * The EClasses whose instances should be cached to support allInstances().
 	 */
 	private static final EClass allInstancesEClasses /*@NonNull*/ [] = {
-		Security_dslPackage.Literals.CLAIM
+		Security_dslPackage.Literals.CLAIM,
+		Security_dslPackage.Literals.CONTROLLER,
+		Security_dslPackage.Literals.ENTITY,
+		Security_dslPackage.Literals.ROLE_INSTANCE
 	};
 
 	@Override

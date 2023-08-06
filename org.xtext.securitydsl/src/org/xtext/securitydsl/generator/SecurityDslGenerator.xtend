@@ -42,11 +42,13 @@ class SecurityDslGenerator extends AbstractGenerator {
         }else{
         	
         	var Authentication authController = null
+        	var credentialUser = ''
         	
         	var users = resource.allContents.filter(User)
         	var User user = null
-        	if(users.hasNext()) user = users.next()
-        	var credentialUser = getCredential(user.entity_attributes).name
+        	if(users.hasNext()) {
+        		user = users.next()
+        		credentialUser = getCredential(user.entity_attributes).name}
         	
         	var roles = resource.allContents.filter(Role)
         	var Role role = null

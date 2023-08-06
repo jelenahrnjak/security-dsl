@@ -26,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getEndpoint()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueRoleAuthorities'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='urlStartsWithForwardSlash'"
  * @generated
  */
 public interface Endpoint extends EObject {
@@ -140,9 +140,17 @@ public interface Endpoint extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.role_authorities -&gt; isUnique(r | r.name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role authorities must be unique for each endpoint!\',\n\tstatus : Boolean = \n\t        self.role_authorities -&gt; isUnique(r | r.name)\n}.status'"
 	 * @generated
 	 */
 	boolean uniqueRoleAuthorities(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoint URL should start with a forward slash!\',\n\tstatus : Boolean = \n\t        self.url.at(1) = \'/\'\n}.status'"
+	 * @generated
+	 */
+	boolean urlStartsWithForwardSlash(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Endpoint

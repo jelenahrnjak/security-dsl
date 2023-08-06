@@ -2,6 +2,8 @@
  */
 package security_dsl;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -17,7 +19,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getRole()
- * @model
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueRoleInstanceName'"
  * @generated
  */
 public interface Role extends Entity {
@@ -32,5 +34,13 @@ public interface Role extends Entity {
 	 * @generated
 	 */
 	EList<RoleInstance> getRole_instances();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role instance names must be unique!\',\n\tstatus : Boolean = \n\t        RoleInstance.allInstances() -&gt; isUnique(name)\n}.status'"
+	 * @generated
+	 */
+	boolean uniqueRoleInstanceName(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Role

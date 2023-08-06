@@ -99,7 +99,7 @@ public interface Claim extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Claim.allInstances() -&gt; isUnique(c | c.claim_attribute)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Claim attributes must be unique!\',\n\tstatus : Boolean = Claim.allInstances() -&gt; isUnique(c | c.claim_attribute)\n}.status'"
 	 * @generated
 	 */
 	boolean uniqueClaimAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);

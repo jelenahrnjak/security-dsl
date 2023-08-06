@@ -60,13 +60,14 @@ public class SecurityDslGenerator extends AbstractGenerator {
       new SecurityDslOAuth2Generator(fsa, _packageName, srcDestination);
     } else {
       Authentication authController = null;
+      String credentialUser = "";
       Iterator<User> users = Iterators.<User>filter(resource.getAllContents(), User.class);
       User user = null;
       boolean _hasNext = users.hasNext();
       if (_hasNext) {
         user = users.next();
+        credentialUser = SecurityDslGenerator.getCredential(user.getEntity_attributes()).getName();
       }
-      String credentialUser = SecurityDslGenerator.getCredential(user.getEntity_attributes()).getName();
       Iterator<Role> roles = Iterators.<Role>filter(resource.getAllContents(), Role.class);
       Role role = null;
       boolean _hasNext_1 = roles.hasNext();

@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.EList;
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getOAuth2()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueProviders'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='doesntHaveUserForOauth'"
  * @generated
  */
 public interface OAuth2 extends Security {
@@ -39,9 +39,33 @@ public interface OAuth2 extends Security {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body=' self.providers -&gt; isUnique(p | p.name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Providers must have unique names!\',\n\tstatus : Boolean = self.providers -&gt; isUnique(p | p.name)\n}.status'"
 	 * @generated
 	 */
 	boolean uniqueProviders(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; size() = 0\n}.status'"
+	 * @generated
+	 */
+	boolean doesntHaveRoleForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Controller.allInstances() -&gt; select(e | e.oclIsTypeOf(Authentication)) -&gt; size() = 0\n}.status'"
+	 * @generated
+	 */
+	boolean doesntHaveAuthControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() = 0\n}.status'"
+	 * @generated
+	 */
+	boolean doesntHaveUserForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // OAuth2
