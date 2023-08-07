@@ -171,14 +171,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="JWT" eSuperTypes="#//Security">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueClaims registeredClaimSubject singleRegisteredClaim roleMaxTwoAttributes roleAttributeType"/>
+      <details key="constraints" value="roleHasMaxTwoAttributes roleHasStringAttribute"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueClaims" value="self.claims -> isUnique(c | c.name)"/>
-      <details key="registeredClaimSubject" value="&#xA;&#x9;&#x9;    self.claims -> forAll(c | c.name = 'subject' implies c.type = EClaimType::REGISTERED)"/>
-      <details key="singleRegisteredClaim" value="&#xA;&#x9;        self.claims -> select(c | c.type = EClaimType::REGISTERED and c.name = 'subject') -> size() &lt;= 1&#xA;&#x9;        and&#xA;&#x9;        self.claims -> select(c | c.type = EClaimType::REGISTERED) -> size() &lt;= 1"/>
-      <details key="roleMaxTwoAttributes" value="Tuple {&#xA;&#x9;message : String = 'Role entities can have at most two attributes!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role | role.entity_attributes -> size() &lt;= 2)&#xA;}.status"/>
-      <details key="roleAttributeType" value="Tuple {&#xA;&#x9;message : String = 'Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role |&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type = EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type &lt;> EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;    )&#xA;}.status"/>
+      <details key="roleHasMaxTwoAttributes" value="Tuple {&#xA;&#x9;message : String = 'Role entities can have at most two attributes!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role | role.entity_attributes -> size() &lt;= 2)&#xA;}.status"/>
+      <details key="roleHasStringAttribute" value="Tuple {&#xA;&#x9;message : String = 'Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> forAll(role |&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type = EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;        or&#xA;&#x9;&#x9;        (role.entity_attributes -> select(a | a.identifier and a.type &lt;> EType::_'String') -> size() = 1 and role.entity_attributes -> select(a | a.type = EType::_'String') -> size() = 1)&#xA;&#x9;&#x9;    )&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -191,10 +188,12 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Claim">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueClaimAttribute"/>
+      <details key="constraints" value="uniqueClaimAttribute uniqueClaimNames singleRegisteredClaim"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueClaimAttribute" value="Tuple {&#xA;&#x9;message : String = 'Claim attributes must be unique!',&#xA;&#x9;status : Boolean = Claim.allInstances() -> isUnique(c | c.claim_attribute)&#xA;}.status"/>
+      <details key="uniqueClaimNames" value="Tuple {&#xA;&#x9;message : String = 'Claims must have unique names',&#xA;&#x9;status : Boolean = Claim.allInstances() -> isUnique(c | c.name)&#xA;}.status"/>
+      <details key="singleRegisteredClaim" value="Tuple {&#xA;&#x9;message : String = 'If claim name is &quot;subject&quot;, it must be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;&#x9;    &#x9;Claim.allInstances() -> select(c | c.name = 'subject') -> forAll(sc | sc.type = EClaimType::REGISTERED)&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EClaimType"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" lowerBound="1"
