@@ -97,7 +97,7 @@
     <genClasses ecoreClass="security_dsl.ecore#//Endpoint">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/url"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/type"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/functionName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/methodName"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Endpoint/method"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Endpoint/role_authorities"/>
     </genClasses>
@@ -105,17 +105,12 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/signatureAlgorithm"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//JWT/secret"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JWT/claims"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//JWT/registered_claims"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//Claim">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/type"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Claim/claim_attribute"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/name"/>
-    </genClasses>
-    <genClasses ecoreClass="security_dsl.ecore#//RegisteredClaim">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaim/expirationTime"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaim/audience"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//RegisteredClaim/issuer"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute security_dsl.ecore#//Claim/value"/>
     </genClasses>
     <genClasses ecoreClass="security_dsl.ecore#//OAuth2">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//OAuth2/providers"/>

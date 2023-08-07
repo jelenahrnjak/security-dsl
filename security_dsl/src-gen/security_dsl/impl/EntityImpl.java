@@ -30,6 +30,7 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+
 import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
 
@@ -39,8 +40,6 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-
-import org.eclipse.ocl.pivot.library.string.StringToLowerCaseOperation;
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
@@ -49,11 +48,12 @@ import org.eclipse.ocl.pivot.utilities.ValueUtil;
 import org.eclipse.ocl.pivot.values.IntegerValue;
 import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
-
-import org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator;
-
 import org.eclipse.ocl.pivot.values.SetValue;
+
+import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
+
 import org.eclipse.ocl.pivot.values.TupleValue;
+
 import security_dsl.Attribute;
 import security_dsl.Entity;
 import security_dsl.Security_dslPackage;
@@ -178,7 +178,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 			 *         result : OclAny[1] = let
 			 *           status : Boolean[1] = Entity.allInstances()
 			 *           ->select(e | e.tableName <> null)
-			 *           ->isUnique(e | e.tableName.toLower())
+			 *           ->isUnique(e | e.tableName)
 			 *         in
 			 *           if status = true
 			 *           then true
@@ -206,7 +206,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 							.getClass(Security_dslTables.CLSSid_Entity, null);
 					final /*@NonInvalid*/ SetValue allInstances = ClassifierAllInstancesOperation.INSTANCE
 							.evaluate(executor, Security_dslTables.SET_CLSSid_Entity, TYP_security_dsl_c_c_Entity);
-					/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator = ValueUtil
+					/*@Thrown*/ Accumulator accumulator = ValueUtil
 							.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Entity);
 					Iterator<Object> ITERATOR_e_0 = allInstances.iterator();
 					/*@NonInvalid*/ SetValue select;
@@ -226,7 +226,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 							accumulator.add(e_0);
 						}
 					}
-					/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
+					/*@Thrown*/ Accumulator accumulator_0 = ValueUtil
 							.createSetAccumulatorValue(Security_dslTables.SET_CLSSid_Entity);
 					Iterator<Object> ITERATOR_e_1 = select.iterator();
 					/*@Thrown*/ boolean status;
@@ -237,20 +237,15 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 						}
 						/*@NonInvalid*/ Entity e_1 = (Entity) ITERATOR_e_1.next();
 						/**
-						 * e.tableName.toLower()
+						 * e.tableName
 						 */
 						final /*@NonInvalid*/ String tableName_0 = e_1.getTableName();
-						if (tableName_0 == null) {
-							throw new InvalidValueException(
-									"Null \'\'String\'\' rather than \'\'OclVoid\'\' value required");
-						}
-						final /*@Thrown*/ String toLower = StringToLowerCaseOperation.INSTANCE.evaluate(tableName_0);
 						//
-						if (accumulator_0.includes(toLower) == ValueUtil.TRUE_VALUE) {
+						if (accumulator_0.includes(tableName_0) == ValueUtil.TRUE_VALUE) {
 							status = false;
 							break; // Abort after second find
 						} else {
-							accumulator_0.add(toLower);
+							accumulator_0.add(tableName_0);
 						}
 					}
 					/*@Thrown*/ Object local_1;
@@ -357,7 +352,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 					} else {
 						/*@Caught*/ Object CAUGHT_isUnique;
 						try {
-							/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator_0 = ValueUtil
+							/*@Thrown*/ Accumulator accumulator_0 = ValueUtil
 									.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
 							Iterator<Object> ITERATOR_a_0 = BOXED_entity_attributes.iterator();
 							/*@Thrown*/ boolean isUnique;
@@ -488,7 +483,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 						final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
 						final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
 								.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
-						/*@Thrown*/ Accumulator accumulator = ValueUtil
+						/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator = ValueUtil
 								.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
 						Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 						/*@NonInvalid*/ OrderedSetValue select;
@@ -588,7 +583,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 				final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
 				final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
 						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
-				/*@Thrown*/ org.eclipse.ocl.pivot.values.SetValue.Accumulator accumulator = ValueUtil
+				/*@Thrown*/ Accumulator accumulator = ValueUtil
 						.createSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
 				Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 				/*@NonInvalid*/ boolean status;
@@ -684,7 +679,7 @@ public abstract class EntityImpl extends MinimalEObjectImpl.Container implements
 				if (!gt) {
 					status = ValueUtil.TRUE_VALUE;
 				} else {
-					/*@Thrown*/ Accumulator accumulator = ValueUtil
+					/*@Thrown*/ org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator accumulator = ValueUtil
 							.createOrderedSetAccumulatorValue(Security_dslTables.ORD_CLSSid_Attribute);
 					Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
 					/*@NonInvalid*/ OrderedSetValue select;

@@ -6,7 +6,6 @@ import security_dsl.Authentication
 import security_dsl.Claim
 import security_dsl.EClaimType
 import security_dsl.JWT
-import security_dsl.RegisteredClaim
 
 class SecurityDslJWTGenerator {
 	
@@ -315,18 +314,17 @@ class SecurityDslJWTGenerator {
 		
 		@Component
 		public class TokenUtils {
-		«var RegisteredClaim regClaim = jwt.registered_claims»
 		
-			private String ISSUER = "«regClaim.issuer»";
+			private String ISSUER = "«SecurityDslGenerator.findClaimByName(jwt.claims, 'issuer').value»";
 
 			public String SECRET = "«jwt.secret»";
 		
-			private int EXPIRES_IN = «regClaim.expirationTime»;
+			private int EXPIRES_IN = «SecurityDslGenerator.findClaimByName(jwt.claims, 'expirationTime').value»;
 			
 			@Value("Authorization")
 			private String AUTH_HEADER;
 			
-			private static final String AUDIENCE_WEB = "«regClaim.audience»";
+			private static final String AUDIENCE_WEB = "«SecurityDslGenerator.findClaimByName(jwt.claims, 'audience')»";
 			// Algoritam za potpisivanje JWT
 			private SignatureAlgorithm SIGNATURE_ALGORITHM = SignatureAlgorithm.«jwt.signatureAlgorithm»;
 			

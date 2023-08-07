@@ -58,9 +58,11 @@ application:
             signatureAlgorithm: "HS512" 
         payload:
             claims: [
-            	{REGISTERED, expirationTime: 1800000},
-            	{REGISTERED, audience: "AUDIENCE_WEB"},
-            	{REGISTERED , subject : username}
+            	{REGISTERED , subject : attribute username},
+            	{REGISTERED , audience : "AUDIENCE_WEB"},
+            	{REGISTERED , expirationTime : "333"},
+            	{REGISTERED , issuer : "securityDSL"},
+            	{PUBLIC , firstName : attribute firstName}
             ]
  
     controller:

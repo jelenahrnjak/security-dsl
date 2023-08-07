@@ -65,7 +65,7 @@ public interface Entity extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Table names must be unique!\',\n\tstatus : Boolean = \n\t        Entity.allInstances() -&gt; select(e | e.tableName &lt;&gt; null) -&gt; isUnique(e | e.tableName.toLower())\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Table names must be unique!\',\n\tstatus : Boolean = \n\t        Entity.allInstances() -&gt; select(e | e.tableName &lt;&gt; null) -&gt; isUnique(e | e.tableName)\n}.status'"
 	 * @generated
 	 */
 	boolean uniqueTableName(DiagnosticChain diagnostics, Map<Object, Object> context);

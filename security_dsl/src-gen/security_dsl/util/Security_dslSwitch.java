@@ -165,13 +165,6 @@ public class Security_dslSwitch<T> extends Switch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case Security_dslPackage.REGISTERED_CLAIM: {
-			RegisteredClaim registeredClaim = (RegisteredClaim) theEObject;
-			T result = caseRegisteredClaim(registeredClaim);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case Security_dslPackage.OAUTH2: {
 			OAuth2 oAuth2 = (OAuth2) theEObject;
 			T result = caseOAuth2(oAuth2);
@@ -394,21 +387,6 @@ public class Security_dslSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseClaim(Claim object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Registered Claim</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Registered Claim</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseRegisteredClaim(RegisteredClaim object) {
 		return null;
 	}
 

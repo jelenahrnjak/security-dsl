@@ -24,15 +24,19 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
+
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
+
 import org.eclipse.ocl.pivot.library.collection.CollectionIsEmptyOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclAsSetOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanEqualOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -41,6 +45,7 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
+
 import security_dsl.Application;
 import security_dsl.Controller;
 import security_dsl.Database;
@@ -557,6 +562,116 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validRegisteredPort(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "Application::validRegisteredPort";
+		try {
+			/**
+			 *
+			 * inv validRegisteredPort:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let status : Boolean[?] = self.port >= 1024 and self.port <= 49151
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'Port must be in the valid range of 1024 to 49151!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.APPLICATION___VALID_REGISTERED_PORT__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				/*@Caught*/ Object CAUGHT_local_1;
+				try {
+					/*@Caught*/ Object CAUGHT_ge;
+					try {
+						final /*@NonInvalid*/ Long port = this.getPort();
+						if (port == null) {
+							throw new InvalidValueException(
+									"Null \'\'OclComparable\'\' rather than \'\'OclVoid\'\' value required");
+						}
+						final /*@Thrown*/ IntegerValue BOXED_port = ValueUtil.integerValueOf(port);
+						final /*@Thrown*/ boolean ge = OclComparableGreaterThanEqualOperation.INSTANCE
+								.evaluate(executor, BOXED_port, Security_dslTables.INT_1024).booleanValue();
+						CAUGHT_ge = ge;
+					} catch (Exception e) {
+						CAUGHT_ge = ValueUtil.createInvalidValue(e);
+					}
+					final /*@Thrown*/ Boolean status;
+					if (CAUGHT_ge == ValueUtil.FALSE_VALUE) {
+						status = ValueUtil.FALSE_VALUE;
+					} else {
+						/*@Caught*/ Object CAUGHT_le_0;
+						try {
+							final /*@NonInvalid*/ Long port_0 = this.getPort();
+							if (port_0 == null) {
+								throw new InvalidValueException(
+										"Null \'\'OclComparable\'\' rather than \'\'OclVoid\'\' value required");
+							}
+							final /*@Thrown*/ IntegerValue BOXED_port_0 = ValueUtil.integerValueOf(port_0);
+							final /*@Thrown*/ boolean le_0 = OclComparableLessThanEqualOperation.INSTANCE
+									.evaluate(executor, BOXED_port_0, Security_dslTables.INT_49151).booleanValue();
+							CAUGHT_le_0 = le_0;
+						} catch (Exception e) {
+							CAUGHT_le_0 = ValueUtil.createInvalidValue(e);
+						}
+						if (CAUGHT_le_0 == ValueUtil.FALSE_VALUE) {
+							status = ValueUtil.FALSE_VALUE;
+						} else {
+							if (CAUGHT_ge instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_ge;
+							}
+							if (CAUGHT_le_0 instanceof InvalidValueException) {
+								throw (InvalidValueException) CAUGHT_le_0;
+							}
+							status = ValueUtil.TRUE_VALUE;
+						}
+					}
+					final /*@Thrown*/ boolean eq = status == Boolean.TRUE;
+					/*@Thrown*/ Object local_1;
+					if (eq) {
+						local_1 = ValueUtil.TRUE_VALUE;
+					} else {
+						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+								Security_dslTables.STR_Port_32_must_32_be_32_in_32_the_32_valid_32_range_32_of_32_1024_32_to_32_49151_33,
+								status);
+						local_1 = local_0;
+					}
+					CAUGHT_local_1 = local_1;
+				} catch (Exception e) {
+					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, CAUGHT_local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public boolean hasDatabaseForEntity(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
 		final String constraintName = "Application::hasDatabaseForEntity";
 		try {
@@ -654,116 +769,6 @@ public class ApplicationImpl extends MinimalEObjectImpl.Container implements App
 					} else {
 						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
 								Security_dslTables.STR_An_32_application_32_must_32_have_32_a_32_database_32_defined_32_if_32_it_32_has_32_entities_33,
-								status);
-						local_1 = local_0;
-					}
-					CAUGHT_local_1 = local_1;
-				} catch (Exception e) {
-					CAUGHT_local_1 = ValueUtil.createInvalidValue(e);
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, CAUGHT_local_1, Security_dslTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validRegisteredPort(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "Application::validRegisteredPort";
-		try {
-			/**
-			 *
-			 * inv validRegisteredPort:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let status : Boolean[?] = self.port >= 1024 and self.port <= 49151
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else
-			 *             Tuple{message = 'Port must be in the valid range of 1024 to 49151!', status = status
-			 *             }
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.APPLICATION___VALID_REGISTERED_PORT__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				/*@Caught*/ Object CAUGHT_local_1;
-				try {
-					/*@Caught*/ Object CAUGHT_ge;
-					try {
-						final /*@NonInvalid*/ Long port = this.getPort();
-						if (port == null) {
-							throw new InvalidValueException(
-									"Null \'\'OclComparable\'\' rather than \'\'OclVoid\'\' value required");
-						}
-						final /*@Thrown*/ IntegerValue BOXED_port = ValueUtil.integerValueOf(port);
-						final /*@Thrown*/ boolean ge = OclComparableGreaterThanEqualOperation.INSTANCE
-								.evaluate(executor, BOXED_port, Security_dslTables.INT_1024).booleanValue();
-						CAUGHT_ge = ge;
-					} catch (Exception e) {
-						CAUGHT_ge = ValueUtil.createInvalidValue(e);
-					}
-					final /*@Thrown*/ Boolean status;
-					if (CAUGHT_ge == ValueUtil.FALSE_VALUE) {
-						status = ValueUtil.FALSE_VALUE;
-					} else {
-						/*@Caught*/ Object CAUGHT_le_0;
-						try {
-							final /*@NonInvalid*/ Long port_0 = this.getPort();
-							if (port_0 == null) {
-								throw new InvalidValueException(
-										"Null \'\'OclComparable\'\' rather than \'\'OclVoid\'\' value required");
-							}
-							final /*@Thrown*/ IntegerValue BOXED_port_0 = ValueUtil.integerValueOf(port_0);
-							final /*@Thrown*/ boolean le_0 = OclComparableLessThanEqualOperation.INSTANCE
-									.evaluate(executor, BOXED_port_0, Security_dslTables.INT_49151).booleanValue();
-							CAUGHT_le_0 = le_0;
-						} catch (Exception e) {
-							CAUGHT_le_0 = ValueUtil.createInvalidValue(e);
-						}
-						if (CAUGHT_le_0 == ValueUtil.FALSE_VALUE) {
-							status = ValueUtil.FALSE_VALUE;
-						} else {
-							if (CAUGHT_ge instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_ge;
-							}
-							if (CAUGHT_le_0 instanceof InvalidValueException) {
-								throw (InvalidValueException) CAUGHT_le_0;
-							}
-							status = ValueUtil.TRUE_VALUE;
-						}
-					}
-					final /*@Thrown*/ boolean eq = status == Boolean.TRUE;
-					/*@Thrown*/ Object local_1;
-					if (eq) {
-						local_1 = ValueUtil.TRUE_VALUE;
-					} else {
-						final /*@Thrown*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
-								Security_dslTables.STR_Port_32_must_32_be_32_in_32_the_32_valid_32_range_32_of_32_1024_32_to_32_49151_33,
 								status);
 						local_1 = local_0;
 					}

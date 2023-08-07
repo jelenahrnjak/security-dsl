@@ -1161,67 +1161,31 @@ public interface Security_dslPackage extends EPackage {
 	int JWT__CLAIMS = SECURITY_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Registered claims</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JWT__REGISTERED_CLAIMS = SECURITY_FEATURE_COUNT + 3;
-
-	/**
 	 * The number of structural features of the '<em>JWT</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JWT_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 4;
+	int JWT_FEATURE_COUNT = SECURITY_FEATURE_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Registered Claim Subject</em>' operation.
+	 * The operation id for the '<em>Role Has Max Two Attributes</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JWT___REGISTERED_CLAIM_SUBJECT__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 0;
+	int JWT___ROLE_HAS_MAX_TWO_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 0;
 
 	/**
-	 * The operation id for the '<em>Single Registered Claim</em>' operation.
+	 * The operation id for the '<em>Role Has String Attribute</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int JWT___SINGLE_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 1;
-
-	/**
-	 * The operation id for the '<em>Role Max Two Attributes</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JWT___ROLE_MAX_TWO_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 2;
-
-	/**
-	 * The operation id for the '<em>Role Attribute Type</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JWT___ROLE_ATTRIBUTE_TYPE__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 3;
-
-	/**
-	 * The operation id for the '<em>Unique Claims</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int JWT___UNIQUE_CLAIMS__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 4;
+	int JWT___ROLE_HAS_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = SECURITY_OPERATION_COUNT + 1;
 
 	/**
 	 * The number of operations of the '<em>JWT</em>' class.
@@ -1230,7 +1194,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int JWT_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 5;
+	int JWT_OPERATION_COUNT = SECURITY_OPERATION_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.ClaimImpl <em>Claim</em>}' class.
@@ -1270,13 +1234,49 @@ public interface Security_dslPackage extends EPackage {
 	int CLAIM__NAME = 2;
 
 	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM__VALUE = 3;
+
+	/**
 	 * The number of structural features of the '<em>Claim</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int CLAIM_FEATURE_COUNT = 3;
+	int CLAIM_FEATURE_COUNT = 4;
+
+	/**
+	 * The operation id for the '<em>Unique Claim Names</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___UNIQUE_CLAIM_NAMES__DIAGNOSTICCHAIN_MAP = 0;
+
+	/**
+	 * The operation id for the '<em>Other Claims No Value</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___OTHER_CLAIMS_NO_VALUE__DIAGNOSTICCHAIN_MAP = 1;
+
+	/**
+	 * The operation id for the '<em>Issuer Registered Claim</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___ISSUER_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = 2;
 
 	/**
 	 * The operation id for the '<em>Unique Claim Attribute</em>' operation.
@@ -1285,7 +1285,70 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLAIM___UNIQUE_CLAIM_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 0;
+	int CLAIM___UNIQUE_CLAIM_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = 3;
+
+	/**
+	 * The operation id for the '<em>Subject Registered Claim</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___SUBJECT_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = 4;
+
+	/**
+	 * The operation id for the '<em>Audience Value Not Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___AUDIENCE_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = 5;
+
+	/**
+	 * The operation id for the '<em>Expiration Time Value Is Positive Numeric</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___EXPIRATION_TIME_VALUE_IS_POSITIVE_NUMERIC__DIAGNOSTICCHAIN_MAP = 6;
+
+	/**
+	 * The operation id for the '<em>Has Expiration Time Claim</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___HAS_EXPIRATION_TIME_CLAIM__DIAGNOSTICCHAIN_MAP = 7;
+
+	/**
+	 * The operation id for the '<em>Has Audience Claim</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___HAS_AUDIENCE_CLAIM__DIAGNOSTICCHAIN_MAP = 8;
+
+	/**
+	 * The operation id for the '<em>Expiration Time Value Not Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___EXPIRATION_TIME_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = 9;
+
+	/**
+	 * The operation id for the '<em>Issuer Value Not Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLAIM___ISSUER_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = 10;
 
 	/**
 	 * The number of operations of the '<em>Claim</em>' class.
@@ -1294,71 +1357,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CLAIM_OPERATION_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link security_dsl.impl.RegisteredClaimImpl <em>Registered Claim</em>}' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see security_dsl.impl.RegisteredClaimImpl
-	 * @see security_dsl.impl.Security_dslPackageImpl#getRegisteredClaim()
-	 * @generated
-	 */
-	int REGISTERED_CLAIM = 13;
-
-	/**
-	 * The feature id for the '<em><b>Expiration Time</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM__EXPIRATION_TIME = 0;
-
-	/**
-	 * The feature id for the '<em><b>Audience</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM__AUDIENCE = 1;
-
-	/**
-	 * The feature id for the '<em><b>Issuer</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM__ISSUER = 2;
-
-	/**
-	 * The number of structural features of the '<em>Registered Claim</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM_FEATURE_COUNT = 3;
-
-	/**
-	 * The operation id for the '<em>Expiration Time Greater Than Zero</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM___EXPIRATION_TIME_GREATER_THAN_ZERO__DIAGNOSTICCHAIN_MAP = 0;
-
-	/**
-	 * The number of operations of the '<em>Registered Claim</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int REGISTERED_CLAIM_OPERATION_COUNT = 1;
+	int CLAIM_OPERATION_COUNT = 11;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.impl.OAuth2Impl <em>OAuth2</em>}' class.
@@ -1368,7 +1367,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getOAuth2()
 	 * @generated
 	 */
-	int OAUTH2 = 14;
+	int OAUTH2 = 13;
 
 	/**
 	 * The feature id for the '<em><b>Providers</b></em>' containment reference list.
@@ -1441,7 +1440,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getBasicAuthentication()
 	 * @generated
 	 */
-	int BASIC_AUTHENTICATION = 15;
+	int BASIC_AUTHENTICATION = 14;
 
 	/**
 	 * The number of structural features of the '<em>Basic Authentication</em>' class.
@@ -1478,7 +1477,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getProvider()
 	 * @generated
 	 */
-	int PROVIDER = 16;
+	int PROVIDER = 15;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -1542,7 +1541,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEDatabaseType()
 	 * @generated
 	 */
-	int EDATABASE_TYPE = 17;
+	int EDATABASE_TYPE = 16;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EType <em>EType</em>}' enum.
@@ -1552,7 +1551,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEType()
 	 * @generated
 	 */
-	int ETYPE = 18;
+	int ETYPE = 17;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointMethod <em>EEndpoint Method</em>}' enum.
@@ -1562,7 +1561,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointMethod()
 	 * @generated
 	 */
-	int EENDPOINT_METHOD = 19;
+	int EENDPOINT_METHOD = 18;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EEndpointType <em>EEndpoint Type</em>}' enum.
@@ -1572,7 +1571,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEEndpointType()
 	 * @generated
 	 */
-	int EENDPOINT_TYPE = 20;
+	int EENDPOINT_TYPE = 19;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EClaimType <em>EClaim Type</em>}' enum.
@@ -1582,7 +1581,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEClaimType()
 	 * @generated
 	 */
-	int ECLAIM_TYPE = 21;
+	int ECLAIM_TYPE = 20;
 
 	/**
 	 * The meta object id for the '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}' enum.
@@ -1592,7 +1591,7 @@ public interface Security_dslPackage extends EPackage {
 	 * @see security_dsl.impl.Security_dslPackageImpl#getEOAuthProvider()
 	 * @generated
 	 */
-	int EO_AUTH_PROVIDER = 22;
+	int EO_AUTH_PROVIDER = 21;
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Application <em>Application</em>}'.
@@ -1726,16 +1725,6 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getApplication_Hostname();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Application#hasDatabaseForEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Database For Entity</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Has Database For Entity</em>' operation.
-	 * @see security_dsl.Application#hasDatabaseForEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getApplication__HasDatabaseForEntity__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.Application#validRegisteredPort(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Registered Port</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1744,6 +1733,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getApplication__ValidRegisteredPort__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Application#hasDatabaseForEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Database For Entity</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has Database For Entity</em>' operation.
+	 * @see security_dsl.Application#hasDatabaseForEntity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getApplication__HasDatabaseForEntity__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Entity <em>Entity</em>}'.
@@ -1871,16 +1870,6 @@ public interface Security_dslPackage extends EPackage {
 	EReference getController_Controller_endpoints();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Required For Other Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Method Required For Other Type</em>' operation.
-	 * @see security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__MethodRequiredForOtherType__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#controllerPath(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Path</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1889,6 +1878,26 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getController__ControllerPath__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Controller#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Not Named User Role</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Controller Not Named User Role</em>' operation.
+	 * @see security_dsl.Controller#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getController__ControllerNotNamedUserRole__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Endpoint Limits</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Endpoint Limits</em>' operation.
+	 * @see security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getController__EndpointLimits__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueControllerPath(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Controller Path</em>}' operation.
@@ -1911,6 +1920,16 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getController__UniqueEndpointURLs__DiagnosticChain_Map();
 
 	/**
+	 * Returns the meta object for the '{@link security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Method Required For Other Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Method Required For Other Type</em>' operation.
+	 * @see security_dsl.Controller#methodRequiredForOtherType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getController__MethodRequiredForOtherType__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Controller#uniqueControllerName(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Controller Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1929,26 +1948,6 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getController__UniqueEndpointMethodNames__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Endpoint Limits</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Endpoint Limits</em>' operation.
-	 * @see security_dsl.Controller#endpointLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__EndpointLimits__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.Controller#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Controller Not Named User Role</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Controller Not Named User Role</em>' operation.
-	 * @see security_dsl.Controller#controllerNotNamedUserRole(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getController__ControllerNotNamedUserRole__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Security <em>Security</em>}'.
@@ -2131,16 +2130,6 @@ public interface Security_dslPackage extends EPackage {
 	EClass getUser();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.User#noAttributeNamedPassword(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Attribute Named Password</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>No Attribute Named Password</em>' operation.
-	 * @see security_dsl.User#noAttributeNamedPassword(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.User#oneStringTypeCredentialForUser(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>One String Type Credential For User</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2159,6 +2148,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getUser__UniqueUserEntity__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.User#noAttributeNamedPassword(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>No Attribute Named Password</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>No Attribute Named Password</em>' operation.
+	 * @see security_dsl.User#noAttributeNamedPassword(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.RoleInstance <em>Role Instance</em>}'.
@@ -2203,16 +2202,6 @@ public interface Security_dslPackage extends EPackage {
 	EClass getAuthentication();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has User And Role For Controller</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Has User And Role For Controller</em>' operation.
-	 * @see security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
-
-	/**
 	 * Returns the meta object for the '{@link security_dsl.Authentication#authenticationLimits(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Authentication Limits</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2241,6 +2230,16 @@ public interface Security_dslPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getAuthentication__LoginExistanceForLogout__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has User And Role For Controller</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Has User And Role For Controller</em>' operation.
+	 * @see security_dsl.Authentication#hasUserAndRoleForController(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Endpoint <em>Endpoint</em>}'.
@@ -2371,65 +2370,24 @@ public interface Security_dslPackage extends EPackage {
 	EReference getJWT_Claims();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link security_dsl.JWT#getRegistered_claims <em>Registered claims</em>}'.
+	 * Returns the meta object for the '{@link security_dsl.JWT#roleHasMaxTwoAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Has Max Two Attributes</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Registered claims</em>'.
-	 * @see security_dsl.JWT#getRegistered_claims()
-	 * @see #getJWT()
+	 * @return the meta object for the '<em>Role Has Max Two Attributes</em>' operation.
+	 * @see security_dsl.JWT#roleHasMaxTwoAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EReference getJWT_Registered_claims();
+	EOperation getJWT__RoleHasMaxTwoAttributes__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.JWT#uniqueClaims(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Claims</em>}' operation.
+	 * Returns the meta object for the '{@link security_dsl.JWT#roleHasStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Has String Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Unique Claims</em>' operation.
-	 * @see security_dsl.JWT#uniqueClaims(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Role Has String Attribute</em>' operation.
+	 * @see security_dsl.JWT#roleHasStringAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getJWT__UniqueClaims__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.JWT#registeredClaimSubject(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Registered Claim Subject</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Registered Claim Subject</em>' operation.
-	 * @see security_dsl.JWT#registeredClaimSubject(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getJWT__RegisteredClaimSubject__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.JWT#singleRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Single Registered Claim</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Single Registered Claim</em>' operation.
-	 * @see security_dsl.JWT#singleRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getJWT__SingleRegisteredClaim__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.JWT#roleMaxTwoAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Max Two Attributes</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Role Max Two Attributes</em>' operation.
-	 * @see security_dsl.JWT#roleMaxTwoAttributes(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getJWT__RoleMaxTwoAttributes__DiagnosticChain_Map();
-
-	/**
-	 * Returns the meta object for the '{@link security_dsl.JWT#roleAttributeType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Role Attribute Type</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Role Attribute Type</em>' operation.
-	 * @see security_dsl.JWT#roleAttributeType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * @generated
-	 */
-	EOperation getJWT__RoleAttributeType__DiagnosticChain_Map();
+	EOperation getJWT__RoleHasStringAttribute__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.Claim <em>Claim</em>}'.
@@ -2475,6 +2433,47 @@ public interface Security_dslPackage extends EPackage {
 	EAttribute getClaim_Name();
 
 	/**
+	 * Returns the meta object for the attribute '{@link security_dsl.Claim#getValue <em>Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see security_dsl.Claim#getValue()
+	 * @see #getClaim()
+	 * @generated
+	 */
+	EAttribute getClaim_Value();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Claim#uniqueClaimNames(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Claim Names</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Unique Claim Names</em>' operation.
+	 * @see security_dsl.Claim#uniqueClaimNames(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClaim__UniqueClaimNames__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Claim#otherClaimsNoValue(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Other Claims No Value</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Other Claims No Value</em>' operation.
+	 * @see security_dsl.Claim#otherClaimsNoValue(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClaim__OtherClaimsNoValue__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Claim#issuerRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Issuer Registered Claim</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Issuer Registered Claim</em>' operation.
+	 * @see security_dsl.Claim#issuerRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClaim__IssuerRegisteredClaim__DiagnosticChain_Map();
+
+	/**
 	 * Returns the meta object for the '{@link security_dsl.Claim#uniqueClaimAttribute(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Unique Claim Attribute</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2485,57 +2484,74 @@ public interface Security_dslPackage extends EPackage {
 	EOperation getClaim__UniqueClaimAttribute__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for class '{@link security_dsl.RegisteredClaim <em>Registered Claim</em>}'.
+	 * Returns the meta object for the '{@link security_dsl.Claim#subjectRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Subject Registered Claim</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Registered Claim</em>'.
-	 * @see security_dsl.RegisteredClaim
+	 * @return the meta object for the '<em>Subject Registered Claim</em>' operation.
+	 * @see security_dsl.Claim#subjectRegisteredClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EClass getRegisteredClaim();
+	EOperation getClaim__SubjectRegisteredClaim__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the attribute '{@link security_dsl.RegisteredClaim#getExpirationTime <em>Expiration Time</em>}'.
+	 * Returns the meta object for the '{@link security_dsl.Claim#audienceValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Audience Value Not Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Expiration Time</em>'.
-	 * @see security_dsl.RegisteredClaim#getExpirationTime()
-	 * @see #getRegisteredClaim()
+	 * @return the meta object for the '<em>Audience Value Not Null</em>' operation.
+	 * @see security_dsl.Claim#audienceValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EAttribute getRegisteredClaim_ExpirationTime();
+	EOperation getClaim__AudienceValueNotNull__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the attribute '{@link security_dsl.RegisteredClaim#getAudience <em>Audience</em>}'.
+	 * Returns the meta object for the '{@link security_dsl.Claim#expirationTimeValueIsPositiveNumeric(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expiration Time Value Is Positive Numeric</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Audience</em>'.
-	 * @see security_dsl.RegisteredClaim#getAudience()
-	 * @see #getRegisteredClaim()
+	 * @return the meta object for the '<em>Expiration Time Value Is Positive Numeric</em>' operation.
+	 * @see security_dsl.Claim#expirationTimeValueIsPositiveNumeric(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EAttribute getRegisteredClaim_Audience();
+	EOperation getClaim__ExpirationTimeValueIsPositiveNumeric__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the attribute '{@link security_dsl.RegisteredClaim#getIssuer <em>Issuer</em>}'.
+	 * Returns the meta object for the '{@link security_dsl.Claim#hasExpirationTimeClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Expiration Time Claim</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Issuer</em>'.
-	 * @see security_dsl.RegisteredClaim#getIssuer()
-	 * @see #getRegisteredClaim()
+	 * @return the meta object for the '<em>Has Expiration Time Claim</em>' operation.
+	 * @see security_dsl.Claim#hasExpirationTimeClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EAttribute getRegisteredClaim_Issuer();
+	EOperation getClaim__HasExpirationTimeClaim__DiagnosticChain_Map();
 
 	/**
-	 * Returns the meta object for the '{@link security_dsl.RegisteredClaim#expirationTimeGreaterThanZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expiration Time Greater Than Zero</em>}' operation.
+	 * Returns the meta object for the '{@link security_dsl.Claim#hasAudienceClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Has Audience Claim</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Expiration Time Greater Than Zero</em>' operation.
-	 * @see security_dsl.RegisteredClaim#expirationTimeGreaterThanZero(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @return the meta object for the '<em>Has Audience Claim</em>' operation.
+	 * @see security_dsl.Claim#hasAudienceClaim(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	EOperation getRegisteredClaim__ExpirationTimeGreaterThanZero__DiagnosticChain_Map();
+	EOperation getClaim__HasAudienceClaim__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Claim#expirationTimeValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expiration Time Value Not Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Expiration Time Value Not Null</em>' operation.
+	 * @see security_dsl.Claim#expirationTimeValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClaim__ExpirationTimeValueNotNull__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for the '{@link security_dsl.Claim#issuerValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Issuer Value Not Null</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Issuer Value Not Null</em>' operation.
+	 * @see security_dsl.Claim#issuerValueNotNull(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
+	 * @generated
+	 */
+	EOperation getClaim__IssuerValueNotNull__DiagnosticChain_Map();
 
 	/**
 	 * Returns the meta object for class '{@link security_dsl.OAuth2 <em>OAuth2</em>}'.
@@ -2854,15 +2870,6 @@ public interface Security_dslPackage extends EPackage {
 		EAttribute APPLICATION__HOSTNAME = eINSTANCE.getApplication_Hostname();
 
 		/**
-		 * The meta object literal for the '<em><b>Has Database For Entity</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation APPLICATION___HAS_DATABASE_FOR_ENTITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getApplication__HasDatabaseForEntity__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Valid Registered Port</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2870,6 +2877,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation APPLICATION___VALID_REGISTERED_PORT__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getApplication__ValidRegisteredPort__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has Database For Entity</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation APPLICATION___HAS_DATABASE_FOR_ENTITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getApplication__HasDatabaseForEntity__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.EntityImpl <em>Entity</em>}' class.
@@ -2977,15 +2993,6 @@ public interface Security_dslPackage extends EPackage {
 		EReference CONTROLLER__CONTROLLER_ENDPOINTS = eINSTANCE.getController_Controller_endpoints();
 
 		/**
-		 * The meta object literal for the '<em><b>Method Required For Other Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__MethodRequiredForOtherType__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Controller Path</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2993,6 +3000,24 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation CONTROLLER___CONTROLLER_PATH__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getController__ControllerPath__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Controller Not Named User Role</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTROLLER___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__ControllerNotNamedUserRole__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Endpoint Limits</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__EndpointLimits__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '<em><b>Unique Controller Path</b></em>' operation.
@@ -3013,6 +3038,15 @@ public interface Security_dslPackage extends EPackage {
 				.getController__UniqueEndpointURLs__DiagnosticChain_Map();
 
 		/**
+		 * The meta object literal for the '<em><b>Method Required For Other Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CONTROLLER___METHOD_REQUIRED_FOR_OTHER_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getController__MethodRequiredForOtherType__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Unique Controller Name</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3029,24 +3063,6 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation CONTROLLER___UNIQUE_ENDPOINT_METHOD_NAMES__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getController__UniqueEndpointMethodNames__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Endpoint Limits</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___ENDPOINT_LIMITS__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__EndpointLimits__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Controller Not Named User Role</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation CONTROLLER___CONTROLLER_NOT_NAMED_USER_ROLE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getController__ControllerNotNamedUserRole__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.SecurityImpl <em>Security</em>}' class.
@@ -3197,15 +3213,6 @@ public interface Security_dslPackage extends EPackage {
 		EClass USER = eINSTANCE.getUser();
 
 		/**
-		 * The meta object literal for the '<em><b>No Attribute Named Password</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>One String Type Credential For User</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3222,6 +3229,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation USER___UNIQUE_USER_ENTITY__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getUser__UniqueUserEntity__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>No Attribute Named Password</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getUser__NoAttributeNamedPassword__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.RoleInstanceImpl <em>Role Instance</em>}' class.
@@ -3260,15 +3276,6 @@ public interface Security_dslPackage extends EPackage {
 		EClass AUTHENTICATION = eINSTANCE.getAuthentication();
 
 		/**
-		 * The meta object literal for the '<em><b>Has User And Role For Controller</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation AUTHENTICATION___HAS_USER_AND_ROLE_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
-
-		/**
 		 * The meta object literal for the '<em><b>Authentication Limits</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3294,6 +3301,15 @@ public interface Security_dslPackage extends EPackage {
 		 */
 		EOperation AUTHENTICATION___LOGIN_EXISTANCE_FOR_LOGOUT__DIAGNOSTICCHAIN_MAP = eINSTANCE
 				.getAuthentication__LoginExistanceForLogout__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Has User And Role For Controller</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation AUTHENTICATION___HAS_USER_AND_ROLE_FOR_CONTROLLER__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getAuthentication__HasUserAndRoleForController__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.EndpointImpl <em>Endpoint</em>}' class.
@@ -3398,56 +3414,22 @@ public interface Security_dslPackage extends EPackage {
 		EReference JWT__CLAIMS = eINSTANCE.getJWT_Claims();
 
 		/**
-		 * The meta object literal for the '<em><b>Registered claims</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Role Has Max Two Attributes</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference JWT__REGISTERED_CLAIMS = eINSTANCE.getJWT_Registered_claims();
+		EOperation JWT___ROLE_HAS_MAX_TWO_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getJWT__RoleHasMaxTwoAttributes__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Unique Claims</b></em>' operation.
+		 * The meta object literal for the '<em><b>Role Has String Attribute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation JWT___UNIQUE_CLAIMS__DIAGNOSTICCHAIN_MAP = eINSTANCE.getJWT__UniqueClaims__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Registered Claim Subject</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation JWT___REGISTERED_CLAIM_SUBJECT__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getJWT__RegisteredClaimSubject__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Single Registered Claim</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation JWT___SINGLE_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getJWT__SingleRegisteredClaim__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Role Max Two Attributes</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation JWT___ROLE_MAX_TWO_ATTRIBUTES__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getJWT__RoleMaxTwoAttributes__DiagnosticChain_Map();
-
-		/**
-		 * The meta object literal for the '<em><b>Role Attribute Type</b></em>' operation.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EOperation JWT___ROLE_ATTRIBUTE_TYPE__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getJWT__RoleAttributeType__DiagnosticChain_Map();
+		EOperation JWT___ROLE_HAS_STRING_ATTRIBUTE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getJWT__RoleHasStringAttribute__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.ClaimImpl <em>Claim</em>}' class.
@@ -3484,6 +3466,41 @@ public interface Security_dslPackage extends EPackage {
 		EAttribute CLAIM__NAME = eINSTANCE.getClaim_Name();
 
 		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute CLAIM__VALUE = eINSTANCE.getClaim_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Unique Claim Names</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLAIM___UNIQUE_CLAIM_NAMES__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__UniqueClaimNames__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Other Claims No Value</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLAIM___OTHER_CLAIMS_NO_VALUE__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__OtherClaimsNoValue__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Issuer Registered Claim</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLAIM___ISSUER_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__IssuerRegisteredClaim__DiagnosticChain_Map();
+
+		/**
 		 * The meta object literal for the '<em><b>Unique Claim Attribute</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -3493,47 +3510,67 @@ public interface Security_dslPackage extends EPackage {
 				.getClaim__UniqueClaimAttribute__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '{@link security_dsl.impl.RegisteredClaimImpl <em>Registered Claim</em>}' class.
+		 * The meta object literal for the '<em><b>Subject Registered Claim</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see security_dsl.impl.RegisteredClaimImpl
-		 * @see security_dsl.impl.Security_dslPackageImpl#getRegisteredClaim()
 		 * @generated
 		 */
-		EClass REGISTERED_CLAIM = eINSTANCE.getRegisteredClaim();
+		EOperation CLAIM___SUBJECT_REGISTERED_CLAIM__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__SubjectRegisteredClaim__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Expiration Time</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Audience Value Not Null</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REGISTERED_CLAIM__EXPIRATION_TIME = eINSTANCE.getRegisteredClaim_ExpirationTime();
+		EOperation CLAIM___AUDIENCE_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__AudienceValueNotNull__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Audience</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Expiration Time Value Is Positive Numeric</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REGISTERED_CLAIM__AUDIENCE = eINSTANCE.getRegisteredClaim_Audience();
+		EOperation CLAIM___EXPIRATION_TIME_VALUE_IS_POSITIVE_NUMERIC__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__ExpirationTimeValueIsPositiveNumeric__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Issuer</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Has Expiration Time Claim</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute REGISTERED_CLAIM__ISSUER = eINSTANCE.getRegisteredClaim_Issuer();
+		EOperation CLAIM___HAS_EXPIRATION_TIME_CLAIM__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__HasExpirationTimeClaim__DiagnosticChain_Map();
 
 		/**
-		 * The meta object literal for the '<em><b>Expiration Time Greater Than Zero</b></em>' operation.
+		 * The meta object literal for the '<em><b>Has Audience Claim</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EOperation REGISTERED_CLAIM___EXPIRATION_TIME_GREATER_THAN_ZERO__DIAGNOSTICCHAIN_MAP = eINSTANCE
-				.getRegisteredClaim__ExpirationTimeGreaterThanZero__DiagnosticChain_Map();
+		EOperation CLAIM___HAS_AUDIENCE_CLAIM__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__HasAudienceClaim__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Expiration Time Value Not Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLAIM___EXPIRATION_TIME_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__ExpirationTimeValueNotNull__DiagnosticChain_Map();
+
+		/**
+		 * The meta object literal for the '<em><b>Issuer Value Not Null</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation CLAIM___ISSUER_VALUE_NOT_NULL__DIAGNOSTICCHAIN_MAP = eINSTANCE
+				.getClaim__IssuerValueNotNull__DiagnosticChain_Map();
 
 		/**
 		 * The meta object literal for the '{@link security_dsl.impl.OAuth2Impl <em>OAuth2</em>}' class.

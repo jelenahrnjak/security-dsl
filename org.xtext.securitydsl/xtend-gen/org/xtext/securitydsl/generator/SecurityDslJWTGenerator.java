@@ -9,7 +9,6 @@ import security_dsl.Authentication;
 import security_dsl.Claim;
 import security_dsl.EClaimType;
 import security_dsl.JWT;
-import security_dsl.RegisteredClaim;
 
 @SuppressWarnings("all")
 public class SecurityDslJWTGenerator {
@@ -673,13 +672,11 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("public class TokenUtils {");
     _builder.newLine();
-    RegisteredClaim regClaim = jwt.getRegistered_claims();
-    _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private String ISSUER = \"");
-    String _issuer = regClaim.getIssuer();
-    _builder.append(_issuer, "\t");
+    String _value = SecurityDslGenerator.findClaimByName(jwt.getClaims(), "issuer").getValue();
+    _builder.append(_value, "\t");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
@@ -692,8 +689,8 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private int EXPIRES_IN = ");
-    int _expirationTime = regClaim.getExpirationTime();
-    _builder.append(_expirationTime, "\t");
+    String _value_1 = SecurityDslGenerator.findClaimByName(jwt.getClaims(), "expirationTime").getValue();
+    _builder.append(_value_1, "\t");
     _builder.append(";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");
@@ -708,8 +705,8 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("\t");
     _builder.append("private static final String AUDIENCE_WEB = \"");
-    String _audience = regClaim.getAudience();
-    _builder.append(_audience, "\t");
+    Claim _findClaimByName = SecurityDslGenerator.findClaimByName(jwt.getClaims(), "audience");
+    _builder.append(_findClaimByName, "\t");
     _builder.append("\";");
     _builder.newLineIfNotEmpty();
     _builder.append("\t");

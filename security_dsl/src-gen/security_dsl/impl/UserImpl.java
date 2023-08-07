@@ -20,7 +20,9 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+
 import org.eclipse.ocl.pivot.library.collection.CollectionSizeOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclAnyOclIsTypeOfOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
@@ -39,8 +41,10 @@ import org.eclipse.ocl.pivot.values.InvalidValueException;
 import org.eclipse.ocl.pivot.values.OrderedSetValue;
 
 import org.eclipse.ocl.pivot.values.OrderedSetValue.Accumulator;
+
 import org.eclipse.ocl.pivot.values.SetValue;
 import org.eclipse.ocl.pivot.values.TupleValue;
+
 import security_dsl.Attribute;
 import security_dsl.EType;
 import security_dsl.Entity;
@@ -73,101 +77,6 @@ public class UserImpl extends EntityImpl implements User {
 	@Override
 	protected EClass eStaticClass() {
 		return Security_dslPackage.Literals.USER;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean noAttributeNamedPassword(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		final String constraintName = "User::noAttributeNamedPassword";
-		try {
-			/**
-			 *
-			 * inv noAttributeNamedPassword:
-			 *   let severity : Integer[1] = constraintName.getSeverity()
-			 *   in
-			 *     if severity <= 0
-			 *     then true
-			 *     else
-			 *       let
-			 *         result : OclAny[1] = let
-			 *           status : Boolean[?] = self.entity_attributes->forAll(a |
-			 *             a.name.toLower() <> 'password')
-			 *         in
-			 *           if status = true
-			 *           then true
-			 *           else
-			 *             Tuple{message = 'User entity cannot have an attribute named "password"!', status = status
-			 *             }
-			 *           endif
-			 *       in
-			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
-			 *     endif
-			 */
-			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
-			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
-			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
-					Security_dslPackage.Literals.USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP);
-			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
-					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
-			/*@NonInvalid*/ boolean local_2;
-			if (le) {
-				local_2 = true;
-			} else {
-				final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
-				final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
-						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
-				/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
-				Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
-				/*@NonInvalid*/ Boolean status;
-				while (true) {
-					if (!ITERATOR_a.hasNext()) {
-						if (accumulator == ValueUtil.TRUE_VALUE) {
-							status = ValueUtil.TRUE_VALUE;
-						} else {
-							throw (InvalidValueException) accumulator;
-						}
-						break;
-					}
-					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
-					/**
-					 * a.name.toLower() <> 'password'
-					 */
-					final /*@NonInvalid*/ String name = a.getName();
-					final /*@NonInvalid*/ String toLower = StringToLowerCaseOperation.INSTANCE.evaluate(name);
-					final /*@NonInvalid*/ boolean ne = !toLower.equals(Security_dslTables.STR_password);
-					//
-					if (!ne) { // Normal unsuccessful body evaluation result
-						status = ValueUtil.FALSE_VALUE;
-						break; // Stop immediately
-					} else if (ne) { // Normal successful body evaluation result
-						; // Carry on
-					} else { // Impossible badly typed result
-						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
-					}
-				}
-				final /*@NonInvalid*/ boolean eq = status == Boolean.TRUE;
-				/*@NonInvalid*/ Object local_1;
-				if (eq) {
-					local_1 = ValueUtil.TRUE_VALUE;
-				} else {
-					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
-							Security_dslTables.STR_User_32_entity_32_cannot_32_have_32_an_32_attribute_32_named_32_34_password_34_33,
-							status);
-					local_1 = local_0;
-				}
-				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
-						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
-								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
-						.booleanValue();
-				local_2 = logDiagnostic;
-			}
-			return local_2;
-		} catch (Throwable e) {
-			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
-		}
 	}
 
 	/**
@@ -387,6 +296,101 @@ public class UserImpl extends EntityImpl implements User {
 				} else {
 					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
 							Security_dslTables.STR_There_32_can_32_be_32_at_32_most_32_one_32_entity_32_of_32_type_32_34_User_34_32_in_32_the_32_model_33,
+							status);
+					local_1 = local_0;
+				}
+				final /*@NonInvalid*/ boolean logDiagnostic = CGStringLogDiagnosticOperation.INSTANCE
+						.evaluate(executor, TypeId.BOOLEAN, constraintName, this, (Object) null, diagnostics, context,
+								(Object) null, severity_0, local_1, Security_dslTables.INT_0)
+						.booleanValue();
+				local_2 = logDiagnostic;
+			}
+			return local_2;
+		} catch (Throwable e) {
+			return ValueUtil.validationFailedDiagnostic(constraintName, this, diagnostics, context, e);
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean noAttributeNamedPassword(final DiagnosticChain diagnostics, final Map<Object, Object> context) {
+		final String constraintName = "User::noAttributeNamedPassword";
+		try {
+			/**
+			 *
+			 * inv noAttributeNamedPassword:
+			 *   let severity : Integer[1] = constraintName.getSeverity()
+			 *   in
+			 *     if severity <= 0
+			 *     then true
+			 *     else
+			 *       let
+			 *         result : OclAny[1] = let
+			 *           status : Boolean[?] = self.entity_attributes->forAll(a |
+			 *             a.name.toLower() <> 'password')
+			 *         in
+			 *           if status = true
+			 *           then true
+			 *           else
+			 *             Tuple{message = 'User entity cannot have an attribute named "password"!', status = status
+			 *             }
+			 *           endif
+			 *       in
+			 *         constraintName.logDiagnostic(self, null, diagnostics, context, null, severity, result, 0)
+			 *     endif
+			 */
+			final /*@NonInvalid*/ Executor executor = PivotUtil.getExecutor(this, context);
+			final /*@NonInvalid*/ IdResolver idResolver = executor.getIdResolver();
+			final /*@NonInvalid*/ IntegerValue severity_0 = CGStringGetSeverityOperation.INSTANCE.evaluate(executor,
+					Security_dslPackage.Literals.USER___NO_ATTRIBUTE_NAMED_PASSWORD__DIAGNOSTICCHAIN_MAP);
+			final /*@NonInvalid*/ boolean le = OclComparableLessThanEqualOperation.INSTANCE
+					.evaluate(executor, severity_0, Security_dslTables.INT_0).booleanValue();
+			/*@NonInvalid*/ boolean local_2;
+			if (le) {
+				local_2 = true;
+			} else {
+				final /*@NonInvalid*/ List<Attribute> entity_attributes = this.getEntity_attributes();
+				final /*@NonInvalid*/ OrderedSetValue BOXED_entity_attributes = idResolver
+						.createOrderedSetOfAll(Security_dslTables.ORD_CLSSid_Attribute, entity_attributes);
+				/*@Thrown*/ Object accumulator = ValueUtil.TRUE_VALUE;
+				Iterator<Object> ITERATOR_a = BOXED_entity_attributes.iterator();
+				/*@NonInvalid*/ Boolean status;
+				while (true) {
+					if (!ITERATOR_a.hasNext()) {
+						if (accumulator == ValueUtil.TRUE_VALUE) {
+							status = ValueUtil.TRUE_VALUE;
+						} else {
+							throw (InvalidValueException) accumulator;
+						}
+						break;
+					}
+					/*@NonInvalid*/ Attribute a = (Attribute) ITERATOR_a.next();
+					/**
+					 * a.name.toLower() <> 'password'
+					 */
+					final /*@NonInvalid*/ String name = a.getName();
+					final /*@NonInvalid*/ String toLower = StringToLowerCaseOperation.INSTANCE.evaluate(name);
+					final /*@NonInvalid*/ boolean ne = !toLower.equals(Security_dslTables.STR_password);
+					//
+					if (!ne) { // Normal unsuccessful body evaluation result
+						status = ValueUtil.FALSE_VALUE;
+						break; // Stop immediately
+					} else if (ne) { // Normal successful body evaluation result
+						; // Carry on
+					} else { // Impossible badly typed result
+						accumulator = new InvalidValueException(PivotMessages.NonBooleanBody, "forAll");
+					}
+				}
+				final /*@NonInvalid*/ boolean eq = status == Boolean.TRUE;
+				/*@NonInvalid*/ Object local_1;
+				if (eq) {
+					local_1 = ValueUtil.TRUE_VALUE;
+				} else {
+					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
+							Security_dslTables.STR_User_32_entity_32_cannot_32_have_32_an_32_attribute_32_named_32_34_password_34_33,
 							status);
 					local_1 = local_0;
 				}

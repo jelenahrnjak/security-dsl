@@ -264,17 +264,17 @@ public interface Application extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'An application must have a database defined if it has entities!\',\n\tstatus : Boolean = self.app_entities -&gt; isEmpty() or not self.app_database-&gt;isEmpty()\n}.status'"
-	 * @generated
-	 */
-	boolean hasDatabaseForEntity(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Port must be in the valid range of 1024 to 49151!\',\n\tstatus : Boolean = self.port &gt;= 1024 and self.port &lt;= 49151\n}.status'"
 	 * @generated
 	 */
 	boolean validRegisteredPort(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'An application must have a database defined if it has entities!\',\n\tstatus : Boolean = self.app_entities -&gt; isEmpty() or not self.app_database-&gt;isEmpty()\n}.status'"
+	 * @generated
+	 */
+	boolean hasDatabaseForEntity(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Application

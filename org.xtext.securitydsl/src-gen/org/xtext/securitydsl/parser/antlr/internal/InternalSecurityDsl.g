@@ -1450,18 +1450,18 @@ ruleJWT returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getJWTAccess().getRegistered_claimsRegisteredClaimParserRuleCall_7_0());
+					newCompositeNode(grammarAccess.getJWTAccess().getClaimsClaimParserRuleCall_7_0());
 				}
-				lv_registered_claims_7_0=ruleRegisteredClaim
+				lv_claims_7_0=ruleClaim
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getJWTRule());
 					}
-					set(
+					add(
 						$current,
-						"registered_claims",
-						lv_registered_claims_7_0,
-						"org.xtext.securitydsl.SecurityDsl.RegisteredClaim");
+						"claims",
+						lv_claims_7_0,
+						"org.xtext.securitydsl.SecurityDsl.Claim");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -1549,33 +1549,31 @@ ruleClaim returns [EObject current=null]
 		}
 		(
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getClaimAccess().getTypeEClaimTypeEnumRuleCall_1_0_0());
+				{
+					newCompositeNode(grammarAccess.getClaimAccess().getTypeEClaimTypeEnumRuleCall_1_0());
+				}
+				lv_type_1_0=ruleEClaimType
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getClaimRule());
 					}
-					lv_type_1_0=ruleEClaimType
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getClaimRule());
-						}
-						set(
-							$current,
-							"type",
-							lv_type_1_0,
-							"org.xtext.securitydsl.SecurityDsl.EClaimType");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"type",
+						lv_type_1_0,
+						"org.xtext.securitydsl.SecurityDsl.EClaimType");
+					afterParserOrEnumRuleCall();
+				}
 			)
-			otherlv_2=','
-			{
-				newLeafNode(otherlv_2, grammarAccess.getClaimAccess().getCommaKeyword_1_1());
-			}
-		)?
+		)
+		otherlv_2=','
+		{
+			newLeafNode(otherlv_2, grammarAccess.getClaimAccess().getCommaKeyword_2());
+		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getClaimAccess().getNameEStringParserRuleCall_2_0());
+					newCompositeNode(grammarAccess.getClaimAccess().getNameEStringParserRuleCall_3_0());
 				}
 				lv_name_3_0=ruleEString
 				{
@@ -1593,164 +1591,53 @@ ruleClaim returns [EObject current=null]
 		)
 		otherlv_4=':'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getClaimAccess().getColonKeyword_3());
+			newLeafNode(otherlv_4, grammarAccess.getClaimAccess().getColonKeyword_4());
 		}
 		(
 			(
 				{
-					if ($current==null) {
-						$current = createModelElement(grammarAccess.getClaimRule());
-					}
+					newCompositeNode(grammarAccess.getClaimAccess().getValueEStringParserRuleCall_5_0());
 				}
-				{
-					newCompositeNode(grammarAccess.getClaimAccess().getClaim_attributeAttributeCrossReference_4_0());
-				}
-				ruleEString
-				{
-					afterParserOrEnumRuleCall();
-				}
-			)
-		)
-		otherlv_6='}'
-		{
-			newLeafNode(otherlv_6, grammarAccess.getClaimAccess().getRightCurlyBracketKeyword_5());
-		}
-	)
-;
-
-// Entry rule entryRuleRegisteredClaim
-entryRuleRegisteredClaim returns [EObject current=null]:
-	{ newCompositeNode(grammarAccess.getRegisteredClaimRule()); }
-	iv_ruleRegisteredClaim=ruleRegisteredClaim
-	{ $current=$iv_ruleRegisteredClaim.current; }
-	EOF;
-
-// Rule RegisteredClaim
-ruleRegisteredClaim returns [EObject current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		otherlv_0='{'
-		{
-			newLeafNode(otherlv_0, grammarAccess.getRegisteredClaimAccess().getLeftCurlyBracketKeyword_0());
-		}
-		otherlv_1='REGISTERED,'
-		{
-			newLeafNode(otherlv_1, grammarAccess.getRegisteredClaimAccess().getREGISTEREDKeyword_1());
-		}
-		otherlv_2='expirationTime:'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getRegisteredClaimAccess().getExpirationTimeKeyword_2());
-		}
-		(
-			(
-				{
-					newCompositeNode(grammarAccess.getRegisteredClaimAccess().getExpirationTimeEIntParserRuleCall_3_0());
-				}
-				lv_expirationTime_3_0=ruleEInt
+				lv_value_5_0=ruleEString
 				{
 					if ($current==null) {
-						$current = createModelElementForParent(grammarAccess.getRegisteredClaimRule());
+						$current = createModelElementForParent(grammarAccess.getClaimRule());
 					}
 					set(
 						$current,
-						"expirationTime",
-						lv_expirationTime_3_0,
-						"org.xtext.securitydsl.SecurityDsl.EInt");
+						"value",
+						lv_value_5_0,
+						"org.xtext.securitydsl.SecurityDsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
-		)
-		otherlv_4='}'
+		)?
+		(
+			otherlv_6='attribute'
+			{
+				newLeafNode(otherlv_6, grammarAccess.getClaimAccess().getAttributeKeyword_6_0());
+			}
+			(
+				(
+					{
+						if ($current==null) {
+							$current = createModelElement(grammarAccess.getClaimRule());
+						}
+					}
+					{
+						newCompositeNode(grammarAccess.getClaimAccess().getClaim_attributeAttributeCrossReference_6_1_0());
+					}
+					ruleEString
+					{
+						afterParserOrEnumRuleCall();
+					}
+				)
+			)
+		)?
+		otherlv_8='}'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getRegisteredClaimAccess().getRightCurlyBracketKeyword_4());
+			newLeafNode(otherlv_8, grammarAccess.getClaimAccess().getRightCurlyBracketKeyword_7());
 		}
-		(
-			otherlv_5=','
-			{
-				newLeafNode(otherlv_5, grammarAccess.getRegisteredClaimAccess().getCommaKeyword_5_0());
-			}
-			otherlv_6='{'
-			{
-				newLeafNode(otherlv_6, grammarAccess.getRegisteredClaimAccess().getLeftCurlyBracketKeyword_5_1());
-			}
-			otherlv_7='REGISTERED,'
-			{
-				newLeafNode(otherlv_7, grammarAccess.getRegisteredClaimAccess().getREGISTEREDKeyword_5_2());
-			}
-			otherlv_8='issuer:'
-			{
-				newLeafNode(otherlv_8, grammarAccess.getRegisteredClaimAccess().getIssuerKeyword_5_3());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getRegisteredClaimAccess().getIssuerEStringParserRuleCall_5_4_0());
-					}
-					lv_issuer_9_0=ruleEString
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRegisteredClaimRule());
-						}
-						set(
-							$current,
-							"issuer",
-							lv_issuer_9_0,
-							"org.xtext.securitydsl.SecurityDsl.EString");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_10='}'
-			{
-				newLeafNode(otherlv_10, grammarAccess.getRegisteredClaimAccess().getRightCurlyBracketKeyword_5_5());
-			}
-		)?
-		(
-			otherlv_11=','
-			{
-				newLeafNode(otherlv_11, grammarAccess.getRegisteredClaimAccess().getCommaKeyword_6_0());
-			}
-			otherlv_12='{'
-			{
-				newLeafNode(otherlv_12, grammarAccess.getRegisteredClaimAccess().getLeftCurlyBracketKeyword_6_1());
-			}
-			otherlv_13='REGISTERED,'
-			{
-				newLeafNode(otherlv_13, grammarAccess.getRegisteredClaimAccess().getREGISTEREDKeyword_6_2());
-			}
-			otherlv_14='audience:'
-			{
-				newLeafNode(otherlv_14, grammarAccess.getRegisteredClaimAccess().getAudienceKeyword_6_3());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getRegisteredClaimAccess().getAudienceEStringParserRuleCall_6_4_0());
-					}
-					lv_audience_15_0=ruleEString
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getRegisteredClaimRule());
-						}
-						set(
-							$current,
-							"audience",
-							lv_audience_15_0,
-							"org.xtext.securitydsl.SecurityDsl.EString");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-			otherlv_16='}'
-			{
-				newLeafNode(otherlv_16, grammarAccess.getRegisteredClaimAccess().getRightCurlyBracketKeyword_6_5());
-			}
-		)?
 	)
 ;
 
@@ -1992,39 +1879,6 @@ ruleBasicAuthentication returns [EObject current=null]
 		otherlv_1='basicAuthentication'
 		{
 			newLeafNode(otherlv_1, grammarAccess.getBasicAuthenticationAccess().getBasicAuthenticationKeyword_1());
-		}
-	)
-;
-
-// Entry rule entryRuleEInt
-entryRuleEInt returns [String current=null]:
-	{ newCompositeNode(grammarAccess.getEIntRule()); }
-	iv_ruleEInt=ruleEInt
-	{ $current=$iv_ruleEInt.current.getText(); }
-	EOF;
-
-// Rule EInt
-ruleEInt returns [AntlrDatatypeRuleToken current=new AntlrDatatypeRuleToken()]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			kw='-'
-			{
-				$current.merge(kw);
-				newLeafNode(kw, grammarAccess.getEIntAccess().getHyphenMinusKeyword_0());
-			}
-		)?
-		this_INT_1=RULE_INT
-		{
-			$current.merge(this_INT_1);
-		}
-		{
-			newLeafNode(this_INT_1, grammarAccess.getEIntAccess().getINTTerminalRuleCall_1());
 		}
 	)
 ;

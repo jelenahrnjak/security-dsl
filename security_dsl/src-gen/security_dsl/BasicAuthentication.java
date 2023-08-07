@@ -3,6 +3,7 @@
 package security_dsl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
@@ -16,7 +17,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface BasicAuthentication extends Security {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24,4 +24,5 @@ public interface BasicAuthentication extends Security {
 	 * @generated
 	 */
 	boolean basicAuthNoRoleAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+
 } // BasicAuthentication

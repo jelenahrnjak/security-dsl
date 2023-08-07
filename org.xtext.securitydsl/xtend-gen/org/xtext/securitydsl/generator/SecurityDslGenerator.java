@@ -22,7 +22,6 @@ import security_dsl.EEndpointType;
 import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.OAuth2;
-import security_dsl.RegisteredClaim;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
 import security_dsl.Security;
@@ -102,14 +101,17 @@ public class SecurityDslGenerator extends AbstractGenerator {
         if ((_app_security_4 instanceof JWT)) {
           Security _app_security_5 = app.getApp_security();
           JWT jwt = ((JWT) _app_security_5);
-          String _issuer = jwt.getRegistered_claims().getIssuer();
-          boolean _tripleEquals_2 = (_issuer == null);
+          Claim _findClaimByName = SecurityDslGenerator.findClaimByName(jwt.getClaims(), "issuer");
+          boolean _tripleEquals_2 = (_findClaimByName == null);
           if (_tripleEquals_2) {
-            RegisteredClaim _registered_claims = jwt.getRegistered_claims();
-            _registered_claims.setIssuer(app.getName());
+            Claim issuerClaim = null;
+            issuerClaim.setName("issuer");
+            issuerClaim.setType(EClaimType.REGISTERED);
+            issuerClaim.setValue(app.getName());
+            jwt.getClaims().add(issuerClaim);
           }
-          Claim _findSubjectClaim = this.findSubjectClaim(jwt.getClaims());
-          boolean _tripleEquals_3 = (_findSubjectClaim == null);
+          Claim _findClaimByName_1 = SecurityDslGenerator.findClaimByName(jwt.getClaims(), "subject");
+          boolean _tripleEquals_3 = (_findClaimByName_1 == null);
           if (_tripleEquals_3) {
             Claim subjectClaim = null;
             subjectClaim.setName("subject");
@@ -135,9 +137,10 @@ public class SecurityDslGenerator extends AbstractGenerator {
     return null;
   }
 
-  public Claim findSubjectClaim(final List<Claim> claims) {
+  public static Claim findClaimByName(final List<Claim> claims, final String name) {
     for (final Claim c : claims) {
-      if ((Objects.equal(c.getType(), EClaimType.REGISTERED) && Objects.equal(c.getName().toLowerCase(), "subject"))) {
+      boolean _equals = c.getName().toLowerCase().equals(name.toLowerCase());
+      if (_equals) {
         return c;
       }
     }

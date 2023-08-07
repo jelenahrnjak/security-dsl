@@ -1003,8 +1003,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Keyword cPayloadKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Keyword cClaimsKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
-		private final Assignment cRegistered_claimsAssignment_7 = (Assignment)cGroup.eContents().get(7);
-		private final RuleCall cRegistered_claimsRegisteredClaimParserRuleCall_7_0 = (RuleCall)cRegistered_claimsAssignment_7.eContents().get(0);
+		private final Assignment cClaimsAssignment_7 = (Assignment)cGroup.eContents().get(7);
+		private final RuleCall cClaimsClaimParserRuleCall_7_0 = (RuleCall)cClaimsAssignment_7.eContents().get(0);
 		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
 		private final Keyword cCommaKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
 		private final Assignment cClaimsAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
@@ -1021,7 +1021,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//    'header:'
 		//    'signatureAlgorithm:' signatureAlgorithm=EString
 		//    'payload:'
-		//    'claims:' '['registered_claims=RegisteredClaim ( "," claims+=Claim)*']'
+		//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
 		//    ('signature:'
 		//    'secret:' secret=EString)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -1030,7 +1030,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'header:'
 		//'signatureAlgorithm:' signatureAlgorithm=EString
 		//'payload:'
-		//'claims:' '['registered_claims=RegisteredClaim ( "," claims+=Claim)*']'
+		//'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
 		//('signature:'
 		//'secret:' secret=EString)?
 		public Group getGroup() { return cGroup; }
@@ -1059,11 +1059,11 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'['
 		public Keyword getLeftSquareBracketKeyword_6() { return cLeftSquareBracketKeyword_6; }
 		
-		//registered_claims=RegisteredClaim
-		public Assignment getRegistered_claimsAssignment_7() { return cRegistered_claimsAssignment_7; }
+		//claims+=Claim
+		public Assignment getClaimsAssignment_7() { return cClaimsAssignment_7; }
 		
-		//RegisteredClaim
-		public RuleCall getRegistered_claimsRegisteredClaimParserRuleCall_7_0() { return cRegistered_claimsRegisteredClaimParserRuleCall_7_0; }
+		//Claim
+		public RuleCall getClaimsClaimParserRuleCall_7_0() { return cClaimsClaimParserRuleCall_7_0; }
 		
 		//( "," claims+=Claim)*
 		public Group getGroup_8() { return cGroup_8; }
@@ -1100,193 +1100,78 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Claim");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Group cGroup_1 = (Group)cGroup.eContents().get(1);
-		private final Assignment cTypeAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
-		private final RuleCall cTypeEClaimTypeEnumRuleCall_1_0_0 = (RuleCall)cTypeAssignment_1_0.eContents().get(0);
-		private final Keyword cCommaKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
-		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
-		private final Keyword cColonKeyword_3 = (Keyword)cGroup.eContents().get(3);
-		private final Assignment cClaim_attributeAssignment_4 = (Assignment)cGroup.eContents().get(4);
-		private final CrossReference cClaim_attributeAttributeCrossReference_4_0 = (CrossReference)cClaim_attributeAssignment_4.eContents().get(0);
-		private final RuleCall cClaim_attributeAttributeEStringParserRuleCall_4_0_1 = (RuleCall)cClaim_attributeAttributeCrossReference_4_0.eContents().get(1);
-		private final Keyword cRightCurlyBracketKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cTypeAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cTypeEClaimTypeEnumRuleCall_1_0 = (RuleCall)cTypeAssignment_1.eContents().get(0);
+		private final Keyword cCommaKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Assignment cNameAssignment_3 = (Assignment)cGroup.eContents().get(3);
+		private final RuleCall cNameEStringParserRuleCall_3_0 = (RuleCall)cNameAssignment_3.eContents().get(0);
+		private final Keyword cColonKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Assignment cValueAssignment_5 = (Assignment)cGroup.eContents().get(5);
+		private final RuleCall cValueEStringParserRuleCall_5_0 = (RuleCall)cValueAssignment_5.eContents().get(0);
+		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
+		private final Keyword cAttributeKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
+		private final Assignment cClaim_attributeAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
+		private final CrossReference cClaim_attributeAttributeCrossReference_6_1_0 = (CrossReference)cClaim_attributeAssignment_6_1.eContents().get(0);
+		private final RuleCall cClaim_attributeAttributeEStringParserRuleCall_6_1_0_1 = (RuleCall)cClaim_attributeAttributeCrossReference_6_1_0.eContents().get(1);
+		private final Keyword cRightCurlyBracketKeyword_7 = (Keyword)cGroup.eContents().get(7);
 		
 		//Claim returns Claim:
 		//    '{'
-		//        (type=EClaimType',')?
-		//        name=EString ':' claim_attribute=[Attribute|EString]
+		//        type=EClaimType','
+		//        name=EString ':' (value=EString)? ('attribute' claim_attribute=[Attribute|EString])?
 		//    '}';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'{'
-		//    (type=EClaimType',')?
-		//    name=EString ':' claim_attribute=[Attribute|EString]
+		//    type=EClaimType','
+		//    name=EString ':' (value=EString)? ('attribute' claim_attribute=[Attribute|EString])?
 		//'}'
 		public Group getGroup() { return cGroup; }
 		
 		//'{'
 		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
-		
-		//(type=EClaimType',')?
-		public Group getGroup_1() { return cGroup_1; }
 		
 		//type=EClaimType
-		public Assignment getTypeAssignment_1_0() { return cTypeAssignment_1_0; }
+		public Assignment getTypeAssignment_1() { return cTypeAssignment_1; }
 		
 		//EClaimType
-		public RuleCall getTypeEClaimTypeEnumRuleCall_1_0_0() { return cTypeEClaimTypeEnumRuleCall_1_0_0; }
+		public RuleCall getTypeEClaimTypeEnumRuleCall_1_0() { return cTypeEClaimTypeEnumRuleCall_1_0; }
 		
 		//','
-		public Keyword getCommaKeyword_1_1() { return cCommaKeyword_1_1; }
+		public Keyword getCommaKeyword_2() { return cCommaKeyword_2; }
 		
 		//name=EString
-		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
+		public Assignment getNameAssignment_3() { return cNameAssignment_3; }
 		
 		//EString
-		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
+		public RuleCall getNameEStringParserRuleCall_3_0() { return cNameEStringParserRuleCall_3_0; }
 		
 		//':'
-		public Keyword getColonKeyword_3() { return cColonKeyword_3; }
+		public Keyword getColonKeyword_4() { return cColonKeyword_4; }
 		
-		//claim_attribute=[Attribute|EString]
-		public Assignment getClaim_attributeAssignment_4() { return cClaim_attributeAssignment_4; }
-		
-		//[Attribute|EString]
-		public CrossReference getClaim_attributeAttributeCrossReference_4_0() { return cClaim_attributeAttributeCrossReference_4_0; }
+		//(value=EString)?
+		public Assignment getValueAssignment_5() { return cValueAssignment_5; }
 		
 		//EString
-		public RuleCall getClaim_attributeAttributeEStringParserRuleCall_4_0_1() { return cClaim_attributeAttributeEStringParserRuleCall_4_0_1; }
+		public RuleCall getValueEStringParserRuleCall_5_0() { return cValueEStringParserRuleCall_5_0; }
 		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5() { return cRightCurlyBracketKeyword_5; }
-	}
-	public class RegisteredClaimElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.RegisteredClaim");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cREGISTEREDKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cExpirationTimeKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cExpirationTimeAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cExpirationTimeEIntParserRuleCall_3_0 = (RuleCall)cExpirationTimeAssignment_3.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_4 = (Keyword)cGroup.eContents().get(4);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cCommaKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_5_1 = (Keyword)cGroup_5.eContents().get(1);
-		private final Keyword cREGISTEREDKeyword_5_2 = (Keyword)cGroup_5.eContents().get(2);
-		private final Keyword cIssuerKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
-		private final Assignment cIssuerAssignment_5_4 = (Assignment)cGroup_5.eContents().get(4);
-		private final RuleCall cIssuerEStringParserRuleCall_5_4_0 = (RuleCall)cIssuerAssignment_5_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_5_5 = (Keyword)cGroup_5.eContents().get(5);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cCommaKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Keyword cLeftCurlyBracketKeyword_6_1 = (Keyword)cGroup_6.eContents().get(1);
-		private final Keyword cREGISTEREDKeyword_6_2 = (Keyword)cGroup_6.eContents().get(2);
-		private final Keyword cAudienceKeyword_6_3 = (Keyword)cGroup_6.eContents().get(3);
-		private final Assignment cAudienceAssignment_6_4 = (Assignment)cGroup_6.eContents().get(4);
-		private final RuleCall cAudienceEStringParserRuleCall_6_4_0 = (RuleCall)cAudienceAssignment_6_4.eContents().get(0);
-		private final Keyword cRightCurlyBracketKeyword_6_5 = (Keyword)cGroup_6.eContents().get(5);
-		
-		//RegisteredClaim returns RegisteredClaim:
-		//    '{'
-		//        'REGISTERED,'
-		//        'expirationTime:' expirationTime=EInt
-		//    '}'
-		//    (',''{'
-		//        'REGISTERED,'
-		//        'issuer:' issuer=EString
-		//    '}')?
-		//    (',''{'
-		//        'REGISTERED,'
-		//        'audience:' audience=EString
-		//    '}')?;
-		@Override public ParserRule getRule() { return rule; }
-		
-		//'{'
-		//    'REGISTERED,'
-		//    'expirationTime:' expirationTime=EInt
-		//'}'
-		//(',''{'
-		//    'REGISTERED,'
-		//    'issuer:' issuer=EString
-		//'}')?
-		//(',''{'
-		//    'REGISTERED,'
-		//    'audience:' audience=EString
-		//'}')?
-		public Group getGroup() { return cGroup; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_0() { return cLeftCurlyBracketKeyword_0; }
-		
-		//'REGISTERED,'
-		public Keyword getREGISTEREDKeyword_1() { return cREGISTEREDKeyword_1; }
-		
-		//'expirationTime:'
-		public Keyword getExpirationTimeKeyword_2() { return cExpirationTimeKeyword_2; }
-		
-		//expirationTime=EInt
-		public Assignment getExpirationTimeAssignment_3() { return cExpirationTimeAssignment_3; }
-		
-		//EInt
-		public RuleCall getExpirationTimeEIntParserRuleCall_3_0() { return cExpirationTimeEIntParserRuleCall_3_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_4() { return cRightCurlyBracketKeyword_4; }
-		
-		//(',''{'
-		//    'REGISTERED,'
-		//    'issuer:' issuer=EString
-		//'}')?
-		public Group getGroup_5() { return cGroup_5; }
-		
-		//','
-		public Keyword getCommaKeyword_5_0() { return cCommaKeyword_5_0; }
-		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_5_1() { return cLeftCurlyBracketKeyword_5_1; }
-		
-		//'REGISTERED,'
-		public Keyword getREGISTEREDKeyword_5_2() { return cREGISTEREDKeyword_5_2; }
-		
-		//'issuer:'
-		public Keyword getIssuerKeyword_5_3() { return cIssuerKeyword_5_3; }
-		
-		//issuer=EString
-		public Assignment getIssuerAssignment_5_4() { return cIssuerAssignment_5_4; }
-		
-		//EString
-		public RuleCall getIssuerEStringParserRuleCall_5_4_0() { return cIssuerEStringParserRuleCall_5_4_0; }
-		
-		//'}'
-		public Keyword getRightCurlyBracketKeyword_5_5() { return cRightCurlyBracketKeyword_5_5; }
-		
-		//(',''{'
-		//    'REGISTERED,'
-		//    'audience:' audience=EString
-		//'}')?
+		//('attribute' claim_attribute=[Attribute|EString])?
 		public Group getGroup_6() { return cGroup_6; }
 		
-		//','
-		public Keyword getCommaKeyword_6_0() { return cCommaKeyword_6_0; }
+		//'attribute'
+		public Keyword getAttributeKeyword_6_0() { return cAttributeKeyword_6_0; }
 		
-		//'{'
-		public Keyword getLeftCurlyBracketKeyword_6_1() { return cLeftCurlyBracketKeyword_6_1; }
+		//claim_attribute=[Attribute|EString]
+		public Assignment getClaim_attributeAssignment_6_1() { return cClaim_attributeAssignment_6_1; }
 		
-		//'REGISTERED,'
-		public Keyword getREGISTEREDKeyword_6_2() { return cREGISTEREDKeyword_6_2; }
-		
-		//'audience:'
-		public Keyword getAudienceKeyword_6_3() { return cAudienceKeyword_6_3; }
-		
-		//audience=EString
-		public Assignment getAudienceAssignment_6_4() { return cAudienceAssignment_6_4; }
+		//[Attribute|EString]
+		public CrossReference getClaim_attributeAttributeCrossReference_6_1_0() { return cClaim_attributeAttributeCrossReference_6_1_0; }
 		
 		//EString
-		public RuleCall getAudienceEStringParserRuleCall_6_4_0() { return cAudienceEStringParserRuleCall_6_4_0; }
+		public RuleCall getClaim_attributeAttributeEStringParserRuleCall_6_1_0_1() { return cClaim_attributeAttributeEStringParserRuleCall_6_1_0_1; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_6_5() { return cRightCurlyBracketKeyword_6_5; }
+		public Keyword getRightCurlyBracketKeyword_7() { return cRightCurlyBracketKeyword_7; }
 	}
 	public class OAuth2Elements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.OAuth2");
@@ -1785,7 +1670,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	private final EEndpointTypeElements eEEndpointType;
 	private final JWTElements pJWT;
 	private final ClaimElements pClaim;
-	private final RegisteredClaimElements pRegisteredClaim;
 	private final EClaimTypeElements eEClaimType;
 	private final EOAuthProviderElements eEOAuthProvider;
 	private final OAuth2Elements pOAuth2;
@@ -1822,7 +1706,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		this.eEEndpointType = new EEndpointTypeElements();
 		this.pJWT = new JWTElements();
 		this.pClaim = new ClaimElements();
-		this.pRegisteredClaim = new RegisteredClaimElements();
 		this.eEClaimType = new EClaimTypeElements();
 		this.eEOAuthProvider = new EOAuthProviderElements();
 		this.pOAuth2 = new OAuth2Elements();
@@ -2086,7 +1969,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    'header:'
 	//    'signatureAlgorithm:' signatureAlgorithm=EString
 	//    'payload:'
-	//    'claims:' '['registered_claims=RegisteredClaim ( "," claims+=Claim)*']'
+	//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
 	//    ('signature:'
 	//    'secret:' secret=EString)?;
 	public JWTElements getJWTAccess() {
@@ -2099,8 +1982,8 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	//Claim returns Claim:
 	//    '{'
-	//        (type=EClaimType',')?
-	//        name=EString ':' claim_attribute=[Attribute|EString]
+	//        type=EClaimType','
+	//        name=EString ':' (value=EString)? ('attribute' claim_attribute=[Attribute|EString])?
 	//    '}';
 	public ClaimElements getClaimAccess() {
 		return pClaim;
@@ -2108,27 +1991,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	public ParserRule getClaimRule() {
 		return getClaimAccess().getRule();
-	}
-	
-	//RegisteredClaim returns RegisteredClaim:
-	//    '{'
-	//        'REGISTERED,'
-	//        'expirationTime:' expirationTime=EInt
-	//    '}'
-	//    (',''{'
-	//        'REGISTERED,'
-	//        'issuer:' issuer=EString
-	//    '}')?
-	//    (',''{'
-	//        'REGISTERED,'
-	//        'audience:' audience=EString
-	//    '}')?;
-	public RegisteredClaimElements getRegisteredClaimAccess() {
-		return pRegisteredClaim;
-	}
-	
-	public ParserRule getRegisteredClaimRule() {
-		return getRegisteredClaimAccess().getRule();
 	}
 	
 	//enum EClaimType returns EClaimType:

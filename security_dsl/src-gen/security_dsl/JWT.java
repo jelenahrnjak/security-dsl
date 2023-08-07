@@ -19,11 +19,10 @@ import org.eclipse.emf.common.util.EList;
  *   <li>{@link security_dsl.JWT#getSignatureAlgorithm <em>Signature Algorithm</em>}</li>
  *   <li>{@link security_dsl.JWT#getSecret <em>Secret</em>}</li>
  *   <li>{@link security_dsl.JWT#getClaims <em>Claims</em>}</li>
- *   <li>{@link security_dsl.JWT#getRegistered_claims <em>Registered claims</em>}</li>
  * </ul>
  *
  * @see security_dsl.Security_dslPackage#getJWT()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='uniqueClaims'"
+ * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='roleHasStringAttribute'"
  * @generated
  */
 public interface JWT extends Security {
@@ -85,58 +84,12 @@ public interface JWT extends Security {
 	EList<Claim> getClaims();
 
 	/**
-	 * Returns the value of the '<em><b>Registered claims</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Registered claims</em>' containment reference.
-	 * @see #setRegistered_claims(RegisteredClaim)
-	 * @see security_dsl.Security_dslPackage#getJWT_Registered_claims()
-	 * @model containment="true" required="true"
-	 * @generated
-	 */
-	RegisteredClaim getRegistered_claims();
-
-	/**
-	 * Sets the value of the '{@link security_dsl.JWT#getRegistered_claims <em>Registered claims</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Registered claims</em>' containment reference.
-	 * @see #getRegistered_claims()
-	 * @generated
-	 */
-	void setRegistered_claims(RegisteredClaim value);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.claims -&gt; isUnique(c | c.name)'"
-	 * @generated
-	 */
-	boolean uniqueClaims(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t    self.claims -&gt; forAll(c | c.name = \'subject\' implies c.type = EClaimType::REGISTERED)'"
-	 * @generated
-	 */
-	boolean registeredClaimSubject(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t        self.claims -&gt; select(c | c.type = EClaimType::REGISTERED and c.name = \'subject\') -&gt; size() &lt;= 1\n\t        and\n\t        self.claims -&gt; select(c | c.type = EClaimType::REGISTERED) -&gt; size() &lt;= 1'"
-	 * @generated
-	 */
-	boolean singleRegisteredClaim(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role entities can have at most two attributes!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role | role.entity_attributes -&gt; size() &lt;= 2)\n}.status'"
 	 * @generated
 	 */
-	boolean roleMaxTwoAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean roleHasMaxTwoAttributes(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -144,6 +97,6 @@ public interface JWT extends Security {
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(Role)) -&gt; forAll(role |\n\t\t        (role.entity_attributes -&gt; select(a | a.identifier and a.type = EType::_\'String\') -&gt; size() = 1 and role.entity_attributes -&gt; select(a | a.type = EType::_\'String\') -&gt; size() = 1)\n\t\t        or\n\t\t        (role.entity_attributes -&gt; select(a | a.identifier and a.type &lt;&gt; EType::_\'String\') -&gt; size() = 1 and role.entity_attributes -&gt; select(a | a.type = EType::_\'String\') -&gt; size() = 1)\n\t\t    )\n}.status'"
 	 * @generated
 	 */
-	boolean roleAttributeType(DiagnosticChain diagnostics, Map<Object, Object> context);
+	boolean roleHasStringAttribute(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // JWT

@@ -71,11 +71,16 @@ class SecurityDslGenerator extends AbstractGenerator {
 	        	
 	        	var JWT jwt = app.app_security as JWT
 	        	
-	        	if(jwt.registered_claims.issuer === null){
-	        		jwt.registered_claims.issuer = app.name
+	        	if(findClaimByName(jwt.claims,'issuer') === null){
+	        		
+	        		var Claim issuerClaim
+	        		issuerClaim.name = 'issuer'
+	        		issuerClaim.type = EClaimType::REGISTERED
+					issuerClaim.value = app.name
+	        		jwt.claims.add(issuerClaim)
 	        	}
 	        	
-	        	if(findSubjectClaim(jwt.claims) === null){
+	        	if(findClaimByName(jwt.claims,'subject') === null){
 	        		
 	        		var Claim subjectClaim
 	        		subjectClaim.name = 'subject'
@@ -101,10 +106,10 @@ class SecurityDslGenerator extends AbstractGenerator {
 		
 	}
 	
-	def findSubjectClaim(List<Claim> claims){
+	def static findClaimByName(List<Claim> claims, String name){
 		
 		for (c : claims) {
-			if(c.type == EClaimType::REGISTERED && c.name.toLowerCase == 'subject') return c;
+			if(c.name.toLowerCase.equals(name.toLowerCase)) return c;
 		}
 		
 		return null;

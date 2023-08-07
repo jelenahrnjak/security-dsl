@@ -30,8 +30,8 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
-
 import org.eclipse.ocl.pivot.library.string.StringAtOperation;
+
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -41,6 +41,7 @@ import org.eclipse.ocl.pivot.values.OrderedSetValue;
 import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 
 import org.eclipse.ocl.pivot.values.TupleValue;
+
 import security_dsl.EEndpointMethod;
 import security_dsl.EEndpointType;
 import security_dsl.Endpoint;

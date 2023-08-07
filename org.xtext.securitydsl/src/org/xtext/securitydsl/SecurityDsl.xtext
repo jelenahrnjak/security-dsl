@@ -112,30 +112,16 @@ JWT returns JWT:
 	'header:'
 	'signatureAlgorithm:' signatureAlgorithm=EString
 	'payload:'
-	'claims:' '['registered_claims=RegisteredClaim ( "," claims+=Claim)*']'
+	'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
 	('signature:'
 	'secret:' secret=EString)?;
 
 Claim returns Claim:
 	'{'
-		(type=EClaimType',')?
-		name=EString ':' claim_attribute=[Attribute|EString]
+		type=EClaimType','
+		name=EString ':' (value=EString)? ('attribute' claim_attribute=[Attribute|EString])? 
 	'}';
 
-RegisteredClaim returns RegisteredClaim:
-	'{'
-		'REGISTERED,'
-		'expirationTime:' expirationTime=EInt
-	'}'
-	(',''{'
-		'REGISTERED,'
-		'issuer:' issuer=EString	
-	'}')?
-	
-	(',''{'
-		'REGISTERED,'
-		'audience:' audience=EString
-	'}')?;
 
 enum EClaimType returns EClaimType:
 				PRIVATE = 'PRIVATE' | PUBLIC = 'PUBLIC' | REGISTERED = 'REGISTERED';

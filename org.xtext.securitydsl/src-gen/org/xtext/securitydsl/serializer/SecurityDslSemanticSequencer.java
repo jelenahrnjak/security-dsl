@@ -25,7 +25,6 @@ import security_dsl.Endpoint;
 import security_dsl.JWT;
 import security_dsl.OAuth2;
 import security_dsl.Provider;
-import security_dsl.RegisteredClaim;
 import security_dsl.Role;
 import security_dsl.RoleInstance;
 import security_dsl.Security_dslPackage;
@@ -74,9 +73,6 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 				return; 
 			case Security_dslPackage.PROVIDER:
 				sequence_Provider(context, (Provider) semanticObject); 
-				return; 
-			case Security_dslPackage.REGISTERED_CLAIM:
-				sequence_RegisteredClaim(context, (RegisteredClaim) semanticObject); 
 				return; 
 			case Security_dslPackage.ROLE:
 				sequence_Role(context, (Role) semanticObject); 
@@ -169,7 +165,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Claim returns Claim
 	 *
 	 * Constraint:
-	 *     (type=EClaimType? name=EString claim_attribute=[Attribute|EString])
+	 *     (type=EClaimType name=EString value=EString? claim_attribute=[Attribute|EString]?)
 	 * </pre>
 	 */
 	protected void sequence_Claim(ISerializationContext context, Claim semanticObject) {
@@ -233,7 +229,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     JWT returns JWT
 	 *
 	 * Constraint:
-	 *     (signatureAlgorithm=EString registered_claims=RegisteredClaim claims+=Claim* secret=EString?)
+	 *     (signatureAlgorithm=EString claims+=Claim claims+=Claim* secret=EString?)
 	 * </pre>
 	 */
 	protected void sequence_JWT(ISerializationContext context, JWT semanticObject) {
@@ -266,20 +262,6 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 * </pre>
 	 */
 	protected void sequence_Provider(ISerializationContext context, Provider semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * <pre>
-	 * Contexts:
-	 *     RegisteredClaim returns RegisteredClaim
-	 *
-	 * Constraint:
-	 *     (expirationTime=EInt issuer=EString? audience=EString?)
-	 * </pre>
-	 */
-	protected void sequence_RegisteredClaim(ISerializationContext context, RegisteredClaim semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
 	}
 	

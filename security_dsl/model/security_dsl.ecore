@@ -42,7 +42,7 @@
       <details key="constraints" value="uniqueTableName uniqueAttributeName uniqueCollumnName onlyOneIdentifier otherEntitiesDoesntHaveCredential"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueTableName" value="Tuple {&#xA;&#x9;message : String = 'Table names must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Entity.allInstances() -> select(e | e.tableName &lt;> null) -> isUnique(e | e.tableName.toLower())&#xA;}.status"/>
+      <details key="uniqueTableName" value="Tuple {&#xA;&#x9;message : String = 'Table names must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Entity.allInstances() -> select(e | e.tableName &lt;> null) -> isUnique(e | e.tableName)&#xA;}.status"/>
       <details key="uniqueAttributeName" value="Tuple {&#xA;&#x9;message : String = 'Attribute names within an entity must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> isUnique(a | a.name)&#xA;}.status"/>
       <details key="uniqueCollumnName" value="Tuple {&#xA;&#x9;message : String = 'Column names must be unique if defined!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> exists(a | a.collumnName &lt;> null) implies self.entity_attributes -> isUnique(a | a.collumnName)&#xA;}.status"/>
       <details key="onlyOneIdentifier" value="Tuple {&#xA;&#x9;message : String = 'Entity must have exactly one identifier attribute!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        self.entity_attributes -> size() > 0 implies self.entity_attributes -> select(a | a.identifier) -> size() = 1&#xA;}.status"/>
@@ -183,40 +183,33 @@
         defaultValueLiteral="somesecret"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claims" upperBound="-1"
         eType="#//Claim" containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="registered_claims" lowerBound="1"
-        eType="#//RegisteredClaim" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Claim">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="uniqueClaimAttribute uniqueClaimNames singleRegisteredClaim"/>
+      <details key="constraints" value="uniqueClaimAttribute uniqueClaimNames subjectRegisteredClaim issuerRegisteredClaim hasExpirationTimeClaim hasAudienceClaim issuerValueNotNull audienceValueNotNull expirationTimeValueNotNull otherClaimsNoValue expirationTimeValueIsPositiveNumeric"/>
     </eAnnotations>
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="uniqueClaimAttribute" value="Tuple {&#xA;&#x9;message : String = 'Claim attributes must be unique!',&#xA;&#x9;status : Boolean = Claim.allInstances() -> isUnique(c | c.claim_attribute)&#xA;}.status"/>
+      <details key="uniqueClaimAttribute" value="Tuple {&#xA;&#x9;message : String = 'Claim attributes must be unique!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;Claim.allInstances() -> select(c | c.claim_attribute &lt;> null) -> isUnique(c | c.claim_attribute)&#xA;}.status"/>
       <details key="uniqueClaimNames" value="Tuple {&#xA;&#x9;message : String = 'Claims must have unique names',&#xA;&#x9;status : Boolean = Claim.allInstances() -> isUnique(c | c.name)&#xA;}.status"/>
-      <details key="singleRegisteredClaim" value="Tuple {&#xA;&#x9;message : String = 'If claim name is &quot;subject&quot;, it must be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;&#x9;    &#x9;Claim.allInstances() -> select(c | c.name = 'subject') -> forAll(sc | sc.type = EClaimType::REGISTERED)&#xA;}.status"/>
+      <details key="subjectRegisteredClaim" value="Tuple {&#xA;&#x9;message : String = 'If claim name is &quot;subject&quot;, it must be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;&#x9;    &#x9;Claim.allInstances() -> select(c | c.name = 'subject') -> forAll(sc | sc.type = EClaimType::REGISTERED)&#xA;}.status"/>
+      <details key="issuerRegisteredClaim" value="Tuple {&#xA;&#x9;message : String = 'If claim name is &quot;issuer&quot;, it must be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;&#x9;    &#x9;Claim.allInstances() -> select(c | c.name = 'issuer') -> forAll(sc | sc.type = EClaimType::REGISTERED)&#xA;}.status"/>
+      <details key="hasExpirationTimeClaim" value="Tuple {&#xA;&#x9;message : String = 'The claim &quot;expirationTime&quot; must exist and be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;    &#x9;&#x9;&#x9;Claim.allInstances() -> exists(c | c.name = 'expirationTime' and c.type = EClaimType::REGISTERED)&#xA;}.status"/>
+      <details key="hasAudienceClaim" value="Tuple {&#xA;&#x9;message : String = 'The claim &quot;audience&quot; must exist and be of type REGISTERED',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Claim.allInstances() -> exists(c | c.name = 'audience' and c.type = EClaimType::REGISTERED)&#xA;}.status"/>
+      <details key="issuerValueNotNull" value="Tuple {&#xA;&#x9;message : String = 'If the claim name is &quot;issuer&quot;, it must have value and must not be linked to an attribute',&#xA;&#x9;status : Boolean = &#xA;    &#x9;&#x9;Claim.allInstances() -> select(c | c.name = 'issuer') -> forAll(sc | sc.value &lt;> null and sc.claim_attribute = null)&#xA;}.status"/>
+      <details key="audienceValueNotNull" value="Tuple {&#xA;&#x9;message : String = 'If the claim name is &quot;audience&quot;, it must have value and must not be linked to an attribute',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Claim.allInstances() -> select(c | c.name = 'audience') -> forAll(sc | sc.value &lt;> null and sc.claim_attribute = null)&#xA;}.status"/>
+      <details key="expirationTimeValueNotNull" value="Tuple {&#xA;&#x9;message : String = 'If the claim name is &quot;expirationTime&quot;, it must have value and must not be linked to an attribute',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Claim.allInstances() -> select(c | c.name = 'expirationTime') -> forAll(sc | sc.value &lt;> null and sc.claim_attribute = null)&#xA;}.status"/>
+      <details key="otherClaimsNoValue" value="Tuple {&#xA;&#x9;message : String = 'Claim must be linked to an attribute',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Claim.allInstances() -> select(c | c.name &lt;> 'issuer' and c.name &lt;> 'audience' and c.name &lt;> 'expirationTime') -> forAll(sc | sc.value = null and sc.claim_attribute &lt;> null)&#xA;}.status"/>
+      <details key="expirationTimeValueIsPositiveNumeric" value="Tuple {&#xA;&#x9;message : String = 'If the claim name is &quot;expirationTime&quot;, the value must be a positive number',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Claim.allInstances() -> select(c | c.name = 'expirationTime') -> forAll(sc | sc.value &lt;> null and  sc.value.toInteger() > 0)&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" lowerBound="1" eType="#//EClaimType"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" lowerBound="1"
-        eType="#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="claim_attribute" eType="#//Attribute"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EClaimType">
     <eLiterals name="PRIVATE"/>
     <eLiterals name="PUBLIC" value="1"/>
     <eLiterals name="REGISTERED" value="2"/>
-  </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="RegisteredClaim">
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">
-      <details key="constraints" value="expirationTimeGreaterThanZero"/>
-    </eAnnotations>
-    <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-      <details key="expirationTimeGreaterThanZero" value="Tuple {&#xA;&#x9;message : String = 'Expiration time must be greater than zero!',&#xA;&#x9;status : Boolean = self.expirationTime > 0&#xA;}.status"/>
-    </eAnnotations>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="expirationTime" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="audience" lowerBound="1"
-        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="issuer" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OAuth2" eSuperTypes="#//Security">
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore">

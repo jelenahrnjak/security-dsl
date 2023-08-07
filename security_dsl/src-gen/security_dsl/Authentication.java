@@ -3,6 +3,7 @@
 package security_dsl;
 
 import java.util.Map;
+
 import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
@@ -16,15 +17,6 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * @generated
  */
 public interface Authentication extends Controller {
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Authentication controller requires at least one User entity and one Role entity!\',\n\tstatus : Boolean = \n\t\t\t(\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(User))\n\t\t\tand\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(Role))\n\t\t\t)\n}.status'"
-	 * @generated
-	 */
-	boolean hasUserAndRoleForController(DiagnosticChain diagnostics, Map<Object, Object> context);
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48,4 +40,13 @@ public interface Authentication extends Controller {
 	 * @generated
 	 */
 	boolean loginExistanceForLogout(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Authentication controller requires at least one User entity and one Role entity!\',\n\tstatus : Boolean = \n\t\t\t(\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(User))\n\t\t\tand\n\t\t\tEntity.allInstances() -&gt; exists(e | e.oclIsTypeOf(Role))\n\t\t\t)\n}.status'"
+	 * @generated
+	 */
+	boolean hasUserAndRoleForController(DiagnosticChain diagnostics, Map<Object, Object> context);
+
 } // Authentication

@@ -85,12 +85,10 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ ClassId CLSSid_JWT = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("JWT", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_OAuth2 = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("OAuth2", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Provider = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Provider", 0);
-	public static final /*@NonInvalid*/ ClassId CLSSid_RegisteredClaim = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("RegisteredClaim", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Role = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Role", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_RoleInstance = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("RoleInstance", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_Security = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("Security", 0);
 	public static final /*@NonInvalid*/ ClassId CLSSid_User = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getClassId("User", 0);
-	public static final /*@NonInvalid*/ DataTypeId DATAid_EInt = Security_dslTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("EInt", 0);
 	public static final /*@NonInvalid*/ DataTypeId DATAid_ELongObject = Security_dslTables.PACKid_http_c_s_s_www_eclipse_org_s_emf_s_2002_s_Ecore.getDataTypeId("ELongObject", 0);
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EClaimType = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EClaimType");
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EDatabaseType = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EDatabaseType");
@@ -111,6 +109,8 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Authentication_32_controller_32_requires_32_at_32_least_32_one_32_User_32_entity_32_and_32 = "Authentication controller requires at least one User entity and one Role entity!";
 	public static final /*@NonInvalid*/ String STR_Basic_32_authentication_32_cannot_32_have_32_role_32_attributes_33 = "Basic authentication cannot have role attributes!";
 	public static final /*@NonInvalid*/ String STR_Claim_32_attributes_32_must_32_be_32_unique_33 = "Claim attributes must be unique!";
+	public static final /*@NonInvalid*/ String STR_Claim_32_must_32_be_32_linked_32_to_32_an_32_attribute = "Claim must be linked to an attribute";
+	public static final /*@NonInvalid*/ String STR_Claims_32_must_32_have_32_unique_32_names = "Claims must have unique names";
 	public static final /*@NonInvalid*/ String STR_Column_32_names_32_must_32_be_32_unique_32_if_32_defined_33 = "Column names must be unique if defined!";
 	public static final /*@NonInvalid*/ String STR_Controller_32_names_32_cannot_32_be_32_34_User_34_32_or_32_34_Role_34_33 = "Controller names cannot be \"User\" or \"Role\"!";
 	public static final /*@NonInvalid*/ String STR_Controller_32_path_32_should_32_start_32_with_32_39_s_39_33 = "Controller path should start with \'/\'!";
@@ -123,7 +123,12 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Endpoints_32_within_32_a_32_controller_32_must_32_have_32_unique_32_method_32_names_33 = "Endpoints within a controller must have unique method names!";
 	public static final /*@NonInvalid*/ String STR_Entities_32_other_32_than_32_User_32_cannot_32_have_32_a_32_credential_32_attribute_33 = "Entities other than User cannot have a credential attribute!";
 	public static final /*@NonInvalid*/ String STR_Entity_32_must_32_have_32_exactly_32_one_32_identifier_32_attribute_33 = "Entity must have exactly one identifier attribute!";
-	public static final /*@NonInvalid*/ String STR_Expiration_32_time_32_must_32_be_32_greater_32_than_32_zero_33 = "Expiration time must be greater than zero!";
+	public static final /*@NonInvalid*/ String STR_If_32_claim_32_name_32_is_32_34_issuer_34_44_32_it_32_must_32_be_32_of_32_type_32_REGISTERED = "If claim name is \"issuer\", it must be of type REGISTERED";
+	public static final /*@NonInvalid*/ String STR_If_32_claim_32_name_32_is_32_34_subject_34_44_32_it_32_must_32_be_32_of_32_type_32_REGISTERED = "If claim name is \"subject\", it must be of type REGISTERED";
+	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_audience_34_44_32_it_32_must_32_have_32_value_32_and_32_must_32_not = "If the claim name is \"audience\", it must have value and must not be linked to an attribute";
+	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_expirationTime_34_44_32_it_32_must_32_have_32_value_32_and_32_mu = "If the claim name is \"expirationTime\", it must have value and must not be linked to an attribute";
+	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_expirationTime_34_44_32_the_32_value_32_must_32_be_32_a_32_posit = "If the claim name is \"expirationTime\", the value must be a positive number";
+	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_issuer_34_44_32_it_32_must_32_have_32_value_32_and_32_must_32_not_32_b = "If the claim name is \"issuer\", it must have value and must not be linked to an attribute";
 	public static final /*@NonInvalid*/ String STR_Logout_32_endpoint_32_requires_32_a_32_corresponding_32_login_32_endpoint_33 = "Logout endpoint requires a corresponding login endpoint!";
 	public static final /*@NonInvalid*/ String STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33 = "OAuth2 authentication requires no Role entities!";
 	public static final /*@NonInvalid*/ String STR_Port_32_must_32_be_32_in_32_the_32_valid_32_range_32_of_32_1024_32_to_32_49151_33 = "Port must be in the valid range of 1024 to 49151!";
@@ -133,11 +138,16 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_Role_32_entities_32_must_32_have_32_either_32_one_32_identifier_32_attribute_32_of_32_type_32 = "Role entities must have either one identifier attribute of type String or both identifier and non-identifier attributes of type String!";
 	public static final /*@NonInvalid*/ String STR_Role_32_instance_32_names_32_must_32_be_32_unique_33 = "Role instance names must be unique!";
 	public static final /*@NonInvalid*/ String STR_Table_32_names_32_must_32_be_32_unique_33 = "Table names must be unique!";
+	public static final /*@NonInvalid*/ String STR_The_32_claim_32_34_audience_34_32_must_32_exist_32_and_32_be_32_of_32_type_32_REGISTERED = "The claim \"audience\" must exist and be of type REGISTERED";
+	public static final /*@NonInvalid*/ String STR_The_32_claim_32_34_expirationTime_34_32_must_32_exist_32_and_32_be_32_of_32_type_32_REGISTERED = "The claim \"expirationTime\" must exist and be of type REGISTERED";
 	public static final /*@NonInvalid*/ String STR_There_32_can_32_be_32_at_32_most_32_one_32_controller_32_of_32_type_32_34_Authentication_34_32_in_32 = "There can be at most one controller of type \"Authentication\" in the model!";
 	public static final /*@NonInvalid*/ String STR_There_32_can_32_be_32_at_32_most_32_one_32_entity_32_of_32_type_32_34_Role_34_32_in_32_the_32_model_33 = "There can be at most one entity of type \"Role\" in the model!";
 	public static final /*@NonInvalid*/ String STR_There_32_can_32_be_32_at_32_most_32_one_32_entity_32_of_32_type_32_34_User_34_32_in_32_the_32_model_33 = "There can be at most one entity of type \"User\" in the model!";
 	public static final /*@NonInvalid*/ String STR_User_32_entity_32_cannot_32_have_32_an_32_attribute_32_named_32_34_password_34_33 = "User entity cannot have an attribute named \"password\"!";
 	public static final /*@NonInvalid*/ String STR_User_32_entity_32_must_32_have_32_exactly_32_one_32_attribute_32_of_32_type_32_String_32_marke = "User entity must have exactly one attribute of type String marked as a credential!";
+	public static final /*@NonInvalid*/ String STR_audience = "audience";
+	public static final /*@NonInvalid*/ String STR_expirationTime = "expirationTime";
+	public static final /*@NonInvalid*/ String STR_issuer = "issuer";
 	public static final /*@NonInvalid*/ String STR_password = "password";
 	public static final /*@NonInvalid*/ String STR_quot = "/";
 	public static final /*@NonInvalid*/ String STR_role = "role";
@@ -210,7 +220,6 @@ public class Security_dslTables extends AbstractTables
 		public static final EcoreExecutorType _JWT = new EcoreExecutorType(Security_dslPackage.Literals.JWT, PACKAGE, 0);
 		public static final EcoreExecutorType _OAuth2 = new EcoreExecutorType(Security_dslPackage.Literals.OAUTH2, PACKAGE, 0);
 		public static final EcoreExecutorType _Provider = new EcoreExecutorType(Security_dslPackage.Literals.PROVIDER, PACKAGE, 0);
-		public static final EcoreExecutorType _RegisteredClaim = new EcoreExecutorType(Security_dslPackage.Literals.REGISTERED_CLAIM, PACKAGE, 0);
 		public static final EcoreExecutorType _Role = new EcoreExecutorType(Security_dslPackage.Literals.ROLE, PACKAGE, 0);
 		public static final EcoreExecutorType _RoleInstance = new EcoreExecutorType(Security_dslPackage.Literals.ROLE_INSTANCE, PACKAGE, 0);
 		public static final EcoreExecutorType _Security = new EcoreExecutorType(Security_dslPackage.Literals.SECURITY, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -235,7 +244,6 @@ public class Security_dslTables extends AbstractTables
 			_JWT,
 			_OAuth2,
 			_Provider,
-			_RegisteredClaim,
 			_Role,
 			_RoleInstance,
 			_Security,
@@ -353,10 +361,6 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _Provider__OclElement = new ExecutorFragment(Types._Provider, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _Provider__Provider = new ExecutorFragment(Types._Provider, Security_dslTables.Types._Provider);
 
-		private static final ExecutorFragment _RegisteredClaim__OclAny = new ExecutorFragment(Types._RegisteredClaim, OCLstdlibTables.Types._OclAny);
-		private static final ExecutorFragment _RegisteredClaim__OclElement = new ExecutorFragment(Types._RegisteredClaim, OCLstdlibTables.Types._OclElement);
-		private static final ExecutorFragment _RegisteredClaim__RegisteredClaim = new ExecutorFragment(Types._RegisteredClaim, Security_dslTables.Types._RegisteredClaim);
-
 		private static final ExecutorFragment _Role__Entity = new ExecutorFragment(Types._Role, Security_dslTables.Types._Entity);
 		private static final ExecutorFragment _Role__OclAny = new ExecutorFragment(Types._Role, OCLstdlibTables.Types._OclAny);
 		private static final ExecutorFragment _Role__OclElement = new ExecutorFragment(Types._Role, OCLstdlibTables.Types._OclElement);
@@ -468,7 +472,8 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Claim__claim_attribute = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__CLAIM_ATTRIBUTE, Types._Claim, 0);
 		public static final ExecutorProperty _Claim__name = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__NAME, Types._Claim, 1);
 		public static final ExecutorProperty _Claim__type = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__TYPE, Types._Claim, 2);
-		public static final ExecutorProperty _Claim__JWT__claims = new ExecutorPropertyWithImplementation("JWT", Types._Claim, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__CLAIMS));
+		public static final ExecutorProperty _Claim__value = new EcoreExecutorProperty(Security_dslPackage.Literals.CLAIM__VALUE, Types._Claim, 3);
+		public static final ExecutorProperty _Claim__JWT__claims = new ExecutorPropertyWithImplementation("JWT", Types._Claim, 4, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__CLAIMS));
 
 		public static final ExecutorProperty _Controller__controller_endpoints = new EcoreExecutorProperty(Security_dslPackage.Literals.CONTROLLER__CONTROLLER_ENDPOINTS, Types._Controller, 0);
 		public static final ExecutorProperty _Controller__name = new EcoreExecutorProperty(Security_dslPackage.Literals.CONTROLLER__NAME, Types._Controller, 1);
@@ -493,9 +498,8 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Entity__Application__app_entities = new ExecutorPropertyWithImplementation("Application", Types._Entity, 2, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.APPLICATION__APP_ENTITIES));
 
 		public static final ExecutorProperty _JWT__claims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__CLAIMS, Types._JWT, 0);
-		public static final ExecutorProperty _JWT__registered_claims = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__REGISTERED_CLAIMS, Types._JWT, 1);
-		public static final ExecutorProperty _JWT__secret = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SECRET, Types._JWT, 2);
-		public static final ExecutorProperty _JWT__signatureAlgorithm = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SIGNATURE_ALGORITHM, Types._JWT, 3);
+		public static final ExecutorProperty _JWT__secret = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SECRET, Types._JWT, 1);
+		public static final ExecutorProperty _JWT__signatureAlgorithm = new EcoreExecutorProperty(Security_dslPackage.Literals.JWT__SIGNATURE_ALGORITHM, Types._JWT, 2);
 
 		public static final ExecutorProperty _OAuth2__providers = new EcoreExecutorProperty(Security_dslPackage.Literals.OAUTH2__PROVIDERS, Types._OAuth2, 0);
 
@@ -504,11 +508,6 @@ public class Security_dslTables extends AbstractTables
 		public static final ExecutorProperty _Provider__name = new EcoreExecutorProperty(Security_dslPackage.Literals.PROVIDER__NAME, Types._Provider, 2);
 		public static final ExecutorProperty _Provider__redirectUri = new EcoreExecutorProperty(Security_dslPackage.Literals.PROVIDER__REDIRECT_URI, Types._Provider, 3);
 		public static final ExecutorProperty _Provider__OAuth2__providers = new ExecutorPropertyWithImplementation("OAuth2", Types._Provider, 4, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.OAUTH2__PROVIDERS));
-
-		public static final ExecutorProperty _RegisteredClaim__audience = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__AUDIENCE, Types._RegisteredClaim, 0);
-		public static final ExecutorProperty _RegisteredClaim__expirationTime = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__EXPIRATION_TIME, Types._RegisteredClaim, 1);
-		public static final ExecutorProperty _RegisteredClaim__issuer = new EcoreExecutorProperty(Security_dslPackage.Literals.REGISTERED_CLAIM__ISSUER, Types._RegisteredClaim, 2);
-		public static final ExecutorProperty _RegisteredClaim__JWT__registered_claims = new ExecutorPropertyWithImplementation("JWT", Types._RegisteredClaim, 3, new EcoreLibraryOppositeProperty(Security_dslPackage.Literals.JWT__REGISTERED_CLAIMS));
 
 		public static final ExecutorProperty _Role__role_instances = new EcoreExecutorProperty(Security_dslPackage.Literals.ROLE__ROLE_INSTANCES, Types._Role, 0);
 
@@ -697,14 +696,6 @@ public class Security_dslTables extends AbstractTables
 			};
 		private static final int /*@NonNull*/ [] __Provider = { 1,1,1 };
 
-		private static final ExecutorFragment /*@NonNull*/ [] _RegisteredClaim =
-			{
-				Fragments._RegisteredClaim__OclAny /* 0 */,
-				Fragments._RegisteredClaim__OclElement /* 1 */,
-				Fragments._RegisteredClaim__RegisteredClaim /* 2 */
-			};
-		private static final int /*@NonNull*/ [] __RegisteredClaim = { 1,1,1 };
-
 		private static final ExecutorFragment /*@NonNull*/ [] _Role =
 			{
 				Fragments._Role__OclAny /* 0 */,
@@ -761,7 +752,6 @@ public class Security_dslTables extends AbstractTables
 			Types._JWT.initFragments(_JWT, __JWT);
 			Types._OAuth2.initFragments(_OAuth2, __OAuth2);
 			Types._Provider.initFragments(_Provider, __Provider);
-			Types._RegisteredClaim.initFragments(_RegisteredClaim, __RegisteredClaim);
 			Types._Role.initFragments(_Role, __Role);
 			Types._RoleInstance.initFragments(_RoleInstance, __RoleInstance);
 			Types._Security.initFragments(_Security, __Security);
@@ -1329,34 +1319,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
 		};
 
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__RegisteredClaim = {};
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _RegisteredClaim__OclElement = {
-			OCLstdlibTables.Operations._OclElement__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-
 		private static final ExecutorOperation /*@NonNull*/ [] _Role__Role = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _Role__Entity = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _Role__OclAny = {
@@ -1563,10 +1525,6 @@ public class Security_dslTables extends AbstractTables
 			Fragments._Provider__OclElement.initOperations(_Provider__OclElement);
 			Fragments._Provider__Provider.initOperations(_Provider__Provider);
 
-			Fragments._RegisteredClaim__OclAny.initOperations(_RegisteredClaim__OclAny);
-			Fragments._RegisteredClaim__OclElement.initOperations(_RegisteredClaim__OclElement);
-			Fragments._RegisteredClaim__RegisteredClaim.initOperations(_RegisteredClaim__RegisteredClaim);
-
 			Fragments._Role__Entity.initOperations(_Role__Entity);
 			Fragments._Role__OclAny.initOperations(_Role__OclAny);
 			Fragments._Role__OclElement.initOperations(_Role__OclElement);
@@ -1647,7 +1605,8 @@ public class Security_dslTables extends AbstractTables
 			Security_dslTables.Properties._Claim__name,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			Security_dslTables.Properties._Claim__type
+			Security_dslTables.Properties._Claim__type,
+			Security_dslTables.Properties._Claim__value
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Controller = {
@@ -1718,7 +1677,6 @@ public class Security_dslTables extends AbstractTables
 			Security_dslTables.Properties._JWT__claims,
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
-			Security_dslTables.Properties._JWT__registered_claims,
 			Security_dslTables.Properties._JWT__secret,
 			Security_dslTables.Properties._JWT__signatureAlgorithm
 		};
@@ -1736,14 +1694,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents,
 			Security_dslTables.Properties._Provider__redirectUri
-		};
-
-		private static final ExecutorProperty /*@NonNull*/ [] _RegisteredClaim = {
-			Security_dslTables.Properties._RegisteredClaim__audience,
-			Security_dslTables.Properties._RegisteredClaim__expirationTime,
-			Security_dslTables.Properties._RegisteredClaim__issuer,
-			OCLstdlibTables.Properties._OclElement__oclContainer,
-			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
 		private static final ExecutorProperty /*@NonNull*/ [] _Role = {
@@ -1795,7 +1745,6 @@ public class Security_dslTables extends AbstractTables
 			Fragments._JWT__JWT.initProperties(_JWT);
 			Fragments._OAuth2__OAuth2.initProperties(_OAuth2);
 			Fragments._Provider__Provider.initProperties(_Provider);
-			Fragments._RegisteredClaim__RegisteredClaim.initProperties(_RegisteredClaim);
 			Fragments._Role__Role.initProperties(_Role);
 			Fragments._RoleInstance__RoleInstance.initProperties(_RoleInstance);
 			Fragments._Security__Security.initProperties(_Security);

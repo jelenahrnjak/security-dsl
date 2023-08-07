@@ -88,18 +88,26 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoints of type \"OTHER\" must have a defined method!\',\n\tstatus : Boolean = \n\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::OTHER) -&gt; forAll(e | e.method &lt;&gt; null)\n}.status'"
-	 * @generated
-	 */
-	boolean methodRequiredForOtherType(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controller path should start with \\\'/\\\'!\',\n\tstatus : Boolean = self.path.at(1) = \'/\'\n}.status'"
 	 * @generated
 	 */
 	boolean controllerPath(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controller names cannot be \"User\" or \"Role\"!\',\n\tstatus : Boolean = \n\t        not Controller.allInstances() -&gt; exists(c | c.name.toLower() = \'user\' or c.name.toLower() = \'role\')\n}.status'"
+	 * @generated
+	 */
+	boolean controllerNotNamedUserRole(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controllers of type other than \"Authentication\" should not have registration, login, or logout endpoints!\',\n\tstatus : Boolean = \n\t    \tnot self.oclIsTypeOf(Authentication) implies (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; isEmpty())\n}.status'"
+	 * @generated
+	 */
+	boolean endpointLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -120,6 +128,14 @@ public interface Controller extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Endpoints of type \"OTHER\" must have a defined method!\',\n\tstatus : Boolean = \n\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::OTHER) -&gt; forAll(e | e.method &lt;&gt; null)\n}.status'"
+	 * @generated
+	 */
+	boolean methodRequiredForOtherType(DiagnosticChain diagnostics, Map<Object, Object> context);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controllers should have unique names!\',\n\tstatus : Boolean = Controller.allInstances() -&gt; isUnique(c | c.name)\n}.status'"
 	 * @generated
 	 */
@@ -132,21 +148,5 @@ public interface Controller extends EObject {
 	 * @generated
 	 */
 	boolean uniqueEndpointMethodNames(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controllers of type other than \"Authentication\" should not have registration, login, or logout endpoints!\',\n\tstatus : Boolean = \n\t    \tnot self.oclIsTypeOf(Authentication) implies (\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::REGISTRATION) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGIN) -&gt; isEmpty()\n\t\t        and\n\t\t        self.controller_endpoints -&gt; select(e | e.type = EEndpointType::LOGOUT) -&gt; isEmpty())\n}.status'"
-	 * @generated
-	 */
-	boolean endpointLimits(DiagnosticChain diagnostics, Map<Object, Object> context);
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'Controller names cannot be \"User\" or \"Role\"!\',\n\tstatus : Boolean = \n\t        not Controller.allInstances() -&gt; exists(c | c.name.toLower() = \'user\' or c.name.toLower() = \'role\')\n}.status'"
-	 * @generated
-	 */
-	boolean controllerNotNamedUserRole(DiagnosticChain diagnostics, Map<Object, Object> context);
 
 } // Controller
