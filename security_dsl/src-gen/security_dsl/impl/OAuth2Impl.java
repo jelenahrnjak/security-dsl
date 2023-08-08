@@ -22,7 +22,6 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.ocl.pivot.evaluation.Executor;
 
-import org.eclipse.ocl.pivot.ids.EnumerationLiteralId;
 import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
@@ -36,7 +35,6 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 
-import org.eclipse.ocl.pivot.utilities.ClassUtil;
 import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.pivot.utilities.ValueUtil;
 
@@ -49,7 +47,6 @@ import org.eclipse.ocl.pivot.values.SetValue.Accumulator;
 import org.eclipse.ocl.pivot.values.TupleValue;
 
 import security_dsl.Controller;
-import security_dsl.EOAuthProvider;
 import security_dsl.Entity;
 import security_dsl.OAuth2;
 import security_dsl.Provider;
@@ -168,15 +165,13 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 					/**
 					 * p.name
 					 */
-					final /*@NonInvalid*/ EOAuthProvider name = p.getName();
-					final /*@NonInvalid*/ EnumerationLiteralId BOXED_name = Security_dslTables.ENUMid_EOAuthProvider
-							.getEnumerationLiteralId(ClassUtil.nonNullState(name.getName()));
+					final /*@NonInvalid*/ String name = p.getName();
 					//
-					if (accumulator.includes(BOXED_name) == ValueUtil.TRUE_VALUE) {
+					if (accumulator.includes(name) == ValueUtil.TRUE_VALUE) {
 						status = false;
 						break; // Abort after second find
 					} else {
-						accumulator.add(BOXED_name);
+						accumulator.add(name);
 					}
 				}
 				/*@NonInvalid*/ Object local_1;
@@ -316,7 +311,7 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 			 *           if status = true
 			 *           then true
 			 *           else
-			 *             Tuple{message = 'OAuth2 authentication requires no Role entities!', status = status
+			 *             Tuple{message = 'OAuth2 authentication requires no Authentication controller!', status = status
 			 *             }
 			 *           endif
 			 *       in
@@ -366,7 +361,7 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 					local_1 = ValueUtil.TRUE_VALUE;
 				} else {
 					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
-							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33,
+							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Authentication_32_controller_33,
 							status);
 					local_1 = local_0;
 				}
@@ -407,7 +402,7 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 			 *           if status = true
 			 *           then true
 			 *           else
-			 *             Tuple{message = 'OAuth2 authentication requires no Role entities!', status = status
+			 *             Tuple{message = 'OAuth2 authentication requires no User entities!', status = status
 			 *             }
 			 *           endif
 			 *       in
@@ -457,7 +452,7 @@ public class OAuth2Impl extends SecurityImpl implements OAuth2 {
 					local_1 = ValueUtil.TRUE_VALUE;
 				} else {
 					final /*@NonInvalid*/ TupleValue local_0 = ValueUtil.createTupleOfEach(Security_dslTables.TUPLid_,
-							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33,
+							Security_dslTables.STR_OAuth2_32_authentication_32_requires_32_no_32_User_32_entities_33,
 							status);
 					local_1 = local_0;
 				}

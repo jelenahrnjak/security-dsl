@@ -25,12 +25,14 @@ import org.eclipse.ocl.pivot.ids.IdResolver;
 import org.eclipse.ocl.pivot.ids.TypeId;
 
 import org.eclipse.ocl.pivot.library.classifier.ClassifierAllInstancesOperation;
+
 import org.eclipse.ocl.pivot.library.oclany.OclComparableGreaterThanOperation;
 import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
 import org.eclipse.ocl.pivot.library.string.StringToIntegerOperation;
+
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 
 import org.eclipse.ocl.pivot.utilities.ClassUtil;

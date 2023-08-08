@@ -15,12 +15,12 @@ application:
     	OAuth2.0:
     		providers:[
     			{ 
-    				name: GOOGLE,
+    				name: "google",
     				clientId: "x",
     				clientSecret: "x"
     			},
     			{
-    				name: GITHUB,
+    				name: "github",
     				clientId: "x",
     				clientSecret: "x"
     			}

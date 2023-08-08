@@ -26,28 +26,25 @@ import org.eclipse.emf.ecore.EObject;
 public interface Provider extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * The literals are from the enumeration {@link security_dsl.EOAuthProvider}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
-	 * @see security_dsl.EOAuthProvider
-	 * @see #setName(EOAuthProvider)
+	 * @see #setName(String)
 	 * @see security_dsl.Security_dslPackage#getProvider_Name()
 	 * @model required="true"
 	 * @generated
 	 */
-	EOAuthProvider getName();
+	String getName();
 
 	/**
 	 * Sets the value of the '{@link security_dsl.Provider#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see security_dsl.EOAuthProvider
 	 * @see #getName()
 	 * @generated
 	 */
-	void setName(EOAuthProvider value);
+	void setName(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Client Id</b></em>' attribute.

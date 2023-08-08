@@ -1149,40 +1149,38 @@ ruleEndpoint returns [EObject current=null]
 				}
 			)
 		)
+		otherlv_5='methodName:'
+		{
+			newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getMethodNameKeyword_5());
+		}
 		(
-			otherlv_5='methodName:'
-			{
-				newLeafNode(otherlv_5, grammarAccess.getEndpointAccess().getMethodNameKeyword_5_0());
-			}
 			(
-				(
-					{
-						newCompositeNode(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_5_1_0());
+				{
+					newCompositeNode(grammarAccess.getEndpointAccess().getMethodNameEStringParserRuleCall_6_0());
+				}
+				lv_methodName_6_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getEndpointRule());
 					}
-					lv_methodName_6_0=ruleEString
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getEndpointRule());
-						}
-						set(
-							$current,
-							"methodName",
-							lv_methodName_6_0,
-							"org.xtext.securitydsl.SecurityDsl.EString");
-						afterParserOrEnumRuleCall();
-					}
-				)
+					set(
+						$current,
+						"methodName",
+						lv_methodName_6_0,
+						"org.xtext.securitydsl.SecurityDsl.EString");
+					afterParserOrEnumRuleCall();
+				}
 			)
-		)?
+		)
 		(
 			otherlv_7='method:'
 			{
-				newLeafNode(otherlv_7, grammarAccess.getEndpointAccess().getMethodKeyword_6_0());
+				newLeafNode(otherlv_7, grammarAccess.getEndpointAccess().getMethodKeyword_7_0());
 			}
 			(
 				(
 					{
-						newCompositeNode(grammarAccess.getEndpointAccess().getMethodEEndpointMethodEnumRuleCall_6_1_0());
+						newCompositeNode(grammarAccess.getEndpointAccess().getMethodEEndpointMethodEnumRuleCall_7_1_0());
 					}
 					lv_method_8_0=ruleEEndpointMethod
 					{
@@ -1202,11 +1200,11 @@ ruleEndpoint returns [EObject current=null]
 		(
 			otherlv_9='roleAuthorities:'
 			{
-				newLeafNode(otherlv_9, grammarAccess.getEndpointAccess().getRoleAuthoritiesKeyword_7_0());
+				newLeafNode(otherlv_9, grammarAccess.getEndpointAccess().getRoleAuthoritiesKeyword_8_0());
 			}
 			otherlv_10='['
 			{
-				newLeafNode(otherlv_10, grammarAccess.getEndpointAccess().getLeftSquareBracketKeyword_7_1());
+				newLeafNode(otherlv_10, grammarAccess.getEndpointAccess().getLeftSquareBracketKeyword_8_1());
 			}
 			(
 				(
@@ -1216,7 +1214,7 @@ ruleEndpoint returns [EObject current=null]
 						}
 					}
 					{
-						newCompositeNode(grammarAccess.getEndpointAccess().getRole_authoritiesRoleInstanceCrossReference_7_2_0());
+						newCompositeNode(grammarAccess.getEndpointAccess().getRole_authoritiesRoleInstanceCrossReference_8_2_0());
 					}
 					ruleEString
 					{
@@ -1227,7 +1225,7 @@ ruleEndpoint returns [EObject current=null]
 			(
 				otherlv_12=','
 				{
-					newLeafNode(otherlv_12, grammarAccess.getEndpointAccess().getCommaKeyword_7_3_0());
+					newLeafNode(otherlv_12, grammarAccess.getEndpointAccess().getCommaKeyword_8_3_0());
 				}
 				(
 					(
@@ -1237,7 +1235,7 @@ ruleEndpoint returns [EObject current=null]
 							}
 						}
 						{
-							newCompositeNode(grammarAccess.getEndpointAccess().getRole_authoritiesRoleInstanceCrossReference_7_3_1_0());
+							newCompositeNode(grammarAccess.getEndpointAccess().getRole_authoritiesRoleInstanceCrossReference_8_3_1_0());
 						}
 						ruleEString
 						{
@@ -1248,12 +1246,12 @@ ruleEndpoint returns [EObject current=null]
 			)*
 			otherlv_14=']'
 			{
-				newLeafNode(otherlv_14, grammarAccess.getEndpointAccess().getRightSquareBracketKeyword_7_4());
+				newLeafNode(otherlv_14, grammarAccess.getEndpointAccess().getRightSquareBracketKeyword_8_4());
 			}
 		)?
 		otherlv_15='}'
 		{
-			newLeafNode(otherlv_15, grammarAccess.getEndpointAccess().getRightCurlyBracketKeyword_8());
+			newLeafNode(otherlv_15, grammarAccess.getEndpointAccess().getRightCurlyBracketKeyword_9());
 		}
 	)
 ;
@@ -1408,20 +1406,16 @@ ruleJWT returns [EObject current=null]
 		{
 			newLeafNode(otherlv_0, grammarAccess.getJWTAccess().getJwtKeyword_0());
 		}
-		otherlv_1='header:'
+		otherlv_1='signatureAlgorithm:'
 		{
-			newLeafNode(otherlv_1, grammarAccess.getJWTAccess().getHeaderKeyword_1());
-		}
-		otherlv_2='signatureAlgorithm:'
-		{
-			newLeafNode(otherlv_2, grammarAccess.getJWTAccess().getSignatureAlgorithmKeyword_2());
+			newLeafNode(otherlv_1, grammarAccess.getJWTAccess().getSignatureAlgorithmKeyword_1());
 		}
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getJWTAccess().getSignatureAlgorithmEStringParserRuleCall_3_0());
+					newCompositeNode(grammarAccess.getJWTAccess().getSignatureAlgorithmEStringParserRuleCall_2_0());
 				}
-				lv_signatureAlgorithm_3_0=ruleEString
+				lv_signatureAlgorithm_2_0=ruleEString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getJWTRule());
@@ -1429,16 +1423,35 @@ ruleJWT returns [EObject current=null]
 					set(
 						$current,
 						"signatureAlgorithm",
-						lv_signatureAlgorithm_3_0,
+						lv_signatureAlgorithm_2_0,
 						"org.xtext.securitydsl.SecurityDsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
 		)
-		otherlv_4='payload:'
+		otherlv_3='secret:'
 		{
-			newLeafNode(otherlv_4, grammarAccess.getJWTAccess().getPayloadKeyword_4());
+			newLeafNode(otherlv_3, grammarAccess.getJWTAccess().getSecretKeyword_3());
 		}
+		(
+			(
+				{
+					newCompositeNode(grammarAccess.getJWTAccess().getSecretEStringParserRuleCall_4_0());
+				}
+				lv_secret_4_0=ruleEString
+				{
+					if ($current==null) {
+						$current = createModelElementForParent(grammarAccess.getJWTRule());
+					}
+					set(
+						$current,
+						"secret",
+						lv_secret_4_0,
+						"org.xtext.securitydsl.SecurityDsl.EString");
+					afterParserOrEnumRuleCall();
+				}
+			)
+		)
 		otherlv_5='claims:'
 		{
 			newLeafNode(otherlv_5, grammarAccess.getJWTAccess().getClaimsKeyword_5());
@@ -1495,35 +1508,6 @@ ruleJWT returns [EObject current=null]
 		{
 			newLeafNode(otherlv_10, grammarAccess.getJWTAccess().getRightSquareBracketKeyword_9());
 		}
-		(
-			otherlv_11='signature:'
-			{
-				newLeafNode(otherlv_11, grammarAccess.getJWTAccess().getSignatureKeyword_10_0());
-			}
-			otherlv_12='secret:'
-			{
-				newLeafNode(otherlv_12, grammarAccess.getJWTAccess().getSecretKeyword_10_1());
-			}
-			(
-				(
-					{
-						newCompositeNode(grammarAccess.getJWTAccess().getSecretEStringParserRuleCall_10_2_0());
-					}
-					lv_secret_13_0=ruleEString
-					{
-						if ($current==null) {
-							$current = createModelElementForParent(grammarAccess.getJWTRule());
-						}
-						set(
-							$current,
-							"secret",
-							lv_secret_13_0,
-							"org.xtext.securitydsl.SecurityDsl.EString");
-						afterParserOrEnumRuleCall();
-					}
-				)
-			)
-		)?
 	)
 ;
 
@@ -1747,9 +1731,9 @@ ruleProvider returns [EObject current=null]
 		(
 			(
 				{
-					newCompositeNode(grammarAccess.getProviderAccess().getNameEOAuthProviderEnumRuleCall_2_0());
+					newCompositeNode(grammarAccess.getProviderAccess().getNameEStringParserRuleCall_2_0());
 				}
-				lv_name_2_0=ruleEOAuthProvider
+				lv_name_2_0=ruleEString
 				{
 					if ($current==null) {
 						$current = createModelElementForParent(grammarAccess.getProviderRule());
@@ -1758,7 +1742,7 @@ ruleProvider returns [EObject current=null]
 						$current,
 						"name",
 						lv_name_2_0,
-						"org.xtext.securitydsl.SecurityDsl.EOAuthProvider");
+						"org.xtext.securitydsl.SecurityDsl.EString");
 					afterParserOrEnumRuleCall();
 				}
 			)
@@ -2101,73 +2085,6 @@ ruleEClaimType returns [Enumerator current=null]
 			{
 				$current = grammarAccess.getEClaimTypeAccess().getREGISTEREDEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
 				newLeafNode(enumLiteral_2, grammarAccess.getEClaimTypeAccess().getREGISTEREDEnumLiteralDeclaration_2());
-			}
-		)
-	)
-;
-
-// Rule EOAuthProvider
-ruleEOAuthProvider returns [Enumerator current=null]
-@init {
-	enterRule();
-}
-@after {
-	leaveRule();
-}:
-	(
-		(
-			enumLiteral_0='GOOGLE'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getGOOGLEEnumLiteralDeclaration_0().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_0, grammarAccess.getEOAuthProviderAccess().getGOOGLEEnumLiteralDeclaration_0());
-			}
-		)
-		    |
-		(
-			enumLiteral_1='GITHUB'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getGITHUBEnumLiteralDeclaration_1().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_1, grammarAccess.getEOAuthProviderAccess().getGITHUBEnumLiteralDeclaration_1());
-			}
-		)
-		    |
-		(
-			enumLiteral_2='FACEBOOK'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getFACEBOOKEnumLiteralDeclaration_2().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_2, grammarAccess.getEOAuthProviderAccess().getFACEBOOKEnumLiteralDeclaration_2());
-			}
-		)
-		    |
-		(
-			enumLiteral_3='MICROSOFT_AZURE'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getAZUREEnumLiteralDeclaration_3().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_3, grammarAccess.getEOAuthProviderAccess().getAZUREEnumLiteralDeclaration_3());
-			}
-		)
-		    |
-		(
-			enumLiteral_4='LINKEDIN'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getLINKEDINEnumLiteralDeclaration_4().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_4, grammarAccess.getEOAuthProviderAccess().getLINKEDINEnumLiteralDeclaration_4());
-			}
-		)
-		    |
-		(
-			enumLiteral_5='TWITTER'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getTWITTEREnumLiteralDeclaration_5().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_5, grammarAccess.getEOAuthProviderAccess().getTWITTEREnumLiteralDeclaration_5());
-			}
-		)
-		    |
-		(
-			enumLiteral_6='INSTAGRAM'
-			{
-				$current = grammarAccess.getEOAuthProviderAccess().getINSTAGRAMEnumLiteralDeclaration_6().getEnumLiteral().getInstance();
-				newLeafNode(enumLiteral_6, grammarAccess.getEOAuthProviderAccess().getINSTAGRAMEnumLiteralDeclaration_6());
 			}
 		)
 	)

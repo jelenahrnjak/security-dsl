@@ -179,8 +179,8 @@
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="signatureAlgorithm" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-        defaultValueLiteral="somesecret"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="secret" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="claims" upperBound="-1"
         eType="#//Claim" containment="true"/>
   </eClassifiers>
@@ -218,8 +218,8 @@
     <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
       <details key="uniqueProviders" value="Tuple {&#xA;&#x9;message : String = 'Providers must have unique names!',&#xA;&#x9;status : Boolean = self.providers -> isUnique(p | p.name)&#xA;}.status"/>
       <details key="doesntHaveRoleForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> size() = 0&#xA;}.status"/>
-      <details key="doesntHaveUserForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(User)) -> size() = 0&#xA;}.status"/>
-      <details key="doesntHaveAuthControllerForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Role entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Controller.allInstances() -> select(e | e.oclIsTypeOf(Authentication)) -> size() = 0&#xA;}.status"/>
+      <details key="doesntHaveUserForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no User entities!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Entity.allInstances() -> select(e | e.oclIsTypeOf(User)) -> size() = 0&#xA;}.status"/>
+      <details key="doesntHaveAuthControllerForOauth" value="Tuple {&#xA;&#x9;message : String = 'OAuth2 authentication requires no Authentication controller!',&#xA;&#x9;status : Boolean = &#xA;&#x9;&#x9;    Controller.allInstances() -> select(e | e.oclIsTypeOf(Authentication)) -> size() = 0&#xA;}.status"/>
     </eAnnotations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="providers" lowerBound="1"
         upperBound="-1" eType="#//Provider" containment="true"/>
@@ -232,17 +232,8 @@
       <details key="basicAuthNoRoleAttributes" value="Tuple {&#xA;&#x9;message : String = 'Basic authentication cannot have role attributes!',&#xA;&#x9;status : Boolean = &#xA;&#x9;        Entity.allInstances() -> select(e | e.oclIsTypeOf(Role))&#xA;&#x9;            -> forAll(role | role.entity_attributes -> size() = 0)&#xA;}.status"/>
     </eAnnotations>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EEnum" name="EOAuthProvider">
-    <eLiterals name="GOOGLE"/>
-    <eLiterals name="GITHUB" value="1"/>
-    <eLiterals name="FACEBOOK" value="2"/>
-    <eLiterals name="AZURE" value="3"/>
-    <eLiterals name="LINKEDIN" value="4"/>
-    <eLiterals name="TWITTER" value="5"/>
-    <eLiterals name="INSTAGRAM" value="6"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Provider">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="#//EOAuthProvider"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientId" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="clientSecret" lowerBound="1"

@@ -50,13 +50,12 @@ public interface JWT extends Security {
 
 	/**
 	 * Returns the value of the '<em><b>Secret</b></em>' attribute.
-	 * The default value is <code>"somesecret"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Secret</em>' attribute.
 	 * @see #setSecret(String)
 	 * @see security_dsl.Security_dslPackage#getJWT_Secret()
-	 * @model default="somesecret"
+	 * @model required="true"
 	 * @generated
 	 */
 	String getSecret();

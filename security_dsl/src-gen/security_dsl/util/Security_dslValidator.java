@@ -480,8 +480,6 @@ public class Security_dslValidator extends EObjectValidator {
 			return validateEEndpointType((EEndpointType) value, diagnostics, context);
 		case Security_dslPackage.ECLAIM_TYPE:
 			return validateEClaimType((EClaimType) value, diagnostics, context);
-		case Security_dslPackage.EO_AUTH_PROVIDER:
-			return validateEOAuthProvider((EOAuthProvider) value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -1473,16 +1471,6 @@ public class Security_dslValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateEClaimType(EClaimType eClaimType, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return true;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean validateEOAuthProvider(EOAuthProvider eoAuthProvider, DiagnosticChain diagnostics,
-			Map<Object, Object> context) {
 		return true;
 	}
 

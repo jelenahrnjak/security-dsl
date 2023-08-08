@@ -94,7 +94,6 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EDatabaseType = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EDatabaseType");
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EEndpointMethod = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EEndpointMethod");
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EEndpointType = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EEndpointType");
-	public static final /*@NonInvalid*/ EnumerationId ENUMid_EOAuthProvider = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EOAuthProvider");
 	public static final /*@NonInvalid*/ EnumerationId ENUMid_EType = Security_dslTables.PACKid_http_c_s_s_www_example_org_s_security_dsl.getEnumerationId("EType");
 	public static final /*@NonInvalid*/ IntegerValue INT_0 = ValueUtil.integerValueOf("0");
 	public static final /*@NonInvalid*/ IntegerValue INT_1 = ValueUtil.integerValueOf("1");
@@ -130,7 +129,9 @@ public class Security_dslTables extends AbstractTables
 	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_expirationTime_34_44_32_the_32_value_32_must_32_be_32_a_32_posit = "If the claim name is \"expirationTime\", the value must be a positive number";
 	public static final /*@NonInvalid*/ String STR_If_32_the_32_claim_32_name_32_is_32_34_issuer_34_44_32_it_32_must_32_have_32_value_32_and_32_must_32_not_32_b = "If the claim name is \"issuer\", it must have value and must not be linked to an attribute";
 	public static final /*@NonInvalid*/ String STR_Logout_32_endpoint_32_requires_32_a_32_corresponding_32_login_32_endpoint_33 = "Logout endpoint requires a corresponding login endpoint!";
+	public static final /*@NonInvalid*/ String STR_OAuth2_32_authentication_32_requires_32_no_32_Authentication_32_controller_33 = "OAuth2 authentication requires no Authentication controller!";
 	public static final /*@NonInvalid*/ String STR_OAuth2_32_authentication_32_requires_32_no_32_Role_32_entities_33 = "OAuth2 authentication requires no Role entities!";
+	public static final /*@NonInvalid*/ String STR_OAuth2_32_authentication_32_requires_32_no_32_User_32_entities_33 = "OAuth2 authentication requires no User entities!";
 	public static final /*@NonInvalid*/ String STR_Port_32_must_32_be_32_in_32_the_32_valid_32_range_32_of_32_1024_32_to_32_49151_33 = "Port must be in the valid range of 1024 to 49151!";
 	public static final /*@NonInvalid*/ String STR_Providers_32_must_32_have_32_unique_32_names_33 = "Providers must have unique names!";
 	public static final /*@NonInvalid*/ String STR_Role_32_authorities_32_must_32_be_32_unique_32_for_32_each_32_endpoint_33 = "Role authorities must be unique for each endpoint!";
@@ -213,7 +214,6 @@ public class Security_dslTables extends AbstractTables
 		public static final EcoreExecutorEnumeration _EDatabaseType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EDATABASE_TYPE, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EEndpointMethod = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EENDPOINT_METHOD, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EEndpointType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EENDPOINT_TYPE, PACKAGE, 0);
-		public static final EcoreExecutorEnumeration _EOAuthProvider = new EcoreExecutorEnumeration(Security_dslPackage.Literals.EO_AUTH_PROVIDER, PACKAGE, 0);
 		public static final EcoreExecutorEnumeration _EType = new EcoreExecutorEnumeration(Security_dslPackage.Literals.ETYPE, PACKAGE, 0);
 		public static final EcoreExecutorType _Endpoint = new EcoreExecutorType(Security_dslPackage.Literals.ENDPOINT, PACKAGE, 0);
 		public static final EcoreExecutorType _Entity = new EcoreExecutorType(Security_dslPackage.Literals.ENTITY, PACKAGE, 0 | ExecutorType.ABSTRACT);
@@ -237,7 +237,6 @@ public class Security_dslTables extends AbstractTables
 			_EDatabaseType,
 			_EEndpointMethod,
 			_EEndpointType,
-			_EOAuthProvider,
 			_EType,
 			_Endpoint,
 			_Entity,
@@ -326,12 +325,6 @@ public class Security_dslTables extends AbstractTables
 		private static final ExecutorFragment _EEndpointType__OclElement = new ExecutorFragment(Types._EEndpointType, OCLstdlibTables.Types._OclElement);
 		private static final ExecutorFragment _EEndpointType__OclEnumeration = new ExecutorFragment(Types._EEndpointType, OCLstdlibTables.Types._OclEnumeration);
 		private static final ExecutorFragment _EEndpointType__OclType = new ExecutorFragment(Types._EEndpointType, OCLstdlibTables.Types._OclType);
-
-		private static final ExecutorFragment _EOAuthProvider__EOAuthProvider = new ExecutorFragment(Types._EOAuthProvider, Security_dslTables.Types._EOAuthProvider);
-		private static final ExecutorFragment _EOAuthProvider__OclAny = new ExecutorFragment(Types._EOAuthProvider, OCLstdlibTables.Types._OclAny);
-		private static final ExecutorFragment _EOAuthProvider__OclElement = new ExecutorFragment(Types._EOAuthProvider, OCLstdlibTables.Types._OclElement);
-		private static final ExecutorFragment _EOAuthProvider__OclEnumeration = new ExecutorFragment(Types._EOAuthProvider, OCLstdlibTables.Types._OclEnumeration);
-		private static final ExecutorFragment _EOAuthProvider__OclType = new ExecutorFragment(Types._EOAuthProvider, OCLstdlibTables.Types._OclType);
 
 		private static final ExecutorFragment _EType__EType = new ExecutorFragment(Types._EType, Security_dslTables.Types._EType);
 		private static final ExecutorFragment _EType__OclAny = new ExecutorFragment(Types._EType, OCLstdlibTables.Types._OclAny);
@@ -634,16 +627,6 @@ public class Security_dslTables extends AbstractTables
 			};
 		private static final int /*@NonNull*/ [] __EEndpointType = { 1,1,1,1,1 };
 
-		private static final ExecutorFragment /*@NonNull*/ [] _EOAuthProvider =
-			{
-				Fragments._EOAuthProvider__OclAny /* 0 */,
-				Fragments._EOAuthProvider__OclElement /* 1 */,
-				Fragments._EOAuthProvider__OclType /* 2 */,
-				Fragments._EOAuthProvider__OclEnumeration /* 3 */,
-				Fragments._EOAuthProvider__EOAuthProvider /* 4 */
-			};
-		private static final int /*@NonNull*/ [] __EOAuthProvider = { 1,1,1,1,1 };
-
 		private static final ExecutorFragment /*@NonNull*/ [] _EType =
 			{
 				Fragments._EType__OclAny /* 0 */,
@@ -745,7 +728,6 @@ public class Security_dslTables extends AbstractTables
 			Types._EDatabaseType.initFragments(_EDatabaseType, __EDatabaseType);
 			Types._EEndpointMethod.initFragments(_EEndpointMethod, __EEndpointMethod);
 			Types._EEndpointType.initFragments(_EEndpointType, __EEndpointType);
-			Types._EOAuthProvider.initFragments(_EOAuthProvider, __EOAuthProvider);
 			Types._EType.initFragments(_EType, __EType);
 			Types._Endpoint.initFragments(_Endpoint, __Endpoint);
 			Types._Entity.initFragments(_Entity, __Entity);
@@ -1109,40 +1091,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
 		};
 
-		private static final ExecutorOperation /*@NonNull*/ [] _EOAuthProvider__EOAuthProvider = {};
-		private static final ExecutorOperation /*@NonNull*/ [] _EOAuthProvider__OclAny = {
-			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny___eq_ /* _'='(OclSelf[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclAsSet /* oclAsSet() */,
-			OCLstdlibTables.Operations._OclAny__oclAsType /* oclAsType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInState /* oclIsInState(OclState[?]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsInvalid /* oclIsInvalid() */,
-			OCLstdlibTables.Operations._OclAny__oclIsKindOf /* oclIsKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsNew /* oclIsNew() */,
-			OCLstdlibTables.Operations._OclAny__oclIsTypeOf /* oclIsTypeOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclIsUndefined /* oclIsUndefined() */,
-			OCLstdlibTables.Operations._OclAny__0_oclLog /* oclLog() */,
-			OCLstdlibTables.Operations._OclAny__1_oclLog /* oclLog(String[1]) */,
-			OCLstdlibTables.Operations._OclAny__oclType /* oclType() */,
-			OCLstdlibTables.Operations._OclAny__oclTypes /* oclTypes() */,
-			OCLstdlibTables.Operations._OclAny__toString /* toString() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _EOAuthProvider__OclElement = {
-			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */,
-			OCLstdlibTables.Operations._OclElement__oclAsModelType /* oclAsModelType(TT)(TT[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclContainer /* oclContainer() */,
-			OCLstdlibTables.Operations._OclElement__oclContents /* oclContents() */,
-			OCLstdlibTables.Operations._OclElement__oclIsModelKindOf /* oclIsModelKindOf(OclType[1]) */,
-			OCLstdlibTables.Operations._OclElement__oclModelType /* oclModelType() */,
-			OCLstdlibTables.Operations._OclElement__oclModelTypes /* oclModelTypes() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _EOAuthProvider__OclEnumeration = {
-			OCLstdlibTables.Operations._OclEnumeration__allInstances /* allInstances() */
-		};
-		private static final ExecutorOperation /*@NonNull*/ [] _EOAuthProvider__OclType = {
-			OCLstdlibTables.Operations._OclType__conformsTo /* conformsTo(OclType[?]) */
-		};
-
 		private static final ExecutorOperation /*@NonNull*/ [] _EType__EType = {};
 		private static final ExecutorOperation /*@NonNull*/ [] _EType__OclAny = {
 			OCLstdlibTables.Operations._OclAny___lt__gt_ /* _'<>'(OclSelf[?]) */,
@@ -1491,12 +1439,6 @@ public class Security_dslTables extends AbstractTables
 			Fragments._EEndpointType__OclEnumeration.initOperations(_EEndpointType__OclEnumeration);
 			Fragments._EEndpointType__OclType.initOperations(_EEndpointType__OclType);
 
-			Fragments._EOAuthProvider__EOAuthProvider.initOperations(_EOAuthProvider__EOAuthProvider);
-			Fragments._EOAuthProvider__OclAny.initOperations(_EOAuthProvider__OclAny);
-			Fragments._EOAuthProvider__OclElement.initOperations(_EOAuthProvider__OclElement);
-			Fragments._EOAuthProvider__OclEnumeration.initOperations(_EOAuthProvider__OclEnumeration);
-			Fragments._EOAuthProvider__OclType.initOperations(_EOAuthProvider__OclType);
-
 			Fragments._EType__EType.initOperations(_EType__EType);
 			Fragments._EType__OclAny.initOperations(_EType__OclAny);
 			Fragments._EType__OclElement.initOperations(_EType__OclElement);
@@ -1646,11 +1588,6 @@ public class Security_dslTables extends AbstractTables
 			OCLstdlibTables.Properties._OclElement__oclContents
 		};
 
-		private static final ExecutorProperty /*@NonNull*/ [] _EOAuthProvider = {
-			OCLstdlibTables.Properties._OclElement__oclContainer,
-			OCLstdlibTables.Properties._OclElement__oclContents
-		};
-
 		private static final ExecutorProperty /*@NonNull*/ [] _EType = {
 			OCLstdlibTables.Properties._OclElement__oclContainer,
 			OCLstdlibTables.Properties._OclElement__oclContents
@@ -1738,7 +1675,6 @@ public class Security_dslTables extends AbstractTables
 			Fragments._EDatabaseType__EDatabaseType.initProperties(_EDatabaseType);
 			Fragments._EEndpointMethod__EEndpointMethod.initProperties(_EEndpointMethod);
 			Fragments._EEndpointType__EEndpointType.initProperties(_EEndpointType);
-			Fragments._EOAuthProvider__EOAuthProvider.initProperties(_EOAuthProvider);
 			Fragments._EType__EType.initProperties(_EType);
 			Fragments._Endpoint__Endpoint.initProperties(_Endpoint);
 			Fragments._Entity__Entity.initProperties(_Entity);
@@ -1808,23 +1744,6 @@ public class Security_dslTables extends AbstractTables
 			_EEndpointType__OTHER
 		};
 
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__GOOGLE = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("GOOGLE"), Types._EOAuthProvider, 0);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__GITHUB = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("GITHUB"), Types._EOAuthProvider, 1);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__FACEBOOK = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("FACEBOOK"), Types._EOAuthProvider, 2);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__AZURE = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("AZURE"), Types._EOAuthProvider, 3);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__LINKEDIN = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("LINKEDIN"), Types._EOAuthProvider, 4);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__TWITTER = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("TWITTER"), Types._EOAuthProvider, 5);
-		public static final EcoreExecutorEnumerationLiteral _EOAuthProvider__INSTAGRAM = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.EO_AUTH_PROVIDER.getEEnumLiteral("INSTAGRAM"), Types._EOAuthProvider, 6);
-		private static final EcoreExecutorEnumerationLiteral /*@NonNull*/ [] _EOAuthProvider = {
-			_EOAuthProvider__GOOGLE,
-			_EOAuthProvider__GITHUB,
-			_EOAuthProvider__FACEBOOK,
-			_EOAuthProvider__AZURE,
-			_EOAuthProvider__LINKEDIN,
-			_EOAuthProvider__TWITTER,
-			_EOAuthProvider__INSTAGRAM
-		};
-
 		public static final EcoreExecutorEnumerationLiteral _EType__String = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("String"), Types._EType, 0);
 		public static final EcoreExecutorEnumerationLiteral _EType__Float = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Float"), Types._EType, 1);
 		public static final EcoreExecutorEnumerationLiteral _EType__Long = new EcoreExecutorEnumerationLiteral(Security_dslPackage.Literals.ETYPE.getEEnumLiteral("Long"), Types._EType, 2);
@@ -1850,7 +1769,6 @@ public class Security_dslTables extends AbstractTables
 			Types._EDatabaseType.initLiterals(_EDatabaseType);
 			Types._EEndpointMethod.initLiterals(_EEndpointMethod);
 			Types._EEndpointType.initLiterals(_EEndpointType);
-			Types._EOAuthProvider.initLiterals(_EOAuthProvider);
 			Types._EType.initLiterals(_EType);
 
 			Init.initEnd();

@@ -211,7 +211,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     (
 	 *         type=EEndpointType 
 	 *         url=EString 
-	 *         methodName=EString? 
+	 *         methodName=EString 
 	 *         method=EEndpointMethod? 
 	 *         (role_authorities+=[RoleInstance|EString] role_authorities+=[RoleInstance|EString]*)?
 	 *     )
@@ -229,7 +229,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     JWT returns JWT
 	 *
 	 * Constraint:
-	 *     (signatureAlgorithm=EString claims+=Claim claims+=Claim* secret=EString?)
+	 *     (signatureAlgorithm=EString secret=EString claims+=Claim claims+=Claim*)
 	 * </pre>
 	 */
 	protected void sequence_JWT(ISerializationContext context, JWT semanticObject) {
@@ -258,7 +258,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	 *     Provider returns Provider
 	 *
 	 * Constraint:
-	 *     (name=EOAuthProvider clientId=EString clientSecret=EString redirectUri=EString?)
+	 *     (name=EString clientId=EString clientSecret=EString redirectUri=EString?)
 	 * </pre>
 	 */
 	protected void sequence_Provider(ISerializationContext context, Provider semanticObject) {

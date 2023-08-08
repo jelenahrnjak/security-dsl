@@ -1584,16 +1584,6 @@ public interface Security_dslPackage extends EPackage {
 	int ECLAIM_TYPE = 20;
 
 	/**
-	 * The meta object id for the '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}' enum.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see security_dsl.EOAuthProvider
-	 * @see security_dsl.impl.Security_dslPackageImpl#getEOAuthProvider()
-	 * @generated
-	 */
-	int EO_AUTH_PROVIDER = 21;
-
-	/**
 	 * Returns the meta object for class '{@link security_dsl.Application <em>Application</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2739,16 +2729,6 @@ public interface Security_dslPackage extends EPackage {
 	EEnum getEClaimType();
 
 	/**
-	 * Returns the meta object for enum '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for enum '<em>EO Auth Provider</em>'.
-	 * @see security_dsl.EOAuthProvider
-	 * @generated
-	 */
-	EEnum getEOAuthProvider();
-
-	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -3736,16 +3716,6 @@ public interface Security_dslPackage extends EPackage {
 		 * @generated
 		 */
 		EEnum ECLAIM_TYPE = eINSTANCE.getEClaimType();
-
-		/**
-		 * The meta object literal for the '{@link security_dsl.EOAuthProvider <em>EO Auth Provider</em>}' enum.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @see security_dsl.EOAuthProvider
-		 * @see security_dsl.impl.Security_dslPackageImpl#getEOAuthProvider()
-		 * @generated
-		 */
-		EEnum EO_AUTH_PROVIDER = eINSTANCE.getEOAuthProvider();
 
 	}
 

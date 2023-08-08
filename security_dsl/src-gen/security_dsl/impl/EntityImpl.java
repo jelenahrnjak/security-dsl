@@ -40,6 +40,7 @@ import org.eclipse.ocl.pivot.library.oclany.OclComparableLessThanEqualOperation;
 
 import org.eclipse.ocl.pivot.library.string.CGStringGetSeverityOperation;
 import org.eclipse.ocl.pivot.library.string.CGStringLogDiagnosticOperation;
+
 import org.eclipse.ocl.pivot.messages.PivotMessages;
 
 import org.eclipse.ocl.pivot.utilities.PivotUtil;

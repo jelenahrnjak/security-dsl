@@ -101,7 +101,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//    ('controller:'
 		//        ('auth:' app_controllers+=Authentication)?
 		//    )?
-		//    ;
+		//;
 		@Override public ParserRule getRule() { return rule; }
 		
 		//{Application}
@@ -782,33 +782,32 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Keyword cUrlKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Assignment cUrlAssignment_4 = (Assignment)cGroup.eContents().get(4);
 		private final RuleCall cUrlEStringParserRuleCall_4_0 = (RuleCall)cUrlAssignment_4.eContents().get(0);
-		private final Group cGroup_5 = (Group)cGroup.eContents().get(5);
-		private final Keyword cMethodNameKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cMethodNameAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cMethodNameEStringParserRuleCall_5_1_0 = (RuleCall)cMethodNameAssignment_5_1.eContents().get(0);
-		private final Group cGroup_6 = (Group)cGroup.eContents().get(6);
-		private final Keyword cMethodKeyword_6_0 = (Keyword)cGroup_6.eContents().get(0);
-		private final Assignment cMethodAssignment_6_1 = (Assignment)cGroup_6.eContents().get(1);
-		private final RuleCall cMethodEEndpointMethodEnumRuleCall_6_1_0 = (RuleCall)cMethodAssignment_6_1.eContents().get(0);
+		private final Keyword cMethodNameKeyword_5 = (Keyword)cGroup.eContents().get(5);
+		private final Assignment cMethodNameAssignment_6 = (Assignment)cGroup.eContents().get(6);
+		private final RuleCall cMethodNameEStringParserRuleCall_6_0 = (RuleCall)cMethodNameAssignment_6.eContents().get(0);
 		private final Group cGroup_7 = (Group)cGroup.eContents().get(7);
-		private final Keyword cRoleAuthoritiesKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
-		private final Keyword cLeftSquareBracketKeyword_7_1 = (Keyword)cGroup_7.eContents().get(1);
-		private final Assignment cRole_authoritiesAssignment_7_2 = (Assignment)cGroup_7.eContents().get(2);
-		private final CrossReference cRole_authoritiesRoleInstanceCrossReference_7_2_0 = (CrossReference)cRole_authoritiesAssignment_7_2.eContents().get(0);
-		private final RuleCall cRole_authoritiesRoleInstanceEStringParserRuleCall_7_2_0_1 = (RuleCall)cRole_authoritiesRoleInstanceCrossReference_7_2_0.eContents().get(1);
-		private final Group cGroup_7_3 = (Group)cGroup_7.eContents().get(3);
-		private final Keyword cCommaKeyword_7_3_0 = (Keyword)cGroup_7_3.eContents().get(0);
-		private final Assignment cRole_authoritiesAssignment_7_3_1 = (Assignment)cGroup_7_3.eContents().get(1);
-		private final CrossReference cRole_authoritiesRoleInstanceCrossReference_7_3_1_0 = (CrossReference)cRole_authoritiesAssignment_7_3_1.eContents().get(0);
-		private final RuleCall cRole_authoritiesRoleInstanceEStringParserRuleCall_7_3_1_0_1 = (RuleCall)cRole_authoritiesRoleInstanceCrossReference_7_3_1_0.eContents().get(1);
-		private final Keyword cRightSquareBracketKeyword_7_4 = (Keyword)cGroup_7.eContents().get(4);
-		private final Keyword cRightCurlyBracketKeyword_8 = (Keyword)cGroup.eContents().get(8);
+		private final Keyword cMethodKeyword_7_0 = (Keyword)cGroup_7.eContents().get(0);
+		private final Assignment cMethodAssignment_7_1 = (Assignment)cGroup_7.eContents().get(1);
+		private final RuleCall cMethodEEndpointMethodEnumRuleCall_7_1_0 = (RuleCall)cMethodAssignment_7_1.eContents().get(0);
+		private final Group cGroup_8 = (Group)cGroup.eContents().get(8);
+		private final Keyword cRoleAuthoritiesKeyword_8_0 = (Keyword)cGroup_8.eContents().get(0);
+		private final Keyword cLeftSquareBracketKeyword_8_1 = (Keyword)cGroup_8.eContents().get(1);
+		private final Assignment cRole_authoritiesAssignment_8_2 = (Assignment)cGroup_8.eContents().get(2);
+		private final CrossReference cRole_authoritiesRoleInstanceCrossReference_8_2_0 = (CrossReference)cRole_authoritiesAssignment_8_2.eContents().get(0);
+		private final RuleCall cRole_authoritiesRoleInstanceEStringParserRuleCall_8_2_0_1 = (RuleCall)cRole_authoritiesRoleInstanceCrossReference_8_2_0.eContents().get(1);
+		private final Group cGroup_8_3 = (Group)cGroup_8.eContents().get(3);
+		private final Keyword cCommaKeyword_8_3_0 = (Keyword)cGroup_8_3.eContents().get(0);
+		private final Assignment cRole_authoritiesAssignment_8_3_1 = (Assignment)cGroup_8_3.eContents().get(1);
+		private final CrossReference cRole_authoritiesRoleInstanceCrossReference_8_3_1_0 = (CrossReference)cRole_authoritiesAssignment_8_3_1.eContents().get(0);
+		private final RuleCall cRole_authoritiesRoleInstanceEStringParserRuleCall_8_3_1_0_1 = (RuleCall)cRole_authoritiesRoleInstanceCrossReference_8_3_1_0.eContents().get(1);
+		private final Keyword cRightSquareBracketKeyword_8_4 = (Keyword)cGroup_8.eContents().get(4);
+		private final Keyword cRightCurlyBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
 		
 		//Endpoint returns Endpoint:
 		//    '{'
 		//        'type:' type=EEndpointType
 		//        'url:' url=EString
-		//        ('methodName:' methodName=EString)?
+		//        'methodName:' methodName=EString
 		//        ('method:' method=EEndpointMethod)?
 		//        ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 		//    '}';
@@ -817,7 +816,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'{'
 		//    'type:' type=EEndpointType
 		//    'url:' url=EString
-		//    ('methodName:' methodName=EString)?
+		//    'methodName:' methodName=EString
 		//    ('method:' method=EEndpointMethod)?
 		//    ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 		//'}'
@@ -844,68 +843,65 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//EString
 		public RuleCall getUrlEStringParserRuleCall_4_0() { return cUrlEStringParserRuleCall_4_0; }
 		
-		//('methodName:' methodName=EString)?
-		public Group getGroup_5() { return cGroup_5; }
-		
 		//'methodName:'
-		public Keyword getMethodNameKeyword_5_0() { return cMethodNameKeyword_5_0; }
+		public Keyword getMethodNameKeyword_5() { return cMethodNameKeyword_5; }
 		
 		//methodName=EString
-		public Assignment getMethodNameAssignment_5_1() { return cMethodNameAssignment_5_1; }
+		public Assignment getMethodNameAssignment_6() { return cMethodNameAssignment_6; }
 		
 		//EString
-		public RuleCall getMethodNameEStringParserRuleCall_5_1_0() { return cMethodNameEStringParserRuleCall_5_1_0; }
+		public RuleCall getMethodNameEStringParserRuleCall_6_0() { return cMethodNameEStringParserRuleCall_6_0; }
 		
 		//('method:' method=EEndpointMethod)?
-		public Group getGroup_6() { return cGroup_6; }
-		
-		//'method:'
-		public Keyword getMethodKeyword_6_0() { return cMethodKeyword_6_0; }
-		
-		//method=EEndpointMethod
-		public Assignment getMethodAssignment_6_1() { return cMethodAssignment_6_1; }
-		
-		//EEndpointMethod
-		public RuleCall getMethodEEndpointMethodEnumRuleCall_6_1_0() { return cMethodEEndpointMethodEnumRuleCall_6_1_0; }
-		
-		//('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 		public Group getGroup_7() { return cGroup_7; }
 		
+		//'method:'
+		public Keyword getMethodKeyword_7_0() { return cMethodKeyword_7_0; }
+		
+		//method=EEndpointMethod
+		public Assignment getMethodAssignment_7_1() { return cMethodAssignment_7_1; }
+		
+		//EEndpointMethod
+		public RuleCall getMethodEEndpointMethodEnumRuleCall_7_1_0() { return cMethodEEndpointMethodEnumRuleCall_7_1_0; }
+		
+		//('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
+		public Group getGroup_8() { return cGroup_8; }
+		
 		//'roleAuthorities:'
-		public Keyword getRoleAuthoritiesKeyword_7_0() { return cRoleAuthoritiesKeyword_7_0; }
+		public Keyword getRoleAuthoritiesKeyword_8_0() { return cRoleAuthoritiesKeyword_8_0; }
 		
 		//'['
-		public Keyword getLeftSquareBracketKeyword_7_1() { return cLeftSquareBracketKeyword_7_1; }
+		public Keyword getLeftSquareBracketKeyword_8_1() { return cLeftSquareBracketKeyword_8_1; }
 		
 		//role_authorities+=[RoleInstance|EString]
-		public Assignment getRole_authoritiesAssignment_7_2() { return cRole_authoritiesAssignment_7_2; }
+		public Assignment getRole_authoritiesAssignment_8_2() { return cRole_authoritiesAssignment_8_2; }
 		
 		//[RoleInstance|EString]
-		public CrossReference getRole_authoritiesRoleInstanceCrossReference_7_2_0() { return cRole_authoritiesRoleInstanceCrossReference_7_2_0; }
+		public CrossReference getRole_authoritiesRoleInstanceCrossReference_8_2_0() { return cRole_authoritiesRoleInstanceCrossReference_8_2_0; }
 		
 		//EString
-		public RuleCall getRole_authoritiesRoleInstanceEStringParserRuleCall_7_2_0_1() { return cRole_authoritiesRoleInstanceEStringParserRuleCall_7_2_0_1; }
+		public RuleCall getRole_authoritiesRoleInstanceEStringParserRuleCall_8_2_0_1() { return cRole_authoritiesRoleInstanceEStringParserRuleCall_8_2_0_1; }
 		
 		//( "," role_authorities+=[RoleInstance|EString])*
-		public Group getGroup_7_3() { return cGroup_7_3; }
+		public Group getGroup_8_3() { return cGroup_8_3; }
 		
 		//","
-		public Keyword getCommaKeyword_7_3_0() { return cCommaKeyword_7_3_0; }
+		public Keyword getCommaKeyword_8_3_0() { return cCommaKeyword_8_3_0; }
 		
 		//role_authorities+=[RoleInstance|EString]
-		public Assignment getRole_authoritiesAssignment_7_3_1() { return cRole_authoritiesAssignment_7_3_1; }
+		public Assignment getRole_authoritiesAssignment_8_3_1() { return cRole_authoritiesAssignment_8_3_1; }
 		
 		//[RoleInstance|EString]
-		public CrossReference getRole_authoritiesRoleInstanceCrossReference_7_3_1_0() { return cRole_authoritiesRoleInstanceCrossReference_7_3_1_0; }
+		public CrossReference getRole_authoritiesRoleInstanceCrossReference_8_3_1_0() { return cRole_authoritiesRoleInstanceCrossReference_8_3_1_0; }
 		
 		//EString
-		public RuleCall getRole_authoritiesRoleInstanceEStringParserRuleCall_7_3_1_0_1() { return cRole_authoritiesRoleInstanceEStringParserRuleCall_7_3_1_0_1; }
+		public RuleCall getRole_authoritiesRoleInstanceEStringParserRuleCall_8_3_1_0_1() { return cRole_authoritiesRoleInstanceEStringParserRuleCall_8_3_1_0_1; }
 		
 		//']'
-		public Keyword getRightSquareBracketKeyword_7_4() { return cRightSquareBracketKeyword_7_4; }
+		public Keyword getRightSquareBracketKeyword_8_4() { return cRightSquareBracketKeyword_8_4; }
 		
 		//'}'
-		public Keyword getRightCurlyBracketKeyword_8() { return cRightCurlyBracketKeyword_8; }
+		public Keyword getRightCurlyBracketKeyword_9() { return cRightCurlyBracketKeyword_9; }
 	}
 	public class AuthenticationElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Authentication");
@@ -996,11 +992,12 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.JWT");
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Keyword cJwtKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Keyword cHeaderKeyword_1 = (Keyword)cGroup.eContents().get(1);
-		private final Keyword cSignatureAlgorithmKeyword_2 = (Keyword)cGroup.eContents().get(2);
-		private final Assignment cSignatureAlgorithmAssignment_3 = (Assignment)cGroup.eContents().get(3);
-		private final RuleCall cSignatureAlgorithmEStringParserRuleCall_3_0 = (RuleCall)cSignatureAlgorithmAssignment_3.eContents().get(0);
-		private final Keyword cPayloadKeyword_4 = (Keyword)cGroup.eContents().get(4);
+		private final Keyword cSignatureAlgorithmKeyword_1 = (Keyword)cGroup.eContents().get(1);
+		private final Assignment cSignatureAlgorithmAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cSignatureAlgorithmEStringParserRuleCall_2_0 = (RuleCall)cSignatureAlgorithmAssignment_2.eContents().get(0);
+		private final Keyword cSecretKeyword_3 = (Keyword)cGroup.eContents().get(3);
+		private final Assignment cSecretAssignment_4 = (Assignment)cGroup.eContents().get(4);
+		private final RuleCall cSecretEStringParserRuleCall_4_0 = (RuleCall)cSecretAssignment_4.eContents().get(0);
 		private final Keyword cClaimsKeyword_5 = (Keyword)cGroup.eContents().get(5);
 		private final Keyword cLeftSquareBracketKeyword_6 = (Keyword)cGroup.eContents().get(6);
 		private final Assignment cClaimsAssignment_7 = (Assignment)cGroup.eContents().get(7);
@@ -1010,48 +1007,40 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Assignment cClaimsAssignment_8_1 = (Assignment)cGroup_8.eContents().get(1);
 		private final RuleCall cClaimsClaimParserRuleCall_8_1_0 = (RuleCall)cClaimsAssignment_8_1.eContents().get(0);
 		private final Keyword cRightSquareBracketKeyword_9 = (Keyword)cGroup.eContents().get(9);
-		private final Group cGroup_10 = (Group)cGroup.eContents().get(10);
-		private final Keyword cSignatureKeyword_10_0 = (Keyword)cGroup_10.eContents().get(0);
-		private final Keyword cSecretKeyword_10_1 = (Keyword)cGroup_10.eContents().get(1);
-		private final Assignment cSecretAssignment_10_2 = (Assignment)cGroup_10.eContents().get(2);
-		private final RuleCall cSecretEStringParserRuleCall_10_2_0 = (RuleCall)cSecretAssignment_10_2.eContents().get(0);
 		
 		//JWT returns JWT:
 		//    'jwt:'
-		//    'header:'
 		//    'signatureAlgorithm:' signatureAlgorithm=EString
-		//    'payload:'
-		//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
-		//    ('signature:'
-		//    'secret:' secret=EString)?;
+		//    'secret:' secret=EString
+		//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']';
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'jwt:'
-		//'header:'
 		//'signatureAlgorithm:' signatureAlgorithm=EString
-		//'payload:'
+		//'secret:' secret=EString
 		//'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
-		//('signature:'
-		//'secret:' secret=EString)?
 		public Group getGroup() { return cGroup; }
 		
 		//'jwt:'
 		public Keyword getJwtKeyword_0() { return cJwtKeyword_0; }
 		
-		//'header:'
-		public Keyword getHeaderKeyword_1() { return cHeaderKeyword_1; }
-		
 		//'signatureAlgorithm:'
-		public Keyword getSignatureAlgorithmKeyword_2() { return cSignatureAlgorithmKeyword_2; }
+		public Keyword getSignatureAlgorithmKeyword_1() { return cSignatureAlgorithmKeyword_1; }
 		
 		//signatureAlgorithm=EString
-		public Assignment getSignatureAlgorithmAssignment_3() { return cSignatureAlgorithmAssignment_3; }
+		public Assignment getSignatureAlgorithmAssignment_2() { return cSignatureAlgorithmAssignment_2; }
 		
 		//EString
-		public RuleCall getSignatureAlgorithmEStringParserRuleCall_3_0() { return cSignatureAlgorithmEStringParserRuleCall_3_0; }
+		public RuleCall getSignatureAlgorithmEStringParserRuleCall_2_0() { return cSignatureAlgorithmEStringParserRuleCall_2_0; }
 		
-		//'payload:'
-		public Keyword getPayloadKeyword_4() { return cPayloadKeyword_4; }
+		//'secret:'
+		public Keyword getSecretKeyword_3() { return cSecretKeyword_3; }
+		
+		//secret=EString
+		public Assignment getSecretAssignment_4() { return cSecretAssignment_4; }
+		
+		//EString
+		public RuleCall getSecretEStringParserRuleCall_4_0() { return cSecretEStringParserRuleCall_4_0; }
 		
 		//'claims:'
 		public Keyword getClaimsKeyword_5() { return cClaimsKeyword_5; }
@@ -1079,22 +1068,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		
 		//']'
 		public Keyword getRightSquareBracketKeyword_9() { return cRightSquareBracketKeyword_9; }
-		
-		//('signature:'
-		//'secret:' secret=EString)?
-		public Group getGroup_10() { return cGroup_10; }
-		
-		//'signature:'
-		public Keyword getSignatureKeyword_10_0() { return cSignatureKeyword_10_0; }
-		
-		//'secret:'
-		public Keyword getSecretKeyword_10_1() { return cSecretKeyword_10_1; }
-		
-		//secret=EString
-		public Assignment getSecretAssignment_10_2() { return cSecretAssignment_10_2; }
-		
-		//EString
-		public RuleCall getSecretEStringParserRuleCall_10_2_0() { return cSecretEStringParserRuleCall_10_2_0; }
 	}
 	public class ClaimElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Claim");
@@ -1232,7 +1205,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		private final Keyword cLeftCurlyBracketKeyword_0 = (Keyword)cGroup.eContents().get(0);
 		private final Keyword cNameKeyword_1 = (Keyword)cGroup.eContents().get(1);
 		private final Assignment cNameAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cNameEOAuthProviderEnumRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
+		private final RuleCall cNameEStringParserRuleCall_2_0 = (RuleCall)cNameAssignment_2.eContents().get(0);
 		private final Keyword cCommaKeyword_3 = (Keyword)cGroup.eContents().get(3);
 		private final Keyword cClientIdKeyword_4 = (Keyword)cGroup.eContents().get(4);
 		private final Assignment cClientIdAssignment_5 = (Assignment)cGroup.eContents().get(5);
@@ -1250,7 +1223,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		
 		//Provider returns Provider:
 		//    '{'
-		//        'name:' name=EOAuthProvider ','
+		//        'name:' name=EString ','
 		//        'clientId:' clientId=EString ','
 		//        'clientSecret:' clientSecret=EString
 		//        (',' 'redirectUri:' redirectUri=EString)?
@@ -1259,7 +1232,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		@Override public ParserRule getRule() { return rule; }
 		
 		//'{'
-		//    'name:' name=EOAuthProvider ','
+		//    'name:' name=EString ','
 		//    'clientId:' clientId=EString ','
 		//    'clientSecret:' clientSecret=EString
 		//    (',' 'redirectUri:' redirectUri=EString)?
@@ -1272,11 +1245,11 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'name:'
 		public Keyword getNameKeyword_1() { return cNameKeyword_1; }
 		
-		//name=EOAuthProvider
+		//name=EString
 		public Assignment getNameAssignment_2() { return cNameAssignment_2; }
 		
-		//EOAuthProvider
-		public RuleCall getNameEOAuthProviderEnumRuleCall_2_0() { return cNameEOAuthProviderEnumRuleCall_2_0; }
+		//EString
+		public RuleCall getNameEStringParserRuleCall_2_0() { return cNameEStringParserRuleCall_2_0; }
 		
 		//','
 		public Keyword getCommaKeyword_3() { return cCommaKeyword_3; }
@@ -1582,73 +1555,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//'REGISTERED'
 		public Keyword getREGISTEREDREGISTEREDKeyword_2_0() { return cREGISTEREDREGISTEREDKeyword_2_0; }
 	}
-	public class EOAuthProviderElements extends AbstractElementFinder.AbstractEnumRuleElementFinder {
-		private final EnumRule rule = (EnumRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.EOAuthProvider");
-		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final EnumLiteralDeclaration cGOOGLEEnumLiteralDeclaration_0 = (EnumLiteralDeclaration)cAlternatives.eContents().get(0);
-		private final Keyword cGOOGLEGOOGLEKeyword_0_0 = (Keyword)cGOOGLEEnumLiteralDeclaration_0.eContents().get(0);
-		private final EnumLiteralDeclaration cGITHUBEnumLiteralDeclaration_1 = (EnumLiteralDeclaration)cAlternatives.eContents().get(1);
-		private final Keyword cGITHUBGITHUBKeyword_1_0 = (Keyword)cGITHUBEnumLiteralDeclaration_1.eContents().get(0);
-		private final EnumLiteralDeclaration cFACEBOOKEnumLiteralDeclaration_2 = (EnumLiteralDeclaration)cAlternatives.eContents().get(2);
-		private final Keyword cFACEBOOKFACEBOOKKeyword_2_0 = (Keyword)cFACEBOOKEnumLiteralDeclaration_2.eContents().get(0);
-		private final EnumLiteralDeclaration cAZUREEnumLiteralDeclaration_3 = (EnumLiteralDeclaration)cAlternatives.eContents().get(3);
-		private final Keyword cAZUREMICROSOFT_AZUREKeyword_3_0 = (Keyword)cAZUREEnumLiteralDeclaration_3.eContents().get(0);
-		private final EnumLiteralDeclaration cLINKEDINEnumLiteralDeclaration_4 = (EnumLiteralDeclaration)cAlternatives.eContents().get(4);
-		private final Keyword cLINKEDINLINKEDINKeyword_4_0 = (Keyword)cLINKEDINEnumLiteralDeclaration_4.eContents().get(0);
-		private final EnumLiteralDeclaration cTWITTEREnumLiteralDeclaration_5 = (EnumLiteralDeclaration)cAlternatives.eContents().get(5);
-		private final Keyword cTWITTERTWITTERKeyword_5_0 = (Keyword)cTWITTEREnumLiteralDeclaration_5.eContents().get(0);
-		private final EnumLiteralDeclaration cINSTAGRAMEnumLiteralDeclaration_6 = (EnumLiteralDeclaration)cAlternatives.eContents().get(6);
-		private final Keyword cINSTAGRAMINSTAGRAMKeyword_6_0 = (Keyword)cINSTAGRAMEnumLiteralDeclaration_6.eContents().get(0);
-		
-		//enum EOAuthProvider returns EOAuthProvider:
-		//                GOOGLE = 'GOOGLE' | GITHUB = 'GITHUB' | FACEBOOK = 'FACEBOOK' | AZURE = 'MICROSOFT_AZURE' | LINKEDIN = 'LINKEDIN' | TWITTER = 'TWITTER' | INSTAGRAM = 'INSTAGRAM';
-		public EnumRule getRule() { return rule; }
-		
-		//GOOGLE = 'GOOGLE' | GITHUB = 'GITHUB' | FACEBOOK = 'FACEBOOK' | AZURE = 'MICROSOFT_AZURE' | LINKEDIN = 'LINKEDIN' | TWITTER = 'TWITTER' | INSTAGRAM = 'INSTAGRAM'
-		public Alternatives getAlternatives() { return cAlternatives; }
-		
-		//GOOGLE = 'GOOGLE'
-		public EnumLiteralDeclaration getGOOGLEEnumLiteralDeclaration_0() { return cGOOGLEEnumLiteralDeclaration_0; }
-		
-		//'GOOGLE'
-		public Keyword getGOOGLEGOOGLEKeyword_0_0() { return cGOOGLEGOOGLEKeyword_0_0; }
-		
-		//GITHUB = 'GITHUB'
-		public EnumLiteralDeclaration getGITHUBEnumLiteralDeclaration_1() { return cGITHUBEnumLiteralDeclaration_1; }
-		
-		//'GITHUB'
-		public Keyword getGITHUBGITHUBKeyword_1_0() { return cGITHUBGITHUBKeyword_1_0; }
-		
-		//FACEBOOK = 'FACEBOOK'
-		public EnumLiteralDeclaration getFACEBOOKEnumLiteralDeclaration_2() { return cFACEBOOKEnumLiteralDeclaration_2; }
-		
-		//'FACEBOOK'
-		public Keyword getFACEBOOKFACEBOOKKeyword_2_0() { return cFACEBOOKFACEBOOKKeyword_2_0; }
-		
-		//AZURE = 'MICROSOFT_AZURE'
-		public EnumLiteralDeclaration getAZUREEnumLiteralDeclaration_3() { return cAZUREEnumLiteralDeclaration_3; }
-		
-		//'MICROSOFT_AZURE'
-		public Keyword getAZUREMICROSOFT_AZUREKeyword_3_0() { return cAZUREMICROSOFT_AZUREKeyword_3_0; }
-		
-		//LINKEDIN = 'LINKEDIN'
-		public EnumLiteralDeclaration getLINKEDINEnumLiteralDeclaration_4() { return cLINKEDINEnumLiteralDeclaration_4; }
-		
-		//'LINKEDIN'
-		public Keyword getLINKEDINLINKEDINKeyword_4_0() { return cLINKEDINLINKEDINKeyword_4_0; }
-		
-		//TWITTER = 'TWITTER'
-		public EnumLiteralDeclaration getTWITTEREnumLiteralDeclaration_5() { return cTWITTEREnumLiteralDeclaration_5; }
-		
-		//'TWITTER'
-		public Keyword getTWITTERTWITTERKeyword_5_0() { return cTWITTERTWITTERKeyword_5_0; }
-		
-		//INSTAGRAM = 'INSTAGRAM'
-		public EnumLiteralDeclaration getINSTAGRAMEnumLiteralDeclaration_6() { return cINSTAGRAMEnumLiteralDeclaration_6; }
-		
-		//'INSTAGRAM'
-		public Keyword getINSTAGRAMINSTAGRAMKeyword_6_0() { return cINSTAGRAMINSTAGRAMKeyword_6_0; }
-	}
 	
 	private final ApplicationElements pApplication;
 	private final ModelElements pModel;
@@ -1671,7 +1577,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	private final JWTElements pJWT;
 	private final ClaimElements pClaim;
 	private final EClaimTypeElements eEClaimType;
-	private final EOAuthProviderElements eEOAuthProvider;
 	private final OAuth2Elements pOAuth2;
 	private final ProviderElements pProvider;
 	private final BasicAuthenticationElements pBasicAuthentication;
@@ -1707,7 +1612,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		this.pJWT = new JWTElements();
 		this.pClaim = new ClaimElements();
 		this.eEClaimType = new EClaimTypeElements();
-		this.eEOAuthProvider = new EOAuthProviderElements();
 		this.pOAuth2 = new OAuth2Elements();
 		this.pProvider = new ProviderElements();
 		this.pBasicAuthentication = new BasicAuthenticationElements();
@@ -1760,7 +1664,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    ('controller:'
 	//        ('auth:' app_controllers+=Authentication)?
 	//    )?
-	//    ;
+	//;
 	public ApplicationElements getApplicationAccess() {
 		return pApplication;
 	}
@@ -1919,7 +1823,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	//    '{'
 	//        'type:' type=EEndpointType
 	//        'url:' url=EString
-	//        ('methodName:' methodName=EString)?
+	//        'methodName:' methodName=EString
 	//        ('method:' method=EEndpointMethod)?
 	//        ('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 	//    '}';
@@ -1966,12 +1870,9 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	//JWT returns JWT:
 	//    'jwt:'
-	//    'header:'
 	//    'signatureAlgorithm:' signatureAlgorithm=EString
-	//    'payload:'
-	//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
-	//    ('signature:'
-	//    'secret:' secret=EString)?;
+	//    'secret:' secret=EString
+	//    'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']';
 	public JWTElements getJWTAccess() {
 		return pJWT;
 	}
@@ -2003,16 +1904,6 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		return getEClaimTypeAccess().getRule();
 	}
 	
-	//enum EOAuthProvider returns EOAuthProvider:
-	//                GOOGLE = 'GOOGLE' | GITHUB = 'GITHUB' | FACEBOOK = 'FACEBOOK' | AZURE = 'MICROSOFT_AZURE' | LINKEDIN = 'LINKEDIN' | TWITTER = 'TWITTER' | INSTAGRAM = 'INSTAGRAM';
-	public EOAuthProviderElements getEOAuthProviderAccess() {
-		return eEOAuthProvider;
-	}
-	
-	public EnumRule getEOAuthProviderRule() {
-		return getEOAuthProviderAccess().getRule();
-	}
-	
 	//OAuth2 returns OAuth2:
 	//    'OAuth2.0:'
 	//    'providers:' '[' providers+=Provider ( "," providers+=Provider)* ']';
@@ -2026,7 +1917,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	
 	//Provider returns Provider:
 	//    '{'
-	//        'name:' name=EOAuthProvider ','
+	//        'name:' name=EString ','
 	//        'clientId:' clientId=EString ','
 	//        'clientSecret:' clientSecret=EString
 	//        (',' 'redirectUri:' redirectUri=EString)?

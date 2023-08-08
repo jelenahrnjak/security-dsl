@@ -40,15 +40,6 @@
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/PUBLIC"/>
       <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EClaimType/REGISTERED"/>
     </genEnums>
-    <genEnums typeSafeEnumCompatible="false" ecoreEnum="security_dsl.ecore#//EOAuthProvider">
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/GOOGLE"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/GITHUB"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/FACEBOOK"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/AZURE"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/LINKEDIN"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/TWITTER"/>
-      <genEnumLiterals ecoreEnumLiteral="security_dsl.ecore#//EOAuthProvider/INSTAGRAM"/>
-    </genEnums>
     <genClasses ecoreClass="security_dsl.ecore#//Application">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_database"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference security_dsl.ecore#//Application/app_entities"/>

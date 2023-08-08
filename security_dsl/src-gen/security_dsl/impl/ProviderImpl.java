@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import security_dsl.EOAuthProvider;
 import security_dsl.Provider;
 import security_dsl.Security_dslPackage;
 
@@ -38,7 +37,7 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOAuthProvider NAME_EDEFAULT = EOAuthProvider.GOOGLE;
+	protected static final String NAME_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -48,7 +47,7 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	 * @generated
 	 * @ordered
 	 */
-	protected EOAuthProvider name = NAME_EDEFAULT;
+	protected String name = NAME_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getClientId() <em>Client Id</em>}' attribute.
@@ -134,7 +133,7 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOAuthProvider getName() {
+	public String getName() {
 		return name;
 	}
 
@@ -143,9 +142,9 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setName(EOAuthProvider newName) {
-		EOAuthProvider oldName = name;
-		name = newName == null ? NAME_EDEFAULT : newName;
+	public void setName(String newName) {
+		String oldName = name;
+		name = newName;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, Security_dslPackage.PROVIDER__NAME, oldName, name));
 	}
@@ -245,7 +244,7 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case Security_dslPackage.PROVIDER__NAME:
-			setName((EOAuthProvider) newValue);
+			setName((String) newValue);
 			return;
 		case Security_dslPackage.PROVIDER__CLIENT_ID:
 			setClientId((String) newValue);
@@ -293,7 +292,7 @@ public class ProviderImpl extends MinimalEObjectImpl.Container implements Provid
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 		case Security_dslPackage.PROVIDER__NAME:
-			return name != NAME_EDEFAULT;
+			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case Security_dslPackage.PROVIDER__CLIENT_ID:
 			return CLIENT_ID_EDEFAULT == null ? clientId != null : !CLIENT_ID_EDEFAULT.equals(clientId);
 		case Security_dslPackage.PROVIDER__CLIENT_SECRET:

@@ -24,7 +24,6 @@ import security_dsl.EClaimType;
 import security_dsl.EDatabaseType;
 import security_dsl.EEndpointMethod;
 import security_dsl.EEndpointType;
-import security_dsl.EOAuthProvider;
 import security_dsl.EType;
 import security_dsl.Endpoint;
 import security_dsl.Entity;
@@ -192,13 +191,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * @generated
 	 */
 	private EEnum eClaimTypeEEnum = null;
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	private EEnum eoAuthProviderEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -1266,15 +1258,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EEnum getEOAuthProvider() {
-		return eoAuthProviderEEnum;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public Security_dslFactory getSecurity_dslFactory() {
 		return (Security_dslFactory) getEFactoryInstance();
 	}
@@ -1427,7 +1410,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		eEndpointMethodEEnum = createEEnum(EENDPOINT_METHOD);
 		eEndpointTypeEEnum = createEEnum(EENDPOINT_TYPE);
 		eClaimTypeEEnum = createEEnum(ECLAIM_TYPE);
-		eoAuthProviderEEnum = createEEnum(EO_AUTH_PROVIDER);
 	}
 
 	/**
@@ -1839,7 +1821,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		initEAttribute(getJWT_SignatureAlgorithm(), ecorePackage.getEString(), "signatureAlgorithm", null, 1, 1,
 				security_dsl.JWT.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getJWT_Secret(), ecorePackage.getEString(), "secret", "somesecret", 0, 1, security_dsl.JWT.class,
+		initEAttribute(getJWT_Secret(), ecorePackage.getEString(), "secret", null, 1, 1, security_dsl.JWT.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getJWT_Claims(), this.getClaim(), null, "claims", null, 0, -1, security_dsl.JWT.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
@@ -2046,7 +2028,7 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 
 		initEClass(providerEClass, Provider.class, "Provider", !IS_ABSTRACT, !IS_INTERFACE,
 				IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getProvider_Name(), this.getEOAuthProvider(), "name", null, 1, 1, Provider.class, !IS_TRANSIENT,
+		initEAttribute(getProvider_Name(), ecorePackage.getEString(), "name", null, 1, 1, Provider.class, !IS_TRANSIENT,
 				!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getProvider_ClientId(), ecorePackage.getEString(), "clientId", null, 1, 1, Provider.class,
 				!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -2087,15 +2069,6 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		addEEnumLiteral(eClaimTypeEEnum, EClaimType.PRIVATE);
 		addEEnumLiteral(eClaimTypeEEnum, EClaimType.PUBLIC);
 		addEEnumLiteral(eClaimTypeEEnum, EClaimType.REGISTERED);
-
-		initEEnum(eoAuthProviderEEnum, EOAuthProvider.class, "EOAuthProvider");
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.GOOGLE);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.GITHUB);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.FACEBOOK);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.AZURE);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.LINKEDIN);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.TWITTER);
-		addEEnumLiteral(eoAuthProviderEEnum, EOAuthProvider.INSTAGRAM);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -2224,9 +2197,9 @@ public class Security_dslPackageImpl extends EPackageImpl implements Security_ds
 		addAnnotation(getOAuth2__DoesntHaveRoleForOauth__DiagnosticChain_Map(), source, new String[] { "body",
 				"Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -> select(e | e.oclIsTypeOf(Role)) -> size() = 0\n}.status" });
 		addAnnotation(getOAuth2__DoesntHaveAuthControllerForOauth__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Controller.allInstances() -> select(e | e.oclIsTypeOf(Authentication)) -> size() = 0\n}.status" });
+				"Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Authentication controller!\',\n\tstatus : Boolean = \n\t\t    Controller.allInstances() -> select(e | e.oclIsTypeOf(Authentication)) -> size() = 0\n}.status" });
 		addAnnotation(getOAuth2__DoesntHaveUserForOauth__DiagnosticChain_Map(), source, new String[] { "body",
-				"Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -> select(e | e.oclIsTypeOf(User)) -> size() = 0\n}.status" });
+				"Tuple {\n\tmessage : String = \'OAuth2 authentication requires no User entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -> select(e | e.oclIsTypeOf(User)) -> size() = 0\n}.status" });
 		addAnnotation(getBasicAuthentication__BasicAuthNoRoleAttributes__DiagnosticChain_Map(), source, new String[] {
 				"body",
 				"Tuple {\n\tmessage : String = \'Basic authentication cannot have role attributes!\',\n\tstatus : Boolean = \n\t        Entity.allInstances() -> select(e | e.oclIsTypeOf(Role))\n\t            -> forAll(role | role.entity_attributes -> size() = 0)\n}.status" });

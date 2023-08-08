@@ -27,7 +27,7 @@ Application returns Application:
 	('controller:' 
 		('auth:' app_controllers+=Authentication)? 	
 	)?
-	;
+;
 
 
 Model returns Entity:
@@ -90,7 +90,7 @@ Endpoint returns Endpoint:
 	'{'
 		'type:' type=EEndpointType
 		'url:' url=EString
-		('methodName:' methodName=EString)?
+		'methodName:' methodName=EString
 		('method:' method=EEndpointMethod)?
 		('roleAuthorities:' '[' role_authorities+=[RoleInstance|EString] ( "," role_authorities+=[RoleInstance|EString])* ']' )?
 	'}';
@@ -109,12 +109,9 @@ enum EEndpointType returns EEndpointType:
 
 JWT returns JWT:
 	'jwt:'
-	'header:'
 	'signatureAlgorithm:' signatureAlgorithm=EString
-	'payload:'
-	'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']'
-	('signature:'
-	'secret:' secret=EString)?;
+	'secret:' secret=EString
+	'claims:' '[' claims+=Claim ( "," claims+=Claim)* ']';
 
 Claim returns Claim:
 	'{'
@@ -125,9 +122,6 @@ Claim returns Claim:
 
 enum EClaimType returns EClaimType:
 				PRIVATE = 'PRIVATE' | PUBLIC = 'PUBLIC' | REGISTERED = 'REGISTERED';
-				
-enum EOAuthProvider returns EOAuthProvider:
-				GOOGLE = 'GOOGLE' | GITHUB = 'GITHUB' | FACEBOOK = 'FACEBOOK' | AZURE = 'MICROSOFT_AZURE' | LINKEDIN = 'LINKEDIN' | TWITTER = 'TWITTER' | INSTAGRAM = 'INSTAGRAM';
 
 OAuth2 returns OAuth2:
 	'OAuth2.0:'
@@ -135,7 +129,7 @@ OAuth2 returns OAuth2:
 	
 Provider returns Provider:
 	'{' 
-		'name:' name=EOAuthProvider ','
+		'name:' name=EString ','
 		'clientId:' clientId=EString ','
 		'clientSecret:' clientSecret=EString 
 		(',' 'redirectUri:' redirectUri=EString)?

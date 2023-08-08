@@ -106,7 +106,7 @@ public class JWTImpl extends SecurityImpl implements JWT {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String SECRET_EDEFAULT = "somesecret";
+	protected static final String SECRET_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getSecret() <em>Secret</em>}' attribute.

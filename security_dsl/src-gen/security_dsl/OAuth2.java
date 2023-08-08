@@ -55,7 +55,7 @@ public interface OAuth2 extends Security {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Controller.allInstances() -&gt; select(e | e.oclIsTypeOf(Authentication)) -&gt; size() = 0\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Authentication controller!\',\n\tstatus : Boolean = \n\t\t    Controller.allInstances() -&gt; select(e | e.oclIsTypeOf(Authentication)) -&gt; size() = 0\n}.status'"
 	 * @generated
 	 */
 	boolean doesntHaveAuthControllerForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -63,7 +63,7 @@ public interface OAuth2 extends Security {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no Role entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() = 0\n}.status'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Tuple {\n\tmessage : String = \'OAuth2 authentication requires no User entities!\',\n\tstatus : Boolean = \n\t\t    Entity.allInstances() -&gt; select(e | e.oclIsTypeOf(User)) -&gt; size() = 0\n}.status'"
 	 * @generated
 	 */
 	boolean doesntHaveUserForOauth(DiagnosticChain diagnostics, Map<Object, Object> context);
