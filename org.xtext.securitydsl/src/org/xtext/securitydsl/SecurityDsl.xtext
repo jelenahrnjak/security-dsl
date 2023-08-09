@@ -17,7 +17,7 @@ Application returns Application:
 	
 	('database:' app_database=Database)?
 		
-	('model:' 
+	('entity:' 
 		('user:' app_entities+=User)? 
 		('role:' app_entities+=Role)?
 	)?
@@ -30,7 +30,7 @@ Application returns Application:
 ;
 
 
-Model returns Entity:
+Entity returns Entity:
 	Role | User;
 
 Controller returns Controller:

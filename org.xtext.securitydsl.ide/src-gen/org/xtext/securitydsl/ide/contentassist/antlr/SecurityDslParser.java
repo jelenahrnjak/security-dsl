@@ -31,7 +31,7 @@ public class SecurityDslParser extends AbstractContentAssistParser {
 		}
 		
 		private static void init(ImmutableMap.Builder<AbstractElement, String> builder, SecurityDslGrammarAccess grammarAccess) {
-			builder.put(grammarAccess.getModelAccess().getAlternatives(), "rule__Model__Alternatives");
+			builder.put(grammarAccess.getEntityAccess().getAlternatives(), "rule__Entity__Alternatives");
 			builder.put(grammarAccess.getSecurityAccess().getAlternatives(), "rule__Security__Alternatives");
 			builder.put(grammarAccess.getEStringAccess().getAlternatives(), "rule__EString__Alternatives");
 			builder.put(grammarAccess.getEBooleanAccess().getAlternatives(), "rule__EBoolean__Alternatives");

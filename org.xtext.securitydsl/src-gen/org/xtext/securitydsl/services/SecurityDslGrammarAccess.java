@@ -285,13 +285,13 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		//Authentication
 		public RuleCall getApp_controllersAuthenticationParserRuleCall_14_1_1_0() { return cApp_controllersAuthenticationParserRuleCall_14_1_1_0; }
 	}
-	public class ModelElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Model");
+	public class EntityElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.securitydsl.SecurityDsl.Entity");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
 		private final RuleCall cRoleParserRuleCall_0 = (RuleCall)cAlternatives.eContents().get(0);
 		private final RuleCall cUserParserRuleCall_1 = (RuleCall)cAlternatives.eContents().get(1);
 		
-		//Model returns Entity:
+		//Entity returns Entity:
 		//    Role | User;
 		@Override public ParserRule getRule() { return rule; }
 		
@@ -1557,7 +1557,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 	}
 	
 	private final ApplicationElements pApplication;
-	private final ModelElements pModel;
+	private final EntityElements pEntity;
 	private final ControllerElements pController;
 	private final SecurityElements pSecurity;
 	private final DatabaseElements pDatabase;
@@ -1592,7 +1592,7 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pApplication = new ApplicationElements();
-		this.pModel = new ModelElements();
+		this.pEntity = new EntityElements();
 		this.pController = new ControllerElements();
 		this.pSecurity = new SecurityElements();
 		this.pDatabase = new DatabaseElements();
@@ -1673,14 +1673,14 @@ public class SecurityDslGrammarAccess extends AbstractElementFinder.AbstractGram
 		return getApplicationAccess().getRule();
 	}
 	
-	//Model returns Entity:
+	//Entity returns Entity:
 	//    Role | User;
-	public ModelElements getModelAccess() {
-		return pModel;
+	public EntityElements getEntityAccess() {
+		return pEntity;
 	}
 	
-	public ParserRule getModelRule() {
-		return getModelAccess().getRule();
+	public ParserRule getEntityRule() {
+		return getEntityAccess().getRule();
 	}
 	
 	//Controller returns Controller:

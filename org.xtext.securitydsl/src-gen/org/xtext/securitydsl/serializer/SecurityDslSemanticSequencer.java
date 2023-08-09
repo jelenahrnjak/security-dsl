@@ -283,7 +283,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Model returns Role
+	 *     Entity returns Role
 	 *     Role returns Role
 	 *
 	 * Constraint:
@@ -298,7 +298,7 @@ public class SecurityDslSemanticSequencer extends AbstractDelegatingSemanticSequ
 	/**
 	 * <pre>
 	 * Contexts:
-	 *     Model returns User
+	 *     Entity returns User
 	 *     User returns User
 	 *
 	 * Constraint:
