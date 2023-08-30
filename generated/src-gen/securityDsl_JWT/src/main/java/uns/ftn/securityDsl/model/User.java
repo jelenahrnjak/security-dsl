@@ -1,6 +1,5 @@
 package uns.ftn.securityDsl.model;
 
-
 import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +43,6 @@ public class User implements UserDetails {
 	@Column(name = "last_name")
 	private String lastName;
 	
-
 	@JsonIgnore
 	@Column(name = "password")
 	private String password;
@@ -75,7 +73,7 @@ public class User implements UserDetails {
 	
 	@Override
 	public boolean isEnabled() {
-	    return enabled;
+		return enabled;
 	}
 	
 	@JsonIgnore
@@ -96,3 +94,4 @@ public class User implements UserDetails {
 	    return true;
 	}
 }
+
