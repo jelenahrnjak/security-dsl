@@ -17,7 +17,7 @@ public class SecurityDslJWTGenerator {
   public SecurityDslJWTGenerator(final IFileSystemAccess2 fsa, final String packageName, final String srcDestination, final Authentication authController, final JWT jwt, final String credentialUser) {
     this.packageName = packageName;
     fsa.generateFile((srcDestination + "/config/WebConfig.java"), this.generateWebConfig());
-    fsa.generateFile((srcDestination + "/config/WebSecurityConfig.java"), this.generateWebSecurityConfig(authController));
+    fsa.generateFile((srcDestination + "/config/SecurityConfig.java"), this.generateSecurityConfig(authController));
     fsa.generateFile((srcDestination + "/util/TokenUtils.java"), this.generateTokenUtils(jwt, credentialUser));
     fsa.generateFile((srcDestination + "/dto/UserTokenStateDTO.java"), this.generateUserTokenStateDTO());
     fsa.generateFile((srcDestination + "/security/auth/RestAuthenticationEntryPoint.java"), this.generateRestAuthenticationEntryPoint());
@@ -431,7 +431,7 @@ public class SecurityDslJWTGenerator {
     return _builder.toString();
   }
 
-  public CharSequence generateWebSecurityConfig(final Authentication authController) {
+  public CharSequence generateSecurityConfig(final Authentication authController) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("package ");
     _builder.append(this.packageName);
@@ -486,7 +486,7 @@ public class SecurityDslJWTGenerator {
     _builder.newLine();
     _builder.append("@EnableGlobalMethodSecurity(prePostEnabled = true)");
     _builder.newLine();
-    _builder.append("public class WebSecurityConfig extends WebSecurityConfigurerAdapter {");
+    _builder.append("public class SecurityConfig extends WebSecurityConfigurerAdapter {");
     _builder.newLine();
     _builder.append("\t");
     _builder.newLine();
